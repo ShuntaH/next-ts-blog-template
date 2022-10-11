@@ -18,11 +18,14 @@ export default function Index({ allPosts }: Props) {
   return (
     <>
       <Layout>
+        {/*meta*/}
         <Head>
-          <title>Next.js Blog Example with {CMS_NAME}</title>
+          <title>hskpg blog</title>
         </Head>
-        <Container>
-          <Intro />
+
+
+        <Container children={'children'}>
+          <Intro></Intro>
           {heroPost && (
             <HeroPost
               title={heroPost.title}
