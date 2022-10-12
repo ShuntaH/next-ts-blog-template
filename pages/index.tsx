@@ -5,12 +5,16 @@ import Intro from '../components/intro'
 import Layout from '../components/layout'
 import { getAllPosts } from '../lib/api'
 import Head from 'next/head'
-import { CMS_NAME } from '../lib/constants'
 import Post from '../interfaces/post'
+
 
 type Props = {
   allPosts: Post[]
 }
+
+/**
+ * This is the page that is rendered when the user visits the root of your application.
+ */
 
 export default function Index({ allPosts }: Props) {
   const heroPost = allPosts[0]
