@@ -27,9 +27,11 @@ export default function Index({ allPosts }: Props) {
         {/*  <title>hskpg blog</title>*/}
         {/*</Head>*/}
 
-
         <Container>
+          <p style={{color: "skyblue"}}>introの外側</p>
           <Intro></Intro>
+          <p style={{color: "skyblue"}}>introの外側</p>
+          ーーーーーーーーーーーーーー
           {heroPost && (
             <HeroPost
               title={heroPost.title}
@@ -40,6 +42,8 @@ export default function Index({ allPosts }: Props) {
               excerpt={heroPost.excerpt}
             />
           )}
+          ーーーーーーーーーーーーーーーーー
+
           {morePosts.length > 0 && <MoreStories posts={morePosts} />}
         </Container>
       </Layout>
