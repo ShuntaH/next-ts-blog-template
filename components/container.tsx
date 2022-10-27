@@ -3,7 +3,7 @@ type Props = {
 }
 
 const Container = ({ children }: Props) => {
-  return <div className="container mx-auto px-5">あああああああああ{children}えええええええええええ</div>
+  return <div className="container mx-auto px-5">ああああああああ{children}えええええええええええ</div>
 }
 
 export default Container
