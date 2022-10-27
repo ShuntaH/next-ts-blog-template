@@ -22,24 +22,27 @@ export default function Index({ allPosts }: Props) {
   return (
     <>
       <Layout>
-        meta
         <Head>
           <title>hskpg blog</title>
         </Head>
 
-
-        <Container children={'children'}>
+        <Container>
+          <p style={{color: "skyblue"}}>introの外側</p>
           <Intro></Intro>
-          {/*{heroPost && (*/}
-          {/*  <HeroPost*/}
-          {/*    title={heroPost.title}*/}
-          {/*    coverImage={heroPost.coverImage}*/}
-          {/*    date={heroPost.date}*/}
-          {/*    author={heroPost.author}*/}
-          {/*    slug={heroPost.slug}*/}
-          {/*    excerpt={heroPost.excerpt}*/}
-          {/*  />*/}
-          {/*)}*/}
+          <p style={{color: "skyblue"}}>introの外側</p>
+          ーーーーーーーーーーーーーー
+          {heroPost && (
+            <HeroPost
+              title={heroPost.title}
+              coverImage={heroPost.coverImage}
+              date={heroPost.date}
+              author={heroPost.author}
+              slug={heroPost.slug}
+              excerpt={heroPost.excerpt}
+            />
+          )}
+          ーーーーーーーーーーーーーーーーー
+
           {morePosts.length > 0 && <MoreStories posts={morePosts} />}
         </Container>
       </Layout>
