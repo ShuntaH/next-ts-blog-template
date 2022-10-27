@@ -22,10 +22,9 @@ export default function Index({ allPosts }: Props) {
   return (
     <>
       <Layout>
-        {/*meta*/}
-        {/*<Head>*/}
-        {/*  <title>hskpg blog</title>*/}
-        {/*</Head>*/}
+        <Head>
+          <title>hskpg blog</title>
+        </Head>
 
         <Container>
           <p style={{color: "skyblue"}}>introの外側</p>
