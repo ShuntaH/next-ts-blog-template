@@ -25,8 +25,9 @@ export default function Index({allPosts}: Props) {
       {/*  <title>hskpg blog</title>*/}
       {/*</Head>*/}
 
-      <Container px={5}>
+      <Container px={1} w={"100%"}>
         <Intro></Intro>
+
         {heroPost && (
           <HeroPost
             title={heroPost.title}
@@ -39,7 +40,8 @@ export default function Index({allPosts}: Props) {
         ーーーーーーーーーーーーーーーーー
 
         {morePosts.length > 0 && <MoreStories posts={morePosts}/>}
-      </Container></>
+      </Container>
+    </>
 
   )
 }
