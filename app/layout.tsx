@@ -16,3 +16,29 @@ export default function RootLayout({
     </html>
   );
 }
+
+import { AppProps } from 'next/app'
+// import { ChakraProvider } from "@chakra-ui/react";
+
+// export default function MyApp({ Component, pageProps }: AppProps) {
+//     return (
+//         <ChakraProvider>
+//             <Component {...pageProps} />
+//         </ChakraProvider>
+//     )
+// }
+//
+// import { Html, Head, Main, NextScript } from 'next/document'
+//
+// export default function Document() {
+//     return (
+//         <Html lang="en">
+//             <Head />
+//             <body>
+//             <Main />
+//             <NextScript />
+//             </body>
+//         </Html>
+//     )
+// }
+
