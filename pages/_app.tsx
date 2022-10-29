@@ -11,6 +11,9 @@ import { ChakraProvider } from "@chakra-ui/react";
  * componentDidCatchを利用したカスタムエラー処理
  * 各Routeコンポーネントをラップするもの
  * ReduxのProvider設定をする
+ *
+ * layoutに関して、もしこのアプリが１つのレイアウトしか持たない場合、グルーバルなレイアウトとして
+ * app.tsxに書ける
  */
 
 export default function MyApp({ Component, pageProps }: AppProps) {

@@ -5,11 +5,11 @@ module.exports = {
   },
   extends: [
     'plugin:react/recommended',
-    // 'standard-with-typescript',
-    'next/core-web-vitals'
+    'standard-with-typescript',
+    'next/core-web-vitals',
+    // "standard"
   ],
-  overrides: [
-  ],
+  overrides: [],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
@@ -20,24 +20,24 @@ module.exports = {
     '@typescript-eslint'
   ],
   rules: {
-    'indent': [
-      'error',
-      2,
-      {
-        'SwitchCase': 1
-      }
-    ],
-    'linebreak-style': [
-      'error',
-      'unix'
-    ],
-    'quotes': [
-      'error',
-      'single'
-    ],
-    'semi': [
-      'error',
-      'always'
-    ],
+    // 'indent': [
+    //   'error',
+    //   2,
+    //   {
+    //     'SwitchCase': 1
+    //   }
+    // ],
+    // 'linebreak-style': [
+    //   'error',
+    //   'unix'
+    // ],
+    // 'quotes': [
+    //   'error',
+    //   'single'
+    // ],
+    // 'semi': [
+    //   'error',
+    //   'always'
+    // ],
   }
 };
