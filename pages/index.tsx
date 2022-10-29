@@ -1,11 +1,10 @@
-import Container from '../components/container'
 import MoreStories from '../components/more-stories'
 import HeroPost from '../components/hero-post'
 import Intro from '../components/intro'
 import Layout from '../components/layout'
-import {getAllPosts} from '../lib/api'
-import Head from 'next/head'
+import { getAllPosts } from '../lib/api'
 import Post from '../interfaces/post'
+import { Container } from "@chakra-ui/react";
 
 
 type Props = {
@@ -21,14 +20,13 @@ export default function Index({allPosts}: Props) {
   const morePosts = allPosts.slice(1)
   return (
     <>
-      <Head>
-        <title>hskpg blog</title>
-      </Head>
-      <Container>
-        <p style={{color: "skyblue"}}>introの外側</p>
+      {/*ページ固有のhead内容を設定したい時*/}
+      {/*<Head>*/}
+      {/*  <title>hskpg blog</title>*/}
+      {/*</Head>*/}
+
+      <Container px={5}>
         <Intro></Intro>
-        <p style={{color: "skyblue"}}>introの外側</p>
-        ーーーーーーーーーーーーーー
         {heroPost && (
           <HeroPost
             title={heroPost.title}
