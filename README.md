@@ -9,5 +9,8 @@ To create the blog posts we use [`remark`](https://github.com/remarkjs/remark) a
 Your blog should be up and running on [http://localhost:3000](http://localhost:3000)! 
 
 ```bash
-yarn install
+npm install
 ```
+
+Next13が出たので移行しようとしたが結構大きめの修正なので,バージョンはNext13だがNext12の構成で進める。
+Nextに慣れたら移行する。もしeslintで警告が出るようならNext13の機能を部分的に使用する。
