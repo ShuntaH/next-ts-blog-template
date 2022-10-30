@@ -1,5 +1,6 @@
 import type Post from '../interfaces/post'
 import ArticleHeading from "./article-heading";
+import { Box } from "@chakra-ui/react";
 
 type Props = {
   posts: Post[]
@@ -8,7 +9,7 @@ type Props = {
 const ArticleHeadingList = ({posts}: Props) => {
   return (
     <section>
-      <div>
+      <Box>
         {posts.map((post) => (
           <ArticleHeading
             key={post.slug}
@@ -20,7 +21,7 @@ const ArticleHeadingList = ({posts}: Props) => {
             excerpt={post.excerpt}
           />
         ))}
-      </div>
+      </Box>
     </section>
   )
 }

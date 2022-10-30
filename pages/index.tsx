@@ -22,10 +22,10 @@ export default function Index({allPosts}: Props) {
     //   <title>hskpg blog</title>
     // </Head>
 
-    <Container>
+    <Container width={'100%'} maxWidth={'900px'} marginInline={'auto'}>
       {
         allPosts.length > 0 ?
-          <ArticleHeadingList posts={allPosts}></ArticleHeadingList>
+          <ArticleHeadingList posts={allPosts}/>
           :
           <Text align={"center"}>
             There is no post yet.
