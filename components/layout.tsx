@@ -23,7 +23,7 @@ const Layout = ({preview, children}: Props) => {
             "footer footer"`
         }
         gridTemplateRows={'100px 1fr 60px'}
-        gridTemplateColumns={'1fr 300px'}
+        gridTemplateColumns={'1fr 400px'}
         gap='4'
         color='blackAlpha.700'
         fontWeight='bold'

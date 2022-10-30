@@ -1,10 +1,16 @@
 import SearchForm from "./search-form";
-import { Container } from "@chakra-ui/react";
+import { Container, VStack } from "@chakra-ui/react";
+import React from "react";
+import Tags from "./tags";
+
 
 const SideArea = () => {
   return (
-    <Container width={'100%'} py={10}>
-      <SearchForm></SearchForm>
+    <Container width={'100%'} py={10} mr={"auto"}>
+      <VStack width={'100%'} spacing='100px'>
+        <SearchForm></SearchForm>
+        <Tags></Tags>
+      </VStack>
     </Container>
 
 
