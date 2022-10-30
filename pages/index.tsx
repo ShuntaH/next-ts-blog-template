@@ -1,8 +1,7 @@
-import MoreStories from '../components/more-stories'
-import HeroPost from '../components/hero-post'
+import ArticleHeadingList from '../components/article-heading-list'
 import { getAllPosts } from '../lib/api'
 import Post from '../interfaces/post'
-import { Container } from "@chakra-ui/react";
+import { Container, Text } from "@chakra-ui/react";
 
 
 type Props = {
@@ -14,9 +13,9 @@ type Props = {
  */
 
 export default function Index({allPosts}: Props) {
-  const heroPost = allPosts[0]
-  const morePosts = allPosts.slice(1)
-  
+  // const heroPost = allPosts[0]
+  // const morePosts = allPosts.slice(1)
+
   return (
     // ページ固有のhead内容を設定したい時
     // <Head>
@@ -24,21 +23,15 @@ export default function Index({allPosts}: Props) {
     // </Head>
 
     <Container>
-      {/*<Intro></Intro>*/}
-      {heroPost && (
-        <HeroPost
-          title={heroPost.title}
-          coverImage={heroPost.coverImage}
-          date={heroPost.date}
-          author={heroPost.author}
-          slug={heroPost.slug}
-          excerpt={heroPost.excerpt}
-        />
-      )}
-
-      {morePosts.length > 0 && <MoreStories posts={morePosts}/>}
+      {
+        allPosts.length > 0 ?
+          <ArticleHeadingList posts={allPosts}></ArticleHeadingList>
+          :
+          <Text align={"center"}>
+            There is no post yet.
+          </Text>
+      }
     </Container>
-
   )
 }
 

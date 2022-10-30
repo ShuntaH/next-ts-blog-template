@@ -1,6 +1,4 @@
-import cn from 'classnames'
-import Link from 'next/link'
-import { Image } from '@chakra-ui/react'
+import { Image, Link } from '@chakra-ui/react'
 
 type Props = {
   title: string
@@ -8,18 +6,18 @@ type Props = {
   slug?: string
 }
 
-const CoverImage = ({ title, src, slug }: Props) => {
+const CoverImage = ({title, src, slug}: Props) => {
   const image = (
-      <Image
-          src={src}
-          alt={`Cover Image for ${title}`}
-          boxSize='300px'
-      />
+    <Image
+      src={src}
+      alt={`Cover Image for ${title}`}
+      boxSize='100px'
+    />
   )
   return (
     <div>
       {slug ? (
-        <Link as={`/posts/${slug}`} href="/posts/[slug]" aria-label={title}>
+        <Link href="/posts/[slug]" aria-label={title}>
           {image}
         </Link>
       ) : (
