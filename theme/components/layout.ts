@@ -1,8 +1,12 @@
-import { defineStyleConfig } from "@chakra-ui/react";
+import { ComponentStyleConfig, defineStyleConfig } from "@chakra-ui/react";
 
-export const Container = defineStyleConfig({
+export const Container: ComponentStyleConfig = defineStyleConfig({
   // 1. We can update the base styles
-  baseStyle: {maxWidth: '100%'},
+  baseStyle: {
+    maxWidth: '100%',
+    paddingBlock: 0,
+    paddingInline: 0
+  },
   // 2. We can add a new button size or extend existing
   sizes: {},
   // 3. We can add a new visual variant
