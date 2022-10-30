@@ -1,10 +1,10 @@
 import MoreStories from '../components/more-stories'
 import HeroPost from '../components/hero-post'
-import Intro from '../components/intro'
 import Layout from '../components/layout'
 import { getAllPosts } from '../lib/api'
 import Post from '../interfaces/post'
 import { Container } from "@chakra-ui/react";
+import Intro from "../components/intro";
 
 
 type Props = {
@@ -25,7 +25,7 @@ export default function Index({allPosts}: Props) {
       {/*  <title>hskpg blog</title>*/}
       {/*</Head>*/}
 
-      <Container px={1} w={"100%"}>
+      <Container>
         <Intro></Intro>
 
         {heroPost && (

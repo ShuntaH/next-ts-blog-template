@@ -1,5 +1,6 @@
 import { AppProps } from 'next/app'
 import { ChakraProvider } from "@chakra-ui/react";
+import theme from "../theme";
 
 /**
  * Appコンポーネントを使用して全てのページを初期化するようになっています。 そのため、このコンポーネントを継承したクラスがあるファイル、_app.js(tsx) を作成することでデフォルトのAppコンポーネントを上書きできます。
@@ -16,10 +17,10 @@ import { ChakraProvider } from "@chakra-ui/react";
  * app.tsxに書ける
  */
 
-export default function MyApp({ Component, pageProps }: AppProps) {
+export default function MyApp({Component, pageProps}: AppProps) {
   return (
-      <ChakraProvider>
-        <Component {...pageProps} />
-      </ChakraProvider>
+    <ChakraProvider theme={theme}>
+      <Component {...pageProps} />
+    </ChakraProvider>
   )
 }
