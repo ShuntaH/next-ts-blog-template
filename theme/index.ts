@@ -8,13 +8,15 @@ import { extendTheme } from '@chakra-ui/react'
 // import borders from './foundations/borders'
 // Component style overrides
 import { Container } from './components/layout'
+import { Link } from './components/navigation'
 
 const overrides = {
   // styles,
   // Other foundational style overrides go here
   components: {
     // Other components go here
-    Container
+    Container,
+    Link
 
   },
 }
