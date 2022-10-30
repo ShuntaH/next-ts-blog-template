@@ -5,7 +5,7 @@ export const Link: ComponentStyleConfig = defineStyleConfig({
   baseStyle: {
     _hover: {
       textDecoration: 'none',
-      color: 'gray.100',
+      color: 'gray.200',
       // textShadow: '#CBD5E0 1px 0 1px;'
     }
   },
