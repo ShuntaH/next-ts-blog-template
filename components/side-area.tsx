@@ -6,7 +6,7 @@ import Tags from "./tags";
 
 const SideArea = () => {
   return (
-    <Container width={'100%'} py={10} mr={"auto"}>
+    <Container width={'100%'} py={10}>
       <VStack width={'100%'} spacing='100px'>
         <SearchForm></SearchForm>
         <Tags></Tags>

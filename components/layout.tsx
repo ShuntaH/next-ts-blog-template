@@ -1,7 +1,7 @@
 import Meta from './meta'
 import React from "react";
 import Header from "./header";
-import { Grid, GridItem } from "@chakra-ui/react";
+import { Container, Grid, GridItem } from "@chakra-ui/react";
 import SideArea from "./side-area";
 import Footer from "./footer";
 
@@ -14,33 +14,30 @@ const Layout = ({preview, children}: Props) => {
   return (
     <>
       <Meta/>
+
+      {/*height 100px*/}
+      <Header/>
+
       <Grid
         width={'100%'}
-        marginInline={'auto'}
         templateAreas={
-          `"header header"
-            "main side"
-            "footer footer"`
+          `"main side"`
         }
-        gridTemplateRows={'100px 1fr 60px'}
+        gridTemplateRows={'1fr'}
         gridTemplateColumns={'1fr 400px'}
-        gap='4'
+        gap='0'
         color='blackAlpha.700'
         fontWeight='bold'
       >
-        <GridItem gridArea={'header'} as={"header"}>
-          {/*height 100px*/}
-          <Header/>
+
+        <GridItem gridArea={'main'}>
+          <Container maxWidth={'1000px'} minHeight={'calc(100vh - 160px)'}>
+            <main>{children}</main>
+          </Container>
         </GridItem>
-        <GridItem gridArea={'main'} minHeight={'calc(100vh - 160px)'}>
-          <main>{children}</main>
-        </GridItem>
+
         <GridItem gridArea={'side'}>
           <SideArea></SideArea>
-        </GridItem>
-        <GridItem gridArea={'footer'}>
-          {/*height 60px*/}
-          <Footer/>
         </GridItem>
       </Grid>
 
@@ -48,7 +45,8 @@ const Layout = ({preview, children}: Props) => {
       {/*  /!*<Alert preview={preview}/>*!/*/}
 
 
-      {/*</Box>*/}
+      {/*height 60px*/}
+      <Footer/>
 
 
     </>
