@@ -1,8 +1,7 @@
 import DateFormatter from './date-formatter'
 import CoverImage from './cover-image'
-import Link from 'next/link'
 import type Author from '../interfaces/author'
-import { Box, Flex, Heading, Text } from "@chakra-ui/react";
+import { Box, Flex, Heading, Link, Text } from "@chakra-ui/react";
 
 type Props = {
   key: string
@@ -12,6 +11,7 @@ type Props = {
   excerpt: string
   author: Author
   slug: string
+  marginBottom?: string | number
 }
 
 const ArticleHeading = ({
@@ -22,15 +22,13 @@ const ArticleHeading = ({
                           excerpt,
                           author,
                           slug,
+                          marginBottom = 10
                         }: Props) => {
   return (
-    <Flex justifyContent={'center'} key={key}>
+    <Flex justifyContent={'center'} key={key} marginBottom={marginBottom}>
       <Box>
         <Heading as={'h3'}>
-          <Link
-            as={`/posts/${slug}`}
-            href="/posts/[slug]"
-          >
+          <Link href={`/posts/${slug}`}>
             {title}
           </Link>
         </Heading>

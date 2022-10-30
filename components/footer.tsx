@@ -8,11 +8,11 @@ const Footer = () => {
       h={'60px'}
       alignItems={'center'}
       justifyContent={'center'}
-      bgColor={'black'}
-      color={"white"}
       letterSpacing={'0.02em'}
     >
-      <Text fontWeight={'medium'}>©︎ {new Date().getFullYear()} {BLOG_NAME}</Text>
+      <Text fontWeight={'medium'}>
+        ©︎ {new Date().getFullYear()} {BLOG_NAME}
+      </Text>
     </Flex>
   )
 }

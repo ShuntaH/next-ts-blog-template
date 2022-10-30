@@ -22,7 +22,7 @@ export default function Index({allPosts}: Props) {
     //   <title>hskpg blog</title>
     // </Head>
 
-    <Container width={'100%'} maxWidth={'900px'} marginInline={'auto'}>
+    <Container width={'100%'} maxWidth={'900px'} marginInline={'auto'} py={10}>
       {
         allPosts.length > 0 ?
           <ArticleHeadingList posts={allPosts}/>

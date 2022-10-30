@@ -14,11 +14,12 @@ const Layout = ({preview, children}: Props) => {
     <>
       <Meta/>
 
-      {/*height 75px*/}
+      {/*height 100px*/}
       <Header/>
 
-      <Box minHeight={'calc(100vh - 135px)'}>
+      <Box minHeight={'calc(100vh - 160px)'}>
         {/*<Alert preview={preview}/>*/}
+
         <main>{children}</main>
       </Box>
 
