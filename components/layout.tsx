@@ -1,7 +1,7 @@
-import Alert from './alert'
 import Footer from './footer'
 import Meta from './meta'
 import React from "react";
+import Header from "./header";
 
 type Props = {
   preview?: boolean
@@ -12,8 +12,9 @@ const Layout = ({preview, children}: Props) => {
   return (
     <>
       <Meta/>
+      <Header/>
       <div>
-        <Alert preview={preview}/>
+        {/*<Alert preview={preview}/>*/}
         <main>{children}</main>
       </div>
       <Footer/>
