@@ -18,12 +18,12 @@ const Layout = ({preview, children}: Props) => {
       {/*height 100px*/}
       <Header/>
 
-      <Container maxWidth={'1200px'} py={12}>
+      <Container maxWidth={'1200px'} py={12} paddingInline={4}>
         <Grid
           templateAreas={`"main side"`}
           gridTemplateRows={'1fr'}
           gridTemplateColumns={'1fr 30%'}
-          gap='0'
+          gap='2'
           color='blackAlpha.700'
         >
           <GridItem gridArea={'main'} minHeight={'calc(100vh - 160px)'}>
