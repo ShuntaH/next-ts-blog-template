@@ -1,19 +1,19 @@
 import SearchForm from "./search-form";
-import { Container, VStack } from "@chakra-ui/react";
+import { Flex, VStack } from "@chakra-ui/react";
 import React from "react";
 import Tags from "./tags";
 
 
 const SideArea = () => {
   return (
-    <Container width={'100%'} py={10}>
-      <VStack width={'100%'} spacing='100px'>
+    <VStack width={'100%'} spacing='100px'>
+      <Flex direction={"row-reverse"}>
         <SearchForm></SearchForm>
+      </Flex>
+      <Flex direction={"row-reverse"}>
         <Tags></Tags>
-      </VStack>
-    </Container>
-
-
+      </Flex>
+    </VStack>
   );
 }
 

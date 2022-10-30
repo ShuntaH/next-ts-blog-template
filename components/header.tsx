@@ -3,7 +3,6 @@ import { BLOG_NAME } from "../lib/constants";
 
 const Header = () => {
   return (
-
     <Flex
       w={'100%'}
       h={'100px'}

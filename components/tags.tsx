@@ -5,7 +5,7 @@ import { SIDE_AREA_INNER_WIDTH } from "../lib/constants";
 
 const Tags = () => {
   return (
-    <Box width={SIDE_AREA_INNER_WIDTH} maxWidth={SIDE_AREA_INNER_WIDTH}>
+    <Box>
       <Text align={"left"} fontWeight={"medium"}>Tags</Text>
       <Flex maxWidth={SIDE_AREA_INNER_WIDTH} flexWrap={"wrap"} py={3}>
         <Badge variant='outline' colorScheme='green' mr={'10px'} mb={'10px'}>

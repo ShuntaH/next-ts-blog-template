@@ -1,7 +1,7 @@
 import DateFormatter from './date-formatter'
 import CoverImage from './cover-image'
 import type Author from '../interfaces/author'
-import { Box, Flex, Heading, Link, Text } from "@chakra-ui/react";
+import { Box, Container, Flex, Heading, Link } from "@chakra-ui/react";
 
 type Props = {
   key: string
@@ -27,18 +27,18 @@ const ArticleHeading = ({
   return (
     <Flex justifyContent={'center'} key={key} marginBottom={marginBottom}>
       <Box>
-        <Heading as={'h3'}>
+        <Heading as={'h3'} fontSize={'xl'} mb={4}>
           <Link href={`/posts/${slug}`}>
             {title}
           </Link>
         </Heading>
-        <Text>{excerpt}</Text>
+        <Container mb={5} maxWidth={'60ch'}>{excerpt}</Container>
         <DateFormatter dateString={date}/>
-
         {/*<Box>*/}
         {/*  <Avatar name={author.name} picture={author.picture}/>*/}
         {/*</Box>*/}
       </Box>
+      
       <Box>
         <CoverImage title={title} src={coverImage} slug={slug}/>
       </Box>
