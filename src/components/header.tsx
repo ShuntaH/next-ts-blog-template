@@ -14,7 +14,7 @@ const Header = () => {
             letterSpacing={'0.02em'}
         >
             <Heading as='h1' size='md' noOfLines={1}>
-                <Link href='/'>
+                <Link href='/Users/mbp/develop/hskpg_blog/public'>
                     {BLOG_NAME}
                 </Link>
             </Heading>

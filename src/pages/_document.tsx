@@ -1,4 +1,4 @@
-import { Html, Head, Main, NextScript } from 'next/document'
+import {Head, Html, Main, NextScript} from 'next/document'
 
 /**
  * pagesコンポーネントは、デフォルトで<head>、<body>を定義してくれるが、
@@ -11,19 +11,20 @@ import { Html, Head, Main, NextScript } from 'next/document'
  * 例えば、titleタグなどはpageまたはcomponentでnext/head を使うべき。
  *
  * **SSR(**サーバサイドレンダリング)のみの実行なので、クライアントサイドの処理を書くべきではありません。← 間違いやすいので注意してください！
- * <Main /> 内に入る外部のReactコンポーネントはブラウザによって初期化されないため、ここでアプリケーションのロジックや、styled-jsxのようなCSSを設定してはいけません。全てのページのコンポーネントに共通させたい場合は代わりにApp コンポーネントを使ってください(_app.js(tsx)に定義)
+ * <Main /> 内に入る外部のReactコンポーネントはブラウザによって初期化されないため、ここでアプリケーションのロジックや、styled-jsxのようなCSSを設定してはいけません。
+ * 全てのページのコンポーネントに共通させたい場合は代わりにApp コンポーネントを使ってください(_app.js(tsx)に定義)
  * DocumentのgetInitialPropsは、クライアントサイドの遷移中には呼び出されず、ページが静的に最適化されている場合にも呼び出されません
  * @constructor
  */
 
 export default function Document() {
-  return (
-    <Html lang="ja">
-      <Head />
-      <body>
-        <Main />
-        <NextScript />
-      </body>
-    </Html>
-  )
+    return (
+        <Html lang="ja">
+            <Head/>
+            <body>
+            <Main/>
+            <NextScript/>
+            </body>
+        </Html>
+    )
 }
