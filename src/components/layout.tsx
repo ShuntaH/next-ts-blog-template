@@ -1,7 +1,7 @@
 import Meta from './meta'
 import React from "react";
 import Header from "./header";
-import { Container, Grid, GridItem } from "@chakra-ui/react";
+import {Container, Grid, GridItem} from "@chakra-ui/react";
 import SideArea from "./side-area";
 import Footer from "./footer";
 
@@ -18,9 +18,8 @@ const Layout = ({preview, children}: Props) => {
       {/*height 100px*/}
       <Header/>
 
-      <Container maxWidth={'1200px'} py={12} paddingInline={4}>
+      <Container maxWidth={'1200px'} py={12}>
         <Grid
-          templateAreas={`"main side"`}
           gridTemplateRows={'1fr'}
           gridTemplateColumns={'1fr 30%'}
           gap='2'
