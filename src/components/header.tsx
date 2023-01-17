@@ -1,34 +1,37 @@
-import {Flex, Heading, HStack, Link} from '@chakra-ui/react'
+import {Box, Link, List, ListItem} from '@chakra-ui/react'
 import {BLOG_NAME} from "../lib/constants";
 
-const Header = () => {
-    return (
-        <Flex
-            w={'100%'}
-            h={'100px'}
-            maxWidth={'1200px'}
-            marginInline={"auto"}
-            px={4}
-            justifyContent={'space-between'}
-            alignItems={"center"}
-            letterSpacing={'0.02em'}
-        >
-            <Heading as='h1' size='md' noOfLines={1}>
-                <Link href='/Users/mbp/develop/hskpg_blog/public'>
-                    {BLOG_NAME}
-                </Link>
-            </Heading>
+interface Menu {
+  href: string,
+  content: string
+}
 
-            <HStack spacing='24px'>
-                <Link href='/terms' fontWeight={'medium'}>
-                    Terms
-                </Link>
-                <Link href='/about' fontWeight={'medium'}>
-                    About
-                </Link>
-            </HStack>
-        </Flex>
-    );
+const Header = () => {
+  const menus: Menu[] = [
+    {href: '', content: 'Terms'},
+    {href: '/terms', content: 'Terms'},
+    {href: '/about', content: 'About'},
+  ]
+
+  return (
+    <nav>
+      <Box>
+        <Link href='/Users/mbp/develop/hskpg_blog/public'>
+          {BLOG_NAME}
+        </Link>
+      </Box>
+
+      <List>
+        {menus.map((menu: Menu, index: number) => {
+          return (
+            <ListItem key={index}>
+              <Link href={menu.href}>{menu.content}</Link>
+            </ListItem>
+          )
+        })}
+      </List>
+    </nav>
+  );
 }
 
 export default Header
