@@ -8,7 +8,6 @@ type Menu = {
 
 const Header = () => {
   const menus: Menu[] = [
-    { href: '', content: 'Terms' },
     { href: '/terms', content: 'Terms' },
     { href: '/about', content: 'About' },
   ]
@@ -18,7 +17,7 @@ const Header = () => {
       as={'nav'}
       flexWrap={'wrap'}
       justifyContent={"space-between"}
-      marginBlockStart={"auto"}
+      marginInlineStart={"auto"}
       marginInlineEnd={"auto"}
     >
       <Box>
