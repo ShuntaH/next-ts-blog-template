@@ -1,16 +1,16 @@
-import {Box, Link, List, ListItem} from '@chakra-ui/react'
-import {BLOG_NAME} from "../lib/constants";
+import { Box, Link, List, ListItem } from '@chakra-ui/react'
+import { BLOG_NAME } from "../lib/constants";
 
-interface Menu {
+type Menu = {
   href: string,
   content: string
 }
 
 const Header = () => {
   const menus: Menu[] = [
-    {href: '', content: 'Terms'},
-    {href: '/terms', content: 'Terms'},
-    {href: '/about', content: 'About'},
+    { href: '', content: 'Terms' },
+    { href: '/terms', content: 'Terms' },
+    { href: '/about', content: 'About' },
   ]
 
   return (
