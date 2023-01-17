@@ -14,7 +14,6 @@ export const ArticleHeadingList = ({ posts }: Props) => {
         posts.map((post, index) => (
           index !== lastPostIndex ? (
             <ArticleHeading
-              key={index}
               title={post.title}
               coverImage={post.coverImage}
               date={post.date}
@@ -24,7 +23,6 @@ export const ArticleHeadingList = ({ posts }: Props) => {
             />
           ) : (
             <ArticleHeading
-              key={index}
               title={post.title}
               coverImage={post.coverImage}
               date={post.date}

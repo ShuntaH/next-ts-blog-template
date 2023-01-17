@@ -4,7 +4,6 @@ import type Author from '../interfaces/author'
 import { Box, Container, Flex, Heading, Link } from "@chakra-ui/react";
 
 type Props = {
-  key: number
   title: string
   coverImage: string
   date: string
@@ -15,7 +14,6 @@ type Props = {
 }
 
 export const ArticleHeading = ({
-                                 key,
                                  title,
                                  coverImage,
                                  date,
@@ -25,7 +23,7 @@ export const ArticleHeading = ({
                                  marginBottom = 10
                                }: Props) => {
   return (
-    <Flex justifyContent={'center'} key={key} marginBottom={marginBottom}>
+    <Flex justifyContent={'center'} marginBottom={marginBottom}>
       <Box>
         <Heading as={'h3'} fontSize={'xl'} mb={4}>
           <Link href={`/posts/${slug}`}>
