@@ -1,4 +1,4 @@
-import { Box, Link, List, ListItem } from '@chakra-ui/react'
+import { Box, Flex, Link, List, ListItem } from '@chakra-ui/react'
 import { BLOG_NAME } from "../lib/constants";
 
 type Menu = {
@@ -14,7 +14,13 @@ const Header = () => {
   ]
 
   return (
-    <nav>
+    <Flex
+      as={'nav'}
+      flexWrap={'wrap'}
+      justifyContent={"space-between"}
+      marginBlockStart={"auto"}
+      marginInlineEnd={"auto"}
+    >
       <Box>
         <Link href='/Users/mbp/develop/hskpg_blog/public'>
           {BLOG_NAME}
@@ -30,7 +36,7 @@ const Header = () => {
           )
         })}
       </List>
-    </nav>
+    </Flex>
   );
 }
 
