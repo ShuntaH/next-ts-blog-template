@@ -1,13 +1,11 @@
 import { ComponentStyleConfig, defineStyleConfig } from "@chakra-ui/react";
 
-export const Link: ComponentStyleConfig = defineStyleConfig({
+const Container: ComponentStyleConfig = defineStyleConfig({
   // 1. We can update the base styles
   baseStyle: {
-    _hover: {
-      textDecoration: 'none',
-      color: 'gray.200',
-      // textShadow: '#CBD5E0 1px 0 1px;'
-    }
+    maxWidth: '100%',
+    paddingBlock: 0,
+    paddingInline: 0
   },
   // 2. We can add a new button size or extend existing
   sizes: {},
@@ -34,3 +32,5 @@ export const Link: ComponentStyleConfig = defineStyleConfig({
     // colorScheme: 'green', // default is gray
   },
 })
+
+export { Container }

@@ -5,6 +5,7 @@ import Layout from "../components/layouts/layout";
 
 function MyApp({ Component, pageProps }: AppProps) {
   console.log('app.tsx')
+  console.log('theme', theme)
   return (
     <ChakraProvider theme={theme}>
       <Layout>

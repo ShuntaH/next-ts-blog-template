@@ -3,22 +3,22 @@
 import { extendTheme } from '@chakra-ui/react'
 
 // Global style overrides
-// import styles from './styles'
+import styles from './styles'
+import { Link } from "./components/link";
 // Foundational style overrides
 // import borders from './foundations/borders'
 // Component style overrides
-import { Container } from './components/layout'
-import { Link } from './components/navigation'
 
 /**
  * ここにtheme配下のディレクトリにある全てのファイルを集約する
  */
 const overrides = {
   // styles,
-  // Other foundational style overrides go here
+  styles: {
+    global: styles
+  },
   components: {
     // Other components go here
-    Container,
     Link
 
   },
