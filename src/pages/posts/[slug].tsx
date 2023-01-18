@@ -1,16 +1,14 @@
-import {useRouter} from 'next/router'
+import { useRouter } from 'next/router'
 import ErrorPage from 'next/error'
 import PostBody from '../../components/post-body'
-import Header from '../../components/header'
 import PostHeader from '../../components/post-header'
-import Layout from '../../components/layouts/layout'
-import {getAllPosts, getPostBySlug} from '../../lib/api'
+import { getAllPosts, getPostBySlug } from '../../lib/api'
 import PostTitle from '../../components/post-title'
 import Head from 'next/head'
-import {CMS_NAME} from '../../lib/constants'
+import { CMS_NAME } from '../../lib/constants'
 import markdownToHtml from '../../lib/markdownToHtml'
 import type PostType from '../../interfaces/post'
-import {Container} from "@chakra-ui/react";
+import { Container } from "@chakra-ui/react";
 
 type Props = {
   post: PostType
@@ -18,38 +16,35 @@ type Props = {
   preview?: boolean
 }
 
-export default function Post({post, morePosts, preview}: Props) {
+export default function Post({ post, morePosts, preview }: Props) {
   const router = useRouter()
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404}/>
   }
   return (
-    <Layout preview={preview}>
-      <Container>
-        <Header/>
-        {router.isFallback ? (
-          <PostTitle>Loading…</PostTitle>
-        ) : (
-          <>
-            <article className="mb-32">
-              <Head>
-                <title>
-                  {post.title} | Next.js Blog Example with {CMS_NAME}
-                </title>
-                <meta property="og:image" content={post.ogImage.url}/>
-              </Head>
-              <PostHeader
-                title={post.title}
-                coverImage={post.coverImage}
-                date={post.date}
-                author={post.author}
-              />
-              <PostBody content={post.content}/>
-            </article>
-          </>
-        )}
-      </Container>
-    </Layout>
+    <Container>
+      {router.isFallback ? (
+        <PostTitle>Loading…</PostTitle>
+      ) : (
+        <>
+          <article className="mb-32">
+            <Head>
+              <title>
+                {post.title} | Next.js Blog Example with {CMS_NAME}
+              </title>
+              <meta property="og:image" content={post.ogImage.url}/>
+            </Head>
+            <PostHeader
+              title={post.title}
+              coverImage={post.coverImage}
+              date={post.date}
+              author={post.author}
+            />
+            <PostBody content={post.content}/>
+          </article>
+        </>
+      )}
+    </Container>
   )
 }
 
@@ -59,7 +54,7 @@ type Params = {
   }
 }
 
-export async function getStaticProps({params}: Params) {
+export async function getStaticProps({ params }: Params) {
   const post = getPostBySlug(params.slug, [
     'title',
     'date',
@@ -82,7 +77,7 @@ export async function getStaticProps({params}: Params) {
 }
 
 export async function getStaticPaths() {
-  const posts = getAllPosts(['slug'])
+  const posts = getAllPosts([ 'slug' ])
 
   return {
     paths: posts.map((post) => {

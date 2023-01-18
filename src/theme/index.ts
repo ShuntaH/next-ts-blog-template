@@ -10,6 +10,9 @@ import { extendTheme } from '@chakra-ui/react'
 import { Container } from './components/layout'
 import { Link } from './components/navigation'
 
+/**
+ * ここにtheme配下のディレクトリにある全てのファイルを集約する
+ */
 const overrides = {
   // styles,
   // Other foundational style overrides go here

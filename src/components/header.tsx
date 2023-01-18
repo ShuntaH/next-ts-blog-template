@@ -21,7 +21,7 @@ const Header = () => {
       marginInlineEnd={"auto"}
     >
       <Box>
-        <Link href='/Users/mbp/develop/hskpg_blog/public'>
+        <Link href='/'>
           {BLOG_NAME}
         </Link>
       </Box>
