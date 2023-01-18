@@ -1,6 +1,8 @@
 import React from "react";
 import Header from "../header";
 import Footer from "../footer";
+import { Box } from "@chakra-ui/react";
+import { STYLES } from "../../lib/constants";
 
 type Props = {
   preview?: boolean
@@ -13,6 +15,11 @@ const Layout = ({ preview, children }: Props) => {
       <Header/>
       {/*<Box>*/}
       {/*  /!*<Alert preview={preview}/>*!/*/}
+      <Box
+        position={"relative"}
+        minHeight={`calc(100vh - ${STYLES.headerHeight} - ${STYLES.footerHeight})`}
+        maxWidth={`calc(${STYLES.mainWidth} + ${STYLES.gap} * 2)`}>
+      </Box>
       {children}
       {/*height 60px*/}
       <Footer/>

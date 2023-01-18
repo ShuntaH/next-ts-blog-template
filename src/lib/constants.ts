@@ -10,12 +10,21 @@ export const BLOG_NAME = 'hskpg blog'
  * chakra ui で変数の定義の仕方がわからなかったので js でかく。
  * theme での書き方がわかったらそちらで書く
  */
+
+const navWidth = '1024px'
+const gap = '24px'
+const mainWidth = '720px'
+const headerHeight = '60px'
+const footerHeight = '60px'
+const radius = '8px'
+const contentGap = '20px'
+
 export const STYLES = {
-  gap: '24px',
-  contentGap: '20px',
-  navWidth: '1024px',
-  mainWidth: '720px',
-  headerHeight: '60px',
-  footerHeight: '60px',
-  radius: '8px',
+  gap,
+  navWidth,
+  mainWidth,
+  contentGap,
+  headerHeight,
+  footerHeight,
+  radius
 }
