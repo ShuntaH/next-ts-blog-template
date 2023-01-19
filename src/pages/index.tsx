@@ -1,6 +1,6 @@
 import { ArticleHeadingList } from '../components/article-heading-list'
 import Post from '../interfaces/post'
-import { Container, Text } from "@chakra-ui/react";
+import { Text } from "@chakra-ui/react";
 import { getAllPosts } from "../lib/api";
 
 
@@ -36,7 +36,7 @@ export default function Index({ allPosts }: Props) {
     //   <title>hskpg blog</title>
     // </Head>
 
-    <Container width={'100%'}>
+    <>
       {
         allPosts.length > 0 ?
           <ArticleHeadingList posts={allPosts}/>
@@ -45,6 +45,6 @@ export default function Index({ allPosts }: Props) {
             There is no post yet.
           </Text>
       }
-    </Container>
+    </>
   )
 }

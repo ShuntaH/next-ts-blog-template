@@ -18,9 +18,13 @@ const Layout = ({ preview, children }: Props) => {
       <Box
         position={"relative"}
         minHeight={`calc(100vh - ${STYLES.headerHeight} - ${STYLES.footerHeight})`}
-        maxWidth={`calc(${STYLES.mainWidth} + ${STYLES.gap} * 2)`}>
+        maxWidth={`calc(${STYLES.mainWidth} + ${STYLES.gap} * 2)`}
+        margin={"auto"}
+        padding={`${STYLES.gap}`}
+        display={"block"}
+      >
+        {children}
       </Box>
-      {children}
       {/*height 60px*/}
       <Footer/>
     </>
