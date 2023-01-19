@@ -2,6 +2,7 @@ import { ArticleHeadingList } from '../components/article-heading-list'
 import Post from '../interfaces/post'
 import { Text } from "@chakra-ui/react";
 import { getAllPosts } from "../lib/api";
+import HeroCard from "../components/cards/hero-card";
 
 
 type Props = {
@@ -37,6 +38,7 @@ export default function Index({ allPosts }: Props) {
     // </Head>
 
     <>
+      <HeroCard/>
       {
         allPosts.length > 0 ?
           <ArticleHeadingList posts={allPosts}/>
