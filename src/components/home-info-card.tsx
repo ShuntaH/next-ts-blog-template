@@ -1,5 +1,6 @@
-import { Card, CardBody, CardFooter, CardHeader, Heading, Text } from '@chakra-ui/react'
-import { STYLES } from "../lib/constants";
+import { Box, Card, CardBody, CardFooter, CardHeader, Heading, Link, Text } from '@chakra-ui/react'
+import { BLOG_NAME, STYLES } from "../lib/constants";
+import NextLink from "next/link";
 
 type Menu = {
   href: string,
@@ -16,16 +17,20 @@ const HomeInfoCard = () => {
       justifyContent={"center"}
       minHeight={'320px'}
       margin={`var(${STYLES.gap})0 calc(var(${STYLES.gap}) * 2)`}
+      overflow={"hidden"}
     >
       <CardHeader>
-        <Heading size='md'>Client Report</Heading>
+        <Heading as={"h1"} size='md'>{BLOG_NAME} 🍎</Heading>
       </CardHeader>
 
-      <CardBody lineHeight={1.6} overflow={"hidden"}>
-        <Text>View a summary of all your customers over the last month.</Text>
+      <CardBody>
+        <Text>My blog.</Text>
       </CardBody>
 
       <CardFooter>
+        <Box>
+          <Link href={} as={NextLink}></Link>
+        </Box>
       </CardFooter>
 
     </Card>
