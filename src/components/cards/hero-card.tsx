@@ -42,8 +42,8 @@ const HeroCard = () => {
       </CardBody>
 
       <CardFooter>
-        <Box>
-          {socialIcons.map((socialIcon, index) => {
+        {
+          socialIcons.map((socialIcon, index) => {
             return (
               <Link
                 href={socialIcon.href}
@@ -59,7 +59,6 @@ const HeroCard = () => {
               </Link>
             )
           })}
-        </Box>
       </CardFooter>
     </Card>
   );
