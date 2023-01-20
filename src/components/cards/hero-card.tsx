@@ -1,11 +1,10 @@
-import { Box, CardBody, CardFooter, CardHeader, Heading, Link, Text } from '@chakra-ui/react'
-import { BLOG_NAME } from "../../lib/constants";
+import { Box, Card, CardBody, CardFooter, CardHeader, Heading, Link, Text } from '@chakra-ui/react'
+import { BLOG_NAME, STYLES } from "../../lib/constants";
 import NextLink from "next/link";
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { faGithubAlt } from "@fortawesome/free-brands-svg-icons";
-import BaseCard from "./base-card";
 
 
 type SocialIcon = {
@@ -24,7 +23,16 @@ const HeroCard = () => {
   ]
 
   return (
-    <BaseCard>
+    <Card
+      as={"article"}
+      position={"relative"}
+      display={"flex"}
+      flexDirection={"column"}
+      justifyContent={"center"}
+      minHeight={'320px'}
+      margin={`var(${STYLES.gap})0 calc(var(${STYLES.gap}) * 2)`}
+      overflow={"hidden"}
+    >
       <CardHeader>
         <Heading as={"h1"} size='md'>{BLOG_NAME} 🍎</Heading>
       </CardHeader>
@@ -53,7 +61,7 @@ const HeroCard = () => {
           })}
         </Box>
       </CardFooter>
-    </BaseCard>
+    </Card>
   );
 }
 

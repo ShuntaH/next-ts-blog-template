@@ -1,8 +1,8 @@
-import { ArticleHeadingList } from '../components/article-heading-list'
 import Post from '../interfaces/post'
 import { Text } from "@chakra-ui/react";
 import { getAllPosts } from "../lib/api";
 import HeroCard from "../components/cards/hero-card";
+import PostCard from "../components/cards/post-card";
 
 
 type Props = {
@@ -41,7 +41,7 @@ export default function Index({ allPosts }: Props) {
       <HeroCard/>
       {
         allPosts.length > 0 ?
-          <ArticleHeadingList posts={allPosts}/>
+          <PostCard posts={allPosts}/>
           :
           <Text align={"center"}>
             There is no post yet.
