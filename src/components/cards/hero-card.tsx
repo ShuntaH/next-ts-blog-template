@@ -30,7 +30,7 @@ const HeroCard = () => {
       flexDirection={"column"}
       justifyContent={"center"}
       minHeight={'320px'}
-      margin={`var(${STYLES.gap})0 calc(var(${STYLES.gap}) * 2)`}
+      margin={`${STYLES.gap} 0 calc(${STYLES.gap} * 2)`}
       overflow={"hidden"}
     >
       <CardHeader>

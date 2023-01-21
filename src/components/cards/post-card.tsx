@@ -21,9 +21,9 @@ const PostCard = ({ posts }: Props) => {
             as={"article"}
             position={"relative"}
             minHeight={'320px'}
-            marginBottom={`var(${STYLES.gap})`}
-            padding={`var(${STYLES.gap})`}
-            borderRadius={`var(${STYLES.radius})`}
+            marginBottom={STYLES.gap}
+            padding={STYLES.gap}
+            borderRadius={STYLES.radius}
             overflow={"hidden"}
           >
             <CardHeader as={"header"}>
