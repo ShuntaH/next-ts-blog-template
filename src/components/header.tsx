@@ -22,6 +22,7 @@ const Header = () => {
       marginInlineStart="auto"
       marginInlineEnd="auto"
       lineHeight={STYLES.headerHeight}
+      letterSpacing={'0.01em'}
     >
       <Box display={"flex"} margin={`auto ${STYLES.gap}`}>
         <Link href='/' as={NextLink} fontSize={"24px"} fontWeight={700}>
