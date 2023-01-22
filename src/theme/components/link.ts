@@ -5,7 +5,7 @@ const Link: ComponentStyleConfig = {
   baseStyle: {
     _hover: {
       textDecoration: 'none',
-      color: 'purple.100',
+      color: 'purple.200',
       // textShadow: '#CBD5E0 1px 0 1px;'
     }
   }

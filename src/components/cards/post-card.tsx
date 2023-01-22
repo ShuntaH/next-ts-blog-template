@@ -1,4 +1,4 @@
-import { Card, CardBody, CardFooter, CardHeader, Heading, Link } from '@chakra-ui/react'
+import { Box, Card, CardBody, CardFooter, CardHeader, Heading, Link } from '@chakra-ui/react'
 import { STYLES } from "../../lib/constants";
 import React from "react";
 import Post from "../../interfaces/post";
@@ -11,6 +11,7 @@ type Props = {
 
 const PostCard = ({ posts }: Props) => {
   const lastPostIndex = posts.length - 1
+  const postHref = (post: Post) => `/posts/${post.slug}`
 
   return (
     <>
@@ -28,16 +29,21 @@ const PostCard = ({ posts }: Props) => {
           >
             <CardHeader as={"header"}>
               <Heading as={'h3'} fontSize={'xl'} mb={4}>
-                <Link href={`/posts/${post.slug}`}>
+                <Link href={postHref(post)}>
                   {post.title}
                 </Link>
               </Heading>
             </CardHeader>
 
-            <CardBody>{post.excerpt}</CardBody>
+            <CardBody overflow={"hidden"}>{post.excerpt}</CardBody>
 
-            <CardFooter as={"footer"}>
+            <CardFooter as={"footer"} display={"block"}>
               <DateFormatter dateString={post.date}/>
+              <Box>
+                <Link href={postHref(post)} color={"purple.400"}>
+                  Read more →
+                </Link>
+              </Box>
             </CardFooter>
           </Card>
         ))}
