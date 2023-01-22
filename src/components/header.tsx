@@ -23,7 +23,7 @@ const Header = () => {
       marginInlineEnd="auto"
       lineHeight={STYLES.headerHeight}
     >
-      <Box>
+      <Box display={"flex"} margin={`auto ${STYLES.gap}`}>
         <Link href='/' as={NextLink} fontSize={"24px"} fontWeight={700}>
           {BLOG_NAME} 🍎
         </Link>
