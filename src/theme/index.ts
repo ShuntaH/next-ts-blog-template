@@ -15,7 +15,7 @@ import config from "./config";
  * ここにtheme配下のディレクトリにある全てのファイルを集約する
  */
 const overrides = {
-  ...config,
+  config,
   // styles,
   styles: {
     global: STYLES
@@ -27,5 +27,5 @@ const overrides = {
 
   },
 }
-
+console.log('override', overrides)
 export default extendTheme(overrides)

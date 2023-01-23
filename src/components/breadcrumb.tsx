@@ -33,6 +33,7 @@ const Breadcrumb = ({ breadCrumbItems }: Props) => {
             <ChakraBreadcrumbItem
               isCurrentPage={isLastItem}
               isLastChild={isLastItem}
+              key={index}
             >
               <BreadcrumbLink
                 isCurrentPage={isLastItem}
