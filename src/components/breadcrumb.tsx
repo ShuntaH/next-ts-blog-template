@@ -1,7 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import {
-  Box,
   Breadcrumb as ChakraBreadcrumb,
   BreadcrumbItem as ChakraBreadcrumbItem,
   BreadcrumbLink
@@ -18,43 +17,40 @@ const Breadcrumb = ({ breadCrumbItems }: Props) => {
   const length = breadCrumbItems.length
 
   return (
-    <Box>
-      <ChakraBreadcrumb
-        spacing='8px'
-        separator={
-          <FontAwesomeIcon
-            icon={faChevronRight}
-            color='gray.500'
-            size={"xs"}/>
-        }
-      >
-        {
-          breadCrumbItems.map((item, index) => {
-            const isLastItem = (index + 1) === length
+    <ChakraBreadcrumb
+      spacing='8px'
+      separator={
+        <FontAwesomeIcon
+          icon={faChevronRight}
+          color='gray.500'
+          size={"xs"}/>}
+    >
+      {
+        breadCrumbItems.map((item, index) => {
+          const isLastItem = (index + 1) === length
 
-            return (
-              <ChakraBreadcrumbItem
+          return (
+            <ChakraBreadcrumbItem
+              isCurrentPage={isLastItem}
+              isLastChild={isLastItem}
+            >
+              <BreadcrumbLink
                 isCurrentPage={isLastItem}
-                isLastChild={isLastItem}
+                href={item.href}
+                overflow={"hidden"}
+                textOverflow={"ellipsis"}
+                whiteSpace={"nowrap"}
+                textDecoration={"none"}
+                _hover={STYLES.hoverStyle}
               >
-                <BreadcrumbLink
-                  isCurrentPage={isLastItem}
-                  href={item.href}
-                  overflow={"hidden"}
-                  textOverflow={"ellipsis"}
-                  whiteSpace={"nowrap"}
-                  textDecoration={"none"}
-                  _hover={STYLES.hoverStyle}
-                >
-                  {item.title}
-                </BreadcrumbLink>
-              </ChakraBreadcrumbItem>
-            )
+                {item.title}
+              </BreadcrumbLink>
+            </ChakraBreadcrumbItem>
+          )
 
-          })
-        }
-      </ChakraBreadcrumb>
-    </Box>
+        })
+      }
+    </ChakraBreadcrumb>
   )
 }
 

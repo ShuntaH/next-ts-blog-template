@@ -1,11 +1,11 @@
-import Avatar from './avatar'
-import DateFormatter from './date-formatter'
-import CoverImage from './cover-image'
+import Avatar from '../avatar'
+import DateFormatter from '../date-formatter'
+import CoverImage from '../cover-image'
 import PostTitle from './post-title'
-import type Author from '../interfaces/author'
-import { BreadcrumbItem } from "../@types/component";
+import type Author from '../../interfaces/author'
+import { BreadcrumbItem } from "../../@types/component";
 import { Box } from "@chakra-ui/react";
-import Breadcrumb from "./breadcrumb";
+import Breadcrumb from "../breadcrumb";
 
 type Props = {
   title: string
@@ -26,6 +26,7 @@ const PostHeader = ({ title, coverImage, date, author, slug }: Props) => {
   return (
     <Box as={"header"}>
       <Breadcrumb breadCrumbItems={breadCrumbItems}/>
+
       <PostTitle>{title}</PostTitle>
 
       <div className="hidden md:block md:mb-12">

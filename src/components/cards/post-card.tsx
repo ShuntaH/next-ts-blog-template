@@ -55,7 +55,10 @@ const PostCard = ({ post, index }: Props) => {
       <CardFooter as={"footer"} display={"block"}>
         <DateFormatter dateString={post.date}/>
         <Box>
-          <Link href={postHref(post)} color={"purple.400"}>
+          <Link
+            href={postHref(post)}
+            color={"purple.400"}
+          >
             Read more →
           </Link>
         </Box>

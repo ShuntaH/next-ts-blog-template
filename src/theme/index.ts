@@ -6,6 +6,7 @@ import { extendTheme } from '@chakra-ui/react'
 import { Link } from "./components/link";
 import { BreadcrumbLink } from "./components/breadcrumb";
 import { STYLES } from "../lib/constants";
+import config from "./config";
 // Foundational style overrides
 // import borders from './foundations/borders'
 // Component style overrides
@@ -14,6 +15,7 @@ import { STYLES } from "../lib/constants";
  * ここにtheme配下のディレクトリにある全てのファイルを集約する
  */
 const overrides = {
+  ...config,
   // styles,
   styles: {
     global: STYLES
