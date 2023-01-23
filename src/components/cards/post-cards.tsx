@@ -13,7 +13,8 @@ const PostCards = ({ posts }: Props) => {
       {
         posts.map((post, index) => (
           <PostCard index={index} post={post}></PostCard>
-        ))}
+        ))
+      }
     </>
   );
 }

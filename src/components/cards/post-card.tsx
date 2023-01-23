@@ -26,19 +26,29 @@ const PostCard = ({ post, index }: Props) => {
       overflow={"hidden"}
     >
       <CardHeader as={"header"}>
-        <Heading as={'h3'} fontSize={'xl'} mb={4}>
-          <Link href={postHref(post)} as={NextLink}>
+        <Heading
+          as={'h3'}
+          fontSize={'xl'}
+        >
+          <Link
+            href={postHref(post)}
+            as={NextLink}
+          >
             {post.title}
           </Link>
         </Heading>
       </CardHeader>
 
-      <CardBody sx={{
-        overflow: "hidden",
-        display: "-webkit-box",
-        "-webkit-box-orient": "vertical",
-        "-webkit-line-clamp": "3"
-      }}>
+      <CardBody
+        sx={{
+          overflow: "hidden",
+          display: "-webkit-box",
+          "-webkit-box-orient": "vertical",
+          "-webkit-line-clamp": "3"
+        }}
+        paddingTop={3}
+        paddingBottom={3}
+      >
         {post.excerpt}
       </CardBody>
 
