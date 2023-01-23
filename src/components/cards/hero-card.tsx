@@ -43,7 +43,12 @@ const HeroCard = () => {
         </FormControl>
       </CardBody>
 
-      <CardFooter as={"footer"} display={"flex"} justifyContent={"center"} alignItems={"center"}>
+      <CardFooter
+        as={"footer"}
+        display={"flex"}
+        justifyContent={"center"}
+        alignItems={"center"}
+      >
         <Link
           href={githubIcon.href}
           as={NextLink}

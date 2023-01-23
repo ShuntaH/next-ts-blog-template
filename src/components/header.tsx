@@ -26,7 +26,7 @@ const Header = () => {
     >
       <Box display={"flex"} margin={`auto ${STYLES.gap}`}>
         <Link href='/' as={NextLink} fontSize={"24px"} fontWeight={700}>
-          {BLOG_NAME} 🍎
+          {BLOG_NAME}
         </Link>
       </Box>
 

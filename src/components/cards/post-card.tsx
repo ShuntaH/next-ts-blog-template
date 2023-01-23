@@ -3,51 +3,54 @@ import { STYLES } from "../../lib/constants";
 import React from "react";
 import Post from "../../interfaces/post";
 import DateFormatter from "../date-formatter";
+import NextLink from "next/link";
 
 
 type Props = {
-  posts: Post[]
+  index: number
+  post: Post
 }
 
-const PostCard = ({ posts }: Props) => {
-  const lastPostIndex = posts.length - 1
+const PostCard = ({ post, index }: Props) => {
   const postHref = (post: Post) => `/posts/${post.slug}`
 
   return (
-    <>
-      {
-        posts.map((post, index) => (
-          <Card
-            key={index}
-            as={"article"}
-            position={"relative"}
-            minHeight={'320px'}
-            marginBottom={STYLES.gap}
-            padding={STYLES.gap}
-            borderRadius={STYLES.radius}
-            overflow={"hidden"}
-          >
-            <CardHeader as={"header"}>
-              <Heading as={'h3'} fontSize={'xl'} mb={4}>
-                <Link href={postHref(post)}>
-                  {post.title}
-                </Link>
-              </Heading>
-            </CardHeader>
+    <Card
+      key={index}
+      as={"article"}
+      position={"relative"}
+      minHeight={'320px'}
+      marginBottom={STYLES.gap}
+      padding={STYLES.gap}
+      borderRadius={STYLES.radius}
+      overflow={"hidden"}
+    >
+      <CardHeader as={"header"}>
+        <Heading as={'h3'} fontSize={'xl'} mb={4}>
+          <Link href={postHref(post)} as={NextLink}>
+            {post.title}
+          </Link>
+        </Heading>
+      </CardHeader>
 
-            <CardBody overflow={"hidden"}>{post.excerpt}</CardBody>
+      <CardBody sx={{
+        overflow: "hidden",
+        display: "-webkit-box",
+        "-webkit-box-orient": "vertical",
+        "-webkit-line-clamp": "3"
+      }}>
+        {post.excerpt}
+      </CardBody>
 
-            <CardFooter as={"footer"} display={"block"}>
-              <DateFormatter dateString={post.date}/>
-              <Box>
-                <Link href={postHref(post)} color={"purple.400"}>
-                  Read more →
-                </Link>
-              </Box>
-            </CardFooter>
-          </Card>
-        ))}
-    </>
+      <CardFooter as={"footer"} display={"block"}>
+        <DateFormatter dateString={post.date}/>
+        <Box>
+          <Link href={postHref(post)} color={"purple.400"}>
+            Read more →
+          </Link>
+        </Box>
+      </CardFooter>
+    </Card>
   );
 }
 

@@ -2,7 +2,7 @@ import Post from '../interfaces/post'
 import { Text } from "@chakra-ui/react";
 import { getAllPosts } from "../lib/api";
 import HeroCard from "../components/cards/hero-card";
-import PostCard from "../components/cards/post-card";
+import PostCards from "../components/cards/post-cards";
 
 
 type Props = {
@@ -41,7 +41,7 @@ export default function Index({ allPosts }: Props) {
       <HeroCard/>
       {
         allPosts.length > 0 ?
-          <PostCard posts={allPosts}/>
+          <PostCards posts={allPosts}/>
           :
           <Text align={"center"}>
             There is no post yet.

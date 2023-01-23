@@ -5,7 +5,6 @@ import PostHeader from '../../components/post-header'
 import { getAllPosts, getPostBySlug } from '../../lib/api'
 import PostTitle from '../../components/post-title'
 import Head from 'next/head'
-import { CMS_NAME } from '../../lib/constants'
 import markdownToHtml from '../../lib/markdownToHtml'
 import type PostType from '../../interfaces/post'
 import { Container } from "@chakra-ui/react";
@@ -18,9 +17,11 @@ type Props = {
 
 export default function Post({ post, morePosts, preview }: Props) {
   const router = useRouter()
+
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404}/>
   }
+
   return (
     <Container>
       {router.isFallback ? (
@@ -30,15 +31,17 @@ export default function Post({ post, morePosts, preview }: Props) {
           <article className="mb-32">
             <Head>
               <title>
-                {post.title} | Next.js Blog Example with {CMS_NAME}
+                {post.title}
               </title>
               <meta property="og:image" content={post.ogImage.url}/>
             </Head>
+
             <PostHeader
               title={post.title}
               coverImage={post.coverImage}
               date={post.date}
               author={post.author}
+              slug={post.slug}
             />
             <PostBody content={post.content}/>
           </article>

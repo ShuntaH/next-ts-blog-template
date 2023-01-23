@@ -3,8 +3,9 @@
 import { extendTheme } from '@chakra-ui/react'
 
 // Global style overrides
-import styles from './styles'
 import { Link } from "./components/link";
+import { BreadcrumbLink } from "./components/breadcrumb";
+import { STYLES } from "../lib/constants";
 // Foundational style overrides
 // import borders from './foundations/borders'
 // Component style overrides
@@ -15,11 +16,12 @@ import { Link } from "./components/link";
 const overrides = {
   // styles,
   styles: {
-    global: styles
+    global: STYLES
   },
   components: {
     // Other components go here
-    Link
+    Link,
+    BreadcrumbLink
 
   },
 }
