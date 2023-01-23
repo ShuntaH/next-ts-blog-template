@@ -18,10 +18,15 @@ const Breadcrumb = ({ breadCrumbItems }: Props) => {
   const length = breadCrumbItems.length
 
   return (
-    <Box fontSize={"md"}>
+    <Box>
       <ChakraBreadcrumb
         spacing='8px'
-        separator={<FontAwesomeIcon icon={faChevronRight} color='gray.500'/>}
+        separator={
+          <FontAwesomeIcon
+            icon={faChevronRight}
+            color='gray.500'
+            size={"xs"}/>
+        }
       >
         {
           breadCrumbItems.map((item, index) => {
