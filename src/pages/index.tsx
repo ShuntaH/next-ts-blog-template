@@ -1,5 +1,5 @@
 import Post from '../interfaces/post'
-import { Text } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 import { getAllPosts } from "../lib/api";
 import HeroCard from "../components/cards/hero-card";
 import PostCards from "../components/cards/post-cards";
@@ -17,6 +17,7 @@ export const getStaticProps = async () => {
     'author',
     'coverImage',
     'excerpt',
+    'time'
   ])
 
   return {
@@ -37,7 +38,7 @@ export default function Index({ allPosts }: Props) {
     //   <title>hskpg blog</title>
     // </Head>
 
-    <>
+    <Box>
       <HeroCard/>
       {
         allPosts.length > 0 ?
@@ -47,6 +48,6 @@ export default function Index({ allPosts }: Props) {
             There is no post yet.
           </Text>
       }
-    </>
+    </Box>
   )
 }

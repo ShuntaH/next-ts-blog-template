@@ -7,7 +7,7 @@ import PostTitle from '../../components/post/post-title'
 import Head from 'next/head'
 import markdownToHtml from '../../lib/markdownToHtml'
 import type PostType from '../../interfaces/post'
-import { Container } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 
 type Props = {
   post: PostType
@@ -23,7 +23,7 @@ export default function Post({ post, morePosts, preview }: Props) {
   }
 
   return (
-    <Container>
+    <Box>
       {router.isFallback ? (
         <PostTitle>Loading…</PostTitle>
       ) : (
@@ -38,7 +38,7 @@ export default function Post({ post, morePosts, preview }: Props) {
 
             <PostHeader
               title={post.title}
-              coverImage={post.coverImage}
+              time={post.time}
               date={post.date}
               author={post.author}
               slug={post.slug}
@@ -47,7 +47,7 @@ export default function Post({ post, morePosts, preview }: Props) {
           </article>
         </>
       )}
-    </Container>
+    </Box>
   )
 }
 
@@ -57,7 +57,17 @@ type Params = {
   }
 }
 
+/**
+ *  この関数はサーバー側のビルド時に呼び出されます。
+ *  クライアント側では呼び出されないので、
+ *  直接データベースクエリを実行できます。
+ *  開発中はリクエストのたびに実行されますが、サーバーサイドで実行されるので console.log は
+ *  ブラウザでは確認できません。npm run dev のコンソールで確認してください。
+ * @param params ルートパラメーター [slug].tsx
+ */
 export async function getStaticProps({ params }: Params) {
+  // console.log('params', params)  { slug: 'dynamic-routing' }
+
   const post = getPostBySlug(params.slug, [
     'title',
     'date',
@@ -66,6 +76,7 @@ export async function getStaticProps({ params }: Params) {
     'content',
     'ogImage',
     'coverImage',
+    'time'
   ])
   const content = await markdownToHtml(post.content || '')
 
@@ -79,6 +90,10 @@ export async function getStaticProps({ params }: Params) {
   }
 }
 
+/**
+ * Next.js は動的パラメーターをもとに全てのパスをレンダリングする。
+ * これによって全ての記事を動的に作成できる。
+ */
 export async function getStaticPaths() {
   const posts = getAllPosts([ 'slug' ])
 

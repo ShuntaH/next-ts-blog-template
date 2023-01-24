@@ -27,5 +27,5 @@ const overrides = {
 
   },
 }
-console.log('override', overrides)
+// console.log('override', overrides)
 export default extendTheme(overrides)

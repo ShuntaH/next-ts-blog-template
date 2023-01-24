@@ -1,22 +1,21 @@
-import Avatar from '../avatar'
 import DateFormatter from '../date-formatter'
-import CoverImage from '../cover-image'
-import PostTitle from './post-title'
 import type Author from '../../interfaces/author'
-import { BreadcrumbItem } from "../../@types/component";
-import { Box, chakra } from "@chakra-ui/react";
+import { Avatar, Box, chakra, Flex } from "@chakra-ui/react";
 import Breadcrumb from "../breadcrumb";
+import { BreadcrumbItem } from "../../interfaces/breadcrumb";
+import PostTitle from "./post-title";
+
 
 type Props = {
   title: string
-  coverImage: string
   date: string
   author: Author
-  slug: string
+  slug: string,
+  time: string
 }
 
 
-const PostHeader = ({ title, coverImage, date, author, slug }: Props) => {
+const PostHeader = ({ title, date, author, slug, time }: Props) => {
   const breadCrumbItems: BreadcrumbItem[] = [
     { title: 'home', href: '/' },
     { title: 'posts', href: '/' },
@@ -26,23 +25,21 @@ const PostHeader = ({ title, coverImage, date, author, slug }: Props) => {
   return (
     <Box as={"header"}>
       <Breadcrumb breadCrumbItems={breadCrumbItems}/>
+      <PostTitle marginBottom={1}>{title}</PostTitle>
 
-      <PostTitle>{title}</PostTitle>
-
-      <div className="hidden md:block md:mb-12">
-        <Avatar name={author.name} picture={author.picture}/>
-      </div>
-      <div className="mb-8 md:mb-16 sm:mx-0">
-        <CoverImage title={title} src={coverImage}/>
-      </div>
-      <div className="max-w-2xl mx-auto">
-        <div className="block md:hidden mb-6">
-          <Avatar name={author.name} picture={author.picture}/>
-        </div>
-        <div className="mb-6 text-lg">
+      <Flex flexWrap={"wrap"} alignItems={"center"} flexDirection={"row"}>
+        <Box as={"span"}>
           <DateFormatter dateString={date}/>
-        </div>
-      </div>
+        </Box>
+        <Box>・</Box>
+        <Box as={"span"}>
+          {time}
+        </Box>
+        <Box>・</Box>
+        <Box as={"span"}>
+          <Avatar name={author.name} src={author.picture} size='xs'></Avatar>
+        </Box>
+      </Flex>
     </Box>
   )
 }
