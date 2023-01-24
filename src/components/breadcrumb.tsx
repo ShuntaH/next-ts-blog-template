@@ -3,7 +3,7 @@ import {
   Breadcrumb as ChakraBreadcrumb,
   BreadcrumbItem as ChakraBreadcrumbItem,
   BreadcrumbLink,
-  chakra
+  BreadcrumbProps
 } from "@chakra-ui/react";
 import { STYLES } from "../lib/constants";
 import ChakraFontAwesomeIcon from "./chakra-font-awesome-icon";
@@ -11,11 +11,13 @@ import { BreadcrumbItem } from "../interfaces/breadcrumb";
 
 
 type Props = {
-  breadCrumbItems: BreadcrumbItem[],
+  breadcrumbItems: BreadcrumbItem[],
+  breadcrumbProps?: BreadcrumbProps
 }
 
-const Breadcrumb = ({ breadCrumbItems }: Props) => {
-  const length = breadCrumbItems.length
+const Breadcrumb = ({ breadcrumbProps, breadcrumbItems }: Props) => {
+
+  const length = breadcrumbItems.length
 
   return (
     <ChakraBreadcrumb
@@ -25,9 +27,10 @@ const Breadcrumb = ({ breadCrumbItems }: Props) => {
           icon={faChevronRight}
           color={STYLES.accentColor}
           size={"xs"}/>}
+      {...breadcrumbProps}
     >
       {
-        breadCrumbItems.map((item, index) => {
+        breadcrumbItems.map((item, index) => {
           const isLastItem = (index + 1) === length
 
           return (
@@ -58,4 +61,4 @@ const Breadcrumb = ({ breadCrumbItems }: Props) => {
 }
 
 
-export default chakra(Breadcrumb)
+export default Breadcrumb

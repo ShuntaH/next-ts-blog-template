@@ -24,16 +24,24 @@ const PostHeader = ({ title, date, author, slug, time }: Props) => {
 
   return (
     <Box as={"header"}>
-      <Breadcrumb breadCrumbItems={breadCrumbItems}/>
-      <PostTitle marginBottom={1}>{title}</PostTitle>
-
-      <Flex flexWrap={"wrap"} alignItems={"center"} flexDirection={"row"}>
+      <Breadcrumb
+        breadcrumbItems={breadCrumbItems}
+        breadcrumbProps={{ marginBottom: 1 }}
+      />
+      <PostTitle headingProps={{ marginBottom: 2 }}>
+        {title}
+      </PostTitle>
+      <Flex
+        flexWrap={"wrap"}
+        alignItems={"center"}
+        flexDirection={"row"}
+      >
         <Box as={"span"}>
-          <DateFormatter dateString={date}/>
+          {time}
         </Box>
         <Box>・</Box>
         <Box as={"span"}>
-          {time}
+          <DateFormatter dateString={date}/>
         </Box>
         <Box>・</Box>
         <Box as={"span"}>

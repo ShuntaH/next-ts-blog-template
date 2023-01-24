@@ -1,16 +1,19 @@
-import { ReactNode } from 'react'
-import { chakra, Heading } from "@chakra-ui/react";
+import { Heading, HeadingProps } from "@chakra-ui/react";
+import { ReactNode } from "react";
 
 type Props = {
   children?: ReactNode
+  headingProps?: HeadingProps
 }
 
-const PostTitle = ({ children }: Props) => {
-  return (
-    <Heading as={"h1"}>
-      {children}
-    </Heading>
-  )
-}
+const PostTitle = ({ headingProps, children }: Props) => (
+  <Heading
+    as={"h1"}
+    {...headingProps}
+  >
+    {children}
+  </Heading>
+)
 
-export default chakra(PostTitle)
+
+export default PostTitle
