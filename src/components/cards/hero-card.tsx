@@ -1,15 +1,15 @@
 import { Card, CardBody, CardFooter, CardHeader, chakra, FormControl, Heading, Input, Link } from '@chakra-ui/react'
 import { BLOG_DISCRIPTION, STYLES } from "../../lib/constants";
-import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { faGithubAlt } from "@fortawesome/free-brands-svg-icons";
 import NextLink from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ChakraFontAwesomeIcon from "../chakra-font-awesome-icon";
 
 
 type SocialIcon = {
   href: string,
   title: string,
-  icon: IconProp
+  icon: IconDefinition
 }
 
 const HeroCard = () => {
@@ -57,7 +57,7 @@ const HeroCard = () => {
           title={githubIcon.title}
           fontSize={'4xl'}
         >
-          <FontAwesomeIcon icon={githubIcon.icon}/>
+          <ChakraFontAwesomeIcon icon={githubIcon.icon}/>
         </Link>
       </CardFooter>
     </Card>

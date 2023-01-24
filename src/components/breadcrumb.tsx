@@ -1,4 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import {
   Breadcrumb as ChakraBreadcrumb,
@@ -8,6 +7,7 @@ import {
 } from "@chakra-ui/react";
 import { BreadcrumbItem } from "../@types/component";
 import { STYLES } from "../lib/constants";
+import ChakraFontAwesomeIcon from "./chakra-font-awesome-icon";
 
 
 type Props = {
@@ -21,9 +21,9 @@ const Breadcrumb = ({ breadCrumbItems }: Props) => {
     <ChakraBreadcrumb
       spacing='8px'
       separator={
-        <FontAwesomeIcon
+        <ChakraFontAwesomeIcon
           icon={faChevronRight}
-          color='gray.500'
+          color="blue.600"
           size={"xs"}/>}
     >
       {
