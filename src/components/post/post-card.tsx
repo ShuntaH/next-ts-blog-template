@@ -2,8 +2,9 @@ import { Box, Card, CardBody, CardFooter, CardHeader, chakra, Heading, Link } fr
 import { STYLES } from "../../lib/constants";
 import React from "react";
 import Post from "../../interfaces/post";
-import DateFormatter from "../date-formatter";
 import NextLink from "next/link";
+import PostInfo from "./post-info";
+import PostTags from "./post-tags";
 
 
 type Props = {
@@ -12,6 +13,7 @@ type Props = {
 
 const PostCard = ({ post }: Props) => {
   const postHref = (post: Post) => `/posts/${post.slug}`
+  console.log('post', post)
 
   return (
     <Card
@@ -27,6 +29,7 @@ const PostCard = ({ post }: Props) => {
         <Heading
           as={'h3'}
           fontSize={'xl'}
+          marginBottom={2}
         >
           <Link
             href={postHref(post)}
@@ -35,6 +38,7 @@ const PostCard = ({ post }: Props) => {
             {post.title}
           </Link>
         </Heading>
+        <PostTags tags={post.tags}/>
       </CardHeader>
 
       <CardBody
@@ -51,7 +55,7 @@ const PostCard = ({ post }: Props) => {
       </CardBody>
 
       <CardFooter as={"footer"} display={"block"}>
-        <DateFormatter dateString={post.date}/>
+        <PostInfo time={post.time} date={post.date} author={post.author} />
         <Box>
           <Link
             href={postHref(post)}

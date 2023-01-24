@@ -1,9 +1,8 @@
 import Post from '../interfaces/post'
 import { Box, Text } from "@chakra-ui/react";
 import { getAllPosts } from "../lib/api";
-import HeroCard from "../components/cards/hero-card";
-import PostCards from "../components/cards/post-cards";
-import tags from "../components/tags";
+import HeroCard from "../components/cards/intro-card";
+import PostCards from "../components/post/post-cards";
 
 
 type Props = {

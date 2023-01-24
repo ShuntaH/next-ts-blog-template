@@ -12,7 +12,7 @@ type SocialIcon = {
   icon: IconDefinition
 }
 
-const HeroCard = () => {
+const IntroCard = () => {
   const githubIcon: SocialIcon =
     {
       href: 'https://github.com/ShuntaH',
@@ -64,4 +64,4 @@ const HeroCard = () => {
   );
 }
 
-export default chakra(HeroCard)
+export default chakra(IntroCard)

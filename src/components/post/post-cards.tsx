@@ -1,7 +1,7 @@
 import React from "react";
 import Post from "../../interfaces/post";
 import PostCard from "./post-card";
-import { Box, chakra } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 
 
 type Props = {
@@ -20,4 +20,4 @@ const PostCards = ({ posts }: Props) => {
   );
 }
 
-export default chakra(PostCards)
+export default PostCards
