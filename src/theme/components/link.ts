@@ -1,12 +1,10 @@
 import { ComponentStyleConfig } from "@chakra-ui/react";
+import { STYLES } from "../../lib/constants";
 
 const Link: ComponentStyleConfig = {
   // 1. We can update the base styles
   baseStyle: {
-    _hover: {
-      textDecoration: 'none',
-      color: 'purple.200'
-    }
+    _hover: STYLES.hoverStyle
   }
 }
 

@@ -7,16 +7,14 @@ import NextLink from "next/link";
 
 
 type Props = {
-  index: number
   post: Post
 }
 
-const PostCard = ({ post, index }: Props) => {
+const PostCard = ({ post }: Props) => {
   const postHref = (post: Post) => `/posts/${post.slug}`
 
   return (
     <Card
-      key={index}
       as={"article"}
       position={"relative"}
       minHeight={'320px'}
@@ -43,8 +41,8 @@ const PostCard = ({ post, index }: Props) => {
         sx={{
           overflow: "hidden",
           display: "-webkit-box",
-          "-webkit-box-orient": "vertical",
-          "-webkit-line-clamp": "3"
+          "WebkitBoxOrient": "vertical",
+          "WebkitLineClamp": "3"
         }}
         paddingTop={3}
         paddingBottom={3}
@@ -57,7 +55,7 @@ const PostCard = ({ post, index }: Props) => {
         <Box>
           <Link
             href={postHref(post)}
-            color={"purple.400"}
+            color={STYLES.accentColor}
           >
             Read more →
           </Link>

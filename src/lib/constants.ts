@@ -17,6 +17,7 @@ const footerHeight = '60px'
 const radius = '8px'
 const gap = '24px'
 const contentGap = '20px'
+const accentColor = 'purple.300'
 const hoverStyle = {
   textDecoration: 'none',
   color: 'purple.200'
@@ -30,5 +31,6 @@ export const STYLES = {
   headerHeight,
   footerHeight,
   radius,
+  accentColor,
   hoverStyle
 }

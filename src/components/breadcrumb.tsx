@@ -23,7 +23,7 @@ const Breadcrumb = ({ breadCrumbItems }: Props) => {
       separator={
         <ChakraFontAwesomeIcon
           icon={faChevronRight}
-          color="blue.600"
+          color={STYLES.accentColor}
           size={"xs"}/>}
     >
       {
@@ -44,6 +44,7 @@ const Breadcrumb = ({ breadCrumbItems }: Props) => {
                 whiteSpace={"nowrap"}
                 textDecoration={"none"}
                 _hover={STYLES.hoverStyle}
+                color={"gray.300"}
               >
                 {item.title}
               </BreadcrumbLink>
