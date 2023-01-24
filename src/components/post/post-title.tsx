@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { Heading } from "@chakra-ui/react";
+import { chakra, Heading } from "@chakra-ui/react";
 
 type Props = {
   children?: ReactNode
@@ -13,4 +13,4 @@ const PostTitle = ({ children }: Props) => {
   )
 }
 
-export default PostTitle
+export default chakra(PostTitle)

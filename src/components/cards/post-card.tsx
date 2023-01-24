@@ -1,4 +1,4 @@
-import { Box, Card, CardBody, CardFooter, CardHeader, Heading, Link } from '@chakra-ui/react'
+import { Box, Card, CardBody, CardFooter, CardHeader, chakra, Heading, Link } from '@chakra-ui/react'
 import { STYLES } from "../../lib/constants";
 import React from "react";
 import Post from "../../interfaces/post";
@@ -67,4 +67,4 @@ const PostCard = ({ post, index }: Props) => {
   );
 }
 
-export default PostCard
+export default chakra(PostCard)

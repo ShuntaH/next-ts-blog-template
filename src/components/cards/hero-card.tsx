@@ -1,4 +1,4 @@
-import { Card, CardBody, CardFooter, CardHeader, FormControl, Heading, Input, Link } from '@chakra-ui/react'
+import { Card, CardBody, CardFooter, CardHeader, chakra, FormControl, Heading, Input, Link } from '@chakra-ui/react'
 import { BLOG_DISCRIPTION, STYLES } from "../../lib/constants";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { faGithubAlt } from "@fortawesome/free-brands-svg-icons";
@@ -64,4 +64,4 @@ const HeroCard = () => {
   );
 }
 
-export default HeroCard
+export default chakra(HeroCard)

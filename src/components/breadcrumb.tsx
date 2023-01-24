@@ -3,7 +3,8 @@ import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import {
   Breadcrumb as ChakraBreadcrumb,
   BreadcrumbItem as ChakraBreadcrumbItem,
-  BreadcrumbLink
+  BreadcrumbLink,
+  chakra
 } from "@chakra-ui/react";
 import { BreadcrumbItem } from "../@types/component";
 import { STYLES } from "../lib/constants";
@@ -55,4 +56,5 @@ const Breadcrumb = ({ breadCrumbItems }: Props) => {
   )
 }
 
-export default Breadcrumb
+
+export default chakra(Breadcrumb)

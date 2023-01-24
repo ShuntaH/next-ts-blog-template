@@ -1,4 +1,5 @@
 import markdownStyles from '../markdown-styles.module.css'
+import { chakra } from "@chakra-ui/react";
 
 type Props = {
   content: string
@@ -15,4 +16,4 @@ const PostBody = ({ content }: Props) => {
   )
 }
 
-export default PostBody
+export default chakra(PostBody)

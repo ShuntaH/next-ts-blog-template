@@ -4,7 +4,7 @@ import CoverImage from '../cover-image'
 import PostTitle from './post-title'
 import type Author from '../../interfaces/author'
 import { BreadcrumbItem } from "../../@types/component";
-import { Box } from "@chakra-ui/react";
+import { Box, chakra } from "@chakra-ui/react";
 import Breadcrumb from "../breadcrumb";
 
 type Props = {
@@ -47,4 +47,4 @@ const PostHeader = ({ title, coverImage, date, author, slug }: Props) => {
   )
 }
 
-export default PostHeader
+export default chakra(PostHeader)
