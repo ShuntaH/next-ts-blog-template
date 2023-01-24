@@ -31,6 +31,7 @@ export const getPostBySlug = (slug: string, fields: string[] = []) => {
 
   // data に --- --- の内容、content に本文が入る
   const { data, content } = matter(fileContents)
+  console.log('data', data)
 
   type Items = {
     [key: string]: string
@@ -64,6 +65,7 @@ export const getPostBySlug = (slug: string, fields: string[] = []) => {
     }
   })
 
+  console.log('items', items)
   return items
 }
 

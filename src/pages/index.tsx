@@ -3,6 +3,7 @@ import { Box, Text } from "@chakra-ui/react";
 import { getAllPosts } from "../lib/api";
 import HeroCard from "../components/cards/hero-card";
 import PostCards from "../components/cards/post-cards";
+import tags from "../components/tags";
 
 
 type Props = {
@@ -17,7 +18,8 @@ export const getStaticProps = async () => {
     'author',
     'coverImage',
     'excerpt',
-    'time'
+    'time',
+    'tags'
   ])
 
   return {

@@ -11,7 +11,8 @@ type PostType = {
     url: string
   }
   content: string,
-  time: string
+  time: string,
+  tags: string[]
 }
 
 export default PostType
