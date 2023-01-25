@@ -1,4 +1,4 @@
-import { Card, CardBody, CardFooter, CardHeader, chakra, Heading, Link } from '@chakra-ui/react'
+import { Box, Card, CardBody, CardFooter, CardHeader, chakra, Heading, Text } from '@chakra-ui/react'
 import { STYLES } from "../../lib/constants";
 import React from "react";
 import Post from "../../interfaces/post";
@@ -16,57 +16,63 @@ const PostCard = ({ post }: Props) => {
   console.log('post', post)
 
   return (
-    <Card
-      as={"article"}
-      position={"relative"}
-      minHeight={'320px'}
-      marginBottom={STYLES.gap}
-      padding={STYLES.gap}
-      borderRadius={STYLES.radius}
-      overflow={"hidden"}
+    <Box
+      as={NextLink}
+      href={postHref(post)}
     >
-      <CardHeader as={"header"}>
-        <Heading
-          as={'h3'}
-          fontSize={'xl'}
-          marginBottom={2}
-        >
-          <Link
-            href={postHref(post)}
-            as={NextLink}
+      <Card
+        as={"article"}
+        position={"relative"}
+        minHeight={'320px'}
+        marginBottom={STYLES.gap}
+        padding={STYLES.gap}
+        borderRadius={STYLES.radius}
+        overflow={"hidden"}
+      >
+        <CardHeader as={"header"}>
+          <Heading
+            as={'h3'}
+            _hover={{color: STYLES.accentColorHover}}
+            fontSize={'xl'}
+            marginBottom={1}
           >
             {post.title}
-          </Link>
-        </Heading>
-      </CardHeader>
+          </Heading>
+        </CardHeader>
 
-      <CardBody
-        sx={{
-          overflow: "hidden",
-          display: "-webkit-box",
-          "WebkitBoxOrient": "vertical",
-          "WebkitLineClamp": "3"
-        }}
-        paddingTop={1}
-        paddingBottom={1}
-      >
-        {post.excerpt}
-      </CardBody>
-
-      <CardFooter as={"footer"} display={"block"} paddingTop={1} paddingBottom={1}>
-        <Link
-          as={NextLink}
-          display={"block"}
-          href={postHref(post)}
-          color={STYLES.accentColor}
-          marginBottom={5}
+        <CardBody
+          sx={{
+            overflow: "hidden",
+            display: "-webkit-box",
+            "WebkitBoxOrient": "vertical",
+            "WebkitLineClamp": "3"
+          }}
+          paddingTop={1}
+          paddingBottom={1}
         >
-          Read more →
-        </Link>
-        <PostInfo time={post.time} date={post.date} author={post.author} />
-        <PostTags tags={post.tags} stackProps={{marginBottom: 4}}/>
-      </CardFooter>
-    </Card>
+          {post.excerpt}
+        </CardBody>
+
+        <CardFooter
+          as={"footer"}
+          display={"block"}
+          paddingTop={1}
+          paddingBottom={1}
+        >
+          <Text
+            as={"span"}
+            display={"inline-block"}
+            color={STYLES.accentColor}
+            _hover={{color: STYLES.accentColorHover}}
+            marginBottom={5}
+          >
+            Read more →
+          </Text>
+          <PostInfo time={post.time} date={post.date} author={post.author} />
+          <PostTags tags={post.tags} stackProps={{marginBottom: 4}}/>
+        </CardFooter>
+      </Card>
+    </Box>
   );
 }
 
