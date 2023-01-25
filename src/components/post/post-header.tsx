@@ -1,5 +1,5 @@
 import type Author from '../../interfaces/author'
-import { Box } from "@chakra-ui/react";
+import { Box, BoxProps } from "@chakra-ui/react";
 import Breadcrumb from "../breadcrumb";
 import { BreadcrumbItem } from "../../interfaces/breadcrumb";
 import PostTitle from "./post-title";
@@ -13,9 +13,10 @@ type Props = {
   slug: string,
   time: string
   tags: string[]
+  boxProps?: BoxProps
 }
 
-const PostHeader = ({ title, date, author, slug, time, tags }: Props) => {
+const PostHeader = ({ title, date, author, slug, time, tags, boxProps }: Props) => {
   const breadCrumbItems: BreadcrumbItem[] = [
     { title: 'home', href: '/' },
     { title: 'posts', href: '/' },
@@ -23,7 +24,7 @@ const PostHeader = ({ title, date, author, slug, time, tags }: Props) => {
   ]
 
   return (
-    <Box as={"header"}>
+    <Box as={"header"} {...boxProps}>
       <Breadcrumb breadcrumbItems={breadCrumbItems} breadcrumbProps={{ marginBottom: 1 }}/>
       <PostTitle headingProps={{ marginBottom: 2 }}>{title}</PostTitle>
       <PostInfo time={time} date={date} author={author} />

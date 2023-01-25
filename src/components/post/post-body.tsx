@@ -1,19 +1,20 @@
 import markdownStyles from '../markdown-styles.module.css'
-import { chakra } from "@chakra-ui/react";
+import { Box, BoxProps } from "@chakra-ui/react";
 
 type Props = {
   content: string
+  boxProps?: BoxProps
 }
 
-const PostBody = ({ content }: Props) => {
+const PostBody = ({ content, boxProps }: Props) => {
   return (
-    <div className="max-w-2xl mx-auto">
-      <div
+    <Box {...boxProps}>
+      <Box
         className={markdownStyles['markdown']}
         dangerouslySetInnerHTML={{ __html: content }}
       />
-    </div>
+    </Box>
   )
 }
 
-export default chakra(PostBody)
+export default PostBody

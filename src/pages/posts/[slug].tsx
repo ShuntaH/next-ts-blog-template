@@ -7,7 +7,8 @@ import PostTitle from '../../components/post/post-title'
 import Head from 'next/head'
 import markdownToHtml from '../../lib/markdownToHtml'
 import type PostType from '../../interfaces/post'
-import { Box } from "@chakra-ui/react";
+import { Box, Card } from "@chakra-ui/react";
+import { STYLES } from "../../lib/constants";
 
 type Props = {
   post: PostType
@@ -23,12 +24,23 @@ export default function Post({ post, morePosts, preview }: Props) {
   }
 
   return (
-    <Box>
-      {router.isFallback ? (
-        <PostTitle>Loading…</PostTitle>
+      router.isFallback ? (
+        <Card
+          as={"div"}
+          position={"relative"}
+          display={"flex"}
+          justifyContent={"center"}
+          alignItems={"center"}
+          margin={`${STYLES.gap} 0 calc(${STYLES.gap} * 2)`}
+          overflow={"hidden"}
+          boxShadow={"none"}
+        >
+          <PostTitle headingProps={{textAlign: "center"}}>
+            {post.title}
+          </PostTitle>
+        </Card>
       ) : (
-        <>
-          <article className="mb-32">
+          <Box as={"article"} marginBottom={12}>
             <Head>
               <title>
                 {post.title}
@@ -43,13 +55,12 @@ export default function Post({ post, morePosts, preview }: Props) {
               author={post.author}
               slug={post.slug}
               tags={post.tags}
+              boxProps={{marginBottom:16}}
             />
-            
+
             <PostBody content={post.content}/>
-          </article>
-        </>
-      )}
-    </Box>
+          </Box>
+      )
   )
 }
 

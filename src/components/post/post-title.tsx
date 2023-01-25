@@ -7,13 +7,7 @@ type Props = {
 }
 
 const PostTitle = ({ headingProps, children }: Props) => (
-  <Heading
-    as={"h1"}
-    {...headingProps}
-  >
-    {children}
-  </Heading>
+  <Heading as={"h1"} {...headingProps}>{children}</Heading>
 )
-
 
 export default PostTitle
