@@ -1,4 +1,4 @@
-import { Box, Card, CardBody, CardFooter, CardHeader, chakra, Heading, Link } from '@chakra-ui/react'
+import { Card, CardBody, CardFooter, CardHeader, chakra, Heading, Link } from '@chakra-ui/react'
 import { STYLES } from "../../lib/constants";
 import React from "react";
 import Post from "../../interfaces/post";
@@ -38,7 +38,6 @@ const PostCard = ({ post }: Props) => {
             {post.title}
           </Link>
         </Heading>
-        <PostTags tags={post.tags}/>
       </CardHeader>
 
       <CardBody
@@ -48,22 +47,24 @@ const PostCard = ({ post }: Props) => {
           "WebkitBoxOrient": "vertical",
           "WebkitLineClamp": "3"
         }}
-        paddingTop={3}
-        paddingBottom={3}
+        paddingTop={1}
+        paddingBottom={1}
       >
         {post.excerpt}
       </CardBody>
 
-      <CardFooter as={"footer"} display={"block"}>
+      <CardFooter as={"footer"} display={"block"} paddingTop={1} paddingBottom={1}>
+        <Link
+          as={NextLink}
+          display={"block"}
+          href={postHref(post)}
+          color={STYLES.accentColor}
+          marginBottom={5}
+        >
+          Read more →
+        </Link>
         <PostInfo time={post.time} date={post.date} author={post.author} />
-        <Box>
-          <Link
-            href={postHref(post)}
-            color={STYLES.accentColor}
-          >
-            Read more →
-          </Link>
-        </Box>
+        <PostTags tags={post.tags} stackProps={{marginBottom: 4}}/>
       </CardFooter>
     </Card>
   );

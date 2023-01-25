@@ -3,7 +3,7 @@ import React from "react";
 
 type Props = {
   tags : string[]
-  stackProps: StackProps
+  stackProps?: StackProps
 }
 
 const PostTags = ({ tags, stackProps }: Props) => (
