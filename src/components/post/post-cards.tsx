@@ -11,11 +11,7 @@ type Props = {
 const PostCards = ({ posts }: Props) => {
   return (
     <Box>
-      {
-        posts.map((post, index) => (
-          <PostCard key={index} post={post}/>
-        ))
-      }
+      { posts.map((post, index) => <PostCard key={index} post={post}/>) }
     </Box>
   );
 }

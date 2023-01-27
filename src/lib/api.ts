@@ -32,6 +32,11 @@ class PostClass {
         return
       }
 
+      if (field === 'content') {
+        this[field] = content
+        return;
+      }
+
       if (typeof data[field] !== 'undefined') {
         this[field] = data[field]
       }
