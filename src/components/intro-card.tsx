@@ -1,9 +1,9 @@
 import { Card, CardBody, CardFooter, CardHeader, chakra, FormControl, Heading, Input, Link } from '@chakra-ui/react'
-import { BLOG_DISCRIPTION, STYLES } from "../../lib/constants";
+import { BLOG_DISCRIPTION, STYLES } from "../lib/constants";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { faGithubAlt } from "@fortawesome/free-brands-svg-icons";
 import NextLink from "next/link";
-import ChakraFontAwesomeIcon from "../chakra-font-awesome-icon";
+import ChakraFontAwesomeIcon from "./chakra-font-awesome-icon";
 
 
 type SocialIcon = {

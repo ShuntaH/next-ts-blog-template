@@ -8,7 +8,7 @@ type Props = {
 
 const PostBody = ({ content, boxProps }: Props) => {
   return (
-    <Box {...boxProps}>
+    <Box w={"full"} {...boxProps}>
       <Box
         className={markdownStyles['markdown']}
         dangerouslySetInnerHTML={{ __html: content }}

@@ -1,16 +1,12 @@
-import Post from '../interfaces/post'
-import { Box, Text } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { getAllPosts } from "../lib/api";
-import HeroCard from "../components/cards/intro-card";
-import PostCards from "../components/post/post-cards";
+import HeroCard from "../components/intro-card";
+import { Posts } from "../interfaces/post";
+import PostsPage from "../components/post/posts-page";
 
-
-type Props = {
-  allPosts: Post[]
-}
 
 export const getStaticProps = async () => {
-  const allPosts = getAllPosts([
+  const posts = getAllPosts([
     'title',
     'date',
     'slug',
@@ -22,14 +18,17 @@ export const getStaticProps = async () => {
   ])
 
   return {
-    props: { allPosts },
+    props: { posts },
   }
 }
 
+type Props = {
+  posts: Posts
+}
 /**
  * This is the page that is rendered when the user visits the root of your application.
  */
-export default function Index({ allPosts }: Props) {
+export default function Index({ posts }: Props) {
   // const heroPost = allPosts[0]
   // const morePosts = allPosts.slice(1)
 
@@ -41,14 +40,7 @@ export default function Index({ allPosts }: Props) {
 
     <Box>
       <HeroCard/>
-      {
-        allPosts.length > 0 ?
-          <PostCards posts={allPosts}/>
-          :
-          <Text align={"center"}>
-            There is no post yet.
-          </Text>
-      }
+      <PostsPage posts={posts}></PostsPage>
     </Box>
   )
 }

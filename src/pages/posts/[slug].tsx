@@ -6,13 +6,13 @@ import { getAllPosts, getPostBySlug } from '../../lib/api'
 import PostTitle from '../../components/post/post-title'
 import Head from 'next/head'
 import markdownToHtml from '../../lib/markdownToHtml'
-import type PostType from '../../interfaces/post'
 import { Box, Card } from "@chakra-ui/react";
 import { STYLES } from "../../lib/constants";
+import { Post, Posts } from "../../interfaces/post";
 
 type Props = {
-  post: PostType
-  morePosts: PostType[]
+  post: Post
+  morePosts: Posts
   preview?: boolean
 }
 
@@ -92,6 +92,7 @@ export async function getStaticProps({ params }: Params) {
     'time',
     'tags'
   ])
+
   const content = await markdownToHtml(post.content || '')
   console.log('post', post)
   return {

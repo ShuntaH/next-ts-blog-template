@@ -1,7 +1,43 @@
 import fs from 'fs'
 import { join } from 'path'
 import matter from 'gray-matter'
+import { Post, Posts } from "../interfaces/post";
+import Author from "../interfaces/author";
 
+
+class PostClass {
+  title: string = ''
+  date: string = ''
+  slug: string = ''
+  excerpt: string = ''
+  author: Author = null
+  content: string = ''
+  ogImage: { url: string } | null = null
+  coverImage: string = ''
+  time: string = ''
+  tags: string[] = []
+
+  constructor(fields: string[], content: string, slug: string, data: unknown) {
+    fields.forEach((field) => {
+      if (field === 'time') {
+        const charLength: number = content.length
+
+        // 220文字を読むのに1分かかるとする。 hugo のプラグインのロジックを参考にした。
+        const charsPerMin = 220
+
+        // 四捨五入する
+        const min = Math.round(charLength / charsPerMin)
+
+        this[field] = `${min} mins`
+        return
+      }
+
+      if (typeof data[field] !== 'undefined') {
+        this[field] = data[field]
+      }
+    })
+  }
+}
 
 const postsDirectory = join(process.cwd(), 'src', '_posts')
 
@@ -10,8 +46,7 @@ const postsDirectory = join(process.cwd(), 'src', '_posts')
  * e.g.
  * postSlugs [ 'dynamic-routing.md', 'hello-world.md', 'preview.md' ]
  */
-export const getPostSlugs = () => {
-  const postSlugs = fs.readdirSync(postsDirectory)
+export const getPostSlugs = (): string[] => {
   return fs.readdirSync(postsDirectory)
 }
 
@@ -21,7 +56,7 @@ export const getPostSlugs = () => {
  * @param slug マークダウンファイルの名前
  * @param fields
  */
-export const getPostBySlug = (slug: string, fields: string[] = []) => {
+export const getPostBySlug = (slug: string, fields: string[] = []): Post => {
   // slug 'hoge.md'
   const realSlug = slug.replace(/\.md$/, '')
   const fullPath = join(postsDirectory, `${realSlug}.md`)
@@ -31,42 +66,22 @@ export const getPostBySlug = (slug: string, fields: string[] = []) => {
 
   // data に --- --- の内容、content に本文が入る
   const { data, content } = matter(fileContents)
-  console.log('data', data)
-
-  type Items = {
-    [key: string]: string
-  }
-
-  const items: Items = {}
 
   // Ensure only the minimal needed data is exposed
-  fields.forEach((field) => {
-    if (field === 'slug') {
-      items[field] = realSlug
-    }
-    if (field === 'content') {
-      items[field] = content
-    }
+  const post = new PostClass(fields, content, slug, data)
 
-    if (field === 'time') {
-      const charLength: number = content.length
-
-      // 220文字を読むのに1分かかるとする。 hugo のプラグインのロジックを参考にした。
-      const charsPerMin = 220
-
-      // 四捨五入する
-      const min = Math.round(charLength / charsPerMin)
-
-      items[field] = `${min} mins`
-    }
-
-    if (typeof data[field] !== 'undefined') {
-      items[field] = data[field]
-    }
-  })
-
-  console.log('items', items)
-  return items
+  return {
+    title: post.title,
+    date: post.date,
+    slug: post.slug,
+    excerpt: post.excerpt,
+    author: post.author,
+    content: post.content,
+    ogImage: post.ogImage,
+    coverImage: post.coverImage,
+    time: post.time,
+    tags: post.tags
+  }
 }
 
 /**
@@ -74,8 +89,8 @@ export const getPostBySlug = (slug: string, fields: string[] = []) => {
  * 記事の日付をもとにソートして返す。
  * @param fields
  */
-export const getAllPosts = (fields: string[] = []) => {
-  const slugs = getPostSlugs() // [ 'hoge.md', 'hello-world.md' ]
+export const getAllPosts = (fields: string[] = []): Posts => {
+  const slugs: string[] = getPostSlugs() // [ 'hoge.md', 'hello-world.md' ]
   return slugs
     .map((slug) => getPostBySlug(slug, fields))
     // sort posts by date in descending order
