@@ -12,15 +12,17 @@ class PostClass {
   excerpt: string = ''
   author: Author = null
   content: string = ''
-  ogImage: { url: string } | null = null
+  ogImage: { url: string } = null
   coverImage: string = ''
   time: string = ''
   tags: string[] = []
 
-  constructor(fields: string[], content: string, slug: string, data: unknown) {
-    fields.forEach((field) => {
-      if (field === 'time') {
-        const charLength: number = content.length
+  constructor(markdownContent: string, markdownData: {}, slug: string) {
+    const props: string[] = Object.getOwnPropertyNames(this)
+
+    props.forEach((prop) => {
+      if (prop === 'time') {
+        const charLength: number = markdownContent.length
 
         // 220文字を読むのに1分かかるとする。 hugo のプラグインのロジックを参考にした。
         const charsPerMin = 220
@@ -28,18 +30,27 @@ class PostClass {
         // 四捨五入する
         const min = Math.round(charLength / charsPerMin)
 
-        this[field] = `${min} mins`
-        return
-      }
-
-      if (field === 'content') {
-        this[field] = content
+        this[prop] = `${min} mins`
         return;
       }
 
-      if (typeof data[field] !== 'undefined') {
-        this[field] = data[field]
+      if (prop === 'content') {
+        this[prop] = markdownContent
+        return;
       }
+
+      if (prop === 'slug') {
+        this[prop] = slug
+        return;
+      }
+
+      if (typeof markdownData[prop] !== 'undefined') {
+        this[prop] = markdownData[prop]
+        return;
+      }
+
+      throw new Error(`"${prop}" does not exist in markdownData.`);
+
     })
   }
 }
@@ -73,8 +84,8 @@ export const getPostBySlug = (slug: string, fields: string[] = []): Post => {
   const { data, content } = matter(fileContents)
 
   // Ensure only the minimal needed data is exposed
-  const post = new PostClass(fields, content, slug, data)
-
+  const post = new PostClass(content, data, slug)
+  console.log('post class', post)
   return {
     title: post.title,
     date: post.date,

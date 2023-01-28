@@ -65,9 +65,7 @@ export default function Post({ post, morePosts, preview }: Props) {
 }
 
 type Params = {
-  params: {
     slug: string
-  }
 }
 
 /**
@@ -78,10 +76,10 @@ type Params = {
  *  ブラウザでは確認できません。npm run dev のコンソールで確認してください。
  * @param params ルートパラメーター [slug].tsx
  */
-export async function getStaticProps({ params }: Params) {
+export async function getStaticProps({ slug }: Params) {
   // console.log('params', params)  { slug: 'dynamic-routing' }
 
-  const post = getPostBySlug(params.slug, [
+  const post = getPostBySlug(slug, [
     'title',
     'date',
     'slug',
