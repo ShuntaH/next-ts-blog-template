@@ -1,63 +1,13 @@
 import fs from 'fs'
 import { join } from 'path'
 import matter from 'gray-matter'
-import { Post, Posts } from "../interfaces/post";
-import Author from "../interfaces/author";
-import { PaginationProps, Paginator, PaginatorProps } from "../interfaces/pagination";
+import {Author} from "../interfaces/author";
+import { PaginationProps, Paginator } from "../interfaces/pagination";
 import { POST_COUNT_PER_PAGE } from "./constants";
-
-
-class PostClass {
-  title: string = ''
-  date: string = ''
-  slug: string = ''
-  excerpt: string = ''
-  author: Author = null
-  content: string = ''
-  ogImage: { url: string } = null
-  coverImage: string = ''
-  time: string = ''
-  tags: string[] = []
-
-  constructor(markdownContent: string, markdownData: {}, slug: string) {
-    const props: string[] = Object.getOwnPropertyNames(this)
-
-    props.forEach((prop) => {
-      if (prop === 'time') {
-        const charLength: number = markdownContent.length
-
-        // 220文字を読むのに1分かかるとする。 hugo のプラグインのロジックを参考にした。
-        const charsPerMin = 220
-
-        // 四捨五入する
-        const min = Math.round(charLength / charsPerMin)
-
-        this[prop] = `${min} mins`
-        return;
-      }
-
-      if (prop === 'content') {
-        this[prop] = markdownContent
-        return;
-      }
-
-      if (prop === 'slug') {
-        this[prop] = slug
-        return;
-      }
-
-      if (typeof markdownData[prop] !== 'undefined') {
-        this[prop] = markdownData[prop]
-        return;
-      }
-
-      throw new Error(`"${prop}" does not exist in markdownData.`);
-
-    })
-  }
-}
+import Post from "./post";
 
 const postsDirectory = join(process.cwd(), 'src', '_posts')
+
 
 /**
  * 記事を格納しているディレクトリにあるファイル名を全て取得する
@@ -88,21 +38,7 @@ export const getPostBySlug = (slug: string): Post => {
   // data に --- --- の内容、content に本文が入る
   const { data, content } = matter(fileContents)
 
-  // Ensure only the minimal needed data is exposed
-  const post = new PostClass(content, data, slug)
-  console.log('post class', post)
-  return {
-    title: post.title,
-    date: post.date,
-    slug: post.slug,
-    excerpt: post.excerpt,
-    author: post.author,
-    content: post.content,
-    ogImage: post.ogImage,
-    coverImage: post.coverImage,
-    time: post.time,
-    tags: post.tags
-  }
+  return new Post(content, data, slug)
 }
 
 /**
