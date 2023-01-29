@@ -50,7 +50,7 @@ export const getAllPosts = (): Posts => {
 }
 
 
-export const getPagination = ({}: PaginationProps): Pagination => {
-
+export const getPagination = (props: PaginationProps): Pagination => {
+  return new Pagination(props.currentPageNumber, props.posts, props.postCountPerPage)
 }
 

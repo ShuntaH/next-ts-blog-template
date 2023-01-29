@@ -1,6 +1,5 @@
 import { Posts } from "../interfaces/post";
 import { POST_COUNT_PER_PAGE } from "./constants";
-import { PaginationProps } from "../interfaces/pagination";
 
 
 class Pagination {
@@ -11,7 +10,7 @@ class Pagination {
   private readonly totalPageCount: number = 0
   private readonly currentPagePosts: Posts = []
 
-  constructor({ currentPageNumber, postCountPerPage = POST_COUNT_PER_PAGE, posts }: PaginationProps) {
+  constructor(currentPageNumber: number, posts: Posts, postCountPerPage: number = POST_COUNT_PER_PAGE) {
     this.currentPageNumber = currentPageNumber
     this.postCountPerPage = postCountPerPage
     this.posts = posts

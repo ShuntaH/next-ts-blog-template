@@ -2,7 +2,7 @@ import { Posts } from "./post";
 
 interface PaginationProps {
   currentPageNumber: number;
-  postCountPerPage: number;
+  postCountPerPage?: number;
   posts: Posts;
 }
 
