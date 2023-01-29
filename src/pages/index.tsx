@@ -10,34 +10,46 @@ type Params = {
 }
 
 export const getStaticProps = async ({ slug }: Params) => {
-  const posts = getAllPosts([
-    'title',
-    'date',
-    'slug',
-    'author',
-    'coverImage',
-    'excerpt',
-    'time',
-    'tags'
-  ])
+  const posts: Posts = getAllPosts()
 
   return {
-    props: { posts },
+    props: {
+      posts,
+      postCount: posts.length
+    },
   }
 }
 
 type Props = {
   posts: Posts
+  postCount: number
 }
 /**
  * This is the page that is rendered when the user visits the root of your application.
  */
-export default function Index({ posts }: Props) {
+export default function Index({ posts, postCount }: Props) {
   console.log('posts', posts)
   // const heroPost = allPosts[0]
   // const morePosts = allPosts.slice(1)
+
   const router = useRouter()
-  const currentPathname = router.pathname
+  if (router.pathname === router.basePath) {
+    const currentPageNumber = 1
+    const current: Page  = { href: router.basePath, pageNumber: 1}
+    const next: Page = {
+      href: `/pages/${currentPageNumber + 1}`,
+      pageNumber: currentPageNumber + 1
+    }
+    const prev: Page = {
+      href: null,
+      pageNumber: currentPageNumber - 1
+    }
+
+    const p: Paginator = {
+      pageCount:
+    }
+
+  }
   console.log('router', router)
 
   return (
