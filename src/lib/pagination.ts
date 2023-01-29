@@ -1,40 +1,24 @@
 import { Posts } from "../interfaces/post";
 import { POST_COUNT_PER_PAGE } from "./constants";
+import { PaginationProps } from "../interfaces/pagination";
 
-type PaginationProps = {
-  currentPage: number;
-  postCountPerPage?: number;
-  posts: Posts;
-}
 
 class Pagination {
-  currentPage: number = 1;
-  postCountPerPage: number = POST_COUNT_PER_PAGE;
-  totalPostCount: number
-  posts: Posts;
+  private readonly currentPageNumber: number = 1;
+  private readonly postCountPerPage: number = POST_COUNT_PER_PAGE;
+  private readonly totalPostCount: number = 0
+  private readonly posts: Posts | null = null
+  private readonly totalPageCount: number = 0
+  private readonly currentPagePosts: Posts = []
 
-  constructor({ currentPage, postCountPerPage, posts }: PaginationProps) {
-    this.currentPage = currentPage;
-    if (postCountPerPage) {
-      this.postCountPerPage = postCountPerPage;
-    }
+  constructor({ currentPageNumber, postCountPerPage = POST_COUNT_PER_PAGE, posts }: PaginationProps) {
+    this.currentPageNumber = currentPageNumber
+    this.postCountPerPage = postCountPerPage
+    this.posts = posts
     this.totalPostCount = posts.length;
-    this.posts = posts;
-  }
-
-  /**
-   * ページ数を取得する
-   */
-  get getTotalPageCount(): number {
-    return Math.ceil(this.totalPostCount / this.postCountPerPage)
-  }
-
-  /**
-   * 指定したページが含む記事を取得する
-   */
-  get getCurrentPagePosts(): Posts {
-    const startIndex = (this.currentPage - 1) * this.postCountPerPage;
-    return this.posts.slice(startIndex, startIndex + this.postCountPerPage);
+    this.totalPageCount = Math.ceil(this.totalPostCount / postCountPerPage)
+    const startIndex = (currentPageNumber - 1) * this.postCountPerPage;
+    this.currentPagePosts = this.posts!.slice(startIndex, startIndex + postCountPerPage);
   }
 }
 

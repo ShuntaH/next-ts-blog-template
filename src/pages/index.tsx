@@ -4,6 +4,7 @@ import HeroCard from "../components/intro-card";
 import { Posts } from "../interfaces/post";
 import PostsPage from "../components/post/posts-page";
 import { useRouter } from "next/router";
+import Pagination from "../lib/pagination";
 
 type Params = {
   slug: string
@@ -11,11 +12,11 @@ type Params = {
 
 export const getStaticProps = async ({ slug }: Params) => {
   const posts: Posts = getAllPosts()
+  const pagination: Pagination = new Pagination(1, posts)
 
   return {
     props: {
-      posts,
-      postCount: posts.length
+      pagination
     },
   }
 }
@@ -28,9 +29,7 @@ type Props = {
  * This is the page that is rendered when the user visits the root of your application.
  */
 export default function Index({ posts, postCount }: Props) {
-  console.log('posts', posts)
-  // const heroPost = allPosts[0]
-  // const morePosts = allPosts.slice(1)
+
 
   const router = useRouter()
   if (router.pathname === router.basePath) {

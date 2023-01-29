@@ -1,10 +1,10 @@
 import fs from 'fs'
 import { join } from 'path'
 import matter from 'gray-matter'
-import {Author} from "../interfaces/author";
-import { PaginationProps, Paginator } from "../interfaces/pagination";
-import { POST_COUNT_PER_PAGE } from "./constants";
 import Post from "./post";
+import { Posts } from "../interfaces/post";
+import Pagination from "./pagination";
+import { PaginationProps } from "../interfaces/pagination";
 
 const postsDirectory = join(process.cwd(), 'src', '_posts')
 
@@ -16,10 +16,6 @@ const postsDirectory = join(process.cwd(), 'src', '_posts')
  */
 export const getPostSlugs = (): string[] => {
   return fs.readdirSync(postsDirectory)
-}
-
-export const getPostCount = (): number = {
-  const posts = getAllPosts()
 }
 
 /**
@@ -53,25 +49,8 @@ export const getAllPosts = (): Posts => {
     .sort((post1, post2) => (post1.date > post2.date ? -1 : 1))
 }
 
-export const getPagination = ({ allPosts, postCountPerPage = POST_COUNT_PER_PAGE}: PaginationProps): Paginator => {
-  const postCount: number = allPosts.length
-  const pageCount: number = Math.ceil(postCount / postCountPerPage)
-  const
-}
-/**
- * 解析された状態のマークダウンの記事を全て取得して、
- * 記事の日付をもとにソートして返す。
- */
-export const getPageCount = (allPosts: Posts): number => {
 
+export const getPagination = ({}: PaginationProps): Pagination => {
 
 }
 
-/**
- * 解析された状態のマークダウンの記事を全て取得して、
- * 記事の日付をもとにソートして返す。
- */
-export const getPaginatedPosts = (): Posts => {
-  const allPosts = getAllPosts()
-
-}
