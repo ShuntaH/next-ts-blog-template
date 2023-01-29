@@ -1,30 +1,41 @@
-export default {}
+import { Posts } from "../interfaces/post";
+import { POST_COUNT_PER_PAGE } from "./constants";
+
+type PaginationProps = {
+  currentPage: number;
+  postCountPerPage?: number;
+  posts: Posts;
+}
 
 class Pagination {
-  currentPage: number;
-  itemsPerPage: number;
-  totalItems: number;
-  posts: BlogPost[];
+  currentPage: number = 1;
+  postCountPerPage: number = POST_COUNT_PER_PAGE;
+  totalPostCount: number
+  posts: Posts;
 
-  constructor(currentPage: number, itemsPerPage: number, posts: Post[]) {
+  constructor({ currentPage, postCountPerPage, posts }: PaginationProps) {
     this.currentPage = currentPage;
-    this.itemsPerPage = itemsPerPage;
-    this.totalItems = posts.length;
+    if (postCountPerPage) {
+      this.postCountPerPage = postCountPerPage;
+    }
+    this.totalPostCount = posts.length;
     this.posts = posts;
   }
 
-  getCurrentPagePosts(): BlogPost[] {
-    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    return this.posts.slice(startIndex, startIndex + this.itemsPerPage);
+  /**
+   * ページ数を取得する
+   */
+  get getTotalPageCount(): number {
+    return Math.ceil(this.totalPostCount / this.postCountPerPage)
+  }
+
+  /**
+   * 指定したページが含む記事を取得する
+   */
+  get getCurrentPagePosts(): Posts {
+    const startIndex = (this.currentPage - 1) * this.postCountPerPage;
+    return this.posts.slice(startIndex, startIndex + this.postCountPerPage);
   }
 }
 
-const posts: BlogPost[] = [
-  { title: "Post 1", content: "Content 1" },
-  { title: "Post 2", content: "Content 2" },
-  { title: "Post 3", content: "Content 3" },
-  // ...
-];
-
-const pagination = new Pagination(1, 2, posts);
-console.log(pagination.getCurrentPagePosts());
+export default Pagination
