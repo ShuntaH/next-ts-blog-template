@@ -42,7 +42,7 @@ export const getPostBySlug = (slug: string): Post => {
   const min = Math.round(charLength / charsPerMin)
 
   const time = `${min} mins`
-  
+
   return {
     content: content,
     slug: slug,
@@ -70,18 +70,39 @@ export const getAllPosts = (): Posts => {
 }
 
 
-export const getPagination = ({
-                                currentPageNumber,
-                                posts,
-                                postCountPerPage = POST_COUNT_PER_PAGE
-                              }: PaginationProps): Pagination => {
+export const getPagination = (
+  {
+    currentPageNumber,
+    posts,
+    basePaths,
+    postCountPerPage = POST_COUNT_PER_PAGE
+  }
+    : PaginationProps
+): Pagination => {
   const startIndex = (currentPageNumber - 1) * postCountPerPage;
   const totalPostCount = posts.length
+  const totalPageCount = Math.ceil(totalPostCount / postCountPerPage)
+
+  if (basePaths === '/') {
+    basePaths = ''
+  } else if (basePaths.endsWith('/')) {
+    // root ではなく、かつ末尾の / があったら取り除く
+    basePaths = basePaths.slice(0, -1)
+  }
+
+  const prevPageHref = currentPageNumber === 1 ?
+    null : `${basePaths}/${currentPageNumber + 1}`
+  
+  const nextPageHref = currentPageNumber === totalPageCount ?
+    null : `${basePaths}/${currentPageNumber - 1}`
+
   return {
     currentPageNumber,
     postCountPerPage,
     totalPostCount,
-    totalPageCount: Math.ceil(totalPostCount / postCountPerPage),
+    totalPageCount,
+    nextPageHref,
+    prevPageHref,
     currentPagePosts: posts!.slice(startIndex, startIndex + postCountPerPage),
   }
 }

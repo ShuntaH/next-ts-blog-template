@@ -11,7 +11,11 @@ type Params = {
 
 export const getStaticProps = async ({ slug }: Params) => {
   const posts: Posts = getAllPosts()
-  const pagination: Pagination = getPagination({currentPageNumber: 1, posts})
+  const pagination: Pagination = getPagination({
+    currentPageNumber: 1,
+    basePaths: '/',
+    posts
+  })
 
   return {
     props: {
