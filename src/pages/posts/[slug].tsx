@@ -82,7 +82,7 @@ export async function getStaticProps({ slug }: Params) {
   const post = getPostBySlug(slug)
 
   const content = await markdownToHtml(post.content || '')
-  console.log('post', post)
+  
   return {
     props: {
       post: {
