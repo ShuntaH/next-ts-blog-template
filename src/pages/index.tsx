@@ -4,6 +4,7 @@ import IntroCard from "../components/intro-card";
 import { Posts } from "../interfaces/post";
 import PostsPage from "../components/post/posts-page";
 import { Pagination } from "../interfaces/pagination";
+import { useEffect } from "react";
 
 type Params = {
   slug: string
@@ -31,7 +32,10 @@ type Props = {
  * This is the page that is rendered when the user visits the root of your application.
  */
 export default function Index({ pagination }: Props) {
-  console.log('pagination', pagination)
+  useEffect(() => {
+    console.log('pagination', pagination)
+  })
+  
   return (
     // ページ固有のhead内容を設定したい時
     // <Head>
