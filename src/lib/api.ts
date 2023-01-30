@@ -71,6 +71,13 @@ export const getAllPosts = (): Posts => {
 }
 
 
+export const getTotalPostCount = (posts: Posts): number => posts.length
+
+export const getTotalPageCount = (
+  totalPostCount: number,
+  postCountPerPage: number = POST_COUNT_PER_PAGE
+): number => Math.ceil(totalPostCount / postCountPerPage)
+
 export const getPagination = (
   {
     currentPageNumber,
@@ -81,8 +88,8 @@ export const getPagination = (
     : PaginationProps
 ): Pagination => {
   const startIndex = (currentPageNumber - 1) * postCountPerPage;
-  const totalPostCount = posts.length
-  const totalPageCount = Math.ceil(totalPostCount / postCountPerPage)
+  const totalPostCount = getTotalPostCount(posts)
+  const totalPageCount = getTotalPageCount(totalPostCount)
 
   if (basePaths === '/') {
     basePaths = ''
