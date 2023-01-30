@@ -24,6 +24,7 @@ export const getPostSlugs = (): string[] => {
  */
 export const getPostBySlug = (slug: string): Post => {
   // slug 'hoge.md'
+  console.log('slug', slug)
   const realSlug = slug.replace(/\.md$/, '')
   const fullPath = join(postsDirectory, `${realSlug}.md`)
 
@@ -45,7 +46,7 @@ export const getPostBySlug = (slug: string): Post => {
 
   return {
     content: content,
-    slug: slug,
+    slug: realSlug,
     title: markdownData.title,
     date: markdownData.date,
     excerpt: markdownData.excerpt,

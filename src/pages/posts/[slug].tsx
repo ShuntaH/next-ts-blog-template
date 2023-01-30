@@ -5,10 +5,53 @@ import PostHeader from '../../components/post/post-header'
 import { getAllPosts, getPostBySlug } from '../../lib/api'
 import PostTitle from '../../components/post/post-title'
 import Head from 'next/head'
-import markdownToHtml from '../../lib/markdownToHtml'
 import { Box, Card } from "@chakra-ui/react";
 import { STYLES } from "../../lib/constants";
 import { Post, Posts } from "../../interfaces/post";
+import markdownToHtml from "../../lib/markdownToHtml";
+
+
+/**
+ * Next.js は動的パラメーターをもとに全てのパスをレンダリングする。
+ * これによって全ての記事を動的に作成できる。
+ */
+export async function getStaticPaths() {
+  const posts = getAllPosts()
+
+  return {
+    paths: posts.map((post) => {
+      return {
+        params: {
+          slug: post.slug,
+        },
+      }
+    }),
+    fallback: false,
+  }
+}
+
+type Params = {
+  slug: string
+}
+
+/**
+ *  この関数はサーバー側のビルド時に呼び出されます。
+ *  クライアント側では呼び出されないので、
+ *  直接データベースクエリを実行できます。
+ *  開発中はリクエストのたびに実行されますが、サーバーサイドで実行されるので console.log は
+ *  ブラウザでは確認できません。npm run dev のコンソールで確認してください。
+ * @param params ルートパラメーター [slug].tsx
+ */
+export async function getStaticProps({ slug }: Params) {
+  console.log('slug', slug)
+
+  const post = getPostBySlug(slug)
+  post.content = await markdownToHtml(post.content || '')
+
+  return {
+    props: { post }
+  }
+}
 
 type Props = {
   post: Post
@@ -20,6 +63,7 @@ export default function PostPage({ post, morePosts, preview }: Props) {
   const router = useRouter()
 
   if (!router.isFallback && !post?.slug) {
+    // todo 共通のエラーページを作る
     return <ErrorPage statusCode={404}/>
   }
 
@@ -62,52 +106,4 @@ export default function PostPage({ post, morePosts, preview }: Props) {
           </Box>
       )
   )
-}
-
-type Params = {
-    slug: string
-}
-
-/**
- *  この関数はサーバー側のビルド時に呼び出されます。
- *  クライアント側では呼び出されないので、
- *  直接データベースクエリを実行できます。
- *  開発中はリクエストのたびに実行されますが、サーバーサイドで実行されるので console.log は
- *  ブラウザでは確認できません。npm run dev のコンソールで確認してください。
- * @param params ルートパラメーター [slug].tsx
- */
-export async function getStaticProps({ slug }: Params) {
-  // console.log('params', params)  { slug: 'dynamic-routing' }
-
-  const post = getPostBySlug(slug)
-
-  const content = await markdownToHtml(post.content || '')
-  
-  return {
-    props: {
-      post: {
-        ...post,
-        content,
-      },
-    },
-  }
-}
-
-/**
- * Next.js は動的パラメーターをもとに全てのパスをレンダリングする。
- * これによって全ての記事を動的に作成できる。
- */
-export async function getStaticPaths() {
-  const posts = getAllPosts()
-
-  return {
-    paths: posts.map((post) => {
-      return {
-        params: {
-          slug: post.slug,
-        },
-      }
-    }),
-    fallback: false,
-  }
 }

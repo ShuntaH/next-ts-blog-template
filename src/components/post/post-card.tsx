@@ -1,4 +1,4 @@
-import { Box, Card, CardBody, CardFooter, CardHeader, chakra, Heading, Text } from '@chakra-ui/react'
+import { Box, BoxProps, Card, CardBody, CardFooter, CardHeader, Heading, Text } from '@chakra-ui/react'
 import { STYLES } from "../../lib/constants";
 import React from "react";
 import NextLink from "next/link";
@@ -8,16 +8,18 @@ import { Post } from "../../interfaces/post";
 
 
 type Props = {
-  post: Post
+  post: Post,
+  boxProps?: BoxProps
 }
 
-const PostCard = ({ post }: Props) => {
+const PostCard = ({ post, boxProps }: Props) => {
   const postHref = (post: Post) => `/posts/${post.slug}`
-  
+
   return (
     <Box
       as={NextLink}
       href={postHref(post)}
+      {...boxProps}
     >
       <Card
         as={"article"}
@@ -75,4 +77,4 @@ const PostCard = ({ post }: Props) => {
   );
 }
 
-export default chakra(PostCard)
+export default PostCard
