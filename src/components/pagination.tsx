@@ -8,7 +8,10 @@ type Props = {
   flexProps?: FlexProps
 }
 
+const textProps = { color: "gray.500", _hover: {cursor: "default"}}
+
 const Pagination = ({ pagination, flexProps }: Props) => (
+
   <Flex justifyContent={"space-between"} {...flexProps}>
     {
       pagination.prevPageHref ?
@@ -19,22 +22,26 @@ const Pagination = ({ pagination, flexProps }: Props) => (
           Previous
         </Link>
         :
-        <TextSpan textProps={{ color: "gray.500"}}>
+        <TextSpan textProps={textProps}>
           Previous
         </TextSpan>
     }
 
-    <TextSpan>
+    <TextSpan
+      textProps={{_hover: {cursor: "default"}}}>
       {pagination.currentPageNumber} of {pagination.totalPageCount}
     </TextSpan>
 
     {
       pagination.nextPageHref ?
-        <Link as={NextLink} href={pagination.nextPageHref}>
+        <Link
+          as={NextLink}
+          href={pagination.nextPageHref}
+        >
           Next
         </Link>
         :
-        <TextSpan textProps={{ color: "gray.500"}}>
+        <TextSpan textProps={textProps}>
           Next
         </TextSpan>
     }

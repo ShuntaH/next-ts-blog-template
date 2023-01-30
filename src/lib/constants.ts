@@ -4,7 +4,7 @@ export const HOME_OG_IMAGE_URL =
   'https://og-image.vercel.app/Next.js%20Blog%20Starter%20Example.png?theme=light&md=1&fontSize=100px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg'
 export const BLOG_NAME = 'hskpg blog 🍎'
 export const BLOG_DISCRIPTION = "使用したことがある、または興味のある技術や自分の思考のメモをブログとして書いています"
-export const POST_COUNT_PER_PAGE = 10
+export const POST_COUNT_PER_PAGE = 2
 
 /**
  * todo chakra ui で css var の定義の仕方がわからなかったので js でかく。 theme での書き方がわかったらそちらで書く

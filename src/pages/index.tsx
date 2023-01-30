@@ -31,6 +31,7 @@ type Props = {
  * This is the page that is rendered when the user visits the root of your application.
  */
 export default function Index({ pagination }: Props) {
+  console.log('pagination', pagination)
   return (
     // ページ固有のhead内容を設定したい時
     // <Head>

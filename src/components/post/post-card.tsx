@@ -13,8 +13,7 @@ type Props = {
 
 const PostCard = ({ post }: Props) => {
   const postHref = (post: Post) => `/posts/${post.slug}`
-  console.log('post in post-card', post)
-
+  
   return (
     <Box
       as={NextLink}
