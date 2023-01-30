@@ -1,10 +1,9 @@
 import fs from 'fs'
 import { join } from 'path'
 import matter from 'gray-matter'
-import Post from "./post";
-import { MarkdownData, Posts } from "../interfaces/post";
-import Pagination from "./pagination";
-import { PaginationProps } from "../interfaces/pagination";
+import { MarkdownData, Post, Posts } from "../interfaces/post";
+import { Pagination, PaginationProps } from "../interfaces/pagination";
+import { POST_COUNT_PER_PAGE } from "./constants";
 
 const postsDirectory = join(process.cwd(), 'src', '_posts')
 
@@ -34,7 +33,28 @@ export const getPostBySlug = (slug: string): Post => {
   // data に --- --- の内容、content に本文が入る
   const { data, content } = matter(fileContents)
   const markdownData = data as MarkdownData
-  return new Post(content, markdownData, slug)
+  const charLength: number = content.length
+
+  // 220文字を読むのに1分かかるとする。 hugo のプラグインのロジックを参考にした。
+  const charsPerMin = 220
+
+  // 四捨五入する
+  const min = Math.round(charLength / charsPerMin)
+
+  const time = `${min} mins`
+  
+  return {
+    content: content,
+    slug: slug,
+    title: markdownData.title,
+    date: markdownData.date,
+    excerpt: markdownData.excerpt,
+    author: markdownData.author,
+    ogImage: markdownData.ogImage,
+    coverImage: markdownData.coverImage,
+    tags: markdownData.tags,
+    time
+  }
 }
 
 /**
@@ -50,7 +70,20 @@ export const getAllPosts = (): Posts => {
 }
 
 
-export const getPagination = (props: PaginationProps): Pagination => {
-  return new Pagination(props.currentPageNumber, props.posts, props.postCountPerPage)
+export const getPagination = ({
+                                currentPageNumber,
+                                posts,
+                                postCountPerPage = POST_COUNT_PER_PAGE
+                              }: PaginationProps): Pagination => {
+  const startIndex = (currentPageNumber - 1) * postCountPerPage;
+  const totalPostCount = posts.length
+  return {
+    currentPageNumber,
+    postCountPerPage,
+    totalPostCount,
+    totalPageCount: Math.ceil(totalPostCount / postCountPerPage),
+    currentPagePosts: posts!.slice(startIndex, startIndex + postCountPerPage),
+  }
 }
+
 

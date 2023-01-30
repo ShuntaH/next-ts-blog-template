@@ -1,8 +1,8 @@
 import { Box, BoxProps, Flex, Link, Text } from "@chakra-ui/react";
 import PostCards from "./post-cards";
 import TextSpan from "../foundations/text-span";
-import Pagination from "../../lib/pagination";
 import NextLink from "next/link";
+import { Pagination } from "../../interfaces/pagination";
 
 type Props = {
   pagination: Pagination,
@@ -10,7 +10,7 @@ type Props = {
 }
 
 const PostsPage = ({ pagination, boxProps }: Props) => {
-  const posts = pagination.posts
+  const posts = pagination.currentPagePosts
 
   return (
     posts.length > 0 ?

@@ -1,11 +1,15 @@
 import { Posts } from "./post";
 
-interface PaginationProps {
+export type PaginationProps = {
   currentPageNumber: number;
   postCountPerPage?: number;
   posts: Posts;
 }
 
-export type {
-  PaginationProps
+export type Pagination = {
+  currentPageNumber: number
+  postCountPerPage: number
+  totalPostCount: number
+  totalPageCount: number
+  currentPagePosts: Posts
 }

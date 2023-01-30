@@ -1,9 +1,9 @@
 import { Box } from "@chakra-ui/react";
-import { getAllPosts } from "../lib/api";
+import { getAllPosts, getPagination } from "../lib/api";
 import HeroCard from "../components/intro-card";
 import { Posts } from "../interfaces/post";
 import PostsPage from "../components/post/posts-page";
-import Pagination from "../lib/pagination";
+import { Pagination } from "../interfaces/pagination";
 
 type Params = {
   slug: string
@@ -11,7 +11,7 @@ type Params = {
 
 export const getStaticProps = async ({ slug }: Params) => {
   const posts: Posts = getAllPosts()
-  const pagination: Pagination = new Pagination(1, posts)
+  const pagination: Pagination = getPagination({currentPageNumber: 1, posts})
 
   return {
     props: {

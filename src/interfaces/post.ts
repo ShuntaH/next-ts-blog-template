@@ -1,4 +1,3 @@
-import Post from "../lib/post";
 import { Author } from "./author";
 
 export type MarkdownData = {
@@ -10,4 +9,18 @@ export type MarkdownData = {
   coverImage: string
   tags: string[]
 }
+
+export type Post = {
+  title: string
+  date: string
+  slug: string
+  excerpt: string
+  author: Author
+  content: string
+  ogImage: { url: string }
+  coverImage: string
+  time: string
+  tags: string[]
+}
+
 export type Posts = Post[]

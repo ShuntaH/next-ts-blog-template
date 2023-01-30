@@ -4,7 +4,7 @@ import React from "react";
 import NextLink from "next/link";
 import PostInfo from "./post-info";
 import PostTags from "./post-tags";
-import Post from "../../lib/post";
+import { Post } from "../../interfaces/post";
 
 
 type Props = {

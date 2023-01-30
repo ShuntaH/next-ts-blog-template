@@ -8,8 +8,7 @@ import Head from 'next/head'
 import markdownToHtml from '../../lib/markdownToHtml'
 import { Box, Card } from "@chakra-ui/react";
 import { STYLES } from "../../lib/constants";
-import Post from "../../lib/post";
-import { Posts } from "../../interfaces/post";
+import { Post, Posts } from "../../interfaces/post";
 
 type Props = {
   post: Post
