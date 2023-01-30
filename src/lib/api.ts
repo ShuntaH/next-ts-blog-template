@@ -92,7 +92,7 @@ export const getPagination = (
 
   const prevPageHref = currentPageNumber === 1 ?
     null : `${basePaths}/${currentPageNumber + 1}`
-  
+
   const nextPageHref = currentPageNumber === totalPageCount ?
     null : `${basePaths}/${currentPageNumber - 1}`
 

@@ -1,11 +1,10 @@
-import { Box, BoxProps, Flex, Link, Text } from "@chakra-ui/react";
+import { Box, BoxProps, Text } from "@chakra-ui/react";
 import PostCards from "./post-cards";
-import TextSpan from "../foundations/text-span";
-import NextLink from "next/link";
-import { Pagination } from "../../interfaces/pagination";
+import { Pagination as PaginationType } from "../../interfaces/pagination";
+import Pagination from "../pagination";
 
 type Props = {
-  pagination: Pagination,
+  pagination: PaginationType,
   boxProps?: BoxProps
 }
 
@@ -14,15 +13,9 @@ const PostsPage = ({ pagination, boxProps }: Props) => {
 
   return (
     posts.length > 0 ?
-    <Box>
+    <Box {...boxProps}>
       <PostCards posts={posts}/>
-      {/*トップページだったら戻るはない*/}
-      <Flex justifyContent={"space-between"}>
-        {/*<Link as={NextLink}>Previous</Link>*/}
-        <TextSpan textProps={{ color: "gray.500" }}>Previous</TextSpan>
-        <Link as={NextLink}>{pagination.currentPageNumber} of {pagination.totalPageCount}</Link>
-        <Link as={NextLink} href={`/pages/${pagination.currentPageNumber + 1}`}>Next</Link>
-      </Flex>
+      <Pagination pagination={pagination}></Pagination>
     </Box>
     :
     <Box>

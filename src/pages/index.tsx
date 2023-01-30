@@ -1,6 +1,6 @@
 import { Box } from "@chakra-ui/react";
 import { getAllPosts, getPagination } from "../lib/api";
-import HeroCard from "../components/intro-card";
+import IntroCard from "../components/intro-card";
 import { Posts } from "../interfaces/post";
 import PostsPage from "../components/post/posts-page";
 import { Pagination } from "../interfaces/pagination";
@@ -13,7 +13,7 @@ export const getStaticProps = async ({ slug }: Params) => {
   const posts: Posts = getAllPosts()
   const pagination: Pagination = getPagination({
     currentPageNumber: 1,
-    basePaths: '/',
+    basePaths: '/pages',
     posts
   })
 
@@ -38,7 +38,7 @@ export default function Index({ pagination }: Props) {
     // </Head>
 
     <Box>
-      <HeroCard/>
+      <IntroCard/>
       <PostsPage pagination={pagination}></PostsPage>
     </Box>
   )

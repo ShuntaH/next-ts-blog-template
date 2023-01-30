@@ -1,16 +1,17 @@
 import React from "react";
 import PostCard from "./post-card";
-import { Box } from "@chakra-ui/react";
+import { Box, BoxProps } from "@chakra-ui/react";
 import { Posts } from "../../interfaces/post";
 
 
 type Props = {
   posts: Posts
+  boxProps?: BoxProps
 }
 
-const PostCards = ({ posts }: Props) => {
+const PostCards = ({ posts, boxProps }: Props) => {
   return (
-    <Box>
+    <Box {...boxProps}>
       { posts.map((post, index) => <PostCard key={index} post={post}/>) }
     </Box>
   );
