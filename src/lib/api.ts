@@ -2,7 +2,7 @@ import fs from 'fs'
 import { join } from 'path'
 import matter from 'gray-matter'
 import Post from "./post";
-import { Posts } from "../interfaces/post";
+import { MarkdownData, Posts } from "../interfaces/post";
 import Pagination from "./pagination";
 import { PaginationProps } from "../interfaces/pagination";
 
@@ -33,8 +33,8 @@ export const getPostBySlug = (slug: string): Post => {
 
   // data に --- --- の内容、content に本文が入る
   const { data, content } = matter(fileContents)
-
-  return new Post(content, data, slug)
+  const markdownData = data as MarkdownData
+  return new Post(content, markdownData, slug)
 }
 
 /**

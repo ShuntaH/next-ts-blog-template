@@ -3,12 +3,12 @@ import { POST_COUNT_PER_PAGE } from "./constants";
 
 
 class Pagination {
-  private readonly currentPageNumber: number = 1;
-  private readonly postCountPerPage: number = POST_COUNT_PER_PAGE;
-  private readonly totalPostCount: number = 0
-  private readonly posts: Posts | null = null
-  private readonly totalPageCount: number = 0
-  private readonly currentPagePosts: Posts = []
+  readonly currentPageNumber: number = 1;
+  readonly postCountPerPage: number = POST_COUNT_PER_PAGE;
+  readonly totalPostCount: number = 0
+  readonly posts: Posts = []
+  readonly totalPageCount: number = 0
+  readonly currentPagePosts: Posts = []
 
   constructor(currentPageNumber: number, posts: Posts, postCountPerPage: number = POST_COUNT_PER_PAGE) {
     this.currentPageNumber = currentPageNumber

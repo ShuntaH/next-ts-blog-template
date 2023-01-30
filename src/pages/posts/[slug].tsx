@@ -8,7 +8,8 @@ import Head from 'next/head'
 import markdownToHtml from '../../lib/markdownToHtml'
 import { Box, Card } from "@chakra-ui/react";
 import { STYLES } from "../../lib/constants";
-import { Post, Posts } from "../../interfaces/post";
+import Post from "../../lib/post";
+import { Posts } from "../../interfaces/post";
 
 type Props = {
   post: Post
@@ -16,7 +17,7 @@ type Props = {
   preview?: boolean
 }
 
-export default function Post({ post, morePosts, preview }: Props) {
+export default function PostPage({ post, morePosts, preview }: Props) {
   const router = useRouter()
 
   if (!router.isFallback && !post?.slug) {
@@ -45,7 +46,7 @@ export default function Post({ post, morePosts, preview }: Props) {
               <title>
                 {post.title}
               </title>
-              <meta property="og:image" content={post.ogImage.url}/>
+              <meta property="og:image" content={post!.ogImage!.url}/>
             </Head>
 
             <PostHeader
@@ -79,17 +80,7 @@ type Params = {
 export async function getStaticProps({ slug }: Params) {
   // console.log('params', params)  { slug: 'dynamic-routing' }
 
-  const post = getPostBySlug(slug, [
-    'title',
-    'date',
-    'slug',
-    'author',
-    'content',
-    'ogImage',
-    'coverImage',
-    'time',
-    'tags'
-  ])
+  const post = getPostBySlug(slug)
 
   const content = await markdownToHtml(post.content || '')
   console.log('post', post)
@@ -108,7 +99,7 @@ export async function getStaticProps({ slug }: Params) {
  * これによって全ての記事を動的に作成できる。
  */
 export async function getStaticPaths() {
-  const posts = getAllPosts([ 'slug' ])
+  const posts = getAllPosts()
 
   return {
     paths: posts.map((post) => {

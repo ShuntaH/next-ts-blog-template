@@ -3,7 +3,6 @@ import { getAllPosts } from "../lib/api";
 import HeroCard from "../components/intro-card";
 import { Posts } from "../interfaces/post";
 import PostsPage from "../components/post/posts-page";
-import { useRouter } from "next/router";
 import Pagination from "../lib/pagination";
 
 type Params = {
@@ -22,35 +21,12 @@ export const getStaticProps = async ({ slug }: Params) => {
 }
 
 type Props = {
-  posts: Posts
-  postCount: number
+  pagination: Pagination
 }
 /**
  * This is the page that is rendered when the user visits the root of your application.
  */
-export default function Index({ posts, postCount }: Props) {
-
-
-  const router = useRouter()
-  if (router.pathname === router.basePath) {
-    const currentPageNumber = 1
-    const current: Page  = { href: router.basePath, pageNumber: 1}
-    const next: Page = {
-      href: `/pages/${currentPageNumber + 1}`,
-      pageNumber: currentPageNumber + 1
-    }
-    const prev: Page = {
-      href: null,
-      pageNumber: currentPageNumber - 1
-    }
-
-    const p: Paginator = {
-      pageCount:
-    }
-
-  }
-  console.log('router', router)
-
+export default function Index({ pagination }: Props) {
   return (
     // ページ固有のhead内容を設定したい時
     // <Head>
@@ -59,7 +35,7 @@ export default function Index({ posts, postCount }: Props) {
 
     <Box>
       <HeroCard/>
-      <PostsPage posts={posts}></PostsPage>
+      <PostsPage pagination={pagination}></PostsPage>
     </Box>
   )
 }

@@ -1,11 +1,11 @@
 import React from "react";
-import { Post } from "../../interfaces/post";
 import PostCard from "./post-card";
 import { Box } from "@chakra-ui/react";
+import { Posts } from "../../interfaces/post";
 
 
 type Props = {
-  posts: Post[]
+  posts: Posts
 }
 
 const PostCards = ({ posts }: Props) => {

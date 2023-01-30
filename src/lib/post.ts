@@ -1,59 +1,44 @@
 import { Author } from "../interfaces/author";
+import { MarkdownData } from "../interfaces/post";
 
 class Post {
   title: string = ''
   date: string = ''
   slug: string = ''
   excerpt: string = ''
-  author: Author = null
+  author: Author = { name: '', picture: '' }
   content: string = ''
-  ogImage: { url: string } = null
+  ogImage: { url: string } = { url: '' }
   coverImage: string = ''
   time: string = ''
   tags: string[] = []
 
-  constructor(markdownContent: string, markdownData: {}, slug: string) {
+  constructor(markdownContent: string, markdownData: MarkdownData, slug: string) {
     /**
      * 渡された slug の解析されたマークダウンからそれぞれのデータを入れていく。
      * @param markdownContent 本文
      * @param markdownData
      * @param slug
      */
+    this.content = markdownContent
+    this.slug = slug
+    this.title = markdownData.title
+    this.date = markdownData.date
+    this.excerpt = markdownData.excerpt
+    this.author = markdownData.author
+    this.ogImage = markdownData.ogImage
+    this.coverImage = markdownData.coverImage
+    this.tags = markdownData.tags
 
-    const props: string[] = Object.getOwnPropertyNames(this)
+    const charLength: number = markdownContent.length
 
-    props.forEach((prop) => {
-      if (prop === 'time') {
-        const charLength: number = markdownContent.length
+    // 220文字を読むのに1分かかるとする。 hugo のプラグインのロジックを参考にした。
+    const charsPerMin = 220
 
-        // 220文字を読むのに1分かかるとする。 hugo のプラグインのロジックを参考にした。
-        const charsPerMin = 220
+    // 四捨五入する
+    const min = Math.round(charLength / charsPerMin)
 
-        // 四捨五入する
-        const min = Math.round(charLength / charsPerMin)
-
-        this[prop] = `${min} mins`
-        return;
-      }
-
-      if (prop === 'content') {
-        this[prop] = markdownContent
-        return;
-      }
-
-      if (prop === 'slug') {
-        this[prop] = slug
-        return;
-      }
-
-      if (typeof markdownData[prop] !== 'undefined') {
-        this[prop] = markdownData[prop]
-        return;
-      }
-
-      throw new Error(`"${prop}" does not exist in markdownData.`);
-
-    })
+    this.time = `${min} mins`
   }
 }
 

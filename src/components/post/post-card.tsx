@@ -1,10 +1,10 @@
 import { Box, Card, CardBody, CardFooter, CardHeader, chakra, Heading, Text } from '@chakra-ui/react'
 import { STYLES } from "../../lib/constants";
 import React from "react";
-import { Post } from "../../interfaces/post";
 import NextLink from "next/link";
 import PostInfo from "./post-info";
 import PostTags from "./post-tags";
+import Post from "../../lib/post";
 
 
 type Props = {

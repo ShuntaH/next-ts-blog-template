@@ -1,7 +1,7 @@
 import React from "react";
-import Author from "../../interfaces/author";
 import { Avatar, Box, Flex } from "@chakra-ui/react";
 import DateFormatter from "../date-formatter";
+import { Author } from "../../interfaces/author";
 
 type Props = {
   time: string

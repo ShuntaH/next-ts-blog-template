@@ -1,48 +1,27 @@
-import { Box, BoxProps, Flex, Text } from "@chakra-ui/react";
+import { Box, BoxProps, Flex, Link, Text } from "@chakra-ui/react";
 import PostCards from "./post-cards";
-import { Posts } from "../../interfaces/post";
 import TextSpan from "../foundations/text-span";
-import { useRouter } from "next/router";
+import Pagination from "../../lib/pagination";
+import NextLink from "next/link";
 
 type Props = {
-  posts: Posts,
-
+  pagination: Pagination,
   boxProps?: BoxProps
 }
 
-const PostsPage = ({ posts, boxProps }: Props) => {
-  const router = useRouter()
-  const currentPathname = router.pathname
-
-
-  const createpagination = () => {
-    if (currentPathname.includes('pages')) {
-      // トップページではなく
-      return {
-        currentPage: router.query
-      }
-    }
-    const currentPage = 1
-    const prevPage = null
-    const nextPage = 2
-    return {
-      currentPage: 1,
-      prevPage: 1,
-      nextPage: 2
-    }
-  }
+const PostsPage = ({ pagination, boxProps }: Props) => {
+  const posts = pagination.posts
 
   return (
     posts.length > 0 ?
     <Box>
       <PostCards posts={posts}/>
-
       {/*トップページだったら戻るはない*/}
       <Flex justifyContent={"space-between"}>
         {/*<Link as={NextLink}>Previous</Link>*/}
         <TextSpan textProps={{ color: "gray.500" }}>Previous</TextSpan>
-        {/*<Link as={NextLink}>1 of 30</Link>*/}
-        {/*<Link as={NextLink}>Next</Link>*/}
+        <Link as={NextLink}>{pagination.currentPageNumber} of {pagination.totalPageCount}</Link>
+        <Link as={NextLink} href={`/pages/${pagination.currentPageNumber + 1}`}>Next</Link>
       </Flex>
     </Box>
     :

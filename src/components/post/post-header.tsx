@@ -1,10 +1,10 @@
-import type Author from '../../interfaces/author'
 import { Box, BoxProps } from "@chakra-ui/react";
 import Breadcrumb from "../breadcrumb";
 import { BreadcrumbItem } from "../../interfaces/breadcrumb";
 import PostTitle from "./post-title";
 import PostTags from "./post-tags";
 import PostInfo from "./post-info";
+import { Author } from "../../interfaces/author";
 
 type Props = {
   title: string
