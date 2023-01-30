@@ -15,7 +15,12 @@ const PostsPage = ({ pagination, boxProps }: Props) => {
     posts.length > 0 ?
     <Box {...boxProps}>
       <PostCards posts={posts}/>
-      <Pagination pagination={pagination}></Pagination>
+      <Pagination
+        pagination={pagination}
+        flexProps={{
+          paddingTop: 6,
+          paddingBottom: 6
+      }}/>
     </Box>
     :
     <Box>
