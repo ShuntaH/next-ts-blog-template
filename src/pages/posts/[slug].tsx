@@ -23,9 +23,7 @@ export async function getStaticPaths() {
       return {
         params: {
           slug: post.slug,
-        },
-      }
-    }),
+        }}}),
     fallback: false,
   }
 }
@@ -49,6 +47,7 @@ type Context = {
  *  ブラウザでは確認できません。npm run dev のコンソールで確認してください。
  * @param params ルートパラメーター [slug].tsx
  *
+ * https://nextjs.org/docs/api-reference/data-fetching/get-static-props
  * params contains the route parameters for pages using dynamic routes. For example, if the page name is [id].js , then params will look like { id: ... }. You should use this together with getStaticPaths, which we’ll explain later.
  * preview is true if the page is in the Preview Mode and undefined otherwise.
  * previewData contains the preview data set by setPreviewData.
