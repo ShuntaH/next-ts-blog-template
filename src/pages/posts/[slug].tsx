@@ -30,8 +30,15 @@ export async function getStaticPaths() {
   }
 }
 
-type Params = {
-  slug: string
+type Context = {
+  params: {
+    slug: string
+  },
+  preview?: boolean
+  previewData?: unknown
+  locale?: string
+  locales?: string[]
+  defaultLocale?: string
 }
 
 /**
@@ -41,11 +48,18 @@ type Params = {
  *  開発中はリクエストのたびに実行されますが、サーバーサイドで実行されるので console.log は
  *  ブラウザでは確認できません。npm run dev のコンソールで確認してください。
  * @param params ルートパラメーター [slug].tsx
+ *
+ * params contains the route parameters for pages using dynamic routes. For example, if the page name is [id].js , then params will look like { id: ... }. You should use this together with getStaticPaths, which we’ll explain later.
+ * preview is true if the page is in the Preview Mode and undefined otherwise.
+ * previewData contains the preview data set by setPreviewData.
+ * locale contains the active locale (if enabled).
+ * locales contains all supported locales (if enabled).
+ * defaultLocale contains the configured default locale (if enabled).
  */
-export async function getStaticProps({ slug }: Params) {
-  console.log('slug', slug)
+export async function getStaticProps({ params }: Context) {
+  console.log('slug', params.slug)
 
-  const post = getPostBySlug(slug)
+  const post = getPostBySlug(params.slug)
   post.content = await markdownToHtml(post.content || '')
 
   return {

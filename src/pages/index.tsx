@@ -6,11 +6,8 @@ import PostsPage from "../components/post/posts-page";
 import { Pagination } from "../interfaces/pagination";
 import { useEffect } from "react";
 
-type Params = {
-  slug: string
-}
 
-export const getStaticProps = async ({ slug }: Params) => {
+export const getStaticProps = async () => {
   const posts: Posts = getAllPosts()
   const pagination: Pagination = getPagination({
     currentPageNumber: 1,
@@ -35,7 +32,7 @@ export default function Index({ pagination }: Props) {
   useEffect(() => {
     console.log('pagination', pagination)
   })
-  
+
   return (
     // ページ固有のhead内容を設定したい時
     // <Head>
