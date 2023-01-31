@@ -1,16 +1,10 @@
-import { Card, CardBody, CardFooter, CardHeader, FormControl, Heading, Input, Link } from '@chakra-ui/react'
+import { Card, CardBody, CardFooter, CardHeader, Heading, Link } from '@chakra-ui/react'
 import { BLOG_DISCRIPTION, STYLES } from "../lib/constants";
-import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { faGithubAlt } from "@fortawesome/free-brands-svg-icons";
 import NextLink from "next/link";
 import ChakraFontAwesomeIcon from "./chakra-font-awesome-icon";
-
-
-type SocialIcon = {
-  href: string,
-  title: string,
-  icon: IconDefinition
-}
+import SearchForm from "./search/search-form";
+import { SocialIcon } from "../interfaces/icon";
 
 const IntroCard = () => {
   const githubIcon: SocialIcon =
@@ -38,9 +32,7 @@ const IntroCard = () => {
       </CardHeader>
 
       <CardBody paddingTop={0} paddingBottom={0}>
-        <FormControl>
-          <Input type='text' placeholder={"記事の検索"}/>
-        </FormControl>
+        <SearchForm></SearchForm>
       </CardBody>
 
       <CardFooter
