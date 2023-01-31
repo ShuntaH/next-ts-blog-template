@@ -1,4 +1,3 @@
-import { Box } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { getAllPosts, getPagination, getTotalPageCount, getTotalPostCount } from "../../lib/api";
 import { Posts } from "../../interfaces/post";
@@ -66,9 +65,9 @@ export default function Page({ pagination }: Props) {
     // <Head>
     //   <title>hskpg blog</title>
     // </Head>
-
-    <Box>
-      <PostsPage pagination={pagination}></PostsPage>
-    </Box>
+    <PostsPage
+      pagination={pagination}
+      boxProps={{w: "full", h: "full"}}
+    />
   )
 }

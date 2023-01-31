@@ -16,8 +16,9 @@ const Layout = ({ preview, children }: Props) => {
       {/*<Box>*/}
       {/*  /!*<Alert preview={preview}/>*!/*/}
       <Box
+        as={"section"}
         position={"relative"}
-        minHeight={`calc(100vh - ${STYLES.headerHeight} - ${STYLES.footerHeight})`}
+        height={`calc(100vh - ${STYLES.headerHeight} - ${STYLES.footerHeight})`}
         maxWidth={`calc(${STYLES.mainWidth} + ${STYLES.gap} * 2)`}
         margin={"auto"}
         padding={`${STYLES.gap}`}

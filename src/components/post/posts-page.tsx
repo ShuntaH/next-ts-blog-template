@@ -12,23 +12,27 @@ const PostsPage = ({ pagination, boxProps }: Props) => {
   const posts = pagination.currentPagePosts
 
   return (
-    posts.length > 0 ?
-    <Box {...boxProps}>
-      <PostCards posts={posts}/>
-      <Pagination
-        pagination={pagination}
-        flexProps={{
-          paddingTop: 6,
-          paddingBottom: 6
-      }}/>
+    <Box {...boxProps} position={"relative"}>
+      {
+        posts.length > 0 ?
+          <>
+            <PostCards posts={posts}/>
+            <Pagination
+              pagination={pagination}
+              flexProps={{
+                position: "absolute",
+                bottom: 0,
+                paddingTop: 6,
+                paddingBottom: 6
+            }}/>
+          </>
+        :
+        <Text align={"center"}>
+          There is no post yet.
+        </Text>
+      }
     </Box>
-    :
-    <Box>
-      {/*todo 見た目確認*/}
-      <Text align={"center"}>
-        There is no post yet.
-      </Text>
-    </Box>)
+  )
 
 }
 

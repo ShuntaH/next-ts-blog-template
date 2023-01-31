@@ -1,22 +1,36 @@
-import { Flex, FlexProps, Link } from "@chakra-ui/react";
-import NextLink from "next/link";
+import { Flex, FlexProps, Link, LinkProps, TextProps } from "@chakra-ui/react";
 import { Pagination } from "../interfaces/pagination";
 import TextSpan from "./foundations/text-span";
+import NextLink from "next/link";
+
 
 type Props = {
   pagination: Pagination,
   flexProps?: FlexProps
 }
 
-const textProps = { color: "gray.500", _hover: {cursor: "default"}}
+const textProps: TextProps = {
+  display: "inline-block",
+  color: "gray.500",
+  _hover: {cursor: "default"}
+}
+
+const linkProps: LinkProps = {
+  display: "inline-block",
+  as: NextLink
+}
 
 const Pagination = ({ pagination, flexProps }: Props) => (
 
-  <Flex justifyContent={"space-between"} {...flexProps}>
+  <Flex
+    justifyContent={"space-between"}
+    width={"full"}
+    {...flexProps}
+  >
     {
       pagination.prevPageHref ?
         <Link
-          as={NextLink}
+          {...linkProps}
           href={pagination.prevPageHref}
         >
           Previous
@@ -28,14 +42,14 @@ const Pagination = ({ pagination, flexProps }: Props) => (
     }
 
     <TextSpan
-      textProps={{_hover: {cursor: "default"}}}>
+      textProps={{display: "inline-block", _hover: {cursor: "default"}}}>
       {pagination.currentPageNumber} of {pagination.totalPageCount}
     </TextSpan>
 
     {
       pagination.nextPageHref ?
         <Link
-          as={NextLink}
+          {...linkProps}
           href={pagination.nextPageHref}
         >
           Next
