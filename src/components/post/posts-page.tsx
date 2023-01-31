@@ -16,12 +16,13 @@ const PostsPage = ({ pagination, boxProps }: Props) => {
       {
         posts.length > 0 ?
           <>
-            <PostCards posts={posts}/>
+            <PostCards
+              posts={posts}
+              boxProps={{minHeight: "inherit"}}
+            />
             <Pagination
               pagination={pagination}
               flexProps={{
-                position: "absolute",
-                bottom: 0,
                 paddingTop: 6,
                 paddingBottom: 6
             }}/>

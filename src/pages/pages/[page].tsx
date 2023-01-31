@@ -67,7 +67,7 @@ export default function Page({ pagination }: Props) {
     // </Head>
     <PostsPage
       pagination={pagination}
-      boxProps={{w: "full", h: "full"}}
+      boxProps={{minHeight: "inherit"}}
     />
   )
 }
