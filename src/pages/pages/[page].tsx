@@ -9,12 +9,15 @@ import PostsPage from "../../components/post/posts-page";
 export async function getStaticPaths() {
   const posts = getAllPosts()
   const postCount = getTotalPostCount(posts)
-  const pageCount = getTotalPageCount(postCount)
+
+  // 3ページあったら[ 0, 1, 2 ]
+  const range: number[] = [...Array(getTotalPageCount(postCount)).keys()]
+
   return {
-    paths: [...Array(pageCount).keys()].map((pageNumber) => {
+    paths: range.map((pageNumber) => {
       return {
         params: {
-          page: String(pageNumber)
+          page: String(pageNumber + 1)
         }}}),
     fallback: false,
   }
@@ -33,6 +36,7 @@ type Context = {
 
 export const getStaticProps = async ({params}: Context) => {
   const posts: Posts = getAllPosts()
+
   const pagination: Pagination = getPagination({
     currentPageNumber: Number(params.page),
     basePaths: '/pages',

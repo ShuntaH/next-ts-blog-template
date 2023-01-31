@@ -24,7 +24,6 @@ export const getPostSlugs = (): string[] => {
  */
 export const getPostBySlug = (slug: string): Post => {
   // slug 'hoge.md'
-  console.log('slug', slug)
   const realSlug = slug.replace(/\.md$/, '')
   const fullPath = join(postsDirectory, `${realSlug}.md`)
 
