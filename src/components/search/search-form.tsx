@@ -37,7 +37,11 @@ const SearchForm = ({boxProps}: Props) => {
 
   return (
     <Box {...boxProps}>
-      <FormControl width={{base:'full', md: '2xs'}}>
+      <FormControl
+        width={{
+          base:'full',
+          md: '2xs'}}
+      >
         <InputGroup size='md'>
           <Input
             type='text'
@@ -55,10 +59,16 @@ const SearchForm = ({boxProps}: Props) => {
         </InputGroup>
       </FormControl>
 
-      <Modal finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
+      <Modal
+        finalFocusRef={finalRef}
+        isOpen={isOpen}
+        onClose={onClose}
+      >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
+          <ModalHeader>
+            Search results
+          </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <Lorem count={2} />
@@ -68,7 +78,9 @@ const SearchForm = ({boxProps}: Props) => {
             <Button colorScheme='blue' mr={3} onClick={onClose}>
               Close
             </Button>
-            <Button variant='ghost'>Secondary Action</Button>
+            <Button variant='ghost'>
+              Secondary Action
+            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
