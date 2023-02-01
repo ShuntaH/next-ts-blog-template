@@ -49,10 +49,10 @@ const Header = () => {
       <Flex
         marginY={"auto"}
         justifyContent={"space-between"}
+        flexWrap={"nowrap"}
         alignItems={"center"}
       >
-        <SearchForm boxProps={{marginRight:STYLES.gap}}
-        />
+        <SearchForm boxProps={{marginRight:STYLES.gap}}/>
         {
           icons.map((ni: NavigationIcon, index) => (
             <Link
