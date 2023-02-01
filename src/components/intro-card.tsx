@@ -3,7 +3,6 @@ import { BLOG_DISCRIPTION, STYLES } from "../lib/constants";
 import { faGithubAlt } from "@fortawesome/free-brands-svg-icons";
 import NextLink from "next/link";
 import ChakraFontAwesomeIcon from "./chakra-font-awesome-icon";
-import SearchForm from "./search/search-form";
 import { SocialIcon } from "../interfaces/icon";
 
 const IntroCard = () => {
@@ -32,7 +31,6 @@ const IntroCard = () => {
       </CardHeader>
 
       <CardBody paddingTop={0} paddingBottom={0}>
-        <SearchForm></SearchForm>
       </CardBody>
 
       <CardFooter

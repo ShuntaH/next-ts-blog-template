@@ -1,17 +1,11 @@
-import { Box, Flex, Link, List, ListItem } from '@chakra-ui/react'
+import { Box, Flex, Link } from '@chakra-ui/react'
 import { BLOG_NAME, STYLES } from "../lib/constants";
 import NextLink from 'next/link'
+import SearchForm from "./search/search-form";
 
-type Menu = {
-  href: string,
-  content: string
-}
 
 const Header = () => {
-  const menus: Menu[] = [
-    { href: '/terms', content: 'Terms' },
-    { href: '/about', content: 'About' },
-  ]
+
 
   return (
     <Flex
@@ -30,24 +24,7 @@ const Header = () => {
         </Link>
       </Box>
 
-      <List
-        wordBreak={"keep-all"}
-        overflowX={"auto"}
-        whiteSpace={"nowrap"}
-        listStyleType={"none"}
-        display={"flex"}
-        margin={`auto ${STYLES.gap}`}
-      >
-        {menus.map((menu: Menu, index: number) => {
-          return (
-            <ListItem key={index} _notFirst={{ marginInlineStart: `${STYLES.gap}` }}>
-              <Link href={menu.href} as={NextLink} fontSize={"16px"} display={"block"}>
-                {menu.content}
-              </Link>
-            </ListItem>
-          )
-        })}
-      </List>
+      <SearchForm></SearchForm>
     </Flex>
   );
 }
