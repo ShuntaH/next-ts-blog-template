@@ -1,10 +1,8 @@
 import {
   Box,
+  BoxProps,
   Button,
   FormControl,
-  FormControlProps,
-  FormErrorMessage,
-  FormHelperText,
   Input,
   InputGroup,
   InputRightElement,
@@ -23,14 +21,14 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 
 type Props = {
-  formControlProps?: FormControlProps
+  boxProps?: BoxProps
 }
 
 function Lorem(props: { count: number }) {
   return null;
 }
 
-const SearchForm = ({formControlProps}: Props) => {
+const SearchForm = ({boxProps}: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const finalRef = React.useRef(null)
   const [inputValue, setInputValue] = React.useState('')
@@ -38,14 +36,17 @@ const SearchForm = ({formControlProps}: Props) => {
   const isError = inputValue === ''
 
   return (
-    // todo terms about はよく使わないから footer に移動する
-    // todo よく使う検索は header にする
     // todo tags 一覧はページに切り出す
     //
-    <Box>
-      <FormControl isInvalid={isError} {...formControlProps}>
+    <Box {...boxProps}>
+      <FormControl>
         <InputGroup size='md'>
-          <Input type='text' placeholder={"記事の検索"} onInput={onOpen}/>
+          <Input
+            type='text'
+            placeholder={"記事の検索"}
+            onInput={onOpen}
+            ref={finalRef}
+          />
           <InputRightElement width='4.5rem'>
             <ChakraFontAwesomeIcon
               _hover={{cursor: "pointer"}}
@@ -54,21 +55,9 @@ const SearchForm = ({formControlProps}: Props) => {
             />
           </InputRightElement>
         </InputGroup>
-
-        {!isError ? (
-          <FormHelperText>
-            Enter the email you'd like to receive the newsletter on.
-          </FormHelperText>
-        ) : (
-          <FormErrorMessage>Email is required.</FormErrorMessage>
-        )}
       </FormControl>
 
       <>
-        <Box ref={finalRef} tabIndex={-1} aria-label='Focus moved to this box'>
-          Some other content that'll receive focus on close.
-        </Box>
-
         <Modal finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent>

@@ -4,7 +4,7 @@ export interface Icon {
   icon: IconDefinition
 }
 
-export interface SocialIcon extends Icon {
+export interface NavigationIcon extends Icon {
   href: string
   title: string
 }

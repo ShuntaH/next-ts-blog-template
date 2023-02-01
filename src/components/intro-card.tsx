@@ -1,18 +1,7 @@
-import { Card, CardBody, CardFooter, CardHeader, Heading, Link } from '@chakra-ui/react'
+import { Card, CardBody, CardFooter, CardHeader, Heading } from '@chakra-ui/react'
 import { BLOG_DISCRIPTION, STYLES } from "../lib/constants";
-import { faGithubAlt } from "@fortawesome/free-brands-svg-icons";
-import NextLink from "next/link";
-import ChakraFontAwesomeIcon from "./chakra-font-awesome-icon";
-import { SocialIcon } from "../interfaces/icon";
 
 const IntroCard = () => {
-  const githubIcon: SocialIcon =
-    {
-      href: 'https://github.com/ShuntaH',
-      title: 'GitHub',
-      icon: faGithubAlt
-    }
-
   return (
     <Card
       as={"article"}
@@ -39,16 +28,6 @@ const IntroCard = () => {
         justifyContent={"center"}
         alignItems={"center"}
       >
-        <Link
-          href={githubIcon.href}
-          as={NextLink}
-          target={"_blank"}
-          rel={"noopener"}
-          title={githubIcon.title}
-          fontSize={'4xl'}
-        >
-          <ChakraFontAwesomeIcon icon={githubIcon.icon}/>
-        </Link>
       </CardFooter>
     </Card>
   );
