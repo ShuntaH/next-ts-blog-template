@@ -3,6 +3,8 @@ import {
   Button,
   FormControl,
   FormControlProps,
+  FormErrorMessage,
+  FormHelperText,
   Input,
   InputGroup,
   InputRightElement,
@@ -33,10 +35,11 @@ const SearchForm = ({formControlProps}: Props) => {
   const finalRef = React.useRef(null)
   const [inputValue, setInputValue] = React.useState('')
   // const handleInputValueChange = (event: React.MouseEvent<HTMLInputElement>) => setInputValue(event.target.value)
+  const isError = inputValue === ''
 
   return (
     <Box>
-      <FormControl {...formControlProps}>
+      <FormControl isInvalid={isError} {...formControlProps}>
         <InputGroup size='md'>
           <Input type='text' placeholder={"記事の検索"} onInput={onOpen}/>
           <InputRightElement width='4.5rem'>
@@ -47,6 +50,14 @@ const SearchForm = ({formControlProps}: Props) => {
             />
           </InputRightElement>
         </InputGroup>
+
+        {!isError ? (
+          <FormHelperText>
+            Enter the email you'd like to receive the newsletter on.
+          </FormHelperText>
+        ) : (
+          <FormErrorMessage>Email is required.</FormErrorMessage>
+        )}
       </FormControl>
 
       <>
