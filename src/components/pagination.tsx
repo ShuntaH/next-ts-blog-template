@@ -12,11 +12,17 @@ type Props = {
 const textProps: TextProps = {
   display: "inline-block",
   color: "gray.500",
+  overflowX: "hidden",
+  width: "70px",
+  textAlign: "center",
   _hover: {cursor: "default"}
 }
 
 const linkProps: LinkProps = {
   display: "inline-block",
+  overflowX: "hidden",
+  width: "70px",
+  textAlign: "center",
   as: NextLink
 }
 
@@ -42,7 +48,14 @@ const Pagination = ({ pagination, flexProps }: Props) => (
     }
 
     <TextSpan
-      textProps={{display: "inline-block", _hover: {cursor: "default"}}}>
+      textProps={{
+        display: "inline-block",
+        _hover: {cursor: "default"},
+        overflowX: "hidden",
+        width: "70px",
+        textAlign: "center",
+    }}
+    >
       {pagination.currentPageNumber} of {pagination.totalPageCount}
     </TextSpan>
 
