@@ -38,6 +38,10 @@ const SearchForm = ({formControlProps}: Props) => {
   const isError = inputValue === ''
 
   return (
+    // todo terms about はよく使わないから footer に移動する
+    // todo よく使う検索は header にする
+    // todo tags 一覧はページに切り出す
+    //
     <Box>
       <FormControl isInvalid={isError} {...formControlProps}>
         <InputGroup size='md'>
