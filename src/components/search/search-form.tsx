@@ -36,18 +36,16 @@ const SearchForm = ({boxProps}: Props) => {
   const isError = inputValue === ''
 
   return (
-    // todo tags 一覧はページに切り出す
-    //
     <Box {...boxProps}>
-      <FormControl>
+      <FormControl width={{base:'full', md: '2xs'}}>
         <InputGroup size='md'>
           <Input
             type='text'
-            placeholder={"記事の検索"}
+            placeholder={"Full-text search 全文検索"}
             onInput={onOpen}
             ref={finalRef}
           />
-          <InputRightElement width='4.5rem'>
+          <InputRightElement>
             <ChakraFontAwesomeIcon
               _hover={{cursor: "pointer"}}
               icon={faMagnifyingGlass}
@@ -57,25 +55,23 @@ const SearchForm = ({boxProps}: Props) => {
         </InputGroup>
       </FormControl>
 
-      <>
-        <Modal finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
-          <ModalOverlay />
-          <ModalContent>
-            <ModalHeader>Modal Title</ModalHeader>
-            <ModalCloseButton />
-            <ModalBody>
-              <Lorem count={2} />
-            </ModalBody>
+      <Modal finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Modal Title</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Lorem count={2} />
+          </ModalBody>
 
-            <ModalFooter>
-              <Button colorScheme='blue' mr={3} onClick={onClose}>
-                Close
-              </Button>
-              <Button variant='ghost'>Secondary Action</Button>
-            </ModalFooter>
-          </ModalContent>
-        </Modal>
-      </>
+          <ModalFooter>
+            <Button colorScheme='blue' mr={3} onClick={onClose}>
+              Close
+            </Button>
+            <Button variant='ghost'>Secondary Action</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </Box>
   );
 }

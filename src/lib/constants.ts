@@ -10,13 +10,15 @@ export const POST_COUNT_PER_PAGE = 2
  * todo chakra ui で css var の定義の仕方がわからなかったので js でかく。 theme での書き方がわかったらそちらで書く
  */
 
+const gap = '24px'
 const navWidth = '1024px'
 const mainWidth = '720px'
 const headerHeight = '60px'
 const footerHeight = '60px'
 const radius = '8px'
-const gap = '24px'
+const contentMaxWidth = `calc(${mainWidth} + ${gap} * 2)`
 const contentGap = '20px'
+const navMaxWidth = `calc(${navWidth} + ${gap} * 2)`
 const accentColor = 'purple.300'
 const accentColorHover = 'purple.200'
 const hoverStyle = {
@@ -29,8 +31,10 @@ export const STYLES = {
   navWidth,
   mainWidth,
   contentGap,
+  contentMaxWidth,
   headerHeight,
   footerHeight,
+  navMaxWidth,
   radius,
   accentColor,
   accentColorHover,

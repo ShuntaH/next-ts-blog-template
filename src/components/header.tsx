@@ -1,4 +1,4 @@
-import { Flex, Link } from '@chakra-ui/react'
+import { Box, BoxProps, Flex, Link } from '@chakra-ui/react'
 import { BLOG_NAME, STYLES } from "../lib/constants";
 import NextLink from 'next/link'
 import SearchForm from "./search/search-form";
@@ -8,8 +8,11 @@ import React from "react";
 import { faGithubAlt } from "@fortawesome/free-brands-svg-icons";
 import { NavigationIcon } from "../interfaces/icon";
 
+type Props = {
+  boxProps?: BoxProps
+}
 
-const Header = () => {
+const Header = ({boxProps}: Props) => {
   const icons: NavigationIcon[] = [
     {
       href: '/tags',
@@ -24,57 +27,83 @@ const Header = () => {
   ]
 
   return (
-    <Flex
-      as='nav'
-      flexWrap='wrap'
-      justifyContent="space-between"
-      maxWidth={`calc(${STYLES.navWidth} + ${STYLES.gap} * 2)`}
-      marginInlineStart="auto"
-      marginInlineEnd="auto"
-      lineHeight={STYLES.headerHeight}
-      letterSpacing={'0.01em'}
-      overflow={"hidden"}
-    >
-      <Flex margin={`auto ${STYLES.gap}`}>
-        <Link
-          href='/'
-          as={NextLink}
-          fontSize={"24px"}
-          fontWeight={700}
+    // md 以上は flex でアイテムは横並び、 それ以下は block で縦並び
+    <Box {...boxProps}>
+      <Flex
+        as='nav'
+        flexWrap='wrap'
+        justifyContent="space-between"
+        maxWidth={STYLES.navMaxWidth}
+        marginInlineStart="auto"
+        marginInlineEnd="auto"
+        lineHeight={STYLES.headerHeight}
+        letterSpacing={'0.01em'}
+        overflow={"hidden"}
+      >
+        {/*左サイド*/}
+        <Flex margin={`auto ${STYLES.gap}`}>
+          <Link
+            href='/'
+            as={NextLink}
+            fontSize={"24px"}
+            fontWeight={700}
+          >
+            {BLOG_NAME}
+          </Link>
+        </Flex>
+
+        {/*右サイド*/}
+        <Flex
+          margin={`auto ${STYLES.gap}`}
+          justifyContent={"space-between"}
+          flexWrap={"nowrap"}
+          alignItems={"center"}
         >
-          {BLOG_NAME}
-        </Link>
+          {/*スマホの時はヘッダーの右サイドのアイテムリストの中から非表示にする*/}
+          <SearchForm
+            boxProps={{
+              marginRight:STYLES.gap,
+              display: {
+                base: 'none',
+                md: "block"
+              }}}
+          />
+
+          <Flex>
+            {
+              icons.map((ni: NavigationIcon, index) => (
+                <Link
+                  key={index}
+                  display={"block"}
+                  href={ni.href}
+                  as={NextLink}
+                  target={"_blank"}
+                  rel={"noopener"}
+                  title={ni.title}
+                  fontSize={'xl'}
+                  _notLast={{marginRight: STYLES.gap}}
+                >
+                  <ChakraFontAwesomeIcon icon={ni.icon}/>
+                </Link>
+              ))
+            }
+          </Flex>
+        </Flex>
       </Flex>
 
-      <Flex
-        marginY={"auto"}
-        justifyContent={"space-between"}
-        flexWrap={"nowrap"}
-        alignItems={"center"}
-      >
-        <SearchForm boxProps={{marginRight:STYLES.gap}}/>
-        {
-          icons.map((ni: NavigationIcon, index) => (
-            <Link
-              key={index}
-              display={"block"}
-              href={ni.href}
-              as={NextLink}
-              target={"_blank"}
-              rel={"noopener"}
-              title={ni.title}
-              fontSize={'2xl'}
-              _notLast={{
-                marginRight:STYLES.gap
-              }}
-            >
-              <ChakraFontAwesomeIcon icon={ni.icon}/>
-            </Link>
-        ))
-        }
-      </Flex>
-    </Flex>
-  );
+      {/*スマホより大きい時は行を変えて表示する*/}
+      <SearchForm
+        boxProps={{
+          display: {md: 'none'},
+          maxWidth: STYLES.navMaxWidth,
+          margin: `auto ${STYLES.gap}`,
+          lineHeight: STYLES.headerHeight,
+          letterSpacing: '0.01em',
+          overflow: "hidden"
+        }}
+      />
+    </Box>
+  )
 }
 
 export default Header
