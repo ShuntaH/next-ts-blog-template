@@ -4,6 +4,10 @@ import { FilteredPost, FilteredPosts, Post, Posts } from "../interfaces/post";
 type Keys = [ "title", "excerpt", "content", "tags" ]
 
 
+/**
+ * 取得した記事情報と検索オプションを Fuse クラスに渡してインスタン化したものを返す。
+ * @param posts
+ */
 export const setupSearchOnClientSide = (posts: Posts): Fuse<FilteredPost> => {
   const keys: Keys = [
     "title",
@@ -20,6 +24,9 @@ export const setupSearchOnClientSide = (posts: Posts): Fuse<FilteredPost> => {
   }
 
   const filteredPosts: FilteredPosts = posts.map((post) => {
+    // 記事データからそれぞれ、検索対象ではないデータ(slug や time など)
+    // は除いて必要なデータのみから検索用途の記事データを作成する。。
+
     const filteredPost: FilteredPost = {
       title: '',
       excerpt: '',
