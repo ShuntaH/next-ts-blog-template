@@ -30,6 +30,7 @@ export const setupSearchOnClientSide = (posts: Posts): Fuse<FilteredPost> => {
     keys.forEach((key) => {
       if (key === "tags") {
         // filteredPost[key] だとエラー
+        // todo 直したい
         filteredPost.tags = post[key]
         return
       }
@@ -43,14 +44,19 @@ export const setupSearchOnClientSide = (posts: Posts): Fuse<FilteredPost> => {
   // 検索対象に getAllPosts をそのまま入れてはいけない。
   // node が実行環境のため、クライアントサイドでは記事情報はマークダウンから取得できないし、
   // マークダウンはビルド時に見られるのであって、
-  // ビルドされてそれが配信されたブラウザで実行できるべきでもない
+  // ビルドされてそれが配信されたブラウザで実行できるべきでもない。
+  // 記事取得はサーバーサイドでして、取得したデータはクライアントサイドで fuse のインスタンスを作成して
+  // 実行する。
   // todo contexts に入れる
   return new Fuse(filteredPosts, options)
 }
 
+/**
+ * 検索を実際にして結果を返す。
+ * @param fuse 検索対象となる記事を入れてインスタンスになっている
+ * @param text 検索したい文字列
+ */
 export const searchOnClientSide = (
   fuse: Fuse<Post>,
   text: string = ''
-) => {
-  return fuse.search(text)
-}
+) => fuse.search(text)
