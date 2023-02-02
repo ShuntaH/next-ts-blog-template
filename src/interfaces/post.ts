@@ -24,3 +24,6 @@ export type Post = {
 }
 
 export type Posts = Post[]
+
+export type KeysForSearch = keyof Omit<Post,
+  'date' | 'slug' | 'author' | 'ogImage' | 'coverImage' | 'time'>

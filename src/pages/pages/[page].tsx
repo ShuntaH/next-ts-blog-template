@@ -1,12 +1,12 @@
 import { useEffect } from "react";
-import { getAllPosts, getPagination, getTotalPageCount, getTotalPostCount } from "../../lib/api";
+import { getAllSortedPosts, getPagination, getTotalPageCount, getTotalPostCount } from "../../lib/api";
 import { Posts } from "../../interfaces/post";
 import { Pagination } from "../../interfaces/pagination";
 import PostsPage from "../../components/post/posts-page";
 
 
 export async function getStaticPaths() {
-  const posts = getAllPosts()
+  const posts = getAllSortedPosts()
   const postCount = getTotalPostCount(posts)
 
   // 3ページあったら[ 0, 1, 2 ]
@@ -34,7 +34,7 @@ type Context = {
 }
 
 export const getStaticProps = async ({params}: Context) => {
-  const posts: Posts = getAllPosts()
+  const posts: Posts = getAllSortedPosts()
 
   const pagination: Pagination = getPagination({
     currentPageNumber: Number(params.page),

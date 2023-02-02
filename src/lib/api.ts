@@ -1,9 +1,9 @@
-import fs from 'fs'
 import { join } from 'path'
 import matter from 'gray-matter'
 import { MarkdownData, Post, Posts } from "../interfaces/post";
 import { Pagination, PaginationProps } from "../interfaces/pagination";
 import { POST_COUNT_PER_PAGE } from "./constants";
+import fs from 'fs';
 
 const postsDirectory = join(process.cwd(), 'src', '_posts')
 
@@ -14,6 +14,7 @@ const postsDirectory = join(process.cwd(), 'src', '_posts')
  * postSlugs [ 'dynamic-routing.md', 'hello-world.md', 'preview.md' ]
  */
 export const getPostSlugs = (): string[] => {
+  // fs は node で実行されるので クライアントサイドではエラー
   return fs.readdirSync(postsDirectory)
 }
 
@@ -58,17 +59,20 @@ export const getPostBySlug = (slug: string): Post => {
 }
 
 /**
- * 解析された状態のマークダウンの記事を全て取得して、
- * 記事の日付をもとにソートして返す。
+ * 解析された状態のマークダウンの記事を全て取得
  */
 export const getAllPosts = (): Posts => {
   const slugs: string[] = getPostSlugs() // [ 'hoge.md', 'hello-world.md' ]
-  return slugs
-    .map((slug) => getPostBySlug(slug))
-    // sort posts by date in descending order
-    .sort((post1, post2) => (post1.date > post2.date ? -1 : 1))
+  return slugs.map((slug) => getPostBySlug(slug))
 }
 
+/**
+ * 記事の日付をもとにソートして返す。
+ */
+export const getAllSortedPosts = (): Posts => {
+  // sort posts by date in descending order
+  return getAllPosts().sort((post1, post2) => (post1.date > post2.date ? -1 : 1))
+}
 
 export const getTotalPostCount = (posts: Posts): number => posts.length
 
@@ -108,6 +112,7 @@ export const getPagination = (
     postCountPerPage,
     totalPostCount,
     totalPageCount,
+    allPosts: posts,
     nextPageHref,
     prevPageHref,
     currentPagePosts: posts!.slice(startIndex, startIndex + postCountPerPage),

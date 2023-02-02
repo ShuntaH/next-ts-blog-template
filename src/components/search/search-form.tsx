@@ -31,6 +31,7 @@ function Lorem(props: { count: number }) {
 const SearchForm = ({boxProps}: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const finalRef = React.useRef(null)
+  const initialRef = React.useRef(null)
   const [inputValue, setInputValue] = React.useState('')
   // const handleInputValueChange = (event: React.MouseEvent<HTMLInputElement>) => setInputValue(event.target.value)
   const isError = inputValue === ''
@@ -60,9 +61,10 @@ const SearchForm = ({boxProps}: Props) => {
       </FormControl>
 
       <Modal
-        finalFocusRef={finalRef}
+        finalFocusRef={initialRef}
         isOpen={isOpen}
         onClose={onClose}
+        closeOnEsc
       >
         <ModalOverlay />
         <ModalContent>

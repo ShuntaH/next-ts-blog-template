@@ -12,20 +12,20 @@ type Props = {
   boxProps?: BoxProps
 }
 
-const Header = ({boxProps}: Props) => {
-  const icons: NavigationIcon[] = [
-    {
-      href: '/tags',
-      title: 'Tags',
-      icon: faTags
-    },
-    {
-      href: 'https://github.com/ShuntaH',
-      title: 'GitHub',
-      icon: faGithubAlt
-    }
-  ]
+const icons: NavigationIcon[] = [
+  {
+    href: '/tags',
+    title: 'Tags',
+    icon: faTags
+  },
+  {
+    href: 'https://github.com/ShuntaH',
+    title: 'GitHub',
+    icon: faGithubAlt
+  }
+]
 
+const Header = ({boxProps}: Props) => {
   return (
     // md 以上は flex でアイテムは横並び、 それ以下は block で縦並び
     <Box {...boxProps}>
