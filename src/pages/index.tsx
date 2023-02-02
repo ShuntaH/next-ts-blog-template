@@ -32,7 +32,6 @@ type Props = {
  */
 export default function Index({ pagination }: Props) {
   useEffect(() => {
-    console.log('list', pagination.allPosts)
     const fuse = setupSearchOnClientSide(pagination.allPosts)
     const result = fuse.search('sample')
     console.log('search', result)

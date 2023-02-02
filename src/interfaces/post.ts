@@ -25,5 +25,5 @@ export type Post = {
 
 export type Posts = Post[]
 
-export type KeysForSearch = keyof Omit<Post,
-  'date' | 'slug' | 'author' | 'ogImage' | 'coverImage' | 'time'>
+export type FilteredPost = Pick<Post, 'title' | 'excerpt' | 'content' | 'tags'>
+export type FilteredPosts = FilteredPost[]
