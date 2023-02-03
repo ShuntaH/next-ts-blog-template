@@ -3,7 +3,7 @@ import Breadcrumb from "../breadcrumb";
 import { BreadcrumbItem } from "../../interfaces/breadcrumb";
 import PostTitle from "./post-title";
 import PostTags from "./post-tags";
-import PostInfo from "./post-info";
+import PostMeta from "./post-meta";
 import { Post } from "../../interfaces/post";
 
 type Props = {
@@ -22,7 +22,7 @@ const PostHeader = ({ post, boxProps }: Props) => {
     <Box as={"header"} {...boxProps}>
       <Breadcrumb breadcrumbItems={breadCrumbItems} breadcrumbProps={{ marginBottom: 1 }}/>
       <PostTitle headingProps={{ marginBottom: 2 }}>{post.title}</PostTitle>
-      <PostInfo time={post.time} date={post.date} author={post.author} />
+      <PostMeta time={post.time} date={post.date} author={post.author} />
       <PostTags tags={post.tags} />
     </Box>
   )

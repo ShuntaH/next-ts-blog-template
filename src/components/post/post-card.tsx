@@ -2,7 +2,7 @@ import { Box, BoxProps, Card, CardBody, CardFooter, CardHeader, Heading, Text } 
 import { STYLES } from "../../lib/constants";
 import React from "react";
 import NextLink from "next/link";
-import PostInfo from "./post-info";
+import PostInfo from "./post-meta";
 import PostTags from "./post-tags";
 import { Post } from "../../interfaces/post";
 
