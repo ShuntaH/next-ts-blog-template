@@ -7,7 +7,7 @@ author:
     name: Tim Neutkens
     picture: '/assets/blog/authors/tim.jpeg'
 ogImage:
-url: '/assets/blog/hello-world/cover.jpg'
+    url: '/assets/blog/hello-world/cover.jpg'
 tags: ['tag1']
 ---
 

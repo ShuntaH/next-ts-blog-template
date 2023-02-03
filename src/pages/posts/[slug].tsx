@@ -102,16 +102,11 @@ export default function PostPage({ post, morePosts, preview }: Props) {
               <title>
                 {post.title}
               </title>
-              <meta property="og:image" content={post!.ogImage!.url}/>
+              <meta property="og:image" content={post.ogImage.url}/>
             </Head>
 
             <PostHeader
-              title={post.title}
-              time={post.time}
-              date={post.date}
-              author={post.author}
-              slug={post.slug}
-              tags={post.tags}
+              post={post}
               boxProps={{marginBottom:16}}
             />
 

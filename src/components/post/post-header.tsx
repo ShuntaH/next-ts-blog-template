@@ -4,31 +4,26 @@ import { BreadcrumbItem } from "../../interfaces/breadcrumb";
 import PostTitle from "./post-title";
 import PostTags from "./post-tags";
 import PostInfo from "./post-info";
-import { Author } from "../../interfaces/author";
+import { Post } from "../../interfaces/post";
 
 type Props = {
-  title: string
-  date: string
-  author: Author
-  slug: string,
-  time: string
-  tags: string[]
+  post: Post
   boxProps?: BoxProps
 }
 
-const PostHeader = ({ title, date, author, slug, time, tags, boxProps }: Props) => {
+const PostHeader = ({ post, boxProps }: Props) => {
   const breadCrumbItems: BreadcrumbItem[] = [
     { title: 'home', href: '/' },
     { title: 'posts', href: '/' },
-    { title: title, href: `/posts/${slug}` }
+    { title: post.title, href: `/posts/${post.slug}` }
   ]
 
   return (
     <Box as={"header"} {...boxProps}>
       <Breadcrumb breadcrumbItems={breadCrumbItems} breadcrumbProps={{ marginBottom: 1 }}/>
-      <PostTitle headingProps={{ marginBottom: 2 }}>{title}</PostTitle>
-      <PostInfo time={time} date={date} author={author} />
-      <PostTags tags={tags} />
+      <PostTitle headingProps={{ marginBottom: 2 }}>{post.title}</PostTitle>
+      <PostInfo time={post.time} date={post.date} author={post.author} />
+      <PostTags tags={post.tags} />
     </Box>
   )
 }
