@@ -2,10 +2,6 @@ import {
   Box,
   BoxProps,
   Button,
-  FormControl,
-  Input,
-  InputGroup,
-  InputRightElement,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -16,8 +12,7 @@ import {
   useDisclosure
 } from '@chakra-ui/react'
 import React from "react";
-import ChakraFontAwesomeIcon from "../chakra-font-awesome-icon";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import SearchInput from "./search-input";
 
 
 type Props = {
@@ -38,27 +33,11 @@ const SearchForm = ({boxProps}: Props) => {
 
   return (
     <Box {...boxProps}>
-      <FormControl
-        width={{
-          base:'full',
-          md: '2xs'}}
-      >
-        <InputGroup size='md'>
-          <Input
-            type='text'
-            placeholder={"Full-text search 全文検索"}
-            onInput={onOpen}
-            ref={finalRef}
-          />
-          <InputRightElement>
-            <ChakraFontAwesomeIcon
-              _hover={{cursor: "pointer"}}
-              icon={faMagnifyingGlass}
-              onClick={onOpen}
-            />
-          </InputRightElement>
-        </InputGroup>
-      </FormControl>
+      <SearchInput
+        isOpen={isOpen}
+        onOpen={onOpen}
+        finalRef={finalRef}
+      />
 
       <Modal
         finalFocusRef={initialRef}

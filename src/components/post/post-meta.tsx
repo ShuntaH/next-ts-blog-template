@@ -9,7 +9,7 @@ type Props = {
   author: Author
 }
 
-const PostMeta = ({ time, date, author }: Props) => (
+const PostInfo = ({ time, date, author }: Props) => (
   <Flex
     flexWrap={"wrap"}
     alignItems={"center"}
@@ -29,4 +29,4 @@ const PostMeta = ({ time, date, author }: Props) => (
   </Flex>
 )
 
-export default PostMeta
+export default PostInfo
