@@ -6,6 +6,7 @@ import { STYLES } from "../../lib/constants";
 type Props = {
   inputProps?: InputProps
   modalOpenEvents: SearchModalOpenEvents | {}
+  modalRef: null | React.MutableRefObject<null | HTMLElement>
 }
 
 const SearchInput = ({ inputProps, modalOpenEvents }: Props) => {

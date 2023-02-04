@@ -15,14 +15,11 @@ import {
 } from '@chakra-ui/react'
 import React from "react";
 import SearchFormControl from "./search-form-control";
+import { SearchModalHook } from "../../interfaces/search";
 
 
 type Props = {
   boxProps?: BoxProps
-}
-
-function Lorem(props: { count: number }) {
-  return null;
 }
 
 const SearchForm = ({boxProps}: Props) => {
@@ -30,6 +27,7 @@ const SearchForm = ({boxProps}: Props) => {
   const [inputValue, setInputValue] = React.useState('')
   const isError = inputValue === ''
   console.log(`isOpen ${isOpen}`)
+  const modalRef = React.useRef(null)
 
   const handleOnOpen = (e: React.SyntheticEvent) => {
     // もし複数種類のイベントでこれが発火していたら、ここで type の判定をして
@@ -37,6 +35,14 @@ const SearchForm = ({boxProps}: Props) => {
     // console.log('event type', e.type)
     // e.preventDefault()
     onOpen()
+  }
+
+  const modalHookForInput: SearchModalHook = {
+    modalOpenFunc: handleOnOpen
+  }
+
+  const modalHookForModal: SearchModalHook = {
+    modalRef
   }
 
   return (
@@ -56,11 +62,11 @@ const SearchForm = ({boxProps}: Props) => {
               </Heading>
               <ModalCloseButton />
             </Flex>
-            <SearchFormControl formControlProps={{paddingY: 3}}/>
+
           </ModalHeader>
 
           <ModalBody>
-            <Lorem count={2} />
+            <SearchFormControl formControlProps={{paddingY: 3}} modalRef={modalRef}/>
           </ModalBody>
 
           <ModalFooter>
