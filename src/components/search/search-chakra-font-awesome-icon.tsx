@@ -1,29 +1,28 @@
-import { Input, InputProps } from '@chakra-ui/react'
 import React, { EventHandler } from "react";
+import ChakraFontAwesomeIcon from "../chakra-font-awesome-icon";
 import { SearchModalOpenEvents } from "../../interfaces/search";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+
 
 type Props = {
-  inputProps?: InputProps
   modalOpenFunc?: EventHandler<any>
 }
 
-const SearchInput = ({ inputProps, modalOpenFunc }: Props) => {
-
+const SearchChakraFontAwesomeIcon = ({ modalOpenFunc }: Props) => {
   const modalOpenEvents: SearchModalOpenEvents | {} = modalOpenFunc ?
     {
+      onClick: modalOpenFunc,
       onChange: modalOpenFunc,
       onFocus: modalOpenFunc,
       onTouchStart: modalOpenFunc
     } : {}
 
   return (
-    <Input
-      type='text'
-      placeholder={"Full-text search 全文検索"}
-      {...inputProps}
+    <ChakraFontAwesomeIcon
+      icon={faMagnifyingGlass}
       {...modalOpenEvents}
     />
   );
 }
 
-export default SearchInput
+export default SearchChakraFontAwesomeIcon

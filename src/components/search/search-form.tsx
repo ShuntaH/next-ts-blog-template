@@ -2,6 +2,8 @@ import {
   Box,
   BoxProps,
   Button,
+  Flex,
+  Heading,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -12,7 +14,7 @@ import {
   useDisclosure
 } from '@chakra-ui/react'
 import React from "react";
-import SearchInput from "./search-input";
+import SearchFormControl from "./search-form-control";
 
 
 type Props = {
@@ -25,32 +27,33 @@ function Lorem(props: { count: number }) {
 
 const SearchForm = ({boxProps}: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const finalRef = React.useRef(null)
-  const initialRef = React.useRef(null)
   const [inputValue, setInputValue] = React.useState('')
   // const handleInputValueChange = (event: React.MouseEvent<HTMLInputElement>) => setInputValue(event.target.value)
   const isError = inputValue === ''
-
+  
   return (
     <Box {...boxProps}>
-      <SearchInput
-        isOpen={isOpen}
-        onOpen={onOpen}
-        finalRef={finalRef}
-      />
-
+      <SearchFormControl modalOpenFunc={onOpen} />
       <Modal
-        finalFocusRef={initialRef}
         isOpen={isOpen}
         onClose={onClose}
         closeOnEsc
+        closeOnOverlayClick
+        returnFocusOnClose
+        autoFocus
       >
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>
-            Search results
+            <Flex>
+              <Heading as={'h3'} fontSize={"md"}>
+                Search results
+              </Heading>
+              <ModalCloseButton />
+            </Flex>
+            <SearchFormControl />
           </ModalHeader>
-          <ModalCloseButton />
+
           <ModalBody>
             <Lorem count={2} />
           </ModalBody>
