@@ -28,19 +28,23 @@ function Lorem(props: { count: number }) {
 const SearchForm = ({boxProps}: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [inputValue, setInputValue] = React.useState('')
-  // const handleInputValueChange = (event: React.MouseEvent<HTMLInputElement>) => setInputValue(event.target.value)
   const isError = inputValue === ''
-  
+  console.log(`isOpen ${isOpen}`)
+
+  const handleOnOpen = (e: React.SyntheticEvent) => {
+    // もし複数種類のイベントでこれが発火していたら、ここで type の判定をして
+    // どれかのイベントを止める
+    // console.log('event type', e.type)
+    onOpen()
+  }
+
   return (
     <Box {...boxProps}>
-      <SearchFormControl modalOpenFunc={onOpen} />
+      <SearchFormControl modalOpenFunc={handleOnOpen} />
       <Modal
         isOpen={isOpen}
         onClose={onClose}
-        closeOnEsc
-        closeOnOverlayClick
-        returnFocusOnClose
-        autoFocus
+        returnFocusOnClose={false}
       >
         <ModalOverlay />
         <ModalContent>

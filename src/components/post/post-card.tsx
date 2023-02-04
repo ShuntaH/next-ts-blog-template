@@ -33,7 +33,7 @@ const PostCard = ({ post, boxProps }: Props) => {
         <CardHeader as={"header"}>
           <Heading
             as={'h3'}
-            _hover={{color: STYLES.accentColorHover}}
+            _hover={{color: STYLES.accentColorLighter}}
             fontSize={'xl'}
             marginBottom={1}
           >
@@ -64,7 +64,7 @@ const PostCard = ({ post, boxProps }: Props) => {
             as={"span"}
             display={"inline-block"}
             color={STYLES.accentColor}
-            _hover={{color: STYLES.accentColorHover}}
+            _hover={{color: STYLES.accentColorLighter}}
             marginBottom={5}
           >
             Read more →

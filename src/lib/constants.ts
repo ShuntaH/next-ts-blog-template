@@ -20,10 +20,10 @@ const contentMaxWidth = `calc(${mainWidth} + ${gap} * 2)`
 const contentGap = '20px'
 const navMaxWidth = `calc(${navWidth} + ${gap} * 2)`
 const accentColor = 'purple.300'
-const accentColorHover = 'purple.200'
+const accentColorLighter = 'purple.200'
 const hoverStyle = {
   textDecoration: 'none',
-  color: accentColorHover
+  color: accentColorLighter
 }
 
 export const STYLES = {
@@ -37,6 +37,6 @@ export const STYLES = {
   navMaxWidth,
   radius,
   accentColor,
-  accentColorHover,
+  accentColorLighter,
   hoverStyle
 }

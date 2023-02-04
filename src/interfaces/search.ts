@@ -1,7 +1,8 @@
 import { EventHandler } from "react";
 
 export type SearchModalOpenEvents = {
-  onChange: EventHandler<any>
-  onFocus: EventHandler<any>
   onTouchStart: EventHandler<any>
+  onClick: EventHandler<any>
+  onInput: EventHandler<any>
+  onChange: EventHandler<any>
 }

@@ -1,25 +1,22 @@
 import { Input, InputProps } from '@chakra-ui/react'
-import React, { EventHandler } from "react";
+import React from "react";
 import { SearchModalOpenEvents } from "../../interfaces/search";
+import { STYLES } from "../../lib/constants";
 
 type Props = {
   inputProps?: InputProps
-  modalOpenFunc?: EventHandler<any>
+  modalOpenEvents: SearchModalOpenEvents | {}
 }
 
-const SearchInput = ({ inputProps, modalOpenFunc }: Props) => {
-
-  const modalOpenEvents: SearchModalOpenEvents | {} = modalOpenFunc ?
-    {
-      onChange: modalOpenFunc,
-      onFocus: modalOpenFunc,
-      onTouchStart: modalOpenFunc
-    } : {}
+const SearchInput = ({ inputProps, modalOpenEvents }: Props) => {
+  
+  const hasEvents = () => !!Object.keys(modalOpenEvents).length
 
   return (
     <Input
       type='text'
       placeholder={"Full-text search 全文検索"}
+      focusBorderColor={STYLES.accentColorLighter}
       {...inputProps}
       {...modalOpenEvents}
     />
