@@ -9,8 +9,6 @@ type Props = {
 }
 
 const SearchInput = ({ inputProps, modalOpenEvents }: Props) => {
-  
-  const hasEvents = () => !!Object.keys(modalOpenEvents).length
 
   return (
     <Input

@@ -19,7 +19,7 @@ type Props = {
  */
 const SearchFormControl = ({ formControlProps, modalOpenFunc }: Props) => {
 
-  const modalOpenEvents: SearchModalOpenEvents | {[key: string]: never} = modalOpenFunc ?
+  const modalOpenEvents: SearchModalOpenEvents | { [key: string]: never } = modalOpenFunc ?
     {
       onClick: modalOpenFunc,
       onInput: modalOpenFunc,
@@ -27,9 +27,15 @@ const SearchFormControl = ({ formControlProps, modalOpenFunc }: Props) => {
       onTouchStart: modalOpenFunc
     } : {}
 
+  // モーダルを開くイベントファンクションが渡されていればそれはヘッダーにあるので、
+  // レスポンシブを考慮する。
+  // 渡されていなければ、モーダルの中の入力欄になるので、レスポンシブは関係なく、width = 100%
+  const widthAttr = modalOpenFunc ?
+    { base: 'full', md: '2xs' } : 'full'
+
   return (
     <FormControl
-      width={{ base: 'full', md: '2xs' }}
+      width={widthAttr}
       {...formControlProps}
     >
       {/*入力欄と虫眼鏡アイコンで1つの検索入力欄としてグループを作る*/}

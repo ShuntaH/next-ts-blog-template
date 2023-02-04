@@ -35,6 +35,7 @@ const SearchForm = ({boxProps}: Props) => {
     // もし複数種類のイベントでこれが発火していたら、ここで type の判定をして
     // どれかのイベントを止める
     // console.log('event type', e.type)
+    // e.preventDefault()
     onOpen()
   }
 
@@ -55,7 +56,7 @@ const SearchForm = ({boxProps}: Props) => {
               </Heading>
               <ModalCloseButton />
             </Flex>
-            <SearchFormControl />
+            <SearchFormControl formControlProps={{paddingY: 3}}/>
           </ModalHeader>
 
           <ModalBody>
