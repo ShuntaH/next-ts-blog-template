@@ -18,9 +18,9 @@ export const getPostSlugs = (): string[] => {
   return fs.readdirSync(postsDirectory)
 }
 
+
 /**
  * ファイル名からそのファイルの中身を取得する。
- *
  * @param slug マークダウンファイルの名前
  */
 export const getPostBySlug = (slug: string): Post => {
@@ -58,8 +58,9 @@ export const getPostBySlug = (slug: string): Post => {
   }
 }
 
+
 /**
- * 解析された状態のマークダウンの記事を全て取得
+ * 解析された状態のマークダウンの記事を全て取得する
  */
 export const getAllPosts = (): Posts => {
   const slugs: string[] = getPostSlugs() // [ 'hoge.md', 'hello-world.md' ]
@@ -69,9 +70,9 @@ export const getAllPosts = (): Posts => {
 /**
  * 記事の日付をもとにソートして返す。
  */
-export const getAllSortedPosts = (): Posts => {
+export const getSortedPosts = (posts: Posts): Posts => {
   // sort posts by date in descending order
-  return getAllPosts().sort((post1, post2) => (post1.date > post2.date ? -1 : 1))
+  return posts.sort((post1, post2) => (post1.date > post2.date ? -1 : 1))
 }
 
 export const getTotalPostCount = (posts: Posts): number => posts.length
@@ -112,7 +113,6 @@ export const getPagination = (
     postCountPerPage,
     totalPostCount,
     totalPageCount,
-    allPosts: posts,
     nextPageHref,
     prevPageHref,
     currentPagePosts: posts!.slice(startIndex, startIndex + postCountPerPage),

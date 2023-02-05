@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import ErrorPage from 'next/error'
 import PostBody from '../../components/post/post-body'
 import PostHeader from '../../components/post/post-header'
-import { getAllSortedPosts, getPostBySlug } from '../../lib/api'
+import { getAllPosts, getPostBySlug, getSortedPosts } from '../../lib/api'
 import PostTitle from '../../components/post/post-title'
 import Head from 'next/head'
 import { Box, Card } from "@chakra-ui/react";
@@ -16,7 +16,7 @@ import markdownToHtml from "../../lib/markdownToHtml";
  * これによって全ての記事を動的に作成できる。
  */
 export async function getStaticPaths() {
-  const posts = getAllSortedPosts()
+  const posts = getSortedPosts(getAllPosts())
 
   return {
     paths: posts.map((post) => {

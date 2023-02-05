@@ -1,20 +1,20 @@
 import { Box } from "@chakra-ui/react";
-import { getAllSortedPosts, getPagination } from "../lib/api";
+import { getAllPosts, getPagination, getSortedPosts } from "../lib/api";
 import IntroCard from "../components/intro-card";
 import { Posts } from "../interfaces/post";
 import PostsPage from "../components/post/posts-page";
 import { Pagination } from "../interfaces/pagination";
 import { useEffect } from "react";
-import { setupSearchOnClientSide } from "../lib/search";
 
 
 export const getStaticProps = async () => {
-  const posts: Posts = getAllSortedPosts()
+  const posts: Posts = getSortedPosts(getAllPosts())
   const pagination: Pagination = getPagination({
     currentPageNumber: 1,
     basePaths: '/pages',
     posts
   })
+  // todo contextからfuseを受け取る
 
   return {
     props: {
@@ -27,14 +27,15 @@ export const getStaticProps = async () => {
 type Props = {
   pagination: Pagination,
 }
+
 /**
  * This is the page that is rendered when the user visits the root of your application.
  */
 export default function Index({ pagination }: Props) {
   useEffect(() => {
-    const fuse = setupSearchOnClientSide(pagination.allPosts)
-    const result = fuse.search('sample')
-    console.log('search', result)
+    // const fuse = setupFullTextSearch(pagination.allPosts)
+    // const result = fuse.search('sample')
+    // console.log('search', result)
   })
 
   return (

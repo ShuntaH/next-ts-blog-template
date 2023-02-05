@@ -6,9 +6,13 @@ type Keys = [ "title", "excerpt", "content", "tags" ]
 
 /**
  * 取得した記事情報と検索オプションを Fuse クラスに渡してインスタン化したものを返す。
- * @param posts
+ * 記事取得は fs の実行環境が node のため、サーバーサイドでするのに注意する。
+ * 任意の場所で呼べるようにするために、記事取得はこの関数内ではなく、引数として渡す。
+ *
+ * @param allPosts
  */
-export const setupSearchOnClientSide = (posts: Posts): Fuse<FilteredPost> => {
+export const setupFullTextSearch = (allPosts: Posts): Fuse<FilteredPost> => {
+  // 記事データの中で検索対象のデータを指定する
   const keys: Keys = [
     "title",
     "excerpt",
@@ -16,6 +20,7 @@ export const setupSearchOnClientSide = (posts: Posts): Fuse<FilteredPost> => {
     "tags"
   ]
 
+  // 全文検索のオプションを指定する
   const options = {
     isCaseSensitive: true,
     minMatchCharLength: 2,
@@ -23,9 +28,9 @@ export const setupSearchOnClientSide = (posts: Posts): Fuse<FilteredPost> => {
     keys
   }
 
-  const filteredPosts: FilteredPosts = posts.map((post) => {
+  const filteredPosts: FilteredPosts = allPosts.map((post) => {
     // 記事データからそれぞれ、検索対象ではないデータ(slug や time など)
-    // は除いて必要なデータのみから検索用途の記事データを作成する。。
+    // は除いて、必要なデータのみから検索用途の記事データを作成する。
 
     const filteredPost: FilteredPost = {
       title: '',
@@ -36,7 +41,7 @@ export const setupSearchOnClientSide = (posts: Posts): Fuse<FilteredPost> => {
 
     keys.forEach((key) => {
       if (key === "tags") {
-        // filteredPost[key] だとエラー
+        // filteredPost[key] だと ts 型エラー
         // todo 直したい
         filteredPost.tags = post[key]
         return
@@ -46,24 +51,16 @@ export const setupSearchOnClientSide = (posts: Posts): Fuse<FilteredPost> => {
 
     return filteredPost
   })
-
-
-  // 検索対象に getAllPosts をそのまま入れてはいけない。
-  // fs は node が実行環境のため、クライアントサイドでは記事情報はマークダウンから取得できないし、
-  // マークダウンはビルド時に見られるのであって、
-  // ビルドされてからマークダウンが配信されたブラウザで実行できるべきでもない。
-  // 記事取得はサーバーサイドでして、取得したデータはクライアントサイドで fuse のインスタンスを作成して
-  // 実行する。
   // todo contexts に入れる
   return new Fuse(filteredPosts, options)
 }
 
 /**
  * 検索を実際にして結果を返す。
- * @param fuse 検索対象となる記事を入れてインスタンスになっている
+ * @param fuse 検索機能のセットアップが終わっているインスタンス
  * @param text 検索したい文字列
  */
-export const searchOnClientSide = (
+export const fullTextSearch = (
   fuse: Fuse<Post>,
   text: string = ''
 ) => fuse.search(text)

@@ -15,7 +15,6 @@ import {
 } from '@chakra-ui/react'
 import React from "react";
 import SearchFormControl from "./search-form-control";
-import { SearchModalHook } from "../../interfaces/search";
 
 
 type Props = {
@@ -37,21 +36,13 @@ const SearchForm = ({boxProps}: Props) => {
     onOpen()
   }
 
-  const modalHookForInput: SearchModalHook = {
-    modalOpenFunc: handleOnOpen
-  }
-
-  const modalHookForModal: SearchModalHook = {
-    modalRef
-  }
-
   return (
     <Box {...boxProps}>
-      <SearchFormControl modalOpenFunc={handleOnOpen} />
+      <SearchFormControl refOrFunc={handleOnOpen} />
       <Modal
         isOpen={isOpen}
         onClose={onClose}
-        returnFocusOnClose={false}
+        initialFocusRef={modalRef}
       >
         <ModalOverlay />
         <ModalContent>
@@ -66,7 +57,10 @@ const SearchForm = ({boxProps}: Props) => {
           </ModalHeader>
 
           <ModalBody>
-            <SearchFormControl formControlProps={{paddingY: 3}} modalRef={modalRef}/>
+            <SearchFormControl
+              formControlProps={{paddingY: 3}}
+              refOrFunc={modalRef}
+            />
           </ModalBody>
 
           <ModalFooter>

@@ -12,7 +12,6 @@ export type Pagination = {
   postCountPerPage: number
   totalPostCount: number
   totalPageCount: number
-  allPosts: Posts,
   currentPagePosts: Posts,
   nextPageHref: string | null
   prevPageHref: string | null

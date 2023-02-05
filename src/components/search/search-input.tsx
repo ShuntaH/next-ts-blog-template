@@ -1,16 +1,27 @@
 import { Input, InputProps } from '@chakra-ui/react'
 import React from "react";
-import { SearchModalOpenEvents } from "../../interfaces/search";
+import { SearchModalHook, SearchModalOpenEvents } from "../../interfaces/search";
 import { STYLES } from "../../lib/constants";
 
 type Props = {
   inputProps?: InputProps
-  modalOpenEvents: SearchModalOpenEvents | {}
-  modalRef: null | React.MutableRefObject<null | HTMLElement>
+  refOrFunc: SearchModalHook
 }
 
-const SearchInput = ({ inputProps, modalOpenEvents }: Props) => {
+const SearchInput = ({ inputProps, refOrFunc }: Props) => {
+  const isFunc = typeof refOrFunc === 'function'
+  const modalRef = !isFunc ? refOrFunc : null
 
+  // イベントごとにモーダルを開く関数を割り振る
+  const modalOpenEvents: SearchModalOpenEvents | { [key: string]: never } =
+    isFunc ?
+      {
+        onClick: refOrFunc,
+        onInput: refOrFunc,
+        onChange: refOrFunc,
+        onTouchStart: refOrFunc
+      } : {}
+  console.log('input ref', modalRef)
   return (
     <Input
       type='text'
@@ -18,6 +29,7 @@ const SearchInput = ({ inputProps, modalOpenEvents }: Props) => {
       focusBorderColor={STYLES.accentColorLighter}
       {...inputProps}
       {...modalOpenEvents}
+      ref={modalRef}
     />
   );
 }

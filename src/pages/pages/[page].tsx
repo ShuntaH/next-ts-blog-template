@@ -1,26 +1,28 @@
 import { useEffect } from "react";
-import { getAllSortedPosts, getPagination, getTotalPageCount, getTotalPostCount } from "../../lib/api";
-import { Posts } from "../../interfaces/post";
+import { getAllPosts, getPagination, getSortedPosts, getTotalPageCount, getTotalPostCount } from "../../lib/api";
 import { Pagination } from "../../interfaces/pagination";
 import PostsPage from "../../components/post/posts-page";
 
 
 export async function getStaticPaths() {
-  const posts = getAllSortedPosts()
+  const posts = getSortedPosts(getAllPosts())
   const postCount = getTotalPostCount(posts)
 
   // 3ページあったら[ 0, 1, 2 ]
-  const range: number[] = [...Array(getTotalPageCount(postCount)).keys()]
+  const range: string[] = [...Array(getTotalPageCount(postCount)).keys()].map((pageNumber) => {
+    return String(pageNumber + 1)
+  })
 
   return {
     paths: range.map((pageNumber) => {
       return {
         params: {
-          page: String(pageNumber + 1)
+          page: pageNumber
         }}}),
     fallback: false,
   }
 }
+
 
 type Context = {
   params: {
@@ -33,13 +35,12 @@ type Context = {
   defaultLocale?: string
 }
 
-export const getStaticProps = async ({params}: Context) => {
-  const posts: Posts = getAllSortedPosts()
 
+export const getStaticProps = async ({params}: Context) => {
   const pagination: Pagination = getPagination({
     currentPageNumber: Number(params.page),
+    posts: getSortedPosts(getAllPosts()),
     basePaths: '/pages',
-    posts
   })
 
   return {
