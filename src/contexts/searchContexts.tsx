@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext, useMemo, useReducer } from 'react';
 import Fuse from "fuse.js";
 import { FilteredPost } from "../interfaces/post";
 
@@ -14,7 +14,7 @@ type FuseProviderProps = {
   fuse: Fuse<FilteredPost>
 }
 
-export const FuseProvider = ({children, fuse}: FuseProviderProps) => (
+export const FuseProvider = ({ children, fuse }: FuseProviderProps) => (
   <FuseContext.Provider value={fuse}>
     {children}
   </FuseContext.Provider>
@@ -23,17 +23,63 @@ export const FuseProvider = ({children, fuse}: FuseProviderProps) => (
 export const useFuse = () => useContext(FuseContext)
 
 // 検索入力欄の値
-const SearchInputContext = createContext('')
+const initialValueInput: string = ''
+
+/**
+ * 公式のドキュメント
+ * ref: https://beta.reactjs.org/learn/scaling-up-with-reducer-and-context
+ * では値とそれのdispatch、それぞれ Context を
+ * 用意しているが、 Context はほぼ自由に値を取れるので、
+ * 値と dispatch を useState の返り値のようにまとめて管理する。
+ */
+const SearchInputContext = createContext<{
+  valueInput: string,
+  dispatch: React.Dispatch<SearchInputAction>
+}>({
+  valueInput: initialValueInput,
+  dispatch: () => {}
+})
+
+type SearchInputAction = {
+  type: 'update'
+}
+
+const searchInputReducer = (
+  inputValue: string,
+  action: SearchInputAction
+) => {
+  switch (action.type) {
+    case 'update': {
+      return inputValue
+    }
+    default:
+      throw Error('Unknown SearchInputAction: ' + action.type);
+  }
+}
 
 type SearchInputProviderProps = {
   children: React.ReactNode
-  valueInput: string
 }
 
-export const SearchInputProvider = ({children, valueInput}: SearchInputProviderProps) => (
-  <SearchInputContext.Provider value={valueInput}>
-    {children}
-  </SearchInputContext.Provider>
-)
+export const SearchInputProvider = ({ children }: SearchInputProviderProps) => {
+  const [ valueInput, dispatch ] = useReducer(
+    searchInputReducer,
+    initialValueInput
+  )
+
+  const valueInputMemo = useMemo(
+    () =>  valueInput,
+    [valueInput])
+
+  return (
+    <SearchInputContext.Provider
+      value={{
+        valueInput: valueInputMemo,
+        dispatch
+    }}>
+      {children}
+    </SearchInputContext.Provider>
+  )
+}
 
 export const useSearchInput = () => useContext(SearchInputContext)
