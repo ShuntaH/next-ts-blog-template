@@ -14,7 +14,7 @@ const SearchInput = ({ inputProps, refOrFunc }: Props) => {
   const isFunc = typeof refOrFunc === 'function'
   const modalRef = !isFunc ? refOrFunc : null
 
-  const valueInput = useSearchInput()
+  const {valueInput, dispatch} = useSearchInput()
 
   // イベントごとにモーダルを開く関数を割り振る
   const modalOpenEvents: SearchModalOpenEvents | { [key: string]: never } =
@@ -25,12 +25,12 @@ const SearchInput = ({ inputProps, refOrFunc }: Props) => {
       } : {}
 
   const handleInput = (e: React.MouseEvent<HTMLInputElement>): void => {
-    if(e.type === 'input') {
-      // モーダルを開く入力欄では入力を認めない。
-      // console.log('event type', e.type)
-      e.currentTarget.value = ''
+    console.log('is func', isFunc)
+    if(isFunc) {
       e.preventDefault()
+      return
     }
+    dispatch({valueInput: e.currentTarget.value, type: 'update'})
   }
 
   return (
@@ -40,7 +40,9 @@ const SearchInput = ({ inputProps, refOrFunc }: Props) => {
       focusBorderColor={STYLES.accentColorLighter}
       {...inputProps}
       {...modalOpenEvents}
+      onInput={handleInput}
       ref={modalRef}
+      value={valueInput}
     />
   );
 }

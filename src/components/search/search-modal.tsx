@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/react'
 import React from "react";
 import SearchFormControl from "./search-form-control";
-import { useFuse } from "../../contexts/searchContexts";
+import { useFuse, useSearchInput } from "../../contexts/searchContexts";
 
 
 type Props = {
@@ -31,6 +31,8 @@ const SearchModal = ({
 
   const fuse = useFuse()
   console.log('fuse in modal', fuse)
+  const searchInputValue = useSearchInput()
+  console.log('search input context', searchInputValue)
 
   return (
     <Box {...boxProps}>

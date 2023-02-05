@@ -42,15 +42,17 @@ const SearchInputContext = createContext<{
 
 type SearchInputAction = {
   type: 'update'
+  valueInput: string
 }
 
 const searchInputReducer = (
-  inputValue: string,
+  valueInput: string,
   action: SearchInputAction
 ) => {
   switch (action.type) {
     case 'update': {
-      return inputValue
+      // return で値を返す必要がある
+      return action.valueInput
     }
     default:
       throw Error('Unknown SearchInputAction: ' + action.type);
