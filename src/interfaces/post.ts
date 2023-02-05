@@ -25,5 +25,6 @@ export type Post = {
 
 export type Posts = Post[]
 
+// 検索用の記事のデータ
 export type FilteredPost = Pick<Post, 'title' | 'excerpt' | 'content' | 'tags'>
 export type FilteredPosts = FilteredPost[]

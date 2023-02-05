@@ -9,6 +9,9 @@ import { Box, Card } from "@chakra-ui/react";
 import { STYLES } from "../../lib/constants";
 import { Post, Posts } from "../../interfaces/post";
 import markdownToHtml from "../../lib/markdownToHtml";
+import { useMemo } from "react";
+import { setupFullTextSearch } from "../../lib/search";
+import Layout from "../../components/layouts/layout";
 
 
 /**
@@ -23,7 +26,9 @@ export async function getStaticPaths() {
       return {
         params: {
           slug: post.slug,
-        }}}),
+        }
+      }
+    }),
     fallback: false,
   }
 }
@@ -56,62 +61,66 @@ type Context = {
  * defaultLocale contains the configured default locale (if enabled).
  */
 export async function getStaticProps({ params }: Context) {
-  console.log('slug', params.slug)
-
+  const allPosts = getAllPosts()
   const post = getPostBySlug(params.slug)
   post.content = await markdownToHtml(post.content || '')
 
   return {
-    props: { post }
+    props: {
+      post,
+      allPosts
+    },
   }
 }
 
 type Props = {
   post: Post
   morePosts: Posts
+  allPosts: Posts
   preview?: boolean
 }
 
-export default function PostPage({ post, morePosts, preview }: Props) {
-  const router = useRouter()
+export default function PostPage({ post, allPosts, preview }: Props) {
+  const fuse = useMemo(
+    () => setupFullTextSearch(allPosts),
+    [ allPosts ])
 
+  const router = useRouter()
   if (!router.isFallback && !post?.slug) {
     // todo 共通のエラーページを作る
     return <ErrorPage statusCode={404}/>
   }
 
   return (
-      router.isFallback ? (
-        <Card
-          as={"div"}
-          position={"relative"}
-          display={"flex"}
-          justifyContent={"center"}
-          alignItems={"center"}
-          margin={`${STYLES.gap} 0 calc(${STYLES.gap} * 2)`}
-          overflow={"hidden"}
-          boxShadow={"none"}
-        >
-          <PostTitle headingProps={{textAlign: "center"}}>
-            {post.title}
-          </PostTitle>
-        </Card>
-      ) : (
+    <Layout fuse={fuse}>
+      {
+        router.isFallback ? (
+          <Card
+            as={"div"}
+            position={"relative"}
+            display={"flex"}
+            justifyContent={"center"}
+            alignItems={"center"}
+            margin={`${STYLES.gap} 0 calc(${STYLES.gap} * 2)`}
+            overflow={"hidden"}
+            boxShadow={"none"}
+          >
+            <PostTitle headingProps={{ textAlign: "center" }}>
+              {post.title}
+            </PostTitle>
+          </Card>
+        ) : (
           <Box as={"article"} marginBottom={12}>
             <Head>
-              <title>
-                {post.title}
-              </title>
+              <title>{post.title}</title>
               <meta property="og:image" content={post.ogImage.url}/>
             </Head>
 
-            <PostHeader
-              post={post}
-              boxProps={{marginBottom:16}}
-            />
-
+            <PostHeader post={post} boxProps={{ marginBottom: 16 }}/>
             <PostBody content={post.content}/>
           </Box>
-      )
+        )
+      }
+    </Layout>
   )
 }

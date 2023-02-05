@@ -30,6 +30,7 @@ const SearchModal = ({
 }: Props) => {
 
   const fuse = useContext(SearchContext)
+  console.log('fuse in modal', fuse)
 
   return (
     <Box {...boxProps}>

@@ -1,7 +1,10 @@
-import { useEffect } from "react";
+import { useMemo } from "react";
 import { getAllPosts, getPagination, getSortedPosts, getTotalPageCount, getTotalPostCount } from "../../lib/api";
 import { Pagination } from "../../interfaces/pagination";
 import PostsPage from "../../components/post/posts-page";
+import { Posts } from "../../interfaces/post";
+import { setupFullTextSearch } from "../../lib/search";
+import Layout from "../../components/layouts/layout";
 
 
 export async function getStaticPaths() {
@@ -37,38 +40,43 @@ type Context = {
 
 
 export const getStaticProps = async ({params}: Context) => {
+  const allPosts = getAllPosts()
   const pagination: Pagination = getPagination({
     currentPageNumber: Number(params.page),
-    posts: getSortedPosts(getAllPosts()),
+    posts: getSortedPosts(allPosts),
     basePaths: '/pages',
   })
 
   return {
     props: {
-      pagination
+      pagination,
+      allPosts
     },
   }
 }
 
 type Props = {
   pagination: Pagination
+  allPosts: Posts
 }
 /**
  * This is the page that is rendered when the user visits the root of your application.
  */
-export default function Page({ pagination }: Props) {
-  useEffect(() => {
-    console.log('page pagination', pagination)
-  })
+export default function PaginatedPage({ pagination, allPosts }: Props) {
+  const fuse = useMemo(
+    () => setupFullTextSearch(allPosts),
+    [ allPosts ])
 
   return (
     // ページ固有のhead内容を設定したい時
     // <Head>
     //   <title>hskpg blog</title>
     // </Head>
-    <PostsPage
-      pagination={pagination}
-      boxProps={{minHeight: "inherit"}}
-    />
+    <Layout fuse={fuse}>
+      <PostsPage
+        pagination={pagination}
+        boxProps={{minHeight: "inherit"}}
+      />
+    </Layout>
   )
 }
