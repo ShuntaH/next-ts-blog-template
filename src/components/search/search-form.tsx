@@ -1,7 +1,8 @@
 import { Box, BoxProps, useDisclosure } from '@chakra-ui/react'
-import React from "react";
+import React, { useMemo } from "react";
 import SearchFormControl from "./search-form-control";
 import SearchModal from "./search-modal";
+import { SearchInputProvider } from "../../contexts/searchContexts";
 
 
 type Props = {
@@ -10,10 +11,13 @@ type Props = {
 
 const SearchForm = ({boxProps}: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const [inputValue, setInputValue] = React.useState('')
-  const isError = inputValue === ''
+  const [valueInput, setValueInput] = React.useState('')
   console.log(`isOpen ${isOpen}`)
   const modalRef = React.useRef(null)
+
+  const searchInputContextValue = useMemo(
+    () => valueInput,
+    [ valueInput ])
 
   const handleOnOpen = (e: React.MouseEvent<HTMLInputElement>): void => {
     // もし複数種類のイベントでこれが発火していたら、ここで type の判定をして
@@ -28,10 +32,13 @@ const SearchForm = ({boxProps}: Props) => {
   }
 
   return (
-    <Box {...boxProps}>
-      <SearchFormControl refOrFunc={handleOnOpen} />
-      <SearchModal onClose={onClose} isOpen={isOpen} modalRef={modalRef}/>
-    </Box>
+    <SearchInputProvider valueInput={searchInputContextValue}>
+      <Box {...boxProps}>
+        <SearchFormControl refOrFunc={handleOnOpen} />
+        <SearchModal onClose={onClose} isOpen={isOpen} modalRef={modalRef}/>
+      </Box>
+    </SearchInputProvider>
+
   );
 }
 
