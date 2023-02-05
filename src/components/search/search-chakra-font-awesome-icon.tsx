@@ -17,7 +17,6 @@ const SearchChakraFontAwesomeIcon = ({ refOrFunc }: Props) => {
       {
         onClick: refOrFunc,
         onInput: refOrFunc,
-        onChange: refOrFunc,
         onTouchStart: refOrFunc
       } : {}
 

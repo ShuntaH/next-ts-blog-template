@@ -11,17 +11,16 @@ type Props = {
 const SearchInput = ({ inputProps, refOrFunc }: Props) => {
   const isFunc = typeof refOrFunc === 'function'
   const modalRef = !isFunc ? refOrFunc : null
-
+  
   // イベントごとにモーダルを開く関数を割り振る
   const modalOpenEvents: SearchModalOpenEvents | { [key: string]: never } =
     isFunc ?
       {
         onClick: refOrFunc,
         onInput: refOrFunc,
-        onChange: refOrFunc,
         onTouchStart: refOrFunc
       } : {}
-  console.log('input ref', modalRef)
+
   return (
     <Input
       type='text'

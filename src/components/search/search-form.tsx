@@ -28,11 +28,14 @@ const SearchForm = ({boxProps}: Props) => {
   console.log(`isOpen ${isOpen}`)
   const modalRef = React.useRef(null)
 
-  const handleOnOpen = (e: React.SyntheticEvent) => {
+  const handleOnOpen = (e: React.MouseEvent<HTMLInputElement>) => {
     // もし複数種類のイベントでこれが発火していたら、ここで type の判定をして
     // どれかのイベントを止める
-    // console.log('event type', e.type)
-    // e.preventDefault()
+    if(e.type === 'input') {
+      // console.log('event type', e.type)
+      e.currentTarget.value = ''
+      e.preventDefault()
+    }
     onOpen()
   }
 
@@ -43,6 +46,7 @@ const SearchForm = ({boxProps}: Props) => {
         isOpen={isOpen}
         onClose={onClose}
         initialFocusRef={modalRef}
+        returnFocusOnClose={false}
       >
         <ModalOverlay />
         <ModalContent>
