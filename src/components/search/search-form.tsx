@@ -32,6 +32,7 @@ const SearchForm = ({boxProps}: Props) => {
     // もし複数種類のイベントでこれが発火していたら、ここで type の判定をして
     // どれかのイベントを止める
     if(e.type === 'input') {
+      // モーダルを開く入力欄では入力を認めない。
       // console.log('event type', e.type)
       e.currentTarget.value = ''
       e.preventDefault()
