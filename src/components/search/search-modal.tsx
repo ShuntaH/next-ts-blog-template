@@ -1,8 +1,6 @@
 import {
   Box,
   BoxProps,
-  Button,
-  Flex,
   Heading,
   Modal,
   ModalBody,
@@ -39,31 +37,23 @@ const SearchModal = ({
         returnFocusOnClose={false}
       >
         <ModalOverlay />
+
         <ModalContent>
           <ModalHeader>
-            <Flex>
-              <Heading as={'h3'} fontSize={"md"}>
-                Search results
-              </Heading>
-              <ModalCloseButton />
-            </Flex>
-
+            <SearchFormControl
+              formControlProps={{paddingY: 3, marginTop: 5}}
+              refOrFunc={modalRef}
+            />
+            <ModalCloseButton />
           </ModalHeader>
 
           <ModalBody>
-            <SearchFormControl
-              formControlProps={{paddingY: 3}}
-              refOrFunc={modalRef}
-            />
+              <Heading as={'h3'} fontSize={"md"} textAlign={"center"}>
+                Search results
+              </Heading>
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme='blue' mr={3} onClick={onClose}>
-              Close
-            </Button>
-            <Button variant='ghost'>
-              Secondary Action
-            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
