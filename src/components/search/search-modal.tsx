@@ -10,8 +10,9 @@ import {
   ModalHeader,
   ModalOverlay
 } from '@chakra-ui/react'
-import React from "react";
+import React, { useContext } from "react";
 import SearchFormControl from "./search-form-control";
+import { SearchContext } from "../../contexts/searchContext";
 
 
 type Props = {
@@ -27,6 +28,8 @@ const SearchModal = ({
   isOpen,
   modalRef
 }: Props) => {
+
+  const fuse = useContext(SearchContext)
 
   return (
     <Box {...boxProps}>

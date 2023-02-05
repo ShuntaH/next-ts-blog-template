@@ -15,7 +15,7 @@ const SearchForm = ({boxProps}: Props) => {
   console.log(`isOpen ${isOpen}`)
   const modalRef = React.useRef(null)
 
-  const handleOnOpen = (e: React.MouseEvent<HTMLInputElement>) => {
+  const handleOnOpen = (e: React.MouseEvent<HTMLInputElement>): void => {
     // もし複数種類のイベントでこれが発火していたら、ここで type の判定をして
     // どれかのイベントを止める
     if(e.type === 'input') {
