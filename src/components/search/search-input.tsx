@@ -25,12 +25,14 @@ const SearchInput = ({ inputProps, refOrFunc }: Props) => {
       } : {}
 
   const handleInput = (e: React.MouseEvent<HTMLInputElement>): void => {
-    console.log('is func', isFunc)
     if(isFunc) {
       e.preventDefault()
       return
     }
-    dispatch({valueInput: e.currentTarget.value, type: 'update'})
+    dispatch({
+      valueInput: e.currentTarget.value,
+      type: 'update'
+    })
   }
 
   return (

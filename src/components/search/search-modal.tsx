@@ -1,18 +1,29 @@
 import {
+  Badge,
   Box,
   BoxProps,
+  Card,
+  CardBody,
+  CardHeader,
   Heading,
+  Highlight,
+  HStack,
   Modal,
   ModalBody,
   ModalCloseButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
-  ModalOverlay
+  ModalOverlay,
+  Text,
+  VStack
 } from '@chakra-ui/react'
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import SearchFormControl from "./search-form-control";
 import { useFuse, useSearchInput } from "../../contexts/searchContexts";
+import Fuse from "fuse.js";
+import { FilteredPost } from "../../interfaces/post";
+import RangeTuple = Fuse.RangeTuple;
 
 
 type Props = {
@@ -29,10 +40,39 @@ const SearchModal = ({
   modalRef
 }: Props) => {
 
-  const fuse = useFuse()
-  console.log('fuse in modal', fuse)
-  const searchInputValue = useSearchInput()
-  console.log('search input context', searchInputValue)
+  const [ searchResultPosts, setSearchResultPosts ] = useState<Fuse.FuseResult<FilteredPost>[]>([])
+  const fuse = useFuse() as Fuse<FilteredPost>
+  const { valueInput, dispatch } = useSearchInput()
+
+  const handleSearch = useCallback(() => {
+    if (!valueInput) {
+      console.log('入力文字がありません')
+      return
+    }
+    const result = fuse.search(valueInput)
+    console.log('result', result)
+    setSearchResultPosts(result)
+  }, [ valueInput ])
+
+  type Range = [number, number]
+  const pickMatchString = (startToEnd: RangeTuple, value: string) => {
+    return value.slice(startToEnd[0], startToEnd[1])
+  }
+
+  const getHighlightQueries = (indices: RangeTuple[], value: string) => {
+    return indices.map((startToEnd) => {
+      return pickMatchString(startToEnd, value)
+    })
+  }
+
+  useEffect(
+    () => {
+      console.log('------handleSearch------')
+      handleSearch()
+      console.log('^^^^^^handleSearch^^^^^^')
+    },
+    [ handleSearch ]
+  )
 
   return (
     <Box {...boxProps}>
@@ -41,22 +81,75 @@ const SearchModal = ({
         onClose={onClose}
         initialFocusRef={modalRef}
         returnFocusOnClose={false}
+        scrollBehavior={"inside"}
       >
-        <ModalOverlay />
+        <ModalOverlay/>
 
         <ModalContent>
           <ModalHeader>
             <SearchFormControl
-              formControlProps={{paddingY: 3, marginTop: 5}}
+              formControlProps={{ marginTop: 6 }}
               refOrFunc={modalRef}
             />
-            <ModalCloseButton />
+            <ModalCloseButton/>
           </ModalHeader>
 
-          <ModalBody>
-              <Heading as={'h3'} fontSize={"md"} textAlign={"center"}>
-                Search results
-              </Heading>
+          <ModalBody paddingY={0}>
+            <VStack>
+              {
+                searchResultPosts.map((post, index) => {
+                  return (
+                    <Card key={index} width={"full"}>
+                      <CardHeader width={"full"} paddingX={1} paddingY={1}>
+                        <Heading
+                          as={'h4'}
+                          textAlign={"left"}
+                          fontWeight={"normal"}
+                          size='sm'
+                          color={"gray.200"}
+                          fontSize={"sm"}
+                        >
+                          {post.item.title}
+                        </Heading>
+                      </CardHeader>
+
+                      <CardBody
+                        width={"full"}
+                        paddingX={1}
+                        paddingY={1}
+                        fontSize={"xs"}
+                      >
+                        {
+                          post.matches!.map((match,index) => {
+                            return (
+                              <HStack key={index}>
+                                <Badge colorScheme={"green"} fontSize={"xs"}>
+                                  {match.key}
+                                </Badge>
+                                <Text>
+                                  <Highlight
+                                    query={
+                                      match.indices.map(
+                                        (range) => match.value!.slice(range[0], range[1] + 1)
+                                      )}
+                                    styles={{
+                                      py: '0',
+                                      bg: 'teal.100'
+                                    }}
+                                  >
+                                    {match.value!}
+                                  </Highlight>
+                                </Text>
+                              </HStack>
+                            )
+                          })
+                        }
+                      </CardBody>
+                    </Card>
+                  )
+                })}
+
+            </VStack>
           </ModalBody>
 
           <ModalFooter>

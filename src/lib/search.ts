@@ -30,9 +30,13 @@ export const setupFullTextSearch = (allPosts: Posts): Fuse<FilteredPost> => {
 
   // 全文検索のオプションを指定する
   const options = {
-    isCaseSensitive: true,
-    minMatchCharLength: 2,
-    findAllMatches: true,
+    isCaseSensitive: true, // 大文字・小文字を区別しない
+    minMatchCharLength: 2, // この文字数以上の時探す
+    findAllMatches: true, // 検索対象が見つかっても最後まで探す
+    includeScore: true, // 検索結果と検索クエリとの一致度のスコア
+    threshold: 0.3, // どれくらいの一致度か 0だと完全一致
+    includeMatches: true, // 一致した場所
+    maxPatternLength: 20, // これ以上の文字数は検索しない
     keys
   }
 
