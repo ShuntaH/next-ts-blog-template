@@ -6,7 +6,6 @@ import {
   CardBody,
   CardHeader,
   Heading,
-  Highlight,
   HStack,
   Modal,
   ModalBody,
@@ -15,7 +14,6 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  Text,
   VStack
 } from '@chakra-ui/react'
 import React, { useCallback, useEffect, useState } from "react";
@@ -23,7 +21,7 @@ import SearchFormControl from "./search-form-control";
 import { useFuse, useSearchInput } from "../../contexts/searchContexts";
 import Fuse from "fuse.js";
 import { FilteredPost } from "../../interfaces/post";
-import RangeTuple = Fuse.RangeTuple;
+import SearchModalContentBodyHighlight from "./search-modal-content-body-highlight";
 
 
 type Props = {
@@ -54,16 +52,6 @@ const SearchModal = ({
     setSearchResultPosts(result)
   }, [ valueInput ])
 
-  type Range = [number, number]
-  const pickMatchString = (startToEnd: RangeTuple, value: string) => {
-    return value.slice(startToEnd[0], startToEnd[1])
-  }
-
-  const getHighlightQueries = (indices: RangeTuple[], value: string) => {
-    return indices.map((startToEnd) => {
-      return pickMatchString(startToEnd, value)
-    })
-  }
 
   useEffect(
     () => {
@@ -120,26 +108,13 @@ const SearchModal = ({
                         fontSize={"xs"}
                       >
                         {
-                          post.matches!.map((match,index) => {
+                          post.matches!.map((match, index) => {
                             return (
                               <HStack key={index}>
                                 <Badge colorScheme={"green"} fontSize={"xs"}>
                                   {match.key}
                                 </Badge>
-                                <Text>
-                                  <Highlight
-                                    query={
-                                      match.indices.map(
-                                        (range) => match.value!.slice(range[0], range[1] + 1)
-                                      )}
-                                    styles={{
-                                      py: '0',
-                                      bg: 'teal.100'
-                                    }}
-                                  >
-                                    {match.value!}
-                                  </Highlight>
-                                </Text>
+                                <SearchModalContentBodyHighlight match={match}/>
                               </HStack>
                             )
                           })
