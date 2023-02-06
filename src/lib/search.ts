@@ -59,7 +59,7 @@ export const setupFullTextSearch = (allPosts: Posts): Fuse<FilteredPost> => {
     return filteredPost
   })
 
-  // todo contexts に入れる
+  // contexts に入れる
   return new Fuse(filteredPosts, options)
 }
 
