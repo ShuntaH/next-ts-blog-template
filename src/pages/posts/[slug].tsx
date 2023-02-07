@@ -116,8 +116,8 @@ export default function PostPage({ post, allPosts, preview }: Props) {
               <meta property="og:image" content={post.ogImage.url}/>
             </Head>
 
-            <PostHeader post={post} boxProps={{ marginBottom: 16 }}/>
-            <PostBody content={post.content}/>
+            <PostHeader post={post} boxProps={{ marginBottom: 16, width: "full" }}/>
+            <PostBody content={post.content} boxProps={{width: "full"}}/>
           </Box>
         )
       }

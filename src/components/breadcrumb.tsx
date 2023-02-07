@@ -22,12 +22,13 @@ const Breadcrumb = ({ breadcrumbProps, breadcrumbItems }: Props) => {
   return (
     <ChakraBreadcrumb
       spacing='8px'
+      fontSize={"xs"}
+      {...breadcrumbProps}
       separator={
         <ChakraFontAwesomeIcon
           icon={faChevronRight}
           color={STYLES.accentColor}
           size={"xs"}/>}
-      {...breadcrumbProps}
     >
       {
         breadcrumbItems.map((item, index) => {
@@ -38,11 +39,13 @@ const Breadcrumb = ({ breadcrumbProps, breadcrumbItems }: Props) => {
               isCurrentPage={isLastItem}
               isLastChild={isLastItem}
               key={index}
+              overflowX={isLastItem ? "hidden" : 'inherit'}
             >
               <BreadcrumbLink
                 isCurrentPage={isLastItem}
                 href={item.href}
-                overflow={"hidden"}
+                width={"full"}
+                overflowX={isLastItem ? "hidden" : 'inherit'}
                 textOverflow={"ellipsis"}
                 whiteSpace={"nowrap"}
                 textDecoration={"none"}

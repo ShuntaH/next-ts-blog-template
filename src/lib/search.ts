@@ -48,9 +48,8 @@ export const setupFullTextSearch = (allPosts: Posts): Fuse<FilteredPost> => {
 
     keys.forEach((key) => {
       if (key === "tags") {
-        // filteredPost[key] だと ts 型エラー
-        // todo 直したい
-        filteredPost.tags = post[key]
+        // filteredPost[key] だと 配列の参照渡しなので ts 型エラー
+        filteredPost.tags = [ ...post[key] ]
         return
       }
       filteredPost[key] = post[key]

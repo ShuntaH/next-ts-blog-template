@@ -5,8 +5,9 @@ import {
   Card,
   CardBody,
   CardHeader,
+  Divider,
+  Flex,
   Heading,
-  HStack,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -71,7 +72,7 @@ const SearchModal = ({
         returnFocusOnClose={false}
         scrollBehavior={"inside"}
       >
-        <ModalOverlay/>
+        <ModalOverlay width={"full"}/>
 
         <ModalContent>
           <ModalHeader>
@@ -110,15 +111,27 @@ const SearchModal = ({
                         {
                           post.matches!.map((match, index) => {
                             return (
-                              <HStack key={index}>
-                                <Badge colorScheme={"green"} fontSize={"xs"}>
-                                  {match.key}
-                                </Badge>
-                                <SearchModalContentBodyHighlight match={match}/>
-                              </HStack>
-                            )
-                          })
-                        }
+                              <>
+                                <Flex
+                                  key={index}
+                                  justifyContent={"space-between"}
+                                  alignItems={"start"}
+                                >
+                                  <Box width={'70px'} textAlign={"left"}>
+                                    <Badge colorScheme={"green"} fontSize={"xs"}>
+                                      {match.key}
+                                    </Badge>
+                                  </Box>
+                                  <SearchModalContentBodyHighlight match={match} textProps={{flexGrow: 1, paddingLeft: 2}}/>
+                                </Flex>
+                                {
+                                  // 最後には下線部をつけない
+                                  (post.matches!.length - 1) === index ?
+                                    null : <Divider />
+                                }
+                              </>
+                              )
+                          })}
                       </CardBody>
                     </Card>
                   )

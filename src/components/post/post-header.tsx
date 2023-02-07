@@ -20,9 +20,18 @@ const PostHeader = ({ post, boxProps }: Props) => {
 
   return (
     <Box as={"header"} {...boxProps}>
-      <Breadcrumb breadcrumbItems={breadCrumbItems} breadcrumbProps={{ marginBottom: 1 }}/>
-      <PostTitle headingProps={{ marginBottom: 2 }}>{post.title}</PostTitle>
-      <PostMeta time={post.time} date={post.date} author={post.author} />
+      <Breadcrumb
+        breadcrumbItems={breadCrumbItems}
+        breadcrumbProps={{ marginBottom: 1 }}
+      />
+      <PostTitle headingProps={{ marginBottom: 2 }}>
+        {post.title}
+      </PostTitle>
+      <PostMeta
+        time={post.time}
+        date={post.date}
+        author={post.author}
+      />
       <PostTags tags={post.tags} />
     </Box>
   )
