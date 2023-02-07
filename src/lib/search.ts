@@ -31,21 +31,22 @@ export const setupFullTextSearch = (allPosts: Posts): Fuse<FilteredPost> => {
   ]
 
   // 全文検索のオプションを指定する
-  const options = {
+  const options: Fuse.IFuseOptions<FilteredPost> = {
     isCaseSensitive: true, // 大文字・小文字を区別しない
     minMatchCharLength: 2, // この文字数以上の時探す
     findAllMatches: true, // 検索対象が見つかっても最後まで探す
     includeScore: true, // 検索結果と検索クエリとの一致度のスコア
     threshold: 0.2, // どれくらいの一致度か 0だと完全一致
     includeMatches: true, // 一致した場所
-    maxPatternLength: 20, // これ以上の文字数は検索しない
     keys
   }
 
-  const filteredPosts: FilteredPosts = allPosts.map((post) => {
-    // 記事データからそれぞれ、検索対象ではないデータ(slug や time など)
-    // は除いて、必要なデータのみから検索用途の記事データを作成する。
 
+  /**
+   * 記事データからそれぞれ、検索対象ではないデータ(slug や time など)
+   * は除いて、必要なデータのみから検索用途の記事データを作成する。
+   */
+  const filteredPosts: FilteredPosts = allPosts.map((post) => {
     const filteredPost: FilteredPost = getFilteredInitialPost()
 
     keys.forEach((key) => {
@@ -56,10 +57,7 @@ export const setupFullTextSearch = (allPosts: Posts): Fuse<FilteredPost> => {
       }
       filteredPost[key] = post[key]
     })
-
     return filteredPost
   })
-
-  // contexts に入れる
   return new Fuse(filteredPosts, options)
 }

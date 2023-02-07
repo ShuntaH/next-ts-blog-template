@@ -1,6 +1,13 @@
 import React, { EventHandler } from "react";
 
-export type SearchKeys = [ "title", "excerpt", "content", "tags" ]
+
+/**
+ * ポストの中から全文検索の対象となるデータの種類
+ */
+export type SearchKeys = [
+  "title", "excerpt", "content", "tags"
+]
+
 
 /**
  * モーダルを発火させるファンクションが渡される
@@ -10,6 +17,7 @@ export type SearchModalOpenEvents = {
   onTouchStart: EventHandler<any>
   onClick: EventHandler<any>
 }
+
 
 /**
  * 検索に使われる入力欄は２箇所ある。
