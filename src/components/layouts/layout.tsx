@@ -26,11 +26,13 @@ const Layout = ({ preview, fuse, children }: Props) => {
           <Box
             as={"section"}
             position={"relative"}
+            display={"block"}
             maxWidth={STYLES.contentMaxWidth}
             minHeight={`calc(100vh - ${STYLES.headerHeight} - ${STYLES.footerHeight})`}
-            margin={"auto"}
+            marginX={"auto"}
+            marginBottom={12}
+            marginTop={24}
             padding={`${STYLES.gap}`}
-            display={"block"}
           >
             {children}
           </Box>

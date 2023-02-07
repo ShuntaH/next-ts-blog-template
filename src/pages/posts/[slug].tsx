@@ -110,7 +110,7 @@ export default function PostPage({ post, allPosts, preview }: Props) {
             </PostTitle>
           </Card>
         ) : (
-          <Box as={"article"} marginBottom={12} marginTop={24}>
+          <Box as={"article"}>
             <Head>
               <title>{post.title}</title>
               <meta property="og:image" content={post.ogImage.url}/>

@@ -1,5 +1,4 @@
 import { getAllPosts, getPagination, getSortedPosts } from "../lib/api";
-import IntroCard from "../components/intro-card";
 import { Posts } from "../interfaces/post";
 import PostsPage from "../components/post/posts-page";
 import { Pagination } from "../interfaces/pagination";
@@ -43,7 +42,7 @@ export default function Index({ pagination, allPosts }: Props) {
     //   <title>hskpg blog</title>
     // </Head>
     <Layout fuse={fuse}>
-      <IntroCard/>
+      {/*<IntroCard/>*/}
       <PostsPage pagination={pagination}/>
     </Layout>
   )
