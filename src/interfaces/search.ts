@@ -1,5 +1,7 @@
 import React, { EventHandler } from "react";
 
+export type SearchKeys = [ "title", "excerpt", "content", "tags" ]
+
 /**
  * モーダルを発火させるファンクションが渡される
  * イベント種類の一覧

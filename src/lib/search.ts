@@ -1,7 +1,7 @@
 import Fuse from "fuse.js";
-import { FilteredPost, FilteredPosts, Post, Posts } from "../interfaces/post";
+import { FilteredPost, FilteredPosts, Posts } from "../interfaces/post";
+import { SearchKeys } from "../interfaces/search";
 
-type Keys = [ "title", "excerpt", "content", "tags" ]
 
 export const getFilteredInitialPost = (): FilteredPost => {
   // 新規オブジェクトを返すよう関数にする
@@ -12,6 +12,8 @@ export const getFilteredInitialPost = (): FilteredPost => {
     tags: []
   }
 }
+
+
 /**
  * 取得した記事情報と検索オプションを Fuse クラスに渡してインスタン化したものを返す。
  * 記事取得は fs の実行環境が node のため、サーバーサイドでするのに注意する。
@@ -21,7 +23,7 @@ export const getFilteredInitialPost = (): FilteredPost => {
  */
 export const setupFullTextSearch = (allPosts: Posts): Fuse<FilteredPost> => {
   // 記事データの中で検索対象のデータを指定する
-  const keys: Keys = [
+  const keys: SearchKeys = [
     "title",
     "excerpt",
     "content",
@@ -61,13 +63,3 @@ export const setupFullTextSearch = (allPosts: Posts): Fuse<FilteredPost> => {
   // contexts に入れる
   return new Fuse(filteredPosts, options)
 }
-
-/**
- * 検索を実際にして結果を返す。
- * @param fuse 検索機能のセットアップが終わっているインスタンス
- * @param text 検索したい文字列
- */
-export const fullTextSearch = (
-  fuse: Fuse<Post>,
-  text: string = ''
-) => fuse.search(text)
