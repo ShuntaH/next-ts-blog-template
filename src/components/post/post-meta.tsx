@@ -1,5 +1,5 @@
 import React from "react";
-import { Avatar, Box, Flex } from "@chakra-ui/react";
+import { Avatar, Box, Flex, FlexProps } from "@chakra-ui/react";
 import DateFormatter from "../date-formatter";
 import { Author } from "../../interfaces/author";
 
@@ -7,14 +7,17 @@ type Props = {
   time: string
   date: string
   author: Author
+  flexProps?: FlexProps
 }
 
-const PostInfo = ({ time, date, author }: Props) => (
+const PostMeta = ({ time, date, author, flexProps }: Props) => (
   <Flex
+    {...flexProps}
     flexWrap={"wrap"}
     alignItems={"center"}
     flexDirection={"row"}
     marginBottom={2}
+    fontSize={"sm"}
   >
     <Box as={"span"}>{time}</Box>
     <Box>・</Box>
@@ -29,4 +32,4 @@ const PostInfo = ({ time, date, author }: Props) => (
   </Flex>
 )
 
-export default PostInfo
+export default PostMeta

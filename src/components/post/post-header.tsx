@@ -22,7 +22,7 @@ const PostHeader = ({ post, boxProps }: Props) => {
     <Box as={"header"} {...boxProps}>
       <Breadcrumb
         breadcrumbItems={breadCrumbItems}
-        breadcrumbProps={{ marginBottom: 1 }}
+        breadcrumbProps={{ marginBottom: 1, fontSize: "sm" }}
       />
       <PostTitle headingProps={{ marginBottom: 2 }}>
         {post.title}
@@ -31,6 +31,7 @@ const PostHeader = ({ post, boxProps }: Props) => {
         time={post.time}
         date={post.date}
         author={post.author}
+        flexProps={{marginBottom: 1}}
       />
       <PostTags tags={post.tags} />
     </Box>

@@ -21,8 +21,7 @@ const Breadcrumb = ({ breadcrumbProps, breadcrumbItems }: Props) => {
 
   return (
     <ChakraBreadcrumb
-      spacing='8px'
-      fontSize={"xs"}
+      spacing='6px'
       {...breadcrumbProps}
       separator={
         <ChakraFontAwesomeIcon

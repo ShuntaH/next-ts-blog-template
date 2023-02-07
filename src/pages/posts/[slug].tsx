@@ -110,13 +110,16 @@ export default function PostPage({ post, allPosts, preview }: Props) {
             </PostTitle>
           </Card>
         ) : (
-          <Box as={"article"} marginBottom={12}>
+          <Box as={"article"} marginBottom={12} marginTop={24}>
             <Head>
               <title>{post.title}</title>
               <meta property="og:image" content={post.ogImage.url}/>
             </Head>
 
-            <PostHeader post={post} boxProps={{ marginBottom: 16, width: "full" }}/>
+            <PostHeader
+              post={post}
+              boxProps={{ marginBottom: 20, width: "full" }}
+            />
             <PostBody content={post.content} boxProps={{width: "full"}}/>
           </Box>
         )
