@@ -4,8 +4,10 @@ import {
   BoxProps,
   Card,
   CardBody,
+  CardHeader,
   Divider,
   Flex,
+  Heading,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -45,13 +47,11 @@ const SearchModal = ({
   const { valueInput, dispatch } = useSearchInput()
 
   const handleSearch = useCallback(() => {
-    console.log('input', valueInput)
     if(valueInput.length < SEARCH_MIN_CHARS) {
       setSearchResultPosts([])
       return
     }
     const result = fuse.search(valueInput)
-    console.log('result', result)
     setSearchResultPosts(result)
   }, [ valueInput ])
 
@@ -65,9 +65,8 @@ const SearchModal = ({
 
   useEffect(
     () => {
-      console.log('------handleSearch------')
       handleSearch()
-      console.log('^^^^^^handleSearch^^^^^^')
+      return console.log('result', searchResultPosts)
     },
     [ handleSearch ]
   )
@@ -106,14 +105,49 @@ const SearchModal = ({
                       backgroundColor={"blackAlpha.300"}
                       color={"gray.300"}
                     >
+                      <CardHeader
+                        width={"full"}
+                        paddingX={1}
+                        paddingTop={1}
+                        paddingBottom={0}
+                      >
+                        <Flex
+                          justifyContent={"space-between"}
+                          alignItems={"center"}
+                        >
+                          <Flex width={'70px'} alignItems={"center"}>
+                            <Badge
+                              colorScheme={handleBadgeColor('title')}
+                              fontSize={"xs"}>
+                              title
+                            </Badge>
+                          </Flex>
+                          <Heading
+                            as={'h4'}
+                            fontSize={"xs"}
+                            fontWeight={"normal"}
+                            flexGrow={1}
+                            textAlign={"left"}
+                            paddingLeft={2}
+                          >
+                            {post.item.title}
+                          </Heading>
+                        </Flex>
+                      </CardHeader>
+
                       <CardBody
                         width={"full"}
                         paddingX={1}
-                        paddingY={1}
+                        paddingBottom={1}
+                        paddingTop={0}
                         fontSize={"xs"}
                       >
                         {
                           post.matches!.map((match, index) => {
+                            if(match.key === 'title') {
+                              // タイトルは必ず表示するのでループでは cardHeader で表示済みとしてスキップ
+                              return null
+                            }
                             return <Box key={index}>
                               <Flex
                                 justifyContent={"space-between"}
