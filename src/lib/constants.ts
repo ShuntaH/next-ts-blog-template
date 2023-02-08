@@ -5,6 +5,7 @@ export const HOME_OG_IMAGE_URL =
 export const BLOG_NAME = 'hskpg blog'
 export const BLOG_DISCRIPTION = "使用したことがある、または興味のある技術や自分の思考のメモをブログとして書いています"
 export const POST_COUNT_PER_PAGE = 4
+export const SEARCH_MIN_CHARS = 2
 export const SEARCH_CHAR_DISTANCE_IN_VALUE = 15 // 全文検索対象の単語が複数近く見つかった時、何文字の間隔まで1hitとみなすか
 export const SEARCH_CHAR_NUMBER_AROUND_IN_VALUE = 20 // 全文検索対象の単語の前後の何文字を表示するか
 

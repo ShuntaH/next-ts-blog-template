@@ -23,7 +23,7 @@ export const getFilteredInitialPost = (): FilteredPost => {
  */
 export const setupFullTextSearch = (allPosts: Posts): Fuse<FilteredPost> => {
   // 記事データの中で検索対象のデータを指定する
-  const keys: SearchKeys = [
+  const keys: SearchKeys[] = [
     "title",
     "excerpt",
     "content",
@@ -33,7 +33,7 @@ export const setupFullTextSearch = (allPosts: Posts): Fuse<FilteredPost> => {
   // 全文検索のオプションを指定する
   const options: Fuse.IFuseOptions<FilteredPost> = {
     isCaseSensitive: true, // 大文字・小文字を区別しない
-    minMatchCharLength: 2, // この文字数以上の時探す
+    minMatchCharLength: 2, // ヒット文字数がこれ以上。入力文字数ではない。2の時、1文字入力でも曖昧検索の結果2文字がヒットすれば出る
     findAllMatches: true, // 検索対象が見つかっても最後まで探す
     includeScore: true, // 検索結果と検索クエリとの一致度のスコア
     threshold: 0.2, // どれくらいの一致度か 0だと完全一致

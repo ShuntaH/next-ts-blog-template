@@ -22,6 +22,7 @@ import Fuse from "fuse.js";
 import { FilteredPost } from "../../interfaces/post";
 import SearchModalContentBodyHighlight from "./search-modal-content-body-highlight";
 import { BadgeColors, BadgeColorValues, SearchKeys } from "../../interfaces/search";
+import { SEARCH_MIN_CHARS } from "../../lib/constants";
 
 
 type Props = {
@@ -44,8 +45,9 @@ const SearchModal = ({
   const { valueInput, dispatch } = useSearchInput()
 
   const handleSearch = useCallback(() => {
-    if (!valueInput) {
-      console.log('入力文字がありません')
+    console.log('input', valueInput)
+    if(valueInput.length < SEARCH_MIN_CHARS) {
+      setSearchResultPosts([])
       return
     }
     const result = fuse.search(valueInput)
@@ -98,6 +100,7 @@ const SearchModal = ({
                   return (
                     <Card
                       key={index}
+                      tabIndex={index}
                       width={"full"}
                       variant={"elevated"}
                       backgroundColor={"blackAlpha.300"}
