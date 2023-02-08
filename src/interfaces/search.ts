@@ -4,10 +4,14 @@ import React, { EventHandler } from "react";
 /**
  * ポストの中から全文検索の対象となるデータの種類
  */
-export type SearchKeys = [
-  "title", "excerpt", "content", "tags"
-]
-
+export const BadgeColors = {
+  title: "cyan",
+  excerpt: 'green',
+  content: 'yellow',
+  tags: 'pink'
+}
+export type SearchKeys = keyof typeof BadgeColors
+export type BadgeColorValues = typeof BadgeColors[keyof typeof BadgeColors]
 
 /**
  * モーダルを発火させるファンクションが渡される

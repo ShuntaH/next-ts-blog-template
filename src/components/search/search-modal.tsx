@@ -4,10 +4,8 @@ import {
   BoxProps,
   Card,
   CardBody,
-  CardHeader,
   Divider,
   Flex,
-  Heading,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -23,6 +21,7 @@ import { useFuse, useSearchInput } from "../../contexts/searchContexts";
 import Fuse from "fuse.js";
 import { FilteredPost } from "../../interfaces/post";
 import SearchModalContentBodyHighlight from "./search-modal-content-body-highlight";
+import { BadgeColors, BadgeColorValues, SearchKeys } from "../../interfaces/search";
 
 
 type Props = {
@@ -39,6 +38,7 @@ const SearchModal = ({
   modalRef
 }: Props) => {
 
+
   const [ searchResultPosts, setSearchResultPosts ] = useState<Fuse.FuseResult<FilteredPost>[]>([])
   const fuse = useFuse() as Fuse<FilteredPost>
   const { valueInput, dispatch } = useSearchInput()
@@ -53,6 +53,13 @@ const SearchModal = ({
     setSearchResultPosts(result)
   }, [ valueInput ])
 
+  const handleBadgeColor = useCallback((key: string): BadgeColorValues => {
+    if (Object.keys(BadgeColors).includes(key)) {
+      const k = key as SearchKeys
+      return BadgeColors[k]
+    }
+    return BadgeColors.title
+  }, [ searchResultPosts ])
 
   useEffect(
     () => {
@@ -71,13 +78,14 @@ const SearchModal = ({
         initialFocusRef={modalRef}
         returnFocusOnClose={false}
         scrollBehavior={"inside"}
+        colorScheme={"red"}
       >
         <ModalOverlay width={"full"}/>
 
         <ModalContent>
           <ModalHeader>
             <SearchFormControl
-              formControlProps={{ marginTop: 6 }}
+              formControlProps={{ marginTop: 7 }}
               refOrFunc={modalRef}
             />
             <ModalCloseButton/>
@@ -88,20 +96,13 @@ const SearchModal = ({
               {
                 searchResultPosts.map((post, index) => {
                   return (
-                    <Card key={index} width={"full"}>
-                      <CardHeader width={"full"} paddingX={1} paddingY={1}>
-                        <Heading
-                          as={'h4'}
-                          textAlign={"left"}
-                          fontWeight={"normal"}
-                          size='sm'
-                          color={"gray.200"}
-                          fontSize={"sm"}
-                        >
-                          {post.item.title}
-                        </Heading>
-                      </CardHeader>
-
+                    <Card
+                      key={index}
+                      width={"full"}
+                      variant={"elevated"}
+                      backgroundColor={"blackAlpha.300"}
+                      color={"gray.300"}
+                    >
                       <CardBody
                         width={"full"}
                         paddingX={1}
@@ -110,27 +111,30 @@ const SearchModal = ({
                       >
                         {
                           post.matches!.map((match, index) => {
-                            return (
-                              <>
-                                <Flex
-                                  key={index}
-                                  justifyContent={"space-between"}
-                                  alignItems={"start"}
-                                >
-                                  <Box width={'70px'} textAlign={"left"}>
-                                    <Badge colorScheme={"green"} fontSize={"xs"}>
-                                      {match.key}
-                                    </Badge>
-                                  </Box>
-                                  <SearchModalContentBodyHighlight match={match} textProps={{flexGrow: 1, paddingLeft: 2}}/>
+                            return <Box key={index}>
+                              <Flex
+                                justifyContent={"space-between"}
+                                alignItems={"start"}
+                                paddingY={1}
+                              >
+                                <Flex width={'70px'} alignItems={"center"}>
+                                  <Badge
+                                    colorScheme={handleBadgeColor(match.key!)}
+                                    fontSize={"xs"}>
+                                    {match.key}
+                                  </Badge>
                                 </Flex>
-                                {
-                                  // 最後には下線部をつけない
-                                  (post.matches!.length - 1) === index ?
-                                    null : <Divider />
-                                }
-                              </>
-                              )
+                                <SearchModalContentBodyHighlight
+                                  match={match}
+                                  textProps={{ flexGrow: 1, paddingLeft: 2 }}
+                                />
+                              </Flex>
+                              {
+                                // 最後には下線部をつけない
+                                (post.matches!.length - 1) === index ?
+                                  null : <Divider borderColor={"gray.600"}/>
+                              }
+                            </Box>
                           })}
                       </CardBody>
                     </Card>

@@ -1,5 +1,5 @@
 import { Highlight, Text, TextProps } from '@chakra-ui/react'
-import React from "react";
+import React, { useCallback } from "react";
 import Fuse from "fuse.js";
 import { SEARCH_CHAR_DISTANCE_IN_VALUE, SEARCH_CHAR_NUMBER_AROUND_IN_VALUE } from "../../lib/constants";
 
@@ -17,13 +17,23 @@ const SearchModalContentBodyHighlight = ({ match, textProps }: Props) => {
    * 検索される文字列の中でハイライトを当てるべき文字列のクエリとなる。
    * @param match
    */
-  const getHighlightQueries = (match: Fuse.FuseResultMatch) => {
+  const getHighlightQueries = useCallback((match: Fuse.FuseResultMatch) => {
     return match.indices.map(
       (range) => match.value!.slice(range[0], range[1] + 1)
     )
-  }
+  }, [match])
 
-  const getCharsWithAroundHighlight = (match: Fuse.FuseResultMatch): string => {
+  /**
+   * 整形された表示する検索結果の文字列を作成する。
+   * 検索対象の文章を検索結果として表示すると長すぎるので、
+   * ハイライトが当たるマッチした文字列の前後を長めにとった文字列の
+   * 配列を作成して、それを省略記号でジョインする。ヒットした文字列の前後を長めにとった
+   * 文字列以外の文字列が取り除かれる。
+   * またマッチ文字列が近くにあった場合は最初のヒットした文字列の前と
+   * 最後にヒットした文字列の後を長めにとった文字列がジョインされる。
+   * @param match
+   */
+  const getCharsAroundHighlight = useCallback((match: Fuse.FuseResultMatch): string => {
     const valueLength = match.value!.length
     let shouldExclude: number[] = []
     let prevStart: number = 0
@@ -50,29 +60,19 @@ const SearchModalContentBodyHighlight = ({ match, textProps }: Props) => {
           start = prevStart
           shouldExclude = [ ...shouldExclude, index - 1 ]
         }
-        console.log('prev start', prevStart)
-        console.log('prev end', prevEnd)
-        console.log('start', start)
-        console.log('end', end)
         prevStart = start
         prevEnd = end
         return match.value!.substring(start, end)
-      }
-    )
+      })
 
-    console.log('parts', parts)
     const cleanParts = parts.filter((part, index) => {
       if (!shouldExclude.includes(index)) {
         return part
       }
     })
-
-    console.log('clean parts', cleanParts)
     // マッチした文字列を含む文字列を連結して、検索結果として表示する文字列を作成する。
-    const joined = cleanParts.join('.........')
-    console.log('join', joined)
-    return joined
-  }
+    return cleanParts.join('.........')
+  }, [match])
 
   return (
     <Text {...textProps}>
@@ -80,7 +80,7 @@ const SearchModalContentBodyHighlight = ({ match, textProps }: Props) => {
         query={getHighlightQueries(match)}
         styles={{ py: '0', bg: 'teal.100' }}
       >
-        {getCharsWithAroundHighlight(match)}
+        {getCharsAroundHighlight(match)}
       </Highlight>
     </Text>
   );

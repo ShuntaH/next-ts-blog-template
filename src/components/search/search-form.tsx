@@ -30,7 +30,11 @@ const SearchForm = ({boxProps}: Props) => {
     <SearchInputProvider>
       <Box {...boxProps}>
         <SearchFormControl refOrFunc={handleOnOpen} />
-        <SearchModal onClose={onClose} isOpen={isOpen} modalRef={modalRef}/>
+        <SearchModal
+          onClose={onClose}
+          isOpen={isOpen}
+          modalRef={modalRef}
+        />
       </Box>
     </SearchInputProvider>
 
