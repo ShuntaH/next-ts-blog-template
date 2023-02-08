@@ -21,7 +21,6 @@ const SearchInput = ({ inputProps, refOrFunc }: Props) => {
     isFunc ?
       {
         onClick: refOrFunc,
-        onTouchStart: refOrFunc
       } : {}
 
   const handleInput = (e: React.MouseEvent<HTMLInputElement>): void => {

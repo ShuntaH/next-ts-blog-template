@@ -16,7 +16,6 @@ const SearchChakraFontAwesomeIcon = ({ refOrFunc }: Props) => {
     isFunc ?
       {
         onClick: refOrFunc,
-        onTouchStart: refOrFunc
       } : {}
 
   // アイコンにフォーカスを当てないので、 ref は不要

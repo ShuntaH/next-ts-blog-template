@@ -25,6 +25,7 @@ import { FilteredPost } from "../../interfaces/post";
 import SearchModalContentBodyHighlight from "./search-modal-content-body-highlight";
 import { BadgeColors, BadgeColorValues, SearchKeys } from "../../interfaces/search";
 import { SEARCH_MIN_CHARS } from "../../lib/constants";
+import { useRouter } from "next/router";
 
 
 type Props = {
@@ -43,8 +44,17 @@ const SearchModal = ({
 
 
   const [ searchResultPosts, setSearchResultPosts ] = useState<Fuse.FuseResult<FilteredPost>[]>([])
+  const router = useRouter()
   const fuse = useFuse() as Fuse<FilteredPost>
   const { valueInput, dispatch } = useSearchInput()
+
+  const handleNavigation = async (
+    e: React.KeyboardEvent<HTMLDivElement> | React.MouseEvent<HTMLDivElement>,
+    slug: string
+  ): Promise<void> => {
+    await router.push(`/posts/${slug}`);
+    onClose()
+  }
 
   const handleSearch = useCallback(() => {
     if(valueInput.length < SEARCH_MIN_CHARS) {
@@ -68,7 +78,7 @@ const SearchModal = ({
       handleSearch()
       return console.log('result', searchResultPosts)
     },
-    [ handleSearch ]
+    [ handleSearch,  ]
   )
 
   return (
@@ -79,7 +89,6 @@ const SearchModal = ({
         initialFocusRef={modalRef}
         returnFocusOnClose={false}
         scrollBehavior={"inside"}
-        colorScheme={"red"}
       >
         <ModalOverlay width={"full"}/>
 
@@ -89,7 +98,7 @@ const SearchModal = ({
               formControlProps={{ marginTop: 7 }}
               refOrFunc={modalRef}
             />
-            <ModalCloseButton/>
+            <ModalCloseButton tabIndex={-1}/>
           </ModalHeader>
 
           <ModalBody paddingY={0}>
@@ -98,12 +107,17 @@ const SearchModal = ({
                 searchResultPosts.map((post, index) => {
                   return (
                     <Card
+                      onClick={(e) => handleNavigation(e, post.item.slug)}
+                      onKeyPress={(e) => handleNavigation(e, post.item.slug)}
                       key={index}
                       tabIndex={index}
                       width={"full"}
                       variant={"elevated"}
                       backgroundColor={"blackAlpha.300"}
                       color={"gray.300"}
+                      _focus={{
+                        border: 'solid 1px var(--chakra-colors-purple-200)'
+                    }}
                     >
                       <CardHeader
                         width={"full"}
@@ -144,8 +158,9 @@ const SearchModal = ({
                       >
                         {
                           post.matches!.map((match, index) => {
-                            if(match.key === 'title') {
+                            if(['title', 'slug'].includes(match.key!)) {
                               // タイトルは必ず表示するのでループでは cardHeader で表示済みとしてスキップ
+                              // slug は その記事に飛ぶために追加している。検索結果に表示する必要はない。
                               return null
                             }
                             return <Box key={index}>

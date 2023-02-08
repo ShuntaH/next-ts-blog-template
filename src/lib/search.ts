@@ -9,6 +9,7 @@ export const getFilteredInitialPost = (): FilteredPost => {
     title: '',
     excerpt: '',
     content: '',
+    slug: '',
     tags: []
   }
 }
@@ -27,7 +28,8 @@ export const setupFullTextSearch = (allPosts: Posts): Fuse<FilteredPost> => {
     "title",
     "excerpt",
     "content",
-    "tags"
+    "tags",
+    "slug"
   ]
 
   // 全文検索のオプションを指定する

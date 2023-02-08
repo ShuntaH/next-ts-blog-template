@@ -8,7 +8,8 @@ export const BadgeColors = {
   title: "cyan",
   excerpt: 'green',
   content: 'yellow',
-  tags: 'pink'
+  tags: 'pink',
+  slug: 'gray'
 }
 export type SearchKeys = keyof typeof BadgeColors
 export type BadgeColorValues = typeof BadgeColors[keyof typeof BadgeColors]
@@ -16,9 +17,10 @@ export type BadgeColorValues = typeof BadgeColors[keyof typeof BadgeColors]
 /**
  * モーダルを発火させるファンクションが渡される
  * イベント種類の一覧
+ *
+ * onClick はスマホのタップでも発火する
  */
 export type SearchModalOpenEvents = {
-  onTouchStart: EventHandler<any>
   onClick: EventHandler<any>
 }
 
