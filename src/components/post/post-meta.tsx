@@ -1,7 +1,8 @@
 import React from "react";
-import { Avatar, Box, Flex, FlexProps } from "@chakra-ui/react";
+import { Flex, FlexProps } from "@chakra-ui/react";
 import DateFormatter from "../date-formatter";
 import { Author } from "../../interfaces/author";
+import TextSpan from "../foundations/text-span";
 
 type Props = {
   time: string
@@ -10,7 +11,7 @@ type Props = {
   flexProps?: FlexProps
 }
 
-const PostMeta = ({ time, date, author, flexProps }: Props) => (
+const PostMeta = ({ time, date, flexProps }: Props) => (
   <Flex
     {...flexProps}
     flexWrap={"wrap"}
@@ -19,16 +20,11 @@ const PostMeta = ({ time, date, author, flexProps }: Props) => (
     marginBottom={2}
     fontSize={"sm"}
   >
-    <Box as={"span"}>{time}</Box>
-    <Box>・</Box>
-    <Box as={"span"}><DateFormatter dateString={date}/></Box>
-    <Avatar
-      marginLeft={2}
-      name={author.name}
-      src={author.picture}
-      size='2xs'
-      loading={"lazy"}
-    />
+    <TextSpan>{time}</TextSpan>
+    <TextSpan>・</TextSpan>
+    <TextSpan>
+      <DateFormatter dateString={date}/>
+    </TextSpan>
   </Flex>
 )
 
