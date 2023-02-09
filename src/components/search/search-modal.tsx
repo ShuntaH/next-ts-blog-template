@@ -57,6 +57,7 @@ const SearchModal = ({
   }
 
   const handleSearch = useCallback(() => {
+    console.log('value input', valueInput)
     if(valueInput.length < SEARCH_MIN_CHARS) {
       setSearchResultPosts([])
       return
@@ -78,7 +79,7 @@ const SearchModal = ({
       handleSearch()
       return console.log('result', searchResultPosts)
     },
-    [ handleSearch,  ]
+    [ handleSearch ]
   )
 
   return (
