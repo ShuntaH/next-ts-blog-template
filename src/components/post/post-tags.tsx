@@ -14,7 +14,7 @@ const PostTags = ({ tags, stackProps }: Props) => (
         <Tag
           size={"sm"}
           key={index}
-          variant='outline'
+          variant='subtle'
           colorScheme='purple'
         >
           <TagLabel>{tag}</TagLabel>

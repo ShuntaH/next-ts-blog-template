@@ -24,7 +24,7 @@ import Fuse from "fuse.js";
 import { FilteredPost } from "../../interfaces/post";
 import SearchModalContentBodyHighlight from "./search-modal-content-body-highlight";
 import { BadgeColors, BadgeColorValues, SearchKeys } from "../../interfaces/search";
-import { SEARCH_MIN_CHARS } from "../../lib/constants";
+import { SEARCH_MIN_CHARS, STYLES } from "../../lib/constants";
 import { useRouter } from "next/router";
 
 
@@ -115,8 +115,8 @@ const SearchModal = ({
                       variant={"elevated"}
                       backgroundColor={"blackAlpha.300"}
                       color={"gray.300"}
-                      _focus={{
-                        border: 'solid 1px var(--chakra-colors-purple-200)'
+                      _focusVisible={{
+                        outlineColor: STYLES.accentColorLighter
                     }}
                     >
                       <CardHeader
