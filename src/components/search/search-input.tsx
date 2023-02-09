@@ -10,6 +10,13 @@ type Props = {
   refOrFunc: SearchModalHook
 }
 
+/**
+ * ヘッダーの検索モーダルを開く input と 検索モーダルで実際に入力できる input の 2通りがある。
+ * モーダルを開く関数が渡ってくれば前者で、 ref だったら後者。
+ * @param inputProps
+ * @param refOrFunc
+ * @constructor
+ */
 const SearchInput = ({ inputProps, refOrFunc }: Props) => {
   const isFunc = typeof refOrFunc === 'function'
   const modalRef = !isFunc ? refOrFunc : null
@@ -23,6 +30,10 @@ const SearchInput = ({ inputProps, refOrFunc }: Props) => {
         onClick: refOrFunc,
       } : {}
 
+  /**
+   * モーダルを発火する input ではなく、モーダル内の input の時、dispatch する。
+   * @param e
+   */
   const handleInput = (e: React.MouseEvent<HTMLInputElement>): void => {
     if(isFunc) {
       e.preventDefault()

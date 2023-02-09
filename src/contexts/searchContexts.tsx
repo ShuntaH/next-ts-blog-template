@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useMemo, useReducer } from 'react';
+import React, { createContext, useContext, useReducer } from 'react';
 import Fuse from "fuse.js";
 import { FilteredPost } from "../interfaces/post";
 
@@ -69,14 +69,10 @@ export const SearchInputProvider = ({ children }: SearchInputProviderProps) => {
     initialValueInput
   )
 
-  const valueInputMemo = useMemo(
-    () =>  valueInput,
-    [valueInput])
-
   return (
     <SearchInputContext.Provider
       value={{
-        valueInput: valueInputMemo,
+        valueInput: valueInput,
         dispatch
     }}>
       {children}

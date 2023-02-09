@@ -41,12 +41,10 @@ const SearchModal = ({
   isOpen,
   modalRef
 }: Props) => {
-
-
   const [ searchResultPosts, setSearchResultPosts ] = useState<Fuse.FuseResult<FilteredPost>[]>([])
+  const { valueInput, dispatch } = useSearchInput()
   const router = useRouter()
   const fuse = useFuse() as Fuse<FilteredPost>
-  const { valueInput, dispatch } = useSearchInput()
 
   const handleNavigation = async (
     e: React.KeyboardEvent<HTMLDivElement> | React.MouseEvent<HTMLDivElement>,
@@ -56,9 +54,12 @@ const SearchModal = ({
     onClose()
   }
 
+
+  /**
+   * 入力値から検索して最新の検索結果に更新する
+   */
   const handleSearch = useCallback(() => {
-    console.log('value input', valueInput)
-    if(valueInput.length < SEARCH_MIN_CHARS) {
+    if (valueInput.length < SEARCH_MIN_CHARS) {
       setSearchResultPosts([])
       return
     }
@@ -66,6 +67,10 @@ const SearchModal = ({
     setSearchResultPosts(result)
   }, [ valueInput ])
 
+
+  /**
+   * マッチした文字列を含む値の key に応じてその key のバッチに色をつける
+   */
   const handleBadgeColor = useCallback((key: string): BadgeColorValues => {
     if (Object.keys(BadgeColors).includes(key)) {
       const k = key as SearchKeys
@@ -76,10 +81,12 @@ const SearchModal = ({
 
   useEffect(
     () => {
+      // 入力文字数に関わらず更新する。制限すると入力文字数が検索を開始する文字数より少なくても
+      // 前の検索結果を残してしまう。
       handleSearch()
       return console.log('result', searchResultPosts)
     },
-    [ handleSearch ]
+    [ valueInput ]
   )
 
   return (
@@ -118,7 +125,7 @@ const SearchModal = ({
                       color={"gray.300"}
                       _focusVisible={{
                         outlineColor: STYLES.accentColorLighter
-                    }}
+                      }}
                     >
                       <CardHeader
                         width={"full"}
@@ -159,7 +166,7 @@ const SearchModal = ({
                       >
                         {
                           post.matches!.map((match, index) => {
-                            if(['title', 'slug'].includes(match.key!)) {
+                            if ([ 'title', 'slug' ].includes(match.key!)) {
                               // タイトルは必ず表示するのでループでは cardHeader で表示済みとしてスキップ
                               // slug は その記事に飛ぶために追加している。検索結果に表示する必要はない。
                               return null
@@ -191,14 +198,10 @@ const SearchModal = ({
                           })}
                       </CardBody>
                     </Card>
-                  )
-                })}
-
+                  )})}
             </VStack>
           </ModalBody>
-
-          <ModalFooter>
-          </ModalFooter>
+          <ModalFooter/>
         </ModalContent>
       </Modal>
     </Box>
