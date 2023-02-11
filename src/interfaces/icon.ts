@@ -5,6 +5,7 @@ export interface Icon {
 }
 
 export interface NavigationIcon extends Icon {
+  external: boolean
   href: string
   title: string
 }

@@ -16,11 +16,13 @@ const icons: NavigationIcon[] = [
   {
     href: '/tags',
     title: 'Tags',
+    external: false,
     icon: faTags
   },
   {
     href: 'https://github.com/ShuntaH',
     title: 'GitHub',
+    external: true,
     icon: faGithubAlt
   }
 ]
@@ -77,7 +79,7 @@ const Header = ({boxProps}: Props) => {
                   display={"block"}
                   href={ni.href}
                   as={NextLink}
-                  target={"_blank"}
+                  target={ni.external ? "_blank" : ""}
                   rel={"noopener"}
                   title={ni.title}
                   fontSize={'xl'}
