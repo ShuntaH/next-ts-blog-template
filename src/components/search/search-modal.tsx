@@ -8,6 +8,7 @@ import {
   Divider,
   Flex,
   Heading,
+  Kbd,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -110,6 +111,16 @@ const SearchModal = ({
           </ModalHeader>
 
           <ModalBody paddingY={0}>
+
+            {
+              searchResultPosts.length ?
+                <Box marginY={3} textAlign={"right"}>
+                  <span><Kbd>tab</Kbd></span>
+                </Box>
+                :
+                null
+            }
+
             <VStack>
               {
                 searchResultPosts.map((post, index) => {
@@ -198,7 +209,8 @@ const SearchModal = ({
                           })}
                       </CardBody>
                     </Card>
-                  )})}
+                  )
+                })}
             </VStack>
           </ModalBody>
           <ModalFooter/>

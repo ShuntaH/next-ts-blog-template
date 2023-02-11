@@ -77,11 +77,19 @@ export const getSortedPosts = (posts: Posts): Posts => {
 
 export const getTotalPostCount = (posts: Posts): number => posts.length
 
+
 export const getTotalPageCount = (
   totalPostCount: number,
   postCountPerPage: number = POST_COUNT_PER_PAGE
 ): number => Math.ceil(totalPostCount / postCountPerPage)
 
+/**
+ * パジネーションを作り、取得する
+ * @param currentPageNumber
+ * @param posts
+ * @param basePaths
+ * @param postCountPerPage
+ */
 export const getPagination = (
   {
     currentPageNumber,

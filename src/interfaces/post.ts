@@ -1,4 +1,3 @@
-import { Author } from "./author";
 import { SearchKeys } from "./search";
 
 export type MarkdownData = {
@@ -29,3 +28,9 @@ export type Posts = Post[]
 // 検索用の記事のデータ
 export type FilteredPost = Pick<Post, SearchKeys>
 export type FilteredPosts = FilteredPost[]
+
+export type Author = {
+  name: string
+  picture: string
+}
+
