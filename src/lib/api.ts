@@ -3,7 +3,8 @@ import matter from 'gray-matter'
 import { MarkdownData, Post, Posts } from "../interfaces/post";
 import { Pagination, PaginationProps } from "../interfaces/pagination";
 import { POST_COUNT_PER_PAGE } from "./constants";
-import fs from 'fs';
+import * as fs from "fs";
+
 
 const postsDirectory = join(process.cwd(), 'src', '_posts')
 
@@ -75,6 +76,14 @@ export const getSortedPosts = (posts: Posts): Posts => {
   return posts.sort((post1, post2) => (post1.date > post2.date ? -1 : 1))
 }
 
+export const getAllTags = (posts: Posts): string[] => {
+  return [ ...new Set(posts.flatMap((post) => post.tags)) ]
+}
+
+export const getTaggedPosts = (posts: Posts, tag: string): Posts => {
+  return posts.filter((post) => post.tags.includes(tag))
+}
+
 export const getTotalPostCount = (posts: Posts): number => posts.length
 
 
@@ -83,6 +92,18 @@ export const getTotalPageCount = (
   postCountPerPage: number = POST_COUNT_PER_PAGE
 ): number => Math.ceil(totalPostCount / postCountPerPage)
 
+
+/**
+ * 渡された記事リストから記事数を取得して、パジネーションをした時に何ページあるかを返す。
+ * 3ページあったら[ 1, 2, 3 ] と返す。
+ * @param posts
+ */
+export const getTotalPageCountRange = (posts: Posts): number[] => {
+  const postCount = getTotalPostCount(posts)
+  return [ ...Array(getTotalPageCount(postCount)).keys() ].map((pageNumber) => {
+    return pageNumber + 1
+  })
+}
 /**
  * パジネーションを作り、取得する
  * @param currentPageNumber

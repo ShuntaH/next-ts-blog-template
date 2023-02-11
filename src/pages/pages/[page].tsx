@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { getAllPosts, getPagination, getSortedPosts, getTotalPageCount, getTotalPostCount } from "../../lib/api";
+import { getAllPosts, getPagination, getSortedPosts, getTotalPageCountRange } from "../../lib/api";
 import { Pagination } from "../../interfaces/pagination";
 import PostsPage from "../../components/post/posts-page";
 import { Posts } from "../../interfaces/post";
@@ -9,18 +9,13 @@ import Layout from "../../components/layouts/layout";
 
 export async function getStaticPaths() {
   const posts = getSortedPosts(getAllPosts())
-  const postCount = getTotalPostCount(posts)
-
-  // 3ページあったら[ 0, 1, 2 ]
-  const range: string[] = [...Array(getTotalPageCount(postCount)).keys()].map((pageNumber) => {
-    return String(pageNumber + 1)
-  })
+  const range: number[] = getTotalPageCountRange(posts)
 
   return {
     paths: range.map((pageNumber) => {
       return {
         params: {
-          page: pageNumber
+          page: String(pageNumber)
         }}}),
     fallback: false,
   }

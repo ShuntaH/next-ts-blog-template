@@ -11,7 +11,6 @@ type Props = {
 
 const SearchForm = ({boxProps}: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  console.log(`isOpen ${isOpen}`)
   const modalRef = React.useRef(null)
 
   const handleOnOpen = (e: React.MouseEvent<HTMLInputElement>): void => {

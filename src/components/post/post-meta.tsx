@@ -1,8 +1,8 @@
 import React from "react";
 import { Flex, FlexProps } from "@chakra-ui/react";
 import DateFormatter from "../date-formatter";
-import { Author } from "../../interfaces/author";
 import TextSpan from "../foundations/text-span";
+import { Author } from "../../interfaces/post";
 
 type Props = {
   time: string

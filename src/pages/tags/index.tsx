@@ -1,9 +1,10 @@
-import { getAllPosts } from "../../lib/api";
+import { getAllPosts, getAllTags } from "../../lib/api";
 import Layout from "../../components/layouts/layout";
 import { Posts } from "../../interfaces/post";
 import { useMemo } from "react";
 import { setupFullTextSearch } from "../../lib/search";
 import { Box, HStack, Tag } from "@chakra-ui/react";
+import NextLink from "next/link";
 
 
 type Context = {
@@ -20,30 +21,26 @@ type Context = {
 
 export const getStaticProps = async ({params}: Context) => {
   const allPosts = getAllPosts()
+  const allTags = getAllTags(allPosts)
   return {
     props: {
-      allPosts
+      allPosts,
+      allTags
     },
   }
 }
 
 type Props = {
   allPosts: Posts
+  allTags: string[]
 }
 /**
  * This is the page that is rendered when the user visits the root of your application.
  */
-export default function PaginatedPage({ allPosts }: Props) {
+export default function PaginatedPage({ allPosts, allTags }: Props) {
   const fuse = useMemo(
     () => setupFullTextSearch(allPosts),
     [ allPosts ])
-
-  // post にタグは複数ある可能性があるのでそれぞれの post の tags に flat をかけながら
-  // 重複を消す。
-  const allTags = useMemo(
-    () => [...new Set(allPosts.flatMap((post) => post.tags))],
-    [allPosts]
-  )
 
   return (
     // ページ固有のhead内容を設定したい時
@@ -55,6 +52,8 @@ export default function PaginatedPage({ allPosts }: Props) {
         <HStack spacing={4}>
           {allTags.map((tag, index) => (
             <Tag
+              as={NextLink}
+              href={`/tags/${tag}/1`}
               key={index}
               variant='subtle'
               colorScheme='purple'
