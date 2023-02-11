@@ -93,7 +93,7 @@ const Header = ({boxProps}: Props) => {
         </Flex>
       </Flex>
 
-      {/*スマホより大きい時は行を変えて表示する*/}
+      {/*スマホサイズの時は行を変えて表示する*/}
       <SearchForm
         boxProps={{
           display: {md: 'none'},

@@ -23,20 +23,19 @@ const PostCard = ({ post, cardProps }: Props) => {
         bgColor={"transparent"}
         border={'2px'}
         borderColor={"whiteAlpha.200"}
-        boxShadow={1}
         borderStyle={"solid"}
         marginBottom={STYLES.gap}
-        padding={STYLES.gap}
+        padding={{base: STYLES.gapSm, md: STYLES.gap}}
         borderRadius={STYLES.radius}
         overflow={"hidden"}
         {...cardProps}
       >
-        <CardHeader as={"header"} paddingY={1}>
+        <CardHeader as={"header"} paddingY={1} paddingX={0}>
           <Heading
             as={'h3'}
             _hover={{color: STYLES.accentColorLighter}}
-            fontSize={'xl'}
-
+            fontSize={{base: "ms", md: "xl"}}
+            marginBottom={{base: 2, md: 1}}
           >
             {post.title}
           </Heading>
@@ -53,6 +52,7 @@ const PostCard = ({ post, cardProps }: Props) => {
           }}
           paddingTop={1}
           paddingBottom={1}
+          paddingX={0}
         >
           <Text fontSize={"sm"} color={"gray.200"}>
             {post.excerpt}
@@ -64,6 +64,7 @@ const PostCard = ({ post, cardProps }: Props) => {
           display={"block"}
           paddingTop={1}
           paddingBottom={1}
+          paddingX={0}
         >
         </CardFooter>
       </Card>

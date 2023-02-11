@@ -14,6 +14,7 @@ export const SEARCH_CHAR_NUMBER_AROUND_IN_VALUE = 20 // 全文検索対象の単
  * todo chakra ui で css var の定義の仕方がわからなかったので js でかく。 theme での書き方がわかったらそちらで書く
  */
 const gap = '24px'
+const gapSm = '10px'
 const navWidth = '1024px'
 const mainWidth = '720px'
 const headerHeight = '60px'
@@ -31,6 +32,7 @@ const hoverStyle = {
 
 export const STYLES = {
   gap,
+  gapSm,
   navWidth,
   mainWidth,
   contentGap,
