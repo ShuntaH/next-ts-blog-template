@@ -1,44 +1,47 @@
-import { Box, BoxProps, Card, CardBody, CardFooter, CardHeader, Heading, Text } from '@chakra-ui/react'
+import { Card, CardBody, CardFooter, CardHeader, CardProps, Heading, Text } from '@chakra-ui/react'
 import { STYLES } from "../../lib/constants";
 import React from "react";
 import NextLink from "next/link";
 import PostInfo from "./post-meta";
-import PostTags from "./post-tags";
 import { Post } from "../../interfaces/post";
+import PostTags from "./post-tags";
 
 
 type Props = {
   post: Post,
-  boxProps?: BoxProps
+  cardProps?: CardProps
 }
 
-const PostCard = ({ post, boxProps }: Props) => {
+const PostCard = ({ post, cardProps }: Props) => {
   const postHref = (post: Post) => `/posts/${post.slug}`
 
   return (
-    <Box
-      as={NextLink}
-      href={postHref(post)}
-      {...boxProps}
-    >
       <Card
-        as={"article"}
+        as={NextLink}
+        href={postHref(post)}
         position={"relative"}
-        minHeight={'320px'}
+        bgColor={"transparent"}
+        border={'2px'}
+        borderColor={"whiteAlpha.200"}
+        boxShadow={1}
+        borderStyle={"solid"}
         marginBottom={STYLES.gap}
         padding={STYLES.gap}
         borderRadius={STYLES.radius}
         overflow={"hidden"}
+        {...cardProps}
       >
-        <CardHeader as={"header"}>
+        <CardHeader as={"header"} paddingY={1}>
           <Heading
             as={'h3'}
             _hover={{color: STYLES.accentColorLighter}}
             fontSize={'xl'}
-            marginBottom={1}
+
           >
             {post.title}
           </Heading>
+          <PostInfo time={post.time} date={post.date} author={post.author} />
+          <PostTags tags={post.tags} stackProps={{marginBottom: 2}}/>
         </CardHeader>
 
         <CardBody
@@ -46,12 +49,14 @@ const PostCard = ({ post, boxProps }: Props) => {
             overflow: "hidden",
             display: "-webkit-box",
             "WebkitBoxOrient": "vertical",
-            "WebkitLineClamp": "3"
+            "WebkitLineClamp": "2"
           }}
           paddingTop={1}
           paddingBottom={1}
         >
-          {post.excerpt}
+          <Text fontSize={"sm"} color={"gray.200"}>
+            {post.excerpt}
+          </Text>
         </CardBody>
 
         <CardFooter
@@ -60,20 +65,8 @@ const PostCard = ({ post, boxProps }: Props) => {
           paddingTop={1}
           paddingBottom={1}
         >
-          <Text
-            as={"span"}
-            display={"inline-block"}
-            color={STYLES.accentColor}
-            _hover={{color: STYLES.accentColorLighter}}
-            marginBottom={5}
-          >
-            Read more →
-          </Text>
-          <PostInfo time={post.time} date={post.date} author={post.author} />
-          <PostTags tags={post.tags} stackProps={{marginBottom: 4}}/>
         </CardFooter>
       </Card>
-    </Box>
   );
 }
 

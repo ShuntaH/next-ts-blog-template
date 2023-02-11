@@ -18,13 +18,16 @@ const PostMeta = ({ time, date, flexProps }: Props) => (
     alignItems={"center"}
     flexDirection={"row"}
     marginBottom={2}
-    fontSize={"sm"}
+    fontSize={"smaller"}
+    color={"gray.300"}
+
   >
-    <TextSpan>{time}</TextSpan>
-    <TextSpan>・</TextSpan>
     <TextSpan>
       <DateFormatter dateString={date}/>
     </TextSpan>
+    <TextSpan>・</TextSpan>
+    <TextSpan>{time}</TextSpan>
+
   </Flex>
 )
 
