@@ -30,6 +30,7 @@ const Footer = () => {
         whiteSpace={"nowrap"}
         listStyleType={"none"}
         display={"flex"}
+        justifyContent={"end"}
       >
         {menus.map((menu: Menu, index: number) => {
           return (

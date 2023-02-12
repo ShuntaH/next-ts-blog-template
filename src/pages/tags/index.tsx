@@ -55,7 +55,7 @@ export default function PaginatedPage({ allPosts, allTags }: Props) {
               as={NextLink}
               href={`/tags/${tag}/1`}
               key={index}
-              variant='subtle'
+              variant='outline'
               colorScheme='purple'
             >
               {tag}

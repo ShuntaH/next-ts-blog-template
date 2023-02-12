@@ -88,7 +88,10 @@ type Props = {
 /**
  * This is the page that is rendered when the user visits the root of your application.
  */
-export default function PaginatedPage({ pagination, allPosts }: Props) {
+export default function PaginatedPage({
+  pagination,
+  allPosts
+}: Props) {
   const fuse = useMemo(
     () => setupFullTextSearch(allPosts),
     [ allPosts ])
