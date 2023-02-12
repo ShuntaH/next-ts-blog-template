@@ -1,10 +1,10 @@
-import { getAllPosts, getPagination, getSortedPosts } from "../lib/api";
-import { Posts } from "../interfaces/post";
-import PostsPage from "../components/post/posts-page";
-import { Pagination } from "../interfaces/pagination";
+import { getAllPosts, getPagination, getSortedPosts } from "lib/api";
+import { Posts } from "interfaces/post";
+import { Pagination } from "interfaces/pagination";
 import { useMemo } from "react";
-import { setupFullTextSearch } from "../lib/search";
-import Layout from "../components/layouts/layout";
+import { setupFullTextSearch } from "lib/search";
+import Layout from "components/layouts/layout";
+import PostsPage from "components/post/posts-page";
 
 
 export const getStaticProps = async () => {

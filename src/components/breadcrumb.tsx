@@ -5,9 +5,9 @@ import {
   BreadcrumbLink,
   BreadcrumbProps
 } from "@chakra-ui/react";
-import { STYLES } from "../lib/constants";
+import { STYLES } from "lib/constants";
+import { BreadcrumbItem } from "interfaces/breadcrumb";
 import ChakraFontAwesomeIcon from "./chakra-font-awesome-icon";
-import { BreadcrumbItem } from "../interfaces/breadcrumb";
 
 
 type Props = {

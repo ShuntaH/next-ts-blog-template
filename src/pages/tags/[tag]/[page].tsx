@@ -6,12 +6,12 @@ import {
   getSortedPosts,
   getTaggedPosts,
   getTotalPageCountRange
-} from "../../../lib/api";
-import { Pagination } from "../../../interfaces/pagination";
-import { Posts } from "../../../interfaces/post";
-import { setupFullTextSearch } from "../../../lib/search";
-import Layout from "../../../components/layouts/layout";
-import PostsPage from "../../../components/post/posts-page";
+} from "lib/api";
+import { Pagination } from "interfaces/pagination";
+import { Posts } from "interfaces/post";
+import { setupFullTextSearch } from "lib/search";
+import Layout from "components/layouts/layout";
+import PostsPage from "components/post/posts-page";
 
 export async function getStaticPaths() {
   const posts = getSortedPosts(getAllPosts())

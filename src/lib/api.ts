@@ -1,9 +1,9 @@
 import { join } from 'path'
 import matter from 'gray-matter'
-import { MarkdownData, Post, Posts } from "../interfaces/post";
-import { Pagination, PaginationProps } from "../interfaces/pagination";
-import { POST_COUNT_PER_PAGE } from "./constants";
+import { MarkdownData, Post, Posts } from "interfaces/post";
+import { Pagination, PaginationProps } from "interfaces/pagination";
 import * as fs from "fs";
+import { POST_COUNT_PER_PAGE } from "lib/constants";
 
 
 const postsDirectory = join(process.cwd(), 'src', '_posts')

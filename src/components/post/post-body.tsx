@@ -1,4 +1,4 @@
-import markdownStyles from '../markdown-styles.module.css'
+import markdownStyles from 'components/markdown-styles.module.css'
 import { Box, BoxProps } from "@chakra-ui/react";
 
 type Props = {

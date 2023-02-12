@@ -1,7 +1,7 @@
 import { Flex, FlexProps, Link, LinkProps, TextProps } from "@chakra-ui/react";
-import { Pagination } from "../interfaces/pagination";
-import TextSpan from "./foundations/text-span";
+import { Pagination } from "interfaces/pagination";
 import NextLink from "next/link";
+import TextSpan from "components/foundations/text-span";
 
 
 type Props = {

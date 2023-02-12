@@ -1,10 +1,10 @@
 import { Card, CardBody, CardFooter, CardHeader, CardProps, Heading, Text } from '@chakra-ui/react'
-import { STYLES } from "../../lib/constants";
+import { STYLES } from "lib/constants";
 import React from "react";
 import NextLink from "next/link";
-import PostInfo from "./post-meta";
-import { Post } from "../../interfaces/post";
-import PostTags from "./post-tags";
+import { Post } from "interfaces/post";
+import PostTags from "components/post/post-tags";
+import PostMeta from "components/post/post-meta";
 
 
 type Props = {
@@ -39,7 +39,7 @@ const PostCard = ({ post, cardProps }: Props) => {
           >
             {post.title}
           </Heading>
-          <PostInfo time={post.time} date={post.date} author={post.author} />
+          <PostMeta time={post.time} date={post.date} author={post.author} />
           <PostTags tags={post.tags} stackProps={{marginBottom: 2}}/>
         </CardHeader>
 

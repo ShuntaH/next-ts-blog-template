@@ -1,4 +1,4 @@
-import { SearchKeys } from "./search";
+import { SearchKeys } from "interfaces/search";
 
 export type MarkdownData = {
   title: string

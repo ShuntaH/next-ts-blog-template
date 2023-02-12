@@ -1,10 +1,10 @@
 import { Box, BoxProps } from "@chakra-ui/react";
-import Breadcrumb from "../breadcrumb";
-import { BreadcrumbItem } from "../../interfaces/breadcrumb";
-import PostTitle from "./post-title";
-import PostTags from "./post-tags";
-import PostMeta from "./post-meta";
-import { Post } from "../../interfaces/post";
+import { Post } from "interfaces/post";
+import PostTitle from "components/post/post-title";
+import PostMeta from "components/post/post-meta";
+import PostTags from "components/post/post-tags";
+import { BreadcrumbItem } from "interfaces/breadcrumb";
+import Breadcrumb from "components/breadcrumb";
 
 type Props = {
   post: Post

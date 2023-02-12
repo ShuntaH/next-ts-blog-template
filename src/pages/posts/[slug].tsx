@@ -120,7 +120,10 @@ export default function PostPage({ post, allPosts, preview }: Props) {
               post={post}
               boxProps={{ marginBottom: 20, width: "full" }}
             />
-            <PostBody content={post.content} boxProps={{width: "full"}}/>
+            <PostBody
+              content={post.content}
+              boxProps={{width: "full"}}
+            />
           </Box>
         )
       }

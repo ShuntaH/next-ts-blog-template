@@ -1,10 +1,10 @@
 import { useMemo } from "react";
-import { getAllPosts, getPagination, getSortedPosts, getTotalPageCountRange } from "../../lib/api";
-import { Pagination } from "../../interfaces/pagination";
-import PostsPage from "../../components/post/posts-page";
-import { Posts } from "../../interfaces/post";
-import { setupFullTextSearch } from "../../lib/search";
-import Layout from "../../components/layouts/layout";
+import { getAllPosts, getPagination, getSortedPosts, getTotalPageCountRange } from "lib/api";
+import { Pagination } from "interfaces/pagination";
+import { Posts } from "interfaces/post";
+import { setupFullTextSearch } from "lib/search";
+import Layout from "components/layouts/layout";
+import PostsPage from "components/post/posts-page";
 
 
 export async function getStaticPaths() {

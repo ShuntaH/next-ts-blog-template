@@ -1,7 +1,7 @@
 import React from "react";
 import PostCard from "./post-card";
 import { Box, BoxProps } from "@chakra-ui/react";
-import { Posts } from "../../interfaces/post";
+import { Posts } from "interfaces/post";
 
 
 type Props = {

@@ -4,6 +4,7 @@
     "module": "esnext",
     "jsx": "preserve",
     "strict": true,
+    "baseUrl": "src",
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,

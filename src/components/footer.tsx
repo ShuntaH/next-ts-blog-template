@@ -1,6 +1,6 @@
 import { Box, Link, List, ListItem, Text } from "@chakra-ui/react";
-import { BLOG_NAME, STYLES } from "../lib/constants";
 import NextLink from "next/link";
+import { BLOG_NAME, STYLES } from "lib/constants";
 
 type Menu = {
   href: string,

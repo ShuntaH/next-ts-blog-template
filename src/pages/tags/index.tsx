@@ -1,10 +1,10 @@
-import { getAllPosts, getAllTags } from "../../lib/api";
-import Layout from "../../components/layouts/layout";
-import { Posts } from "../../interfaces/post";
+import { getAllPosts, getAllTags } from "lib/api";
+import { Posts } from "interfaces/post";
 import { useMemo } from "react";
-import { setupFullTextSearch } from "../../lib/search";
+import { setupFullTextSearch } from "lib/search";
 import { Box, HStack, Tag } from "@chakra-ui/react";
 import NextLink from "next/link";
+import Layout from "components/layouts/layout";
 
 
 type Context = {

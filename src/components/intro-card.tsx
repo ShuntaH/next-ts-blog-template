@@ -1,5 +1,5 @@
 import { Card, CardBody, CardFooter, CardHeader, Heading } from '@chakra-ui/react'
-import { BLOG_DISCRIPTION, STYLES } from "../lib/constants";
+import { BLOG_DISCRIPTION, STYLES } from "lib/constants";
 
 const IntroCard = () => {
   return (

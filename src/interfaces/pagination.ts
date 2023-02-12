@@ -1,4 +1,4 @@
-import { Posts } from "./post";
+import { Posts } from "interfaces/post";
 
 export type PaginationProps = {
   currentPageNumber: number;

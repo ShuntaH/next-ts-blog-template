@@ -1,12 +1,12 @@
 import { Box, BoxProps, Flex, Link } from '@chakra-ui/react'
-import { BLOG_NAME, STYLES } from "../lib/constants";
+import { BLOG_NAME, STYLES } from "lib/constants";
 import NextLink from 'next/link'
-import SearchForm from "./search/search-form";
 import { faTags } from "@fortawesome/free-solid-svg-icons";
-import ChakraFontAwesomeIcon from "./chakra-font-awesome-icon";
 import React from "react";
 import { faGithubAlt } from "@fortawesome/free-brands-svg-icons";
-import { NavigationIcon } from "../interfaces/icon";
+import { NavigationIcon } from "interfaces/icon";
+import SearchForm from "components/search/search-form";
+import ChakraFontAwesomeIcon from "components/chakra-font-awesome-icon";
 
 type Props = {
   boxProps?: BoxProps
