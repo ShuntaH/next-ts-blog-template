@@ -1,6 +1,6 @@
 import Fuse from "fuse.js";
-import { FilteredPost, FilteredPosts, Posts } from "../interfaces/post";
-import { SearchKeys } from "../interfaces/search";
+import { FilteredPost, FilteredPosts, Posts } from "interfaces/post";
+import { SearchKeys } from "interfaces/search";
 
 
 export const getFilteredInitialPost = (): FilteredPost => {

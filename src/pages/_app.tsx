@@ -1,10 +1,12 @@
 import { AppProps } from 'next/app'
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider, Image } from "@chakra-ui/react";
 import React from "react";
 import theme from "theme";
+import { STYLES } from "lib/constants";
 
 
 function MyApp({ Component, pageProps }: AppProps) {
+
   return (
     // 本来はここに Layout のコンポーネントを置きたい。
     // 全文検索するクラスインスタンスを全ページで使うので、
@@ -20,6 +22,17 @@ function MyApp({ Component, pageProps }: AppProps) {
     // layout の中に Context.Provider を起き、
     // それで fuse インスタンス を任意の場所で受け取る。
     <ChakraProvider theme={theme}>
+      <Image
+        zIndex={-10}
+        position={"absolute"}
+        top={0}
+        height={`calc(100vh - ${STYLES.footerHeight})`}
+        htmlWidth={'100%'}
+        htmlHeight={'100%'}
+        src={"/assets/home-bg.png"}
+        fit={"cover"}
+        align={"center"}
+      />
       <Component {...pageProps} />
     </ChakraProvider>
   )

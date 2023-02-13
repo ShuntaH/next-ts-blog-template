@@ -20,7 +20,6 @@ const Layout: React.VFC<Props> = ({ preview, fuse, children }) => {
     // 変わらないはずなので、頻繁に fuse が変わって再レンダリング
     // は走らない。よって問題ないはず。
     <FuseProvider fuse={fuse}>
-      <Box backgroundImage={"url(/assets/home-bg.png)"}>
           <Header/>
           {/*<Box>*/}
           {/*  /!*<Alert preview={preview}/>*!/*/}
@@ -40,7 +39,6 @@ const Layout: React.VFC<Props> = ({ preview, fuse, children }) => {
 
           {/*height 60px*/}
           <Footer/>
-      </Box>
     </FuseProvider>
   )
 }
