@@ -1,29 +1,21 @@
 import { AppProps } from 'next/app'
-import { ChakraProvider, Image } from "@chakra-ui/react";
-import React, { useEffect, useRef } from "react";
+import { Box, ChakraProvider, Image } from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
 import theme from "theme";
-import { STYLES } from "lib/constants";
-import { useOffsetTop } from "hooks/useOffsetTop";
-import { useThrottle } from "hooks/useThrottle";
 
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const screenRef = useRef(null);
-  const { pageOffsetTop, viewportTop } = useOffsetTop(screenRef);
+  const [blurOpacity, setBlurOpacity] = useState(0)
 
-  const handler = useThrottle(() => {
-    console.log('----------------------')
-    console.log('pageYOffset', window.pageYOffset)
-    console.log('outerHeight', window.outerHeight)
-  }, 100); // 100msに一度実行
+  const handleBlurOpacity = () => {
+    const scrollY = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
+    const calculatedOpacity = window.pageYOffset / 300
+    setBlurOpacity(() => calculatedOpacity)
+  }
 
   useEffect(() => {
-    // マウント時にも実行
-    window.addEventListener("scroll", handler);
-    // handler();
-    console.log('scroll event', window)
-    // アンマウント時にイベントリスナーを解除
-    return () => window.removeEventListener("scroll", handler);
+    window.addEventListener("scroll", handleBlurOpacity);
+    return () => window.removeEventListener("scroll", handleBlurOpacity);
   }, []);
 
   return (
@@ -41,16 +33,58 @@ function MyApp({ Component, pageProps }: AppProps) {
     // layout の中に Context.Provider を起き、
     // それで fuse インスタンス を任意の場所で受け取る。
     <ChakraProvider theme={theme}>
-      <Image
-        zIndex={-10}
-        position={"absolute"}
+      <Box
+        position={"fixed"}
         top={0}
-        height={`calc(100vh - ${STYLES.footerHeight})`}
-        htmlWidth={'100%'}
-        htmlHeight={'100%'}
-        src={"/assets/home-bg.png"}
-        fit={"cover"}
-        align={"center"}
+        right={0}
+        left={0}
+        height={"full"}
+        zIndex={-10}
+      >
+        <Image
+          position={"fixed"}
+          top={0}
+          right={0}
+          left={0}
+          width={"full"}
+          height={"full"}
+          htmlWidth={'100%'}
+          htmlHeight={'100%'}
+          src={"/assets/home-bg.png"}
+          fit={"cover"}
+          align={"center"}
+        />
+        <Box
+          position={"absolute"}
+          top={0}
+          right={0}
+          bottom={0}
+          left={0}
+          mixBlendMode={"normal"}
+          backgroundImage={"linear-gradient(to top, rgba(30, 41, 59, 1), rgba(30, 41, 59, 0))"}
+        />
+        <Box
+          position={"absolute"}
+          top={0}
+          right={0}
+          bottom={0}
+          left={0}
+          mixBlendMode={"normal"}
+          backgroundImage={"linear-gradient(to top, rgba(30, 41, 59, 1), rgba(30, 41, 59, 1))"}
+          opacity={0.6}
+        />
+      </Box>
+      <Box
+        display={"block"}
+        position={"fixed"}
+        top={0}
+        right={0}
+        left={0}
+        zIndex={-10}
+        width={"full"}
+        height={"full"}
+        backdropFilter={'blur(40px)'}
+        opacity={blurOpacity}
       />
       <Component {...pageProps} />
     </ChakraProvider>
