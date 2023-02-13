@@ -12,7 +12,7 @@ type Props = {
   cardProps?: CardProps
 }
 
-const PostCard = ({ post, cardProps }: Props) => {
+const PostCard: React.VFC<Props> = ({ post, cardProps}) => {
   const postHref = (post: Post) => `/posts/${post.slug}`
 
   return (

@@ -1,13 +1,14 @@
 import { Box, Link, List, ListItem, Text } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { BLOG_NAME, STYLES } from "lib/constants";
+import React from "react";
 
 type Menu = {
   href: string,
   content: string
 }
 
-const Footer = () => {
+const Footer: React.VFC = () => {
   const menus: Menu[] = [
     { href: '/terms', content: 'Terms' },
     { href: '/about', content: 'About' },

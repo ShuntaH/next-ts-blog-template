@@ -27,7 +27,7 @@ const icons: NavigationIcon[] = [
   }
 ]
 
-const Header = ({boxProps}: Props) => {
+const Header: React.VFC<Props> = ({boxProps}) => {
   return (
     // md 以上は flex でアイテムは横並び、 それ以下は block で縦並び
     <Box {...boxProps}>

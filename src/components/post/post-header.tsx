@@ -5,13 +5,14 @@ import PostMeta from "components/post/post-meta";
 import PostTags from "components/post/post-tags";
 import { BreadcrumbItem } from "interfaces/breadcrumb";
 import Breadcrumb from "components/breadcrumb";
+import React from "react";
 
 type Props = {
   post: Post
   boxProps?: BoxProps
 }
 
-const PostHeader = ({ post, boxProps }: Props) => {
+const PostHeader: React.VFC<Props> = ({ post, boxProps }) => {
   const breadCrumbItems: BreadcrumbItem[] = [
     { title: 'home', href: '/' },
     { title: 'posts', href: '/' },

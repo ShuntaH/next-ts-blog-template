@@ -12,7 +12,7 @@ type Props = {
   flexProps?: FlexProps
 }
 
-const PostMeta = ({ time, date, flexProps }: Props) => (
+const PostMeta: React.VFC<Props> = ({ time, date, flexProps }) => (
   <Flex
     {...flexProps}
     flexWrap={"wrap"}

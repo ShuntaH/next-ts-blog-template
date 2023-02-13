@@ -2,6 +2,7 @@ import { Flex, FlexProps, Link, LinkProps, TextProps } from "@chakra-ui/react";
 import { Pagination } from "interfaces/pagination";
 import NextLink from "next/link";
 import TextSpan from "components/foundations/text-span";
+import React from "react";
 
 
 type Props = {
@@ -26,7 +27,7 @@ const linkProps: LinkProps = {
   as: NextLink
 }
 
-const Pagination = ({ pagination, flexProps }: Props) => (
+const Pagination: React.VFC<Props> = ({ pagination, flexProps }) => (
 
   <Flex
     justifyContent={"space-between"}

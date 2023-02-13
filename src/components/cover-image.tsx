@@ -1,4 +1,5 @@
 import { Image, Link } from '@chakra-ui/react'
+import React from "react";
 
 type Props = {
   title: string
@@ -6,7 +7,7 @@ type Props = {
   slug?: string
 }
 
-const CoverImage = ({title, src, slug}: Props) => {
+const CoverImage: React.VFC<Props> = ({title, src, slug}) => {
   const image = (
     <Image
       src={src}

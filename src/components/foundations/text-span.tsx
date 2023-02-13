@@ -6,7 +6,7 @@ type Props = {
   textProps?: TextProps
 }
 
-const TextSpan = ({ children, textProps }: Props) => {
+const TextSpan: React.VFC<Props> = ({ children, textProps }) => {
   return (
     <Text as={"span"} {...textProps}>
       {children}

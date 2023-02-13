@@ -8,6 +8,7 @@ import {
 import { STYLES } from "lib/constants";
 import { BreadcrumbItem } from "interfaces/breadcrumb";
 import ChakraFontAwesomeIcon from "./chakra-font-awesome-icon";
+import React from "react";
 
 
 type Props = {
@@ -15,7 +16,7 @@ type Props = {
   breadcrumbProps?: BreadcrumbProps
 }
 
-const Breadcrumb = ({ breadcrumbProps, breadcrumbItems }: Props) => {
+const Breadcrumb: React.VFC<Props> = ({ breadcrumbProps, breadcrumbItems }) => {
 
   const length = breadcrumbItems.length
 

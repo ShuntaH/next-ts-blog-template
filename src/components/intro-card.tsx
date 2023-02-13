@@ -1,7 +1,8 @@
 import { Card, CardBody, CardFooter, CardHeader, Heading } from '@chakra-ui/react'
 import { BLOG_DISCRIPTION, STYLES } from "lib/constants";
+import React from "react";
 
-const IntroCard = () => {
+const IntroCard: React.VFC = () => {
   return (
     <Card
       as={"article"}

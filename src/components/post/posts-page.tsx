@@ -2,13 +2,14 @@ import { Box, BoxProps, Text } from "@chakra-ui/react";
 import PostCards from "./post-cards";
 import { Pagination as PaginationType } from "../../interfaces/pagination";
 import Pagination from "../pagination";
+import React from "react";
 
 type Props = {
   pagination: PaginationType,
   boxProps?: BoxProps
 }
 
-const PostsPage = ({ pagination, boxProps }: Props) => {
+const PostsPage: React.VFC<Props> = ({ pagination, boxProps }) => {
   const posts = pagination.currentPagePosts
 
   return (

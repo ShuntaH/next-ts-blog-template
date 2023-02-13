@@ -7,7 +7,7 @@ type Props = {
   stackProps?: StackProps
 }
 
-const PostTags = ({ tags, stackProps }: Props) => (
+const PostTags: React.VFC<Props> = ({ tags, stackProps }) => (
   tags.length > 0 ?
     <HStack spacing={4} {...stackProps}>
       {

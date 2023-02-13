@@ -18,7 +18,7 @@ type Props = {
  * @param href これがあれば、このタグはこのhrefに遷移するNextLinkコンポーネントになる
  * @constructor
  */
-const TagLink = ({ tagProps, content, href = '' }: Props) => {
+const TagLink: React.VFC<Props> = ({ tagProps, content, href}) => {
   const tagMeta: {[key: string]: any} = {}
 
   if(href) {

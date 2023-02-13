@@ -14,7 +14,7 @@ type Props = {
   children: React.ReactNode
 }
 
-const Layout = ({ preview, fuse, children }: Props) => {
+const Layout: React.VFC<Props> = ({ preview, fuse, children }) => {
   return (
     // ほぼrootだが検索対象のデータはビルド時に決まって、そのあとは
     // 変わらないはずなので、頻繁に fuse が変わって再レンダリング
