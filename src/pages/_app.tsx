@@ -1,11 +1,30 @@
 import { AppProps } from 'next/app'
 import { ChakraProvider, Image } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import theme from "theme";
 import { STYLES } from "lib/constants";
+import { useOffsetTop } from "hooks/useOffsetTop";
+import { useThrottle } from "hooks/useThrottle";
 
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const screenRef = useRef(null);
+  const { pageOffsetTop, viewportTop } = useOffsetTop(screenRef);
+
+  const handler = useThrottle(() => {
+    console.log('----------------------')
+    console.log('pageYOffset', window.pageYOffset)
+    console.log('outerHeight', window.outerHeight)
+  }, 100); // 100msに一度実行
+
+  useEffect(() => {
+    // マウント時にも実行
+    window.addEventListener("scroll", handler);
+    // handler();
+    console.log('scroll event', window)
+    // アンマウント時にイベントリスナーを解除
+    return () => window.removeEventListener("scroll", handler);
+  }, []);
 
   return (
     // 本来はここに Layout のコンポーネントを置きたい。
