@@ -20,7 +20,7 @@ const Layout = ({ preview, fuse, children }: Props) => {
     // 変わらないはずなので、頻繁に fuse が変わって再レンダリング
     // は走らない。よって問題ないはず。
     <FuseProvider fuse={fuse}>
-      <>
+      <Box backgroundImage={"url(/assets/home-bg.png)"}>
           <Header/>
           {/*<Box>*/}
           {/*  /!*<Alert preview={preview}/>*!/*/}
@@ -37,10 +37,10 @@ const Layout = ({ preview, fuse, children }: Props) => {
           >
             {children}
           </Box>
-        
+
           {/*height 60px*/}
           <Footer/>
-      </>
+      </Box>
     </FuseProvider>
   )
 }

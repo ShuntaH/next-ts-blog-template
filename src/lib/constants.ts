@@ -23,8 +23,8 @@ const radius = '8px'
 const contentMaxWidth = `calc(${mainWidth} + ${gap} * 2)`
 const contentGap = '20px'
 const navMaxWidth = `calc(${navWidth} + ${gap} * 2)`
-const accentColor = 'purple.300'
-const accentColorLighter = 'purple.200'
+const accentColor = 'teal.300'
+const accentColorLighter = 'teal.200'
 const hoverStyle = {
   textDecoration: 'none',
   color: accentColorLighter

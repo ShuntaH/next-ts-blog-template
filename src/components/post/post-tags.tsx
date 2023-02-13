@@ -1,5 +1,6 @@
-import { HStack, StackProps, Tag, TagLabel } from "@chakra-ui/react";
+import { HStack, StackProps } from "@chakra-ui/react";
 import React from "react";
+import TagLink from "components/foundations/tag-link";
 
 type Props = {
   tags : string[]
@@ -11,14 +12,7 @@ const PostTags = ({ tags, stackProps }: Props) => (
     <HStack spacing={4} {...stackProps}>
       {
         tags.map((tag, index) => (
-        <Tag
-          size={"sm"}
-          key={index}
-          variant='outline'
-          colorScheme='purple'
-        >
-          <TagLabel>{tag}</TagLabel>
-        </Tag>
+          <TagLink key={index} content={tag} tagProps={{size: "sm"}} />
       ))}
     </HStack>
     :

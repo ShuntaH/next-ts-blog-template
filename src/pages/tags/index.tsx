@@ -2,9 +2,9 @@ import { getAllPosts, getAllTags } from "lib/api";
 import { Posts } from "interfaces/post";
 import { useMemo } from "react";
 import { setupFullTextSearch } from "lib/search";
-import { Box, HStack, Tag } from "@chakra-ui/react";
-import NextLink from "next/link";
+import { Box, HStack } from "@chakra-ui/react";
 import Layout from "components/layouts/layout";
+import TagLink from "components/foundations/tag-link";
 
 
 type Context = {
@@ -51,15 +51,7 @@ export default function PaginatedPage({ allPosts, allTags }: Props) {
       <Box position={"relative"}>
         <HStack spacing={4}>
           {allTags.map((tag, index) => (
-            <Tag
-              as={NextLink}
-              href={`/tags/${tag}/1`}
-              key={index}
-              variant='outline'
-              colorScheme='purple'
-            >
-              {tag}
-            </Tag>
+            <TagLink key={index} content={tag} href={`/tags/${tag}/1`} />
           ))}
         </HStack>
       </Box>
