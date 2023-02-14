@@ -31,7 +31,7 @@ const TagLink: React.VFC<Props> = ({ tagProps, content, href}) => {
       {...tagProps}
       {...tagMeta}
       variant='outline'
-      colorScheme='purple'
+      colorScheme='teal'
     >
       <TagLabel>{content}</TagLabel>
     </Tag>
