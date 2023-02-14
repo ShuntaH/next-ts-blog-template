@@ -6,12 +6,9 @@ type Props = {
   tagProps?: TagProps
   href?: string
   content: string
-
 }
 
-
 /**
- *
  * @param tagProps
  * @param content
  * @param index ループで表示することが多いので、そのインデックス

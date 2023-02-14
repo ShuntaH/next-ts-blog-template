@@ -32,7 +32,6 @@ type Props = {
  */
 export default function Index({ pagination, allPosts }: Props) {
   const fuse = useFuse(allPosts)
-
   return (
     // ページ固有のhead内容を設定したい時
     // <Head>

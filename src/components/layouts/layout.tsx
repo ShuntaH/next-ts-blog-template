@@ -28,8 +28,8 @@ const Layout: React.VFC<Props> = ({ preview, fuse, children }) => {
         maxWidth={STYLES.contentMaxWidth}
         minHeight={`calc(100vh - ${STYLES.headerHeight} - ${STYLES.footerHeight})`}
         marginX={"auto"}
-        marginBottom={12}
-        marginTop={24}
+        marginBottom={20}
+        marginTop={48}
         padding={`${STYLES.gap}`}
       >
         {children}
