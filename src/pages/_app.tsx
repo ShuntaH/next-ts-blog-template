@@ -1,23 +1,12 @@
 import { AppProps } from 'next/app'
 import { Box, ChakraProvider, Image } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import theme from "theme";
+import { useBlurBackground } from "hooks/useBlurBackground";
 
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [blurOpacity, setBlurOpacity] = useState(0)
-
-  const handleBlurOpacity = () => {
-    const scrollY = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
-    const calculatedOpacity = window.pageYOffset / 300
-    setBlurOpacity(() => calculatedOpacity)
-  }
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleBlurOpacity);
-    return () => window.removeEventListener("scroll", handleBlurOpacity);
-  }, []);
-
+  const blurOpacity = useBlurBackground()
   return (
     // 本来はここに Layout のコンポーネントを置きたい。
     // 全文検索するクラスインスタンスを全ページで使うので、
