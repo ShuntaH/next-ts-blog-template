@@ -1,15 +1,15 @@
 import { Box, BoxProps, useDisclosure } from '@chakra-ui/react'
 import React from "react";
-import SearchFormControl from "./search-form-control";
-import SearchModal from "./search-modal";
-import { SearchInputProvider } from "../../contexts/searchContexts";
+import { SearchInputProvider } from "contexts/searchInputContext";
+import SearchFormControl from "components/search/search-form-control";
+import SearchModal from "components/search/search-modal";
 
 
 type Props = {
   boxProps?: BoxProps
 }
 
-const SearchForm = ({boxProps}: Props) => {
+const SearchForm: React.VFC<Props> = ({boxProps}) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const modalRef = React.useRef(null)
 

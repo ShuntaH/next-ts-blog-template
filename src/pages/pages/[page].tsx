@@ -1,10 +1,9 @@
-import { useMemo } from "react";
 import { getAllPosts, getPagination, getSortedPosts, getTotalPageCountRange } from "lib/api";
 import { Pagination } from "interfaces/pagination";
 import { Posts } from "interfaces/post";
-import { setupFullTextSearch } from "lib/search";
 import Layout from "components/layouts/layout";
 import PostsPage from "components/post/posts-page";
+import { useFuse } from "hooks/useFuse";
 
 
 export async function getStaticPaths() {
@@ -58,9 +57,7 @@ type Props = {
  * This is the page that is rendered when the user visits the root of your application.
  */
 export default function PaginatedPage({ pagination, allPosts }: Props) {
-  const fuse = useMemo(
-    () => setupFullTextSearch(allPosts),
-    [ allPosts ])
+  const fuse = useFuse(allPosts)
 
   return (
     // ページ固有のhead内容を設定したい時

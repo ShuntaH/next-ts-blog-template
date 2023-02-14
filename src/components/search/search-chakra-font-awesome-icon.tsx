@@ -1,7 +1,7 @@
 import React from "react";
-import ChakraFontAwesomeIcon from "../chakra-font-awesome-icon";
-import { SearchModalHook, SearchModalOpenEvents } from "../../interfaces/search";
+import { SearchModalHook, SearchModalOpenEvents } from "interfaces/search";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import ChakraFontAwesomeIcon from "components/chakra-font-awesome-icon";
 
 
 type Props = {
@@ -13,10 +13,7 @@ const SearchChakraFontAwesomeIcon = ({ refOrFunc }: Props) => {
 
   // イベントごとにモーダルを開く関数を割り振る
   const modalOpenEvents: SearchModalOpenEvents | { [key: string]: never } =
-    isFunc ?
-      {
-        onClick: refOrFunc,
-      } : {}
+    isFunc ? { onClick: refOrFunc} : {}
 
   // アイコンにフォーカスを当てないので、 ref は不要
   return (

@@ -1,8 +1,8 @@
 import { Input, InputProps } from '@chakra-ui/react'
 import React from "react";
-import { SearchModalHook, SearchModalOpenEvents } from "../../interfaces/search";
-import { STYLES } from "../../lib/constants";
-import { useSearchInput } from "../../contexts/searchContexts";
+import { SearchModalHook, SearchModalOpenEvents } from "interfaces/search";
+import { STYLES } from "lib/constants";
+import { useSearchInput } from "contexts/searchInputContext";
 
 
 type Props = {
@@ -17,18 +17,15 @@ type Props = {
  * @param refOrFunc
  * @constructor
  */
-const SearchInput = ({ inputProps, refOrFunc }: Props) => {
+const SearchInput: React.VFC<Props> = ({ inputProps, refOrFunc }) => {
   const isFunc = typeof refOrFunc === 'function'
   const modalRef = !isFunc ? refOrFunc : null
 
-  const {valueInput, dispatch} = useSearchInput()
+  const {searchInput, dispatch} = useSearchInput()
 
   // イベントごとにモーダルを開く関数を割り振る
   const modalOpenEvents: SearchModalOpenEvents | { [key: string]: never } =
-    isFunc ?
-      {
-        onClick: refOrFunc,
-      } : {}
+    isFunc ? { onClick: refOrFunc} : {}
 
   /**
    * モーダルを発火する input ではなく、モーダル内の input の時、dispatch する。
@@ -40,7 +37,7 @@ const SearchInput = ({ inputProps, refOrFunc }: Props) => {
       return
     }
     dispatch({
-      valueInput: e.currentTarget.value,
+      searchInput: e.currentTarget.value,
       type: 'update'
     })
   }
@@ -54,7 +51,7 @@ const SearchInput = ({ inputProps, refOrFunc }: Props) => {
       {...modalOpenEvents}
       onInput={handleInput}
       ref={modalRef}
-      value={valueInput}
+      value={searchInput}
     />
   );
 }

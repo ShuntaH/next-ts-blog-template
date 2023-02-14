@@ -1,29 +1,8 @@
 import React, { createContext, useContext, useReducer } from 'react';
-import Fuse from "fuse.js";
-import { FilteredPost } from "interfaces/post";
-
-// memo: ここに記事を取得するメソッドを作ってはいけない。使用箇所はコンポーネントの中になる想定だが、
-// クライアントサイドで処理されるので記事を取得する中の fs が呼べない
-// 書いても良いが export してはいけない。
-
-// 全文検索するための fuse インスタンス
-const FuseContext = createContext<Fuse<FilteredPost> | null>(null)
-
-type FuseProviderProps = {
-  children: React.ReactNode
-  fuse: Fuse<FilteredPost>
-}
-
-export const FuseProvider = ({ children, fuse }: FuseProviderProps) => (
-  <FuseContext.Provider value={fuse}>
-    {children}
-  </FuseContext.Provider>
-)
-
-export const useFuse = () => useContext(FuseContext)
+// 全文検索のために入力欄に打ち込まれている文字の管理と更新をする
 
 // 検索入力欄の値
-const initialValueInput: string = ''
+const initialSearchInput: string = ''
 
 /**
  * 公式のドキュメント
@@ -33,26 +12,28 @@ const initialValueInput: string = ''
  * 値と dispatch を useState の返り値のようにまとめて管理する。
  */
 const SearchInputContext = createContext<{
-  valueInput: string,
+  searchInput: string,
   dispatch: React.Dispatch<SearchInputAction>
 }>({
-  valueInput: initialValueInput,
+  // グローバルに管理したい状態
+  searchInput: initialSearchInput,
+  // グローバルでグローバルで管理したい状態を変更する dispatch
   dispatch: () => {}
 })
 
 type SearchInputAction = {
   type: 'update'
-  valueInput: string
+  searchInput: string
 }
 
 const searchInputReducer = (
-  valueInput: string,
+  prevSearchInput: string,
   action: SearchInputAction
 ) => {
   switch (action.type) {
     case 'update': {
       // return で値を返す必要がある
-      return action.valueInput
+      return action.searchInput
     }
     default:
       throw Error('Unknown SearchInputAction: ' + action.type);
@@ -64,17 +45,15 @@ type SearchInputProviderProps = {
 }
 
 export const SearchInputProvider = ({ children }: SearchInputProviderProps) => {
-  const [ valueInput, dispatch ] = useReducer(
+  const [ searchInput, dispatch ] = useReducer(
+    // 更新するための関数
     searchInputReducer,
-    initialValueInput
+    // 検索入力の初期値
+    initialSearchInput
   )
 
   return (
-    <SearchInputContext.Provider
-      value={{
-        valueInput: valueInput,
-        dispatch
-    }}>
+    <SearchInputContext.Provider value={{ searchInput, dispatch }}>
       {children}
     </SearchInputContext.Provider>
   )

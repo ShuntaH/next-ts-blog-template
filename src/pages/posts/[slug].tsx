@@ -1,17 +1,16 @@
 import { useRouter } from 'next/router'
 import ErrorPage from 'next/error'
-import PostBody from '../../components/post/post-body'
-import PostHeader from '../../components/post/post-header'
-import { getAllPosts, getPostBySlug, getSortedPosts } from '../../lib/api'
-import PostTitle from '../../components/post/post-title'
+import { getAllPosts, getPostBySlug, getSortedPosts } from 'lib/api'
 import Head from 'next/head'
 import { Box, Card } from "@chakra-ui/react";
-import { STYLES } from "../../lib/constants";
-import { Post, Posts } from "../../interfaces/post";
-import markdownToHtml from "../../lib/markdownToHtml";
-import { useMemo } from "react";
-import { setupFullTextSearch } from "../../lib/search";
-import Layout from "../../components/layouts/layout";
+import { STYLES } from "lib/constants";
+import { Post, Posts } from "interfaces/post";
+import { useFuse } from "hooks/useFuse";
+import markdownToHtml from "lib/markdownToHtml";
+import Layout from "components/layouts/layout";
+import PostTitle from "components/post/post-title";
+import PostBody from "components/post/post-body";
+import PostHeader from "components/post/post-header";
 
 
 /**
@@ -81,9 +80,7 @@ type Props = {
 }
 
 export default function PostPage({ post, allPosts, preview }: Props) {
-  const fuse = useMemo(
-    () => setupFullTextSearch(allPosts),
-    [ allPosts ])
+  const fuse = useFuse(allPosts)
 
   const router = useRouter()
   if (!router.isFallback && !post?.slug) {
@@ -115,15 +112,8 @@ export default function PostPage({ post, allPosts, preview }: Props) {
               <title>{post.title}</title>
               <meta property="og:image" content={post.ogImage.url}/>
             </Head>
-
-            <PostHeader
-              post={post}
-              boxProps={{ marginBottom: 20, width: "full" }}
-            />
-            <PostBody
-              content={post.content}
-              boxProps={{width: "full"}}
-            />
+            <PostHeader post={post} boxProps={{ marginBottom: 20, width: "full" }}/>
+            <PostBody content={post.content} boxProps={{width: "full"}}/>
           </Box>
         )
       }

@@ -8,11 +8,13 @@ type Menu = {
   content: string
 }
 
+const memo = [
+  { href: '/terms', content: 'Terms' },
+  { href: '/about', content: 'About' },
+]
+
 const Footer: React.VFC = () => {
-  const menus: Menu[] = [
-    { href: '/terms', content: 'Terms' },
-    { href: '/about', content: 'About' },
-  ]
+  const menus: Menu[] = memo
 
   return (
     <Box

@@ -20,13 +20,14 @@ import {
 } from '@chakra-ui/react'
 import React, { useCallback, useEffect, useState } from "react";
 import SearchFormControl from "./search-form-control";
-import { useFuse, useSearchInput } from "../../contexts/searchContexts";
 import Fuse from "fuse.js";
-import { FilteredPost } from "../../interfaces/post";
-import SearchModalContentBodyHighlight from "./search-modal-content-body-highlight";
-import { BadgeColors, BadgeColorValues, SearchKeys } from "../../interfaces/search";
-import { SEARCH_MIN_CHARS, STYLES } from "../../lib/constants";
+import { BadgeColors, BadgeColorValues, SearchKeys } from "interfaces/search";
+import { SEARCH_MIN_CHARS, STYLES } from "lib/constants";
 import { useRouter } from "next/router";
+import { FilteredPost } from "interfaces/post";
+import { useSearchInput } from "contexts/searchInputContext";
+import { useFullTextSearch } from "contexts/fullTextSearchContext";
+import SearchModalContentBodyHighlight from "components/search/search-modal-content-body-highlight";
 
 
 type Props = {
@@ -36,16 +37,16 @@ type Props = {
   modalRef: React.MutableRefObject<null | HTMLInputElement>
 }
 
-const SearchModal = ({
+const SearchModal: React.VFC<Props> = ({
   boxProps,
   onClose,
   isOpen,
   modalRef
-}: Props) => {
+}) => {
   const [ searchResultPosts, setSearchResultPosts ] = useState<Fuse.FuseResult<FilteredPost>[]>([])
-  const { valueInput, dispatch } = useSearchInput()
+  const { searchInput, dispatch } = useSearchInput()
+  const fuse = useFullTextSearch()
   const router = useRouter()
-  const fuse = useFuse() as Fuse<FilteredPost>
 
   const handleNavigation = async (
     e: React.KeyboardEvent<HTMLDivElement> | React.MouseEvent<HTMLDivElement>,
@@ -60,13 +61,16 @@ const SearchModal = ({
    * 入力値から検索して最新の検索結果に更新する
    */
   const handleSearch = useCallback(() => {
-    if (valueInput.length < SEARCH_MIN_CHARS) {
+    if (!fuse) {
+      return
+    }
+    if (searchInput.length < SEARCH_MIN_CHARS) {
       setSearchResultPosts([])
       return
     }
-    const result = fuse.search(valueInput)
+    const result = fuse.search(searchInput)
     setSearchResultPosts(result)
-  }, [ valueInput ])
+  }, [ searchInput ])
 
 
   /**
@@ -87,7 +91,7 @@ const SearchModal = ({
       handleSearch()
       return console.log('result', searchResultPosts)
     },
-    [ valueInput ]
+    [ searchInput ]
   )
 
   return (

@@ -1,8 +1,8 @@
 import { FormControl, FormControlProps, InputGroup, InputRightElement } from '@chakra-ui/react'
 import React from "react";
-import SearchInput from "./search-input";
-import SearchChakraFontAwesomeIcon from "./search-chakra-font-awesome-icon";
-import { SearchModalHook } from "../../interfaces/search";
+import { SearchModalHook } from "interfaces/search";
+import SearchInput from "components/search/search-input";
+import SearchChakraFontAwesomeIcon from "components/search/search-chakra-font-awesome-icon";
 
 
 type Props =  {
@@ -11,15 +11,10 @@ type Props =  {
 }
 
 /**
- *
  * @param formControlProps
  * @param refOrFunc
  */
-const SearchFormControl = ({
-  formControlProps,
-  refOrFunc
-}: Props) => {
-  
+const SearchFormControl: React.VFC<Props> = ({formControlProps,refOrFunc }) => {
   // モーダルを開くイベントファンクションが渡されていれば
   // それはヘッダーにあるので,レスポンシブを考慮する。
   // 渡されていなければ、モーダルの中の入力欄になるので、

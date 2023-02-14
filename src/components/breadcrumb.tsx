@@ -7,8 +7,8 @@ import {
 } from "@chakra-ui/react";
 import { STYLES } from "lib/constants";
 import { BreadcrumbItem } from "interfaces/breadcrumb";
-import ChakraFontAwesomeIcon from "./chakra-font-awesome-icon";
-import React from "react";
+import React, { useMemo } from "react";
+import ChakraFontAwesomeIcon from "components/chakra-font-awesome-icon";
 
 
 type Props = {
@@ -17,8 +17,7 @@ type Props = {
 }
 
 const Breadcrumb: React.VFC<Props> = ({ breadcrumbProps, breadcrumbItems }) => {
-
-  const length = breadcrumbItems.length
+  const length = useMemo(() => breadcrumbItems.length, [breadcrumbItems])
 
   return (
     <ChakraBreadcrumb
@@ -28,7 +27,8 @@ const Breadcrumb: React.VFC<Props> = ({ breadcrumbProps, breadcrumbItems }) => {
         <ChakraFontAwesomeIcon
           icon={faChevronRight}
           color={STYLES.accentColor}
-          size={"xs"}/>}
+          size={"xs"}
+        />}
     >
       {
         breadcrumbItems.map((item, index) => {
@@ -56,9 +56,7 @@ const Breadcrumb: React.VFC<Props> = ({ breadcrumbProps, breadcrumbItems }) => {
               </BreadcrumbLink>
             </ChakraBreadcrumbItem>
           )
-
-        })
-      }
+        })}
     </ChakraBreadcrumb>
   )
 }

@@ -36,18 +36,11 @@ const Pagination: React.VFC<Props> = ({ pagination, flexProps }) => (
   >
     {
       pagination.prevPageHref ?
-        <Link
-          {...linkProps}
-          href={pagination.prevPageHref}
-        >
-          Previous
-        </Link>
+        <Link {...linkProps} href={pagination.prevPageHref}>Previous</Link>
         :
-        <TextSpan textProps={textProps}>
-          Previous
-        </TextSpan>
+        <TextSpan textProps={textProps}>Previous</TextSpan>
     }
-
+    
     <TextSpan
       textProps={{
         display: "inline-block",
@@ -62,16 +55,9 @@ const Pagination: React.VFC<Props> = ({ pagination, flexProps }) => (
 
     {
       pagination.nextPageHref ?
-        <Link
-          {...linkProps}
-          href={pagination.nextPageHref}
-        >
-          Next
-        </Link>
+        <Link {...linkProps} href={pagination.nextPageHref}>Next</Link>
         :
-        <TextSpan textProps={textProps}>
-          Next
-        </TextSpan>
+        <TextSpan textProps={textProps}>Next</TextSpan>
     }
   </Flex>
 )

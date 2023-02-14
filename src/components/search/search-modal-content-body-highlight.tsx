@@ -1,7 +1,7 @@
 import { Highlight, Text, TextProps } from '@chakra-ui/react'
 import React, { useCallback } from "react";
 import Fuse from "fuse.js";
-import { SEARCH_CHAR_DISTANCE_IN_VALUE, SEARCH_CHAR_NUMBER_AROUND_IN_VALUE } from "../../lib/constants";
+import { SEARCH_CHAR_DISTANCE_IN_VALUE, SEARCH_CHAR_NUMBER_AROUND_IN_VALUE } from "lib/constants";
 
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
   match: Fuse.FuseResultMatch
 }
 
-const SearchModalContentBodyHighlight = ({ match, textProps }: Props) => {
+const SearchModalContentBodyHighlight: React.VFC<Props> = ({ match, textProps }) => {
 
   /**
    * 全文検索して、マッチしたとき、マッチ結果の中に含まれる、マッチ結果の単語の最初と

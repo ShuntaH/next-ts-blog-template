@@ -1,10 +1,9 @@
 import { getAllPosts, getAllTags } from "lib/api";
 import { Posts } from "interfaces/post";
-import { useMemo } from "react";
-import { setupFullTextSearch } from "lib/search";
 import { Box, HStack } from "@chakra-ui/react";
 import Layout from "components/layouts/layout";
 import TagLink from "components/foundations/tag-link";
+import { useFuse } from "hooks/useFuse";
 
 
 type Context = {
@@ -38,9 +37,7 @@ type Props = {
  * This is the page that is rendered when the user visits the root of your application.
  */
 export default function PaginatedPage({ allPosts, allTags }: Props) {
-  const fuse = useMemo(
-    () => setupFullTextSearch(allPosts),
-    [ allPosts ])
+  const fuse = useFuse(allPosts)
 
   return (
     // ページ固有のhead内容を設定したい時
