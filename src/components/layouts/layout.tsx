@@ -29,7 +29,7 @@ const Layout: React.VFC<Props> = ({ preview, fuse, children }) => {
         minHeight={`calc(100vh - ${STYLES.headerHeight} - ${STYLES.footerHeight})`}
         marginX={"auto"}
         marginBottom={20}
-        marginTop={48}
+        marginTop={72}
         padding={`${STYLES.gap}`}
       >
         {children}

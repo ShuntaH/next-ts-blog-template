@@ -22,12 +22,14 @@ const PostCard: React.VFC<Props> = ({ post, cardProps}) => {
         position={"relative"}
         bgColor={"transparent"}
         border={'2px'}
-        borderColor={"whiteAlpha.200"}
+        borderColor={"rgba(51, 65, 85, 1)"}
         borderStyle={"solid"}
         marginBottom={STYLES.gap}
         padding={{base: STYLES.gapSm, md: STYLES.gap}}
         borderRadius={STYLES.radius}
         overflow={"hidden"}
+        backdropFilter={'blur(4px)'}
+        boxShadow={'var(0 0 #0000,0 0 #0000),var(0 0 #0000,0 0 #0000),var(0 25px 50px -12px rgb(0 0 0 / 0.25))'}
         {...cardProps}
       >
         <CardHeader as={"header"} paddingY={1} paddingX={0}>
