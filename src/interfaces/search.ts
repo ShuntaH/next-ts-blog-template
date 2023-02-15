@@ -1,6 +1,5 @@
 import React, { EventHandler } from "react";
 
-
 /**
  * ポストの中から全文検索の対象となるデータの種類
  */

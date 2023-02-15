@@ -1,18 +1,16 @@
 import React from "react";
 import { Flex, FlexProps } from "@chakra-ui/react";
-
-import { Author } from "interfaces/post";
 import TextSpan from "components/foundations/text-span";
 import DateFormatter from "components/date-formatter";
 
 type Props = {
   time: string
-  date: string
-  author: Author
+  publishedAt: string
+  updatedAt: string
   flexProps?: FlexProps
 }
 
-const PostMeta: React.VFC<Props> = ({ time, date, flexProps }) => (
+const PostMeta: React.VFC<Props> = ({ time, publishedAt, updatedAt, flexProps }) => (
   <Flex
     {...flexProps}
     flexWrap={"wrap"}
@@ -24,7 +22,17 @@ const PostMeta: React.VFC<Props> = ({ time, date, flexProps }) => (
 
   >
     <TextSpan>
-      <DateFormatter dateString={date}/>
+      <TextSpan textProps={{color: "whiteAlpha.700"}}>
+        Published:
+      </TextSpan>
+      {' '}
+      <DateFormatter dateString={publishedAt}/>
+      {' '}
+      <TextSpan textProps={{color: 'whiteAlpha.700'}}>
+        Updated:
+      </TextSpan>
+      {' '}
+      <DateFormatter dateString={updatedAt}/>
     </TextSpan>
     <TextSpan>・</TextSpan>
     <TextSpan>{time}</TextSpan>

@@ -8,6 +8,7 @@ import { useFuse } from "hooks/useFuse";
 
 export const getStaticProps = async () => {
   const allPosts: Posts = getSortedPosts(getAllPosts())
+  // console.log('posts', allPosts)
   const pagination: Pagination = getPagination({
     currentPageNumber: 1,
     posts: allPosts,

@@ -62,6 +62,13 @@ type Context = {
 export async function getStaticProps({ params }: Context) {
   const allPosts = getAllPosts()
   const post = getPostBySlug(params.slug)
+
+  if (!post) {
+    return {notFound: true}
+  }
+  // 非公開中のため null の可能性があるがサーバーサイドでビルドする時にのみ呼ばれて、それは存在する
+  // マークダウンのみしか呼ばないので実質エラーは開発中しか起きない。
+  // クライアントサイドでのみエラー処理をすればよい。
   post.content = await markdownToHtml(post.content || '')
 
   return {
@@ -110,7 +117,7 @@ export default function PostPage({ post, allPosts, preview }: Props) {
           <Box as={"article"}>
             <Head>
               <title>{post.title}</title>
-              <meta property="og:image" content={post.ogImage.url}/>
+              <meta property="og:image" content={post.ogImageUrl}/>
             </Head>
             <PostHeader post={post} boxProps={{ marginBottom: 20, width: "full" }}/>
             <PostBody content={post.content} boxProps={{width: "full"}}/>

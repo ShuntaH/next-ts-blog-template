@@ -24,7 +24,7 @@ export const getPostSlugs = (): string[] => {
  * ファイル名からそのファイルの中身を取得する。
  * @param slug マークダウンファイルの名前
  */
-export const getPostBySlug = (slug: string): Post => {
+export const getPostBySlug = (slug: string): Post | null => {
   // slug 'hoge.md'
   const realSlug = slug.replace(/\.md$/, '')
   const fullPath = join(postsDirectory, `${realSlug}.md`)
@@ -34,26 +34,39 @@ export const getPostBySlug = (slug: string): Post => {
 
   // data に --- --- の内容、content に本文が入る
   const { data, content } = matter(fileContents)
+
   const markdownData = data as MarkdownData
-  const charLength: number = content.length
+
+  // returnする時に、undefined でビルドエラーさせるために ! で確認しない。
+  if (markdownData.status === false) {
+    return null
+  }
+
+
+  // サロゲートペアの文字を考慮する
+  const charLength: number = [ ...content ].length
 
   // 220文字を読むのに1分かかるとする。 hugo のプラグインのロジックを参考にした。
   const charsPerMin = 220
 
   // 四捨五入する
-  const min = Math.round(charLength / charsPerMin)
+  let min = Math.round(charLength / charsPerMin)
+  // 0分の場合は1分かかる
+  min = min === 0 ? 1 : min
 
   const time = `${min} mins`
 
+  // もしマークダウンで設定を忘れた項目があれば undefined はシリアライズ
+  // できないのでビルドに失敗する。
   return {
     content: content,
     slug: realSlug,
+    status: markdownData.status,
     title: markdownData.title,
-    date: markdownData.date,
+    publishedAt: markdownData.publishedAt,
+    updatedAt: markdownData.updatedAt,
     excerpt: markdownData.excerpt,
-    author: markdownData.author,
-    ogImage: markdownData.ogImage,
-    coverImage: markdownData.coverImage,
+    ogImageUrl: markdownData.ogImageUrl,
     tags: markdownData.tags,
     time
   }
@@ -65,7 +78,8 @@ export const getPostBySlug = (slug: string): Post => {
  */
 export const getAllPosts = (): Posts => {
   const slugs: string[] = getPostSlugs() // [ 'hoge.md', 'hello-world.md' ]
-  return slugs.map((slug) => getPostBySlug(slug))
+  const posts = slugs.map((slug) => getPostBySlug(slug))
+  return <Post[]> posts.filter((post) => !!post)
 }
 
 /**
@@ -73,7 +87,7 @@ export const getAllPosts = (): Posts => {
  */
 export const getSortedPosts = (posts: Posts): Posts => {
   // sort posts by date in descending order
-  return posts.sort((post1, post2) => (post1.date > post2.date ? -1 : 1))
+  return posts.sort((post1, post2) => (post1.publishedAt > post2.publishedAt ? -1 : 1))
 }
 
 export const getAllTags = (posts: Posts): string[] => {

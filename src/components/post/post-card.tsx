@@ -41,7 +41,11 @@ const PostCard: React.VFC<Props> = ({ post, cardProps}) => {
           >
             {post.title}
           </Heading>
-          <PostMeta time={post.time} date={post.date} author={post.author} />
+          <PostMeta
+            time={post.time}
+            publishedAt={post.publishedAt}
+            updatedAt={post.updatedAt}
+          />
           <PostTags tags={post.tags} stackProps={{marginBottom: 2}}/>
         </CardHeader>
 

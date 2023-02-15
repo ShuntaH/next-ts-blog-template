@@ -30,8 +30,8 @@ const PostHeader: React.VFC<Props> = ({ post, boxProps }) => {
       </PostTitle>
       <PostMeta
         time={post.time}
-        date={post.date}
-        author={post.author}
+        publishedAt={post.publishedAt}
+        updatedAt={post.updatedAt}
         flexProps={{marginBottom: 1}}
       />
       <PostTags tags={post.tags} />
