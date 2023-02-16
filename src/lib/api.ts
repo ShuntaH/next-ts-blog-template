@@ -1,13 +1,24 @@
 import { join } from 'path'
 import matter from 'gray-matter'
-import { MarkdownData, Post, Posts } from "interfaces/post";
+import { MarkdownData, MarkdownDataValidationResult, Post, Posts } from "interfaces/post";
 import { Pagination, PaginationProps } from "interfaces/pagination";
 import * as fs from "fs";
 import { POST_COUNT_PER_PAGE } from "lib/constants";
 
+// public と同じ階層に置いている
+// md の配信はしないので public の中に入れない
+const postsDirectory = join(process.cwd(), '_posts')
 
-const postsDirectory = join(process.cwd(), 'src', '_posts')
-
+// type Post と一致させること
+const keysShouldExist = [
+  'title',
+  'publishedAt',
+  'updatedAt',
+  'status',
+  'excerpt',
+  'ogImageUrl',
+  'tags'
+]
 
 /**
  * 記事を格納しているディレクトリにあるファイル名を全て取得する
@@ -18,7 +29,6 @@ export const getPostSlugs = (): string[] => {
   // fs は node で実行されるので クライアントサイドではエラー
   return fs.readdirSync(postsDirectory)
 }
-
 
 /**
  * ファイル名からそのファイルの中身を取得する。
@@ -31,17 +41,61 @@ export const getPostBySlug = (slug: string): Post | null => {
 
   // md の中身を全て取得する
   const fileContents = fs.readFileSync(fullPath, 'utf8')
-
-  // data に --- --- の内容、content に本文が入る
+  // data に --- --- の内容、content に本文が入る。
+  // gray-matter は data と content にわけるため。
   const { data, content } = matter(fileContents)
 
-  const markdownData = data as MarkdownData
+  // const markdownData = data as MarkdownData
+  const _markdownData = data
+  /**
+   * マークダウンのデータ部分を取得するが any 。補完が効くように型をつけると、
+   * 書いたマークダウンファイルに不足または余計なデータを書き込んでいないか
+   * 検証するのが TS だとタイプエラーが出やいため短く書くのが難しかった。そのため関数に切り出した。
+   */
+  const validateMarkdownData = (): MarkdownDataValidationResult => {
+    const markdownDataKeys = Object.keys(_markdownData)
+    let bad = undefined
+    markdownDataKeys.forEach((k => {
+      if (!keysShouldExist.includes(k)) {
+        bad = {
+          success: false,
+          message: `Markdown file "${slug}" contains unknown data "${k}".`
+        }
+        return
+      }
+    }))
 
-  // returnする時に、undefined でビルドエラーさせるために ! で確認しない。
-  if (markdownData.status === false) {
-    return null
+    keysShouldExist.forEach((k) => {
+      if (_markdownData[k] === undefined) {
+        bad = {
+          success: false,
+          message: `Markdown file "${slug}" is lack of markdown data "${k}".`
+        }
+        return
+      }
+    })
+
+    if (bad === undefined) {
+      return {
+        success: true,
+        message: 'Ok'
+      }
+    }
+    return bad
   }
 
+  const validationResult = validateMarkdownData()
+
+  if (!validationResult.success) {
+    throw Error(validationResult.message)
+  }
+
+  const markdownData = _markdownData as MarkdownData
+
+  if (!markdownData.status) {
+    // 非公開なので返す post はない。
+    return null
+  }
 
   // サロゲートペアの文字を考慮する
   const charLength: number = [ ...content ].length
@@ -79,7 +133,7 @@ export const getPostBySlug = (slug: string): Post | null => {
 export const getAllPosts = (): Posts => {
   const slugs: string[] = getPostSlugs() // [ 'hoge.md', 'hello-world.md' ]
   const posts = slugs.map((slug) => getPostBySlug(slug))
-  return <Post[]> posts.filter((post) => !!post)
+  return <Post[]> posts.filter((post) => post)
 }
 
 /**

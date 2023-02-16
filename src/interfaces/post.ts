@@ -10,7 +10,11 @@ export type MarkdownData = {
   tags: string[]
 }
 
-export type MarkdownDataKeys = keyof MarkdownData
+// マークダウンを取り込む時に内容の検証をする。そのときの結果のデータオブジェクト
+export type MarkdownDataValidationResult = {
+  success: boolean
+  message: string
+}
 
 export type Post = {
   title: string

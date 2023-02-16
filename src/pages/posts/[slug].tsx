@@ -1,14 +1,10 @@
-import { useRouter } from 'next/router'
-import ErrorPage from 'next/error'
 import { getAllPosts, getPostBySlug, getSortedPosts } from 'lib/api'
 import Head from 'next/head'
-import { Box, Card } from "@chakra-ui/react";
-import { STYLES } from "lib/constants";
+import { Box } from "@chakra-ui/react";
 import { Post, Posts } from "interfaces/post";
 import { useFuse } from "hooks/useFuse";
 import markdownToHtml from "lib/markdownToHtml";
 import Layout from "components/layouts/layout";
-import PostTitle from "components/post/post-title";
 import PostBody from "components/post/post-body";
 import PostHeader from "components/post/post-header";
 
@@ -19,7 +15,6 @@ import PostHeader from "components/post/post-header";
  */
 export async function getStaticPaths() {
   const posts = getSortedPosts(getAllPosts())
-
   return {
     paths: posts.map((post) => {
       return {
@@ -28,7 +23,10 @@ export async function getStaticPaths() {
         }
       }
     }),
-    fallback: false,
+    // true だと fallback するために getStaticProps が動作する。はずだがしなかった。
+    // undefined の props が FC に渡されてレンダーエラー。
+    // false だと開発中に存在しないパスにアクセスしたら fallback しないのでそのままエラーページに行く。
+    fallback: false
   }
 }
 
@@ -45,8 +43,7 @@ type Context = {
 
 /**
  *  この関数はサーバー側のビルド時に呼び出されます。
- *  クライアント側では呼び出されないので、
- *  直接データベースクエリを実行できます。
+ *  クライアント側では呼び出されない。
  *  開発中はリクエストのたびに実行されますが、サーバーサイドで実行されるので console.log は
  *  ブラウザでは確認できません。npm run dev のコンソールで確認してください。
  * @param params ルートパラメーター [slug].tsx
@@ -61,14 +58,9 @@ type Context = {
  */
 export async function getStaticProps({ params }: Context) {
   const allPosts = getAllPosts()
-  const post = getPostBySlug(params.slug)
-
-  if (!post) {
-    return {notFound: true}
-  }
-  // 非公開中のため null の可能性があるがサーバーサイドでビルドする時にのみ呼ばれて、それは存在する
-  // マークダウンのみしか呼ばないので実質エラーは開発中しか起きない。
-  // クライアントサイドでのみエラー処理をすればよい。
+  const post = getPostBySlug(params.slug) as Post
+  // 記事が非公開だとそのパスは getStaticPath に存在しない。
+  // fallback も false でそのままエラー用のページに飛ぶので null は来ない。
   post.content = await markdownToHtml(post.content || '')
 
   return {
@@ -81,49 +73,22 @@ export async function getStaticProps({ params }: Context) {
 
 type Props = {
   post: Post
-  morePosts: Posts
   allPosts: Posts
-  preview?: boolean
 }
 
-export default function PostPage({ post, allPosts, preview }: Props) {
+export default function PostPage({ post, allPosts }: Props) {
   const fuse = useFuse(allPosts)
-
-  const router = useRouter()
-  if (!router.isFallback && !post?.slug) {
-    // todo 共通のエラーページを作る
-    return <ErrorPage statusCode={404}/>
-  }
-
   return (
     <Layout fuse={fuse}>
-      {
-        router.isFallback ? (
-          <Card
-            as={"div"}
-            position={"relative"}
-            display={"flex"}
-            justifyContent={"center"}
-            alignItems={"center"}
-            margin={`${STYLES.gap} 0 calc(${STYLES.gap} * 2)`}
-            overflow={"hidden"}
-            boxShadow={"none"}
-          >
-            <PostTitle headingProps={{ textAlign: "center" }}>
-              {post.title}
-            </PostTitle>
-          </Card>
-        ) : (
-          <Box as={"article"}>
-            <Head>
-              <title>{post.title}</title>
-              <meta property="og:image" content={post.ogImageUrl}/>
-            </Head>
-            <PostHeader post={post} boxProps={{ marginBottom: 20, width: "full" }}/>
-            <PostBody content={post.content} boxProps={{width: "full"}}/>
-          </Box>
-        )
-      }
+      <Box as={"article"}>
+        <Head>
+          <title>{post.title}</title>
+          <meta property="og:image" content={post.ogImageUrl}/>
+        </Head>
+        
+        <PostHeader post={post} boxProps={{ marginBottom: 20, width: "full" }}/>
+        <PostBody content={post.content} boxProps={{ width: "full" }}/>
+      </Box>
     </Layout>
   )
 }
