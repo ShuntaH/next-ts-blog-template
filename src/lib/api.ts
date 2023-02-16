@@ -45,8 +45,8 @@ export const getPostBySlug = (slug: string): Post | null => {
   // gray-matter は data と content にわけるため。
   const { data, content } = matter(fileContents)
 
-  // const markdownData = data as MarkdownData
   const _markdownData = data
+  
   /**
    * マークダウンのデータ部分を取得するが any 。補完が効くように型をつけると、
    * 書いたマークダウンファイルに不足または余計なデータを書き込んでいないか
