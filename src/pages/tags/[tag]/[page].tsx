@@ -54,14 +54,8 @@ type Context = {
   params: {
     tag: string,
     page: string
-  },
-  preview?: boolean
-  previewData?: unknown
-  locale?: string
-  locales?: string[]
-  defaultLocale?: string
+  }
 }
-
 
 export const getStaticProps = async ({ params }: Context) => {
   const allPosts = getAllPosts()
@@ -84,6 +78,7 @@ type Props = {
   pagination: Pagination
   allPosts: Posts
 }
+
 /**
  * This is the page that is rendered when the user visits the root of your application.
  */

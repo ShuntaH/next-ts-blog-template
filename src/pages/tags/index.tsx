@@ -6,19 +6,7 @@ import TagLink from "components/foundations/tag-link";
 import { useFuse } from "hooks/useFuse";
 
 
-type Context = {
-  params: {
-    page: string
-  },
-  preview?: boolean
-  previewData?: unknown
-  locale?: string
-  locales?: string[]
-  defaultLocale?: string
-}
-
-
-export const getStaticProps = async ({params}: Context) => {
+export const getStaticProps = async () => {
   const allPosts = getAllPosts()
   const allTags = getAllTags(allPosts)
   return {
@@ -33,10 +21,11 @@ type Props = {
   allPosts: Posts
   allTags: string[]
 }
+
 /**
  * This is the page that is rendered when the user visits the root of your application.
  */
-export default function PaginatedPage({ allPosts, allTags }: Props) {
+export default function Index({ allPosts, allTags }: Props) {
   const fuse = useFuse(allPosts)
 
   return (

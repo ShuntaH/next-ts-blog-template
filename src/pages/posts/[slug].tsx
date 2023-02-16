@@ -33,12 +33,7 @@ export async function getStaticPaths() {
 type Context = {
   params: {
     slug: string
-  },
-  preview?: boolean
-  previewData?: unknown
-  locale?: string
-  locales?: string[]
-  defaultLocale?: string
+  }
 }
 
 /**
@@ -85,7 +80,7 @@ export default function PostPage({ post, allPosts }: Props) {
           <title>{post.title}</title>
           <meta property="og:image" content={post.ogImageUrl}/>
         </Head>
-        
+
         <PostHeader post={post} boxProps={{ marginBottom: 20, width: "full" }}/>
         <PostBody content={post.content} boxProps={{ width: "full" }}/>
       </Box>

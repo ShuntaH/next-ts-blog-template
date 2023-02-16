@@ -20,20 +20,13 @@ export async function getStaticPaths() {
   }
 }
 
-
 type Context = {
   params: {
     page: string
-  },
-  preview?: boolean
-  previewData?: unknown
-  locale?: string
-  locales?: string[]
-  defaultLocale?: string
+  }
 }
 
-
-export const getStaticProps = async ({params}: Context) => {
+export const getStaticProps = async ({ params }: Context) => {
   const allPosts = getAllPosts()
   const pagination: Pagination = getPagination({
     currentPageNumber: Number(params.page),
