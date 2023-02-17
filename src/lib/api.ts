@@ -46,7 +46,7 @@ export const getPostBySlug = (slug: string): Post | null => {
   const { data, content } = matter(fileContents)
 
   const _markdownData = data
-  
+
   /**
    * マークダウンのデータ部分を取得するが any 。補完が効くように型をつけると、
    * 書いたマークダウンファイルに不足または余計なデータを書き込んでいないか
@@ -132,8 +132,8 @@ export const getPostBySlug = (slug: string): Post | null => {
  */
 export const getAllPosts = (): Posts => {
   const slugs: string[] = getPostSlugs() // [ 'hoge.md', 'hello-world.md' ]
-  const posts = slugs.map((slug) => getPostBySlug(slug))
-  return <Post[]> posts.filter((post) => post)
+  const allPosts = slugs.map((slug) => getPostBySlug(slug))
+  return <Posts> allPosts.filter((post) => post)
 }
 
 /**

@@ -7,7 +7,8 @@ import { useFuse } from "hooks/useFuse";
 
 
 export async function getStaticPaths() {
-  const posts = getSortedPosts(getAllPosts())
+  const allPosts = getAllPosts()
+  const posts = getSortedPosts(allPosts)
   const range: number[] = getTotalPageCountRange(posts)
 
   return {

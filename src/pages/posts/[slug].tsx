@@ -3,10 +3,10 @@ import Head from 'next/head'
 import { Box } from "@chakra-ui/react";
 import { Post, Posts } from "interfaces/post";
 import { useFuse } from "hooks/useFuse";
-import markdownToHtml from "lib/markdownToHtml";
 import Layout from "components/layouts/layout";
 import PostBody from "components/post/post-body";
 import PostHeader from "components/post/post-header";
+import React from "react";
 
 
 /**
@@ -53,10 +53,9 @@ type Context = {
  */
 export async function getStaticProps({ params }: Context) {
   const allPosts = getAllPosts()
-  const post = getPostBySlug(params.slug) as Post
+  const post = await getPostBySlug(params.slug) as Post
   // 記事が非公開だとそのパスは getStaticPath に存在しない。
   // fallback も false でそのままエラー用のページに飛ぶので null は来ない。
-  post.content = await markdownToHtml(post.content || '')
 
   return {
     props: {
