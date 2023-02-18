@@ -2,7 +2,7 @@ import { Card, CardBody, CardFooter, CardHeader, Heading } from '@chakra-ui/reac
 import { BLOG_DISCRIPTION, STYLES } from "lib/constants";
 import React from "react";
 
-const IntroCard: React.VFC = () => {
+const IntroCard: React.FC = () => {
   return (
     <Card
       as={"article"}

@@ -6,13 +6,13 @@ import { Post } from "interfaces/post";
 import PostTags from "components/post/post-tags";
 import PostMeta from "components/post/post-meta";
 
-
+// cardProps をスプレッドで渡すために他のものを混ぜない(&を使わない)
 type Props = {
   post: Post,
   cardProps?: CardProps
 }
 
-const PostCard: React.VFC<Props> = ({ post, cardProps}) => {
+const PostCard: React.FC<Props> = ({ post, cardProps}) => {
   const postHref = (post: Post) => `/posts/${post.slug}`
 
   return (

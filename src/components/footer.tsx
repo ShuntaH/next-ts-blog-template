@@ -13,9 +13,8 @@ const memo = [
   { href: '/about', content: 'About' },
 ]
 
-const Footer: React.VFC = () => {
+const Footer: React.FC = () => {
   const menus: Menu[] = memo
-
   return (
     <Box
       as={"footer"}

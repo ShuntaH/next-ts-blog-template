@@ -5,19 +5,21 @@ import PostMeta from "components/post/post-meta";
 import PostTags from "components/post/post-tags";
 import { BreadcrumbItem } from "interfaces/breadcrumb";
 import Breadcrumb from "components/breadcrumb";
-import React from "react";
+import React, { useMemo } from "react";
 
 type Props = {
   post: Post
   boxProps?: BoxProps
 }
 
-const PostHeader: React.VFC<Props> = ({ post, boxProps }) => {
-  const breadCrumbItems: BreadcrumbItem[] = [
+const PostHeader: React.FC<Props> = ({ post, boxProps }) => {
+  const breadCrumbItems: BreadcrumbItem[] = useMemo(
+    () => [
     { title: 'home', href: '/' },
     { title: 'posts', href: '/' },
     { title: post.title, href: `/posts/${post.slug}` }
-  ]
+  ], [post.slug]);
+
 
   return (
     <Box as={"header"} {...boxProps}>
@@ -25,7 +27,7 @@ const PostHeader: React.VFC<Props> = ({ post, boxProps }) => {
         breadcrumbItems={breadCrumbItems}
         breadcrumbProps={{ marginBottom: 1, fontSize: "sm" }}
       />
-      <PostTitle headingProps={{ marginBottom: 2 }}>
+      <PostTitle marginBottom={2}>
         {post.title}
       </PostTitle>
       <PostMeta

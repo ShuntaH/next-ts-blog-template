@@ -16,3 +16,7 @@
 .markdown h3 {
     font-size: 3rem;
 }
+
+.markdown pre {
+    overflow-x: scroll;
+}

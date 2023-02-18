@@ -16,7 +16,7 @@ type Props = {
   breadcrumbProps?: BreadcrumbProps
 }
 
-const Breadcrumb: React.VFC<Props> = ({ breadcrumbProps, breadcrumbItems }) => {
+const Breadcrumb: React.FC<Props> = ({ breadcrumbProps, breadcrumbItems }) => {
   const length = useMemo(() => breadcrumbItems.length, [breadcrumbItems])
 
   return (

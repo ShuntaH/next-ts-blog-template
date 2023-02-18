@@ -9,7 +9,7 @@ type Props = {
   boxProps?: BoxProps
 }
 
-const PostCards: React.VFC<Props> = ({ posts, boxProps }) => {
+const PostCards: React.FC<Props> = ({ posts, boxProps }) => {
   return (
     <Box {...boxProps}>
       { posts.map((post, index) => <PostCard key={index} post={post}/>) }

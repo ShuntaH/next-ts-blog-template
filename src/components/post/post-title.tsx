@@ -1,13 +1,8 @@
 import { Heading, HeadingProps } from "@chakra-ui/react";
-import React, { ReactNode } from "react";
+import React from "react";
 
-type Props = {
-  children?: ReactNode
-  headingProps?: HeadingProps
-}
-
-const PostTitle: React.VFC<Props> = ({ headingProps, children }) => (
-  <Heading as={"h1"} {...headingProps}>{children}</Heading>
+const PostTitle: React.FC<HeadingProps> = (props) => (
+  <Heading as={"h1"} {...props}>{props.children}</Heading>
 )
 
 export default PostTitle

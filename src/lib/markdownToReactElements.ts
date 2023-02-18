@@ -5,9 +5,9 @@ import remarkRehype from "remark-rehype";
 import rehypeRaw from "rehype-raw";
 import rehypeReact from "rehype-react";
 import React from "react";
-import RehypeReactLink from "components/foundations/rehype-react-link";
+import LinkNextProvide from "components/markdown/link-next-provide";
 
-export default async function markdownToReactElements(markdown: string) {
+export default async function markdownToReactElements(markdown: string): Promise<React.ReactNode> {
   return remark()
     .use(remarkGfm)
     .use(remarkBreaks)
@@ -21,7 +21,9 @@ export default async function markdownToReactElements(markdown: string) {
       {
         createElement: React.createElement,
         components: {
-          a: RehypeReactLink,
+          // chakra を使っているので chakraComponent
+          // が一番型をつけるのが簡単
+          a: LinkNextProvide,
         }
       })
     .processSync(markdown).result

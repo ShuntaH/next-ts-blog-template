@@ -1,6 +1,5 @@
 import React from "react";
-import { Flex, FlexProps } from "@chakra-ui/react";
-import TextSpan from "components/foundations/text-span";
+import { Flex, FlexProps, Text } from "@chakra-ui/react";
 import DateFormatter from "components/date-formatter";
 
 type Props = {
@@ -10,7 +9,7 @@ type Props = {
   flexProps?: FlexProps
 }
 
-const PostMeta: React.VFC<Props> = ({ time, publishedAt, updatedAt, flexProps }) => (
+const PostMeta: React.FC<Props> = ({ time, publishedAt, updatedAt, flexProps }) => (
   <Flex
     {...flexProps}
     flexWrap={"wrap"}
@@ -19,24 +18,22 @@ const PostMeta: React.VFC<Props> = ({ time, publishedAt, updatedAt, flexProps })
     marginBottom={2}
     fontSize={"smaller"}
     color={"gray.300"}
-
   >
-    <TextSpan>
-      <TextSpan textProps={{color: "whiteAlpha.700"}}>
+    <Text as={"span"}>
+      <Text color={"whiteAlpha.700"} as={'span'}>
         Published:
-      </TextSpan>
+      </Text>
       {' '}
       <DateFormatter dateString={publishedAt}/>
       {' '}
-      <TextSpan textProps={{color: 'whiteAlpha.700'}}>
+      <Text color={"whiteAlpha.700"} as={'span'}>
         Updated:
-      </TextSpan>
+      </Text>
       {' '}
       <DateFormatter dateString={updatedAt}/>
-    </TextSpan>
-    <TextSpan>・</TextSpan>
-    <TextSpan>{time}</TextSpan>
-
+    </Text>
+    <Text as={"span"}>・</Text>
+    <Text as={"span"}>{time}</Text>
   </Flex>
 )
 

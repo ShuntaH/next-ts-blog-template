@@ -5,7 +5,7 @@ type Props = {
   dateString: string
 }
 
-const DateFormatter: React.VFC<Props> = ({ dateString }) => {
+const DateFormatter: React.FC<Props> = ({ dateString }) => {
   const date = useMemo(() => parseISO(dateString), [dateString])
   return <time dateTime={dateString}>
     {format(date, 'LLLL	d, yyyy')}

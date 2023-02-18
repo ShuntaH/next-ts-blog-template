@@ -8,10 +8,6 @@ import { NavigationIcon } from "interfaces/icon";
 import SearchForm from "components/search/search-form";
 import ChakraFontAwesomeIcon from "components/chakra-font-awesome-icon";
 
-type Props = {
-  boxProps?: BoxProps
-}
-
 const icons: NavigationIcon[] = [
   {
     href: '/tags',
@@ -27,10 +23,10 @@ const icons: NavigationIcon[] = [
   }
 ]
 
-const Header: React.VFC<Props> = ({boxProps}) => {
+const Header: React.FC<BoxProps> = (props) => {
   return (
     // md 以上は flex でアイテムは横並び、 それ以下は block で縦並び
-    <Box {...boxProps}>
+    <Box {...props}>
       <Flex
         as='nav'
         flexWrap='wrap'

@@ -7,12 +7,14 @@ type Props = {
   stackProps?: StackProps
 }
 
-const PostTags: React.VFC<Props> = ({ tags, stackProps }) => (
+const PostTags: React.FC<Props> = ({ tags, stackProps }) => (
   tags.length > 0 ?
     <HStack spacing={4} {...stackProps}>
       {
         tags.map((tag, index) => (
-          <TagLink key={index} content={tag} tagProps={{size: "sm"}} />
+          <TagLink key={index}>
+            {tag}
+          </TagLink>
       ))}
     </HStack>
     :

@@ -9,7 +9,7 @@ type Props = {
   boxProps?: BoxProps
 }
 
-const PostsPage: React.VFC<Props> = ({ pagination, boxProps }) => {
+const PostsPage: React.FC<Props> = ({ pagination, boxProps }) => {
   const posts = pagination.currentPagePosts
 
   return (

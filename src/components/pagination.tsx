@@ -1,7 +1,6 @@
-import { Flex, FlexProps, Link, LinkProps, TextProps } from "@chakra-ui/react";
+import { Flex, FlexProps, Link, LinkProps, Text, TextProps } from "@chakra-ui/react";
 import { Pagination } from "interfaces/pagination";
 import NextLink from "next/link";
-import TextSpan from "components/foundations/text-span";
 import React from "react";
 
 
@@ -11,6 +10,7 @@ type Props = {
 }
 
 const textProps: TextProps = {
+  as: 'span',
   display: "inline-block",
   color: "gray.500",
   overflowX: "hidden",
@@ -27,7 +27,7 @@ const linkProps: LinkProps = {
   as: NextLink
 }
 
-const Pagination: React.VFC<Props> = ({ pagination, flexProps }) => (
+const Pagination: React.FC<Props> = ({ pagination, flexProps }) => (
 
   <Flex
     justifyContent={"space-between"}
@@ -38,26 +38,18 @@ const Pagination: React.VFC<Props> = ({ pagination, flexProps }) => (
       pagination.prevPageHref ?
         <Link {...linkProps} href={pagination.prevPageHref}>Previous</Link>
         :
-        <TextSpan textProps={textProps}>Previous</TextSpan>
+        <Text {...textProps}>Previous</Text>
     }
-    
-    <TextSpan
-      textProps={{
-        display: "inline-block",
-        _hover: {cursor: "default"},
-        overflowX: "hidden",
-        width: "70px",
-        textAlign: "center",
-    }}
-    >
+
+    <Text {...textProps}>
       {pagination.currentPageNumber} of {pagination.totalPageCount}
-    </TextSpan>
+    </Text>
 
     {
       pagination.nextPageHref ?
         <Link {...linkProps} href={pagination.nextPageHref}>Next</Link>
         :
-        <TextSpan textProps={textProps}>Next</TextSpan>
+        <Text {...textProps}>Next</Text>
     }
   </Flex>
 )

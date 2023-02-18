@@ -1,36 +1,21 @@
-import { Tag, TagLabel, TagProps } from "@chakra-ui/react";
-import NextLink from "next/link";
-import React from "react";
+import { LinkProps, Tag, TagLabel, TagProps } from "@chakra-ui/react";
+import React, { FC } from "react";
 
-type Props = {
-  tagProps?: TagProps
-  href?: string
-  content: string
-}
+type Props = Omit<TagProps & LinkProps, 'variant'|'colorScheme'>
 
 /**
- * @param tagProps
- * @param content
- * @param index ループで表示することが多いので、そのインデックス
- * @param href これがあれば、このタグはこのhrefに遷移するNextLinkコンポーネントになる
+ * variant と colorSchema は props によって変更できない
+ * @param props
  * @constructor
  */
-const TagLink: React.VFC<Props> = ({ tagProps, content, href}) => {
-  const tagMeta: {[key: string]: any} = {}
-
-  if(href) {
-    tagMeta.href = href
-    tagMeta.as = NextLink
-  }
-
+const TagLink: FC<Props> = (props: Props) => {
   return (
     <Tag
-      {...tagProps}
-      {...tagMeta}
       variant='outline'
       colorScheme='teal'
+      {...props}
     >
-      <TagLabel>{content}</TagLabel>
+      <TagLabel>{props.children}</TagLabel>
     </Tag>
   )}
 

@@ -4,6 +4,7 @@ import { Box, HStack } from "@chakra-ui/react";
 import Layout from "components/layouts/layout";
 import TagLink from "components/foundations/tag-link";
 import { useFuse } from "hooks/useFuse";
+import NextLink from "next/link";
 
 
 export const getStaticProps = async () => {
@@ -37,7 +38,13 @@ export default function Index({ allPosts, allTags }: Props) {
       <Box position={"relative"}>
         <HStack spacing={4}>
           {allTags.map((tag, index) => (
-            <TagLink key={index} content={tag} href={`/tags/${tag}/1`} />
+            <TagLink
+              key={index}
+              href={`/tags/${tag}/1`}
+              as={NextLink}
+            >
+              {tag}
+            </TagLink>
           ))}
         </HStack>
       </Box>
