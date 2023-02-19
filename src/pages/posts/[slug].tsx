@@ -1,12 +1,10 @@
 import { getAllPosts, getPostBySlug, getSortedPosts } from 'lib/api'
 import Head from 'next/head'
-import { Box } from "@chakra-ui/react";
 import { Post, Posts } from "interfaces/post";
 import { useFuse } from "hooks/useFuse";
 import Layout from "components/layouts/layout";
-import PostBody from "components/post/singlePost/post-body";
-import PostHeader from "components/post/singlePost/post-header";
 import React from "react";
+import PostDetail from "components/post/postDetail/post-detail";
 
 
 /**
@@ -74,14 +72,11 @@ export default function PostPage({ post, allPosts }: Props) {
   const fuse = useFuse(allPosts)
   return (
     <Layout fuse={fuse}>
-      <Box as={"article"}>
-        <Head>
-          <title>{post.title}</title>
-          <meta property="og:image" content={post.ogImageUrl}/>
-        </Head>
-        <PostHeader post={post} boxProps={{ marginBottom: 20, width: "full" }}/>
-        <PostBody content={post.content} boxProps={{ width: "full" }}/>
-      </Box>
+      <Head>
+        <title>{post.title}</title>
+        <meta property="og:image" content={post.ogImageUrl}/>
+      </Head>
+      <PostDetail post={post}/>
     </Layout>
   )
 }

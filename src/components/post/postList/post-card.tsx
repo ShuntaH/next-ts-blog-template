@@ -3,8 +3,8 @@ import { STYLES } from "lib/constants";
 import React, { useMemo } from "react";
 import NextLink from "next/link";
 import { Post } from "interfaces/post";
-import PostCardHeader from "components/post/postCards/post-card-header";
-import PostCardBody from "components/post/postCards/post-card-body";
+import PostCardHeader from "components/post/postList/post-card-header";
+import PostCardBody from "components/post/postList/post-card-body";
 
 // cardProps をスプレッドで渡すために他のものを混ぜない(&を使わない)
 type Props = {
@@ -32,7 +32,7 @@ const PostCard: React.FC<Props> = ({ post, cardProps}) => {
         borderRadius={STYLES.radius}
         overflow={"hidden"}
         backdropFilter={'blur(4px)'}
-        boxShadow={'var(0 0 #0000,0 0 #0000),var(0 0 #0000,0 0 #0000),var(0 25px 50px -12px rgb(0 0 0 / 0.25))'}
+        boxShadow={'0 0 #0000,0 0 #0000 ,0 0 #0000,0 0 #0000, 0 25px 50px -12px rgb(0 0 0 / 0.25)'}
         {...cardProps}
       >
         {/*todo head*/}

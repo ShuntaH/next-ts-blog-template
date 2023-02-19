@@ -1,5 +1,5 @@
 import React from "react";
-import PostCard from "components/post/postCards/post-card";
+import PostCard from "components/post/postList/post-card";
 import { Box, BoxProps } from "@chakra-ui/react";
 import { Posts } from "interfaces/post";
 

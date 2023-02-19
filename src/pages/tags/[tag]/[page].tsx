@@ -9,7 +9,7 @@ import {
 import { Pagination } from "interfaces/pagination";
 import { Posts } from "interfaces/post";
 import Layout from "components/layouts/layout";
-import PostCardsPage from "components/post/post-cards-page";
+import PostList from "components/post/postList/post-list";
 import { useFuse } from "hooks/useFuse";
 
 export async function getStaticPaths() {
@@ -90,7 +90,7 @@ export default function PaginatedPage({ pagination, allPosts }: Props) {
     //   <title>hskpg blog</title>
     // </Head>
     <Layout fuse={fuse}>
-      <PostCardsPage
+      <PostList
         pagination={pagination}
         boxProps={{ minHeight: "inherit" }}
       />
