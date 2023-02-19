@@ -26,7 +26,7 @@ const Breadcrumb: React.FC<Props> = ({ breadcrumbProps, breadcrumbItems }) => {
       separator={
         <ChakraFontAwesomeIcon
           icon={faChevronRight}
-          color={STYLES.accentColor}
+          color={STYLES.baseColor}
           size={"xs"}
         />}
     >

@@ -1,6 +1,6 @@
 import { Card, CardBody, CardFooter, CardHeader, CardProps, Heading, Text } from '@chakra-ui/react'
 import { STYLES } from "lib/constants";
-import React from "react";
+import React, { useMemo } from "react";
 import NextLink from "next/link";
 import { Post } from "interfaces/post";
 import PostTags from "components/post/post-tags";
@@ -13,12 +13,16 @@ type Props = {
 }
 
 const PostCard: React.FC<Props> = ({ post, cardProps}) => {
-  const postHref = (post: Post) => `/posts/${post.slug}`
+
+  const postHref = useMemo(
+    () => `/posts/${post.slug}`,
+    [post]
+  );
 
   return (
       <Card
         as={NextLink}
-        href={postHref(post)}
+        href={postHref}
         position={"relative"}
         bgColor={"transparent"}
         border={'2px'}
@@ -35,7 +39,7 @@ const PostCard: React.FC<Props> = ({ post, cardProps}) => {
         <CardHeader as={"header"} paddingY={1} paddingX={0}>
           <Heading
             as={'h3'}
-            _hover={{color: STYLES.accentColorLighter}}
+            _hover={{color: STYLES.baseColorLighter}}
             fontSize={{base: "ms", md: "xl"}}
             marginBottom={{base: 2, md: 1}}
           >

@@ -1,4 +1,5 @@
-export const EXAMPLE_PATH = 'hskpg'
+import { ThemeTypings } from "@chakra-ui/styled-system";
+
 export const CMS_NAME = 'Markdown'
 export const HOME_OG_IMAGE_URL =
   'https://og-image.vercel.app/Next.js%20Blog%20Starter%20Example.png?theme=light&md=1&fontSize=100px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg'
@@ -9,7 +10,8 @@ export const SEARCH_MIN_CHARS = 2
 export const SEARCH_CHAR_DISTANCE_IN_VALUE = 15 // 全文検索対象の単語が複数近く見つかった時、何文字の間隔まで1hitとみなすか
 export const SEARCH_CHAR_NUMBER_AROUND_IN_VALUE = 20 // 全文検索対象の単語の前後の何文字を表示するか
 
-
+export const BackgroundImagePath = "/assets/macao.JPG"
+// export const BackgroundImagePath = ""
 /**
  * todo chakra ui で css var の定義の仕方がわからなかったので js でかく。 theme での書き方がわかったらそちらで書く
  */
@@ -23,11 +25,12 @@ const radius = '8px'
 const contentMaxWidth = `calc(${mainWidth} + ${gap} * 2)`
 const contentGap = '20px'
 const navMaxWidth = `calc(${navWidth} + ${gap} * 2)`
-const accentColor = 'teal.300'
-const accentColorLighter = 'teal.200'
+const baseColorScheme: ThemeTypings["colorSchemes"] = 'blue'
+const baseColor: ThemeTypings["colors"] = `${baseColorScheme}.300`
+const baseColorLighter: ThemeTypings["colors"] = `${baseColorScheme}.200`
 const hoverStyle = {
   textDecoration: 'none',
-  color: accentColorLighter
+  color: baseColorLighter
 }
 
 export const STYLES = {
@@ -41,7 +44,8 @@ export const STYLES = {
   footerHeight,
   navMaxWidth,
   radius,
-  accentColor,
-  accentColorLighter,
+  baseColorScheme,
+  baseColor,
+  baseColorLighter,
   hoverStyle
 }

@@ -1,18 +1,19 @@
 import { LinkProps, Tag, TagLabel, TagProps } from "@chakra-ui/react";
 import React, { FC } from "react";
+import { STYLES } from "lib/constants";
 
-type Props = Omit<TagProps & LinkProps, 'variant'|'colorScheme'>
+type Props = Omit<TagProps & LinkProps, 'colorScheme'>
 
 /**
- * variant と colorSchema は props によって変更できない
+ * variant と colorScheme は props によって変更できない
  * @param props
  * @constructor
  */
 const TagLink: FC<Props> = (props: Props) => {
   return (
     <Tag
-      variant='outline'
-      colorScheme='teal'
+      variant={props.variant}
+      colorScheme={STYLES.baseColorScheme}
       {...props}
     >
       <TagLabel>{props.children}</TagLabel>

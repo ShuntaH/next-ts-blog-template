@@ -139,7 +139,7 @@ const SearchModal: React.VFC<Props> = ({
                       backgroundColor={"blackAlpha.300"}
                       color={"gray.300"}
                       _focusVisible={{
-                        outlineColor: STYLES.accentColorLighter
+                        outlineColor: STYLES.baseColorLighter
                       }}
                     >
                       <CardHeader

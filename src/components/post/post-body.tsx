@@ -1,22 +1,16 @@
-import markdownStyles from 'components/markdown-styles.module.css'
 import { Box, BoxProps } from "@chakra-ui/react";
 import React from "react";
-import { useMarkdownToReactElements } from "hooks/useMarkdownToReactElement";
+import MarkdownBox from "components/markdown/markdown-box";
 
 type Props = {
   content: string
   boxProps?: BoxProps
 }
 
-const PostBody: React.VFC<Props> = ({ content, boxProps }) => {
-  const reactElements = useMarkdownToReactElements(content)
+const PostBody: React.FC<Props> = ({ content, boxProps }) => {
   return (
     <Box w={"full"} {...boxProps}>
-      <Box
-        className={markdownStyles['markdown']}
-      >
-        {reactElements}
-      </Box>
+      <MarkdownBox content={content}/>
     </Box>
   )
 }

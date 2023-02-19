@@ -46,7 +46,7 @@ const SearchInput: React.VFC<Props> = ({ inputProps, refOrFunc }) => {
     <Input
       type='text'
       placeholder={"Full-text search 全文検索"}
-      focusBorderColor={STYLES.accentColorLighter}
+      focusBorderColor={STYLES.baseColorLighter}
       {...inputProps}
       {...modalOpenEvents}
       onInput={handleInput}
