@@ -17,7 +17,7 @@ type Props = {
  * @param refOrFunc
  * @constructor
  */
-const SearchInput: React.VFC<Props> = ({ inputProps, refOrFunc }) => {
+const SearchInput: React.FC<Props> = ({ inputProps, refOrFunc }) => {
   const isFunc = typeof refOrFunc === 'function'
   const modalRef = !isFunc ? refOrFunc : null
 
@@ -46,7 +46,7 @@ const SearchInput: React.VFC<Props> = ({ inputProps, refOrFunc }) => {
     <Input
       type='text'
       placeholder={"Full-text search 全文検索"}
-      focusBorderColor={STYLES.baseColorLighter}
+      focusBorderColor={STYLES.colorLight}
       {...inputProps}
       {...modalOpenEvents}
       onInput={handleInput}

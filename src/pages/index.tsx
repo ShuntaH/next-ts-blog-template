@@ -2,7 +2,7 @@ import { getAllPosts, getPagination, getSortedPosts } from "lib/api";
 import { Posts } from "interfaces/post";
 import { Pagination } from "interfaces/pagination";
 import Layout from "components/layouts/layout";
-import PostsPage from "components/post/posts-page";
+import PostCardsPage from "components/post/post-cards-page";
 import { useFuse } from "hooks/useFuse";
 
 
@@ -39,7 +39,7 @@ export default function Index({ pagination, allPosts }: Props) {
     // </Head>
     <Layout fuse={fuse}>
       {/*<IntroCard/>*/}
-      <PostsPage pagination={pagination}/>
+      <PostCardsPage pagination={pagination}/>
     </Layout>
   )
 }

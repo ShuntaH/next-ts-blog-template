@@ -45,6 +45,7 @@ const Header: React.FC<BoxProps> = (props) => {
             as={NextLink}
             fontSize={"24px"}
             fontWeight={700}
+            _hover={STYLES.hoverLighterStyle}
           >
             {BLOG_NAME}
           </Link>

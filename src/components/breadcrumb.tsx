@@ -49,7 +49,7 @@ const Breadcrumb: React.FC<Props> = ({ breadcrumbProps, breadcrumbItems }) => {
                 textOverflow={"ellipsis"}
                 whiteSpace={"nowrap"}
                 textDecoration={"none"}
-                _hover={STYLES.hoverStyle}
+                _hover={STYLES.hoverLightStyle}
                 color={"gray.300"}
               >
                 {item.title}

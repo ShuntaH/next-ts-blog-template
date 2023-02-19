@@ -27,10 +27,18 @@ const contentGap = '20px'
 const navMaxWidth = `calc(${navWidth} + ${gap} * 2)`
 const baseColorScheme: ThemeTypings["colorSchemes"] = 'blue'
 const baseColor: ThemeTypings["colors"] = `${baseColorScheme}.300`
-const baseColorLighter: ThemeTypings["colors"] = `${baseColorScheme}.200`
-const hoverStyle = {
-  textDecoration: 'none',
-  color: baseColorLighter
+const colorLight: ThemeTypings["colors"] = `${baseColorScheme}.200`
+const colorLighter: ThemeTypings["colors"] = `${baseColorScheme}.50`
+const baseHoverStyle = {
+  textDecoration: 'none'
+}
+const hoverLightStyle = {
+  ...baseHoverStyle,
+  color: colorLight
+}
+const hoverLighterStyle = {
+  ...baseHoverStyle,
+  color: colorLighter
 }
 
 export const STYLES = {
@@ -46,6 +54,9 @@ export const STYLES = {
   radius,
   baseColorScheme,
   baseColor,
-  baseColorLighter,
-  hoverStyle
+  colorLight,
+  colorLighter,
+  baseHoverStyle,
+  hoverLightStyle,
+  hoverLighterStyle
 }

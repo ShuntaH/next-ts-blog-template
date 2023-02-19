@@ -1,5 +1,5 @@
 import { Box, BoxProps, Text } from "@chakra-ui/react";
-import PostCards from "./post-cards";
+import PostCards from "components/post/postCards/post-cards";
 import { Pagination as PaginationType } from "../../interfaces/pagination";
 import Pagination from "../pagination";
 import React from "react";
@@ -9,7 +9,7 @@ type Props = {
   boxProps?: BoxProps
 }
 
-const PostsPage: React.FC<Props> = ({ pagination, boxProps }) => {
+const PostCardsPage: React.FC<Props> = ({ pagination, boxProps }) => {
   const posts = pagination.currentPagePosts
 
   return (
@@ -38,4 +38,4 @@ const PostsPage: React.FC<Props> = ({ pagination, boxProps }) => {
 
 }
 
-export default PostsPage
+export default PostCardsPage

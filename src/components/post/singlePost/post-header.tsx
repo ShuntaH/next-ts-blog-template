@@ -1,8 +1,8 @@
 import { Box, BoxProps } from "@chakra-ui/react";
 import { Post } from "interfaces/post";
-import PostTitle from "components/post/post-title";
-import PostMeta from "components/post/post-meta";
-import PostTags from "components/post/post-tags";
+import PostTitle from "components/post/singlePost/post-title";
+import PostMeta from "components/post/common/post-meta";
+import PostTags from "components/post/common/post-tags";
 import { BreadcrumbItem } from "interfaces/breadcrumb";
 import Breadcrumb from "components/breadcrumb";
 import React, { useMemo } from "react";

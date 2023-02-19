@@ -4,8 +4,8 @@ import { Box } from "@chakra-ui/react";
 import { Post, Posts } from "interfaces/post";
 import { useFuse } from "hooks/useFuse";
 import Layout from "components/layouts/layout";
-import PostBody from "components/post/post-body";
-import PostHeader from "components/post/post-header";
+import PostBody from "components/post/singlePost/post-body";
+import PostHeader from "components/post/singlePost/post-header";
 import React from "react";
 
 
@@ -79,7 +79,6 @@ export default function PostPage({ post, allPosts }: Props) {
           <title>{post.title}</title>
           <meta property="og:image" content={post.ogImageUrl}/>
         </Head>
-
         <PostHeader post={post} boxProps={{ marginBottom: 20, width: "full" }}/>
         <PostBody content={post.content} boxProps={{ width: "full" }}/>
       </Box>
