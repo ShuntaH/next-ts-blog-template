@@ -10,7 +10,7 @@ export const SEARCH_MIN_CHARS = 2
 export const SEARCH_CHAR_DISTANCE_IN_VALUE = 15 // 全文検索対象の単語が複数近く見つかった時、何文字の間隔まで1hitとみなすか
 export const SEARCH_CHAR_NUMBER_AROUND_IN_VALUE = 20 // 全文検索対象の単語の前後の何文字を表示するか
 
-export const BackgroundImagePath = "/assets/macao.JPG"
+export const BackgroundImagePath = "/assets/hongkong-bg.png"
 // export const BackgroundImagePath = ""
 /**
  * todo chakra ui で css var の定義の仕方がわからなかったので js でかく。 theme での書き方がわかったらそちらで書く
