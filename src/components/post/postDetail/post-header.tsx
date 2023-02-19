@@ -9,7 +9,7 @@ import React, { useMemo } from "react";
 
 type Props = {
   post: Post
-  boxProps?: BoxProps
+  boxProps?: Omit<BoxProps, 'as'>
 }
 
 const PostHeader: React.FC<Props> = ({ post, boxProps }) => {
