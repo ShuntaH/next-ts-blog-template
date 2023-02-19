@@ -5,9 +5,8 @@ import { STYLES } from "lib/constants";
 type Props = Omit<TagProps & LinkProps, 'colorScheme'>
 
 /**
- * variant と colorScheme は props によって変更できない
+ * colorScheme は props によって変更できない
  * @param props
- * @constructor
  */
 const TagLink: FC<Props> = (props: Props) => {
   return (
