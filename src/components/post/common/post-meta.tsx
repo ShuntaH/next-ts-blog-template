@@ -1,6 +1,6 @@
 import React from "react";
 import { Flex, FlexProps, Text } from "@chakra-ui/react";
-import DateFormatter from "components/date-formatter";
+import DateFormatter from "components/common/date-formatter";
 
 type Props = {
   time: string

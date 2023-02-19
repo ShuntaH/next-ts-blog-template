@@ -4,7 +4,7 @@ import PostTitle from "components/post/postDetail/post-title";
 import PostMeta from "components/post/common/post-meta";
 import PostTags from "components/post/common/post-tags";
 import { BreadcrumbItem } from "interfaces/breadcrumb";
-import Breadcrumb from "components/breadcrumb";
+import Breadcrumb from "components/common/breadcrumb";
 import React, { useMemo } from "react";
 
 type Props = {

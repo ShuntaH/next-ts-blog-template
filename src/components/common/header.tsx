@@ -41,7 +41,7 @@ const Header: React.FC<BoxProps> = (props) => {
         {/*左サイド*/}
         <Flex margin={`auto ${STYLES.gap}`}>
           <Link
-            href='/'
+            href='/src/pages'
             as={NextLink}
             fontSize={"24px"}
             fontWeight={700}

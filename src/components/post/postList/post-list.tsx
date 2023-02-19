@@ -1,7 +1,7 @@
 import { Box, BoxProps, Text } from "@chakra-ui/react";
 import PostCards from "components/post/postList/post-cards";
 import { Pagination as PaginationType } from "interfaces/pagination";
-import Pagination from "components/pagination";
+import Pagination from "components/common/pagination";
 import React from "react";
 
 type Props = {

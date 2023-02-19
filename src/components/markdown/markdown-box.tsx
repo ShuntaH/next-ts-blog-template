@@ -1,4 +1,4 @@
-import markdownStyles from 'components/markdown-styles.module.css'
+import markdownStyles from 'components/markdown/markdown-styles.module.css'
 import { Box } from "@chakra-ui/react";
 import React from "react";
 import { useMarkdownToReactElements } from "hooks/useMarkdownToReactElement";

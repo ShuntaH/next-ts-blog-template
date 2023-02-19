@@ -1,20 +1,19 @@
 import Fuse from "fuse.js";
 import { FilteredPost } from "interfaces/post";
 import React from "react";
-import Header from "components/header";
+import Header from "components/common/header";
 import { Box } from "@chakra-ui/react";
 import { STYLES } from "lib/constants";
-import Footer from "components/footer";
+import Footer from "components/common/footer";
 import { FullTextSearchProvider } from "contexts/fullTextSearchContext";
 
 
 type Props = {
-  preview?: boolean
   fuse: Fuse<FilteredPost>
   children: React.ReactNode
 }
 
-const Layout: React.VFC<Props> = ({ preview, fuse, children }) => {
+const Layout: React.FC<Props> = ({ fuse, children }) => {
   return (
     // fuse をサーバーサイドで作成するために getStaticProps に書く。そのために _app.tsx には書かない。
     <FullTextSearchProvider fuse={fuse}>
