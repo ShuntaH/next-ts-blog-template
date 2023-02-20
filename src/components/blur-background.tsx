@@ -1,6 +1,6 @@
 import { Box, Image } from "@chakra-ui/react";
 import React from "react";
-import { BackgroundImagePath } from "lib/constants";
+import { BACKGROUND_IMAGE_PATH } from "lib/constants";
 import { useBlurBackground } from "hooks/useBlurBackground";
 
 const BlurBackground: React.FC = () => {
@@ -17,7 +17,7 @@ const BlurBackground: React.FC = () => {
         zIndex={-10}
       >
         {
-          BackgroundImagePath ?
+          BACKGROUND_IMAGE_PATH ?
             (
               <Image
                 position={"fixed"}
@@ -28,7 +28,7 @@ const BlurBackground: React.FC = () => {
                 height={"full"}
                 htmlWidth={'100%'}
                 htmlHeight={'100%'}
-                src={BackgroundImagePath}
+                src={BACKGROUND_IMAGE_PATH}
                 fit={"cover"}
                 align={"center"}
               />

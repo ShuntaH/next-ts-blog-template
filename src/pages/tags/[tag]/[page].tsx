@@ -5,7 +5,7 @@ import {
   getSortedPosts,
   getTaggedPosts,
   getTotalPageCountRange
-} from "lib/api";
+} from "lib/api/post";
 import { Pagination } from "interfaces/pagination";
 import { Posts } from "interfaces/post";
 import Layout from "components/layouts/layout";

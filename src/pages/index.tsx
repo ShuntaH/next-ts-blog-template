@@ -1,4 +1,4 @@
-import { getAllPosts, getPagination, getSortedPosts } from "lib/api";
+import { getAllPosts, getPagination, getSortedPosts } from "lib/api/post";
 import { Posts } from "interfaces/post";
 import { Pagination } from "interfaces/pagination";
 import Layout from "components/layouts/layout";

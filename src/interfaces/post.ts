@@ -1,6 +1,7 @@
 import { SearchKeys } from "interfaces/search";
 
-export type MarkdownData = {
+
+export type PostMarkdownData = {
   title: string
   publishedAt: string
   updatedAt: string
@@ -8,12 +9,6 @@ export type MarkdownData = {
   excerpt: string
   ogImageUrl: string
   tags: string[]
-}
-
-// マークダウンを取り込む時に内容の検証をする。そのときの結果のデータオブジェクト
-export type MarkdownDataValidationResult = {
-  success: boolean
-  message: string
 }
 
 export type Post = {

@@ -1,4 +1,4 @@
-import { getAllPosts, getAllTags } from "lib/api";
+import { getAllPosts, getAllTags } from "lib/api/post";
 import { Posts } from "interfaces/post";
 import { Box, HStack } from "@chakra-ui/react";
 import Layout from "components/layouts/layout";

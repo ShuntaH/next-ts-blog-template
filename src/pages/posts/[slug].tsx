@@ -1,4 +1,4 @@
-import { getAllPosts, getPostBySlug, getSortedPosts } from 'lib/api'
+import { getAllPosts, getPostBySlug, getSortedPosts } from 'lib/api/post'
 import Head from 'next/head'
 import { Post, Posts } from "interfaces/post";
 import { useFuse } from "hooks/useFuse";
