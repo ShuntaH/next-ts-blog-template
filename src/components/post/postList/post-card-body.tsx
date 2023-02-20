@@ -16,12 +16,13 @@ const PostCardBody: React.FC<Props> = ({ post, cardBodyProps }) => {
         "WebkitBoxOrient": "vertical",
         "WebkitLineClamp": "2"
       }}
+      letterSpacing={'0.04em'}
       paddingTop={1}
       paddingBottom={1}
       paddingX={0}
       {...cardBodyProps}
     >
-      <Text fontSize={"sm"} color={"gray.200"}>
+      <Text fontSize={"sm"} color={"gray.200"} lineHeight={1.8}>
         {post.excerpt}
       </Text>
     </CardBody>

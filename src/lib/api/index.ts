@@ -1,7 +1,6 @@
 import { join } from "path";
-import fs from "fs";
 import matter from "gray-matter";
-
+import * as fs from "fs";
 
 /**
  * マークダウンの全ての slug を取得する。
