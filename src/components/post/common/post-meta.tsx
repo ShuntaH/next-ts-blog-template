@@ -1,40 +1,40 @@
 import React from "react";
-import { Flex, FlexProps, Text } from "@chakra-ui/react";
-import DateFormatter from "components/common/date-formatter";
+import { Box, BoxProps, Flex } from "@chakra-ui/react";
+import PostDate from "components/post/common/post-date";
+import PostTime from "components/post/common/post-time";
+import PostTags from "components/post/common/post-tags";
 
 type Props = {
   time: string
   publishedAt: string
   updatedAt: string
-  flexProps?: FlexProps
+  tags: string[]
+  boxProps?: BoxProps
 }
 
-const PostMeta: React.FC<Props> = ({ time, publishedAt, updatedAt, flexProps }) => (
-  <Flex
-    {...flexProps}
-    flexWrap={"wrap"}
-    alignItems={"center"}
-    flexDirection={"row"}
-    marginBottom={2}
+const PostMeta: React.FC<Props> = ({
+  time,
+  publishedAt,
+  updatedAt,
+  tags,
+  boxProps
+}) => (
+  <Box
+    display={{ base: 'block', md: "flex" }}
     fontSize={"smaller"}
     color={"gray.300"}
+    {...boxProps}
   >
-    <Text as={"span"}>
-      <Text color={"whiteAlpha.700"} as={'span'}>
-        Published:
-      </Text>
-      {' '}
-      <DateFormatter dateString={publishedAt}/>
-      {' '}
-      <Text color={"whiteAlpha.700"} as={'span'}>
-        Updated:
-      </Text>
-      {' '}
-      <DateFormatter dateString={updatedAt}/>
-    </Text>
-    <Text as={"span"}>・</Text>
-    <Text as={"span"}>{time}</Text>
-  </Flex>
+    <PostDate
+      publishedAt={publishedAt}
+      updatedAt={updatedAt}
+      textProps={{ marginBottom: {base: 0.5}, paddingRight: 2 }}
+    />
+    <Flex alignItems={"center"}>
+      <PostTime time={time}/>
+      <PostTags tags={tags} tagProps={{size: "sm"}} stackProps={{spacing: 2, paddingLeft: 2}} />
+    </Flex>
+  </Box>
 )
 
 export default PostMeta

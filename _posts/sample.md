@@ -2,8 +2,8 @@
 title: 'これは国民についての難しい記事です'
 excerpt: '国民の記事です'
 status: true
-publishedAt: '2020-03-16T05:35:07.322Z'
-updatedAt: '2020-03-16T05:35:07.322Z'
+publishedAt: '2020-03-16T05:35:07.322+09:00'
+updatedAt: '2020-03-16T05:35:07.322+09:00'
 ogImageUrl: '/assets/blog/hello-world/cover.jpg'
 tags: ['国民', '国会']
 ---

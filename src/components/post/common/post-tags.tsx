@@ -10,7 +10,7 @@ type Props = {
 
 const PostTags: React.FC<Props> = ({ tags, stackProps, tagProps }) => (
   tags.length > 0 ?
-    <HStack spacing={4} {...stackProps}>
+    <HStack {...stackProps}>
       {
         tags.map((tag, index) => (
           <TagLink key={index} {...tagProps}>

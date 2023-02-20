@@ -5,8 +5,10 @@ import { STYLES } from "lib/constants";
 const PostCardTitle: React.FC<HeadingProps> = (props) => (
   <Heading
     as={'h3'}
+    letterSpacing={'0.03em'}
+    wordBreak={"break-word"}
     _hover={STYLES.hoverLighterStyle}
-    fontSize={{base: "ms", md: "xl"}}
+    fontSize={{base: "md", md: "xl"}}
     marginBottom={{base: 2, md: 1}}
   >
     {props.children}

@@ -1,7 +1,6 @@
 import { CardHeader, CardHeaderProps } from "@chakra-ui/react";
 import { Post } from "interfaces/post";
 import PostMeta from "components/post/common/post-meta";
-import PostTags from "components/post/common/post-tags";
 import React from "react";
 import PostCardTitle from "components/post/postList/post-card-title";
 
@@ -18,16 +17,16 @@ const PostCardHeader: React.FC<Props> = ({ post, cardHeaderProps }) => (
     {...cardHeaderProps}
   >
     <PostCardTitle>{post.title}</PostCardTitle>
-    <PostMeta
-      time={post.time}
-      publishedAt={post.publishedAt}
-      updatedAt={post.updatedAt}
-    />
-    <PostTags
-      tags={post.tags}
-      stackProps={{ marginBottom: 2 }}
-      tagProps={{size: "sm"}}
-    />
+      <PostMeta
+        time={post.time}
+        publishedAt={post.publishedAt}
+        updatedAt={post.updatedAt}
+        tags={post.tags}
+        boxProps={{
+          marginBottom: {
+            base: 1, md: 1
+          }}}
+      />
   </CardHeader>
 )
 

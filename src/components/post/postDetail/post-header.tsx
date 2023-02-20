@@ -2,7 +2,6 @@ import { Box, BoxProps } from "@chakra-ui/react";
 import { Post } from "interfaces/post";
 import PostTitle from "components/post/postDetail/post-title";
 import PostMeta from "components/post/common/post-meta";
-import PostTags from "components/post/common/post-tags";
 import { BreadcrumbItem } from "interfaces/breadcrumb";
 import Breadcrumb from "components/common/breadcrumb";
 import React, { useMemo } from "react";
@@ -34,9 +33,9 @@ const PostHeader: React.FC<Props> = ({ post, boxProps }) => {
         time={post.time}
         publishedAt={post.publishedAt}
         updatedAt={post.updatedAt}
-        flexProps={{marginBottom: 1}}
+        tags={post.tags}
+        boxProps={{ marginBottom: { base: 1, md: 2 }}}
       />
-      <PostTags tags={post.tags} />
     </Box>
   )
 }
