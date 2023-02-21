@@ -9,7 +9,7 @@ import { FullTextSearchProvider } from "contexts/fullTextSearchContext";
 
 
 type Props = {
-  fuse: Fuse<FilteredPost>
+  fuse: Promise<Fuse<FilteredPost>>
   children: React.ReactNode
 }
 

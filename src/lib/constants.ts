@@ -21,8 +21,9 @@ export const BACKGROUND_IMAGE_PATH = "/assets/hongkong-bg.png"
 //
 export const POST_DIRECTORY_PATH = join(process.cwd(), '_posts')
 export const ARTICLE_DIRECTORY_PATH = join(process.cwd(), '_articles')
+
 /**
- * todo chakra ui で css var の定義の仕方がわからなかったので js でかく。 theme での書き方がわかったらそちらで書く
+ * todo chakra ui で css var の定義がいまいち上手く書けないので js でかく。
  */
 const gap = '24px'
 const gapSm = '10px'

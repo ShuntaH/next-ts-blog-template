@@ -37,7 +37,7 @@ type Props = {
   modalRef: React.MutableRefObject<null | HTMLInputElement>
 }
 
-const SearchModal: React.VFC<Props> = ({
+const SearchModal: React.FC<Props> = ({
   boxProps,
   onClose,
   isOpen,
@@ -56,11 +56,10 @@ const SearchModal: React.VFC<Props> = ({
     onClose()
   }
 
-
   /**
    * 入力値から検索して最新の検索結果に更新する
    */
-  const handleSearch = useCallback(() => {
+  const handleSearch = useCallback(async () => {
     if (!fuse) {
       return
     }
@@ -68,10 +67,10 @@ const SearchModal: React.VFC<Props> = ({
       setSearchResultPosts([])
       return
     }
-    const result = fuse.search(searchInput)
+    const f = await fuse
+    const result = f.search(searchInput)
     setSearchResultPosts(result)
   }, [ searchInput ])
-
 
   /**
    * マッチした文字列を含む値の key に応じてその key のバッチに色をつける

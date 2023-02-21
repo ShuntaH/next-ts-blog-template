@@ -59,7 +59,8 @@ export const getPostBySlug = (slug: string): Post | null => {
 }
 
 /**
- * 解析された状態のマークダウンの記事を全て取得する
+ * 解析された状態のマークダウンの記事を全て取得する。
+ * 下書き状態の記事は除く。公開できる全ての記事が対象になる。
  */
 export const getAllPosts = (): Posts => {
   const slugs: string[] = getAllMarkdownSlugs(source) // [ 'hoge.md', 'hello-world.md' ]

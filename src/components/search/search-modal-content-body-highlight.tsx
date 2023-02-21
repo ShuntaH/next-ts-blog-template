@@ -9,7 +9,10 @@ type Props = {
   match: Fuse.FuseResultMatch
 }
 
-const SearchModalContentBodyHighlight: React.VFC<Props> = ({ match, textProps }) => {
+const SearchModalContentBodyHighlight: React.FC<Props> = ({
+  match,
+  textProps
+}) => {
 
   /**
    * 全文検索して、マッチしたとき、マッチ結果の中に含まれる、マッチ結果の単語の最初と
@@ -21,7 +24,7 @@ const SearchModalContentBodyHighlight: React.VFC<Props> = ({ match, textProps })
     return match.indices.map(
       (range) => match.value!.slice(range[0], range[1] + 1)
     )
-  }, [match])
+  }, [ match ])
 
   /**
    * 整形された表示する検索結果の文字列を作成する。
@@ -72,10 +75,17 @@ const SearchModalContentBodyHighlight: React.VFC<Props> = ({ match, textProps })
     })
     // マッチした文字列を含む文字列を連結して、検索結果として表示する文字列を作成する。
     return cleanParts.join('.........')
-  }, [match])
+  }, [ match ])
 
   return (
-    <Text {...textProps}>
+    <Text
+      {...textProps}
+      sx={{
+        overflow: "hidden",
+        display: "-webkit-box",
+        "WebkitBoxOrient": "vertical",
+        "WebkitLineClamp": "4"
+      }}>
       <Highlight
         query={getHighlightQueries(match)}
         styles={{ py: '0', bg: 'teal.100' }}

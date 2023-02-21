@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import markdownToReactElements from "lib/markdownToReactElements";
+import { markdownToReactElements } from "lib/transformMarkdown";
+
 
 /**
  * マークダウンを表示するために react element に変換する。
