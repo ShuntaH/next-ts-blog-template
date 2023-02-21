@@ -1,3 +1,6 @@
+/**
+ * サーバーとクライアントどちらで動いているか
+ */
 export const serverOrBrowser = (): string => {
   try {
     window.location

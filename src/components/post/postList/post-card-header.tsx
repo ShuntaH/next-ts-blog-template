@@ -17,16 +17,16 @@ const PostCardHeader: React.FC<Props> = ({ post, cardHeaderProps }) => (
     {...cardHeaderProps}
   >
     <PostCardTitle>{post.title}</PostCardTitle>
-      <PostMeta
-        time={post.time}
-        publishedAt={post.publishedAt}
-        updatedAt={post.updatedAt}
-        tags={post.tags}
-        boxProps={{
-          marginBottom: {
-            base: 1, md: 1
-          }}}
-      />
+    <PostMeta
+      time={post.time}
+      publishedAt={post.publishedAt}
+      updatedAt={post.updatedAt}
+      tags={post.tags}
+      boxProps={{
+        marginBottom: { base: 1, md: 1 },
+        fontSize: { base: "xs", md: 'sm' }
+      }}
+    />
   </CardHeader>
 )
 

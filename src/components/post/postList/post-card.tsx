@@ -36,7 +36,11 @@ const PostCard: React.FC<Props> = ({ post, cardProps}) => {
         {...cardProps}
       >
         {/*todo head*/}
-        <PostCardHeader post={post} />
+        <PostCardHeader
+          post={post}
+          cardHeaderProps={{
+            marginBottom: {base: 2, md: 1}
+        }} />
         <PostCardBody post={post} />
       </Card>
   );

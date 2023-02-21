@@ -1,8 +1,9 @@
 import React from "react";
-import { Box, BoxProps, Flex } from "@chakra-ui/react";
+import { Box, BoxProps, Flex, TagLabelProps } from "@chakra-ui/react";
 import PostDate from "components/post/common/post-date";
 import PostTime from "components/post/common/post-time";
 import PostTags from "components/post/common/post-tags";
+import { TagLinkProps } from "interfaces/foundation";
 
 type Props = {
   time: string
@@ -10,6 +11,8 @@ type Props = {
   updatedAt: string
   tags: string[]
   boxProps?: BoxProps
+  tagLinkProps?: TagLinkProps
+  tagLabelProps?: TagLabelProps
 }
 
 const PostMeta: React.FC<Props> = ({
@@ -17,7 +20,9 @@ const PostMeta: React.FC<Props> = ({
   publishedAt,
   updatedAt,
   tags,
-  boxProps
+  boxProps,
+  tagLinkProps,
+  tagLabelProps
 }) => (
   <Box
     display={{ base: 'block', md: "flex" }}
@@ -32,7 +37,12 @@ const PostMeta: React.FC<Props> = ({
     />
     <Flex alignItems={"center"}>
       <PostTime time={time}/>
-      <PostTags tags={tags} tagProps={{size: "sm"}} stackProps={{spacing: 2, paddingLeft: 2}} />
+      <PostTags
+        tags={tags}
+        stackProps={{spacing: 2, paddingLeft: 2}}
+        tagLinkProps={tagLinkProps}
+        tagLabelProps={tagLabelProps}
+      />
     </Flex>
   </Box>
 )

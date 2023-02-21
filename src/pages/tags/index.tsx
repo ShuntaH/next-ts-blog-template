@@ -1,6 +1,6 @@
 import { getAllPosts, getAllTags } from "lib/api/post";
 import { Posts } from "interfaces/post";
-import { Box, HStack } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import Layout from "components/layouts/layout";
 import TagLink from "components/foundations/tag-link";
 import { useFuse } from "hooks/useFuse";
@@ -36,17 +36,26 @@ export default function Index({ allPosts, allTags }: Props) {
     // </Head>
     <Layout fuse={fuse}>
       <Box position={"relative"}>
-        <HStack spacing={4}>
+        <Flex
+          flexWrap={"wrap"}
+          justifyContent={"flex-start"}
+          alignItems={"center"}
+          gap={{base: 2, md: 4}}
+        >
           {allTags.map((tag, index) => (
             <TagLink
               key={index}
-              href={`/tags/${tag}/1`}
-              as={NextLink}
+              tagLinkProps={{
+                fontSize: "md",
+                size: "lg",
+                href:`/tags/${tag}/1`,
+                as: NextLink
+            }}
             >
               {tag}
             </TagLink>
           ))}
-        </HStack>
+        </Flex>
       </Box>
     </Layout>
   )
