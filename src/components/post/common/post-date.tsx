@@ -18,7 +18,7 @@ const PostDate: React.FC<Props> = ({ publishedAt, updatedAt, textProps }) => {
         paddingTop={0.5}
         paddingRight={1}
         icon={faFeather}
-        color={STYLES.baseColor}
+        color={STYLES.color}
         size={"lg"}
       />
       <DateFormatter dateString={publishedAt}/>

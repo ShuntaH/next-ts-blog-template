@@ -105,7 +105,10 @@ const SearchModal: React.VFC<Props> = ({
       >
         <ModalOverlay width={"full"}/>
 
-        <ModalContent>
+        <ModalContent
+          backdropFilter={'blur(2px)'}
+          bgColor={"whiteAlpha.200"}
+        >
           <ModalHeader>
             <SearchFormControl
               formControlProps={{ marginTop: 7 }}
@@ -115,7 +118,6 @@ const SearchModal: React.VFC<Props> = ({
           </ModalHeader>
 
           <ModalBody paddingY={0}>
-
             {
               searchResultPosts.length ?
                 <Box marginY={3} textAlign={"right"}>
@@ -124,7 +126,6 @@ const SearchModal: React.VFC<Props> = ({
                 :
                 null
             }
-
             <VStack>
               {
                 searchResultPosts.map((post, index) => {
@@ -137,7 +138,7 @@ const SearchModal: React.VFC<Props> = ({
                       width={"full"}
                       variant={"elevated"}
                       backgroundColor={"blackAlpha.300"}
-                      color={"gray.300"}
+                      color={STYLES.textColorDarker}
                       _focusVisible={{
                         outlineColor: STYLES.colorLight
                       }}

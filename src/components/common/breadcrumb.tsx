@@ -26,7 +26,7 @@ const Breadcrumb: React.FC<Props> = ({ breadcrumbProps, breadcrumbItems }) => {
       separator={
         <ChakraFontAwesomeIcon
           icon={faChevronRight}
-          color={STYLES.baseColor}
+          color={STYLES.color}
           size={"xs"}
         />}
     >
@@ -50,7 +50,7 @@ const Breadcrumb: React.FC<Props> = ({ breadcrumbProps, breadcrumbItems }) => {
                 whiteSpace={"nowrap"}
                 textDecoration={"none"}
                 _hover={STYLES.hoverLightStyle}
-                color={"gray.300"}
+                color={STYLES.textColorDark}
               >
                 {item.title}
               </BreadcrumbLink>

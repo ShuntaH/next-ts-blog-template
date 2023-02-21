@@ -19,6 +19,7 @@ const Footer: React.FC = () => {
     <Box
       as={"footer"}
       maxWidth={`calc(${STYLES.mainWidth} + ${STYLES.gap} * 2)`}
+      color={STYLES.textColorDarker}
       margin={"auto"}
       textAlign={"center"}
       lineHeight={"24px"}
@@ -33,6 +34,7 @@ const Footer: React.FC = () => {
         listStyleType={"none"}
         display={"flex"}
         justifyContent={"end"}
+
       >
         {menus.map((menu: Menu, index: number) => {
           return (
@@ -43,10 +45,14 @@ const Footer: React.FC = () => {
             </ListItem>
           )
         })}
-      </List>
-        <Text>
+        <ListItem display={{base: 'block', md: 'none'}} marginLeft={`${STYLES.gap}`}>
           ©︎ {new Date().getFullYear()} {BLOG_NAME}
-        </Text>
+        </ListItem>
+      </List>
+
+      <Text display={{base: 'none', md: 'block'}}>
+        ©︎ {new Date().getFullYear()} {BLOG_NAME}
+      </Text>
     </Box>
   )
 }

@@ -4,6 +4,7 @@ import PostDate from "components/post/common/post-date";
 import PostTime from "components/post/common/post-time";
 import PostTags from "components/post/common/post-tags";
 import { TagLinkProps } from "interfaces/foundation";
+import { STYLES } from "lib/constants";
 
 type Props = {
   time: string
@@ -27,7 +28,7 @@ const PostMeta: React.FC<Props> = ({
   <Box
     display={{ base: 'block', md: "flex" }}
     fontSize={"smaller"}
-    color={"gray.300"}
+    color={STYLES.textColorDark}
     {...boxProps}
   >
     <PostDate

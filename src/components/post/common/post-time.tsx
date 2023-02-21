@@ -15,7 +15,7 @@ const PostTime: React.FC<Props> = ({ time }) => {
         paddingTop={0.5}
         paddingRight={1}
         icon={faReadme}
-        color={STYLES.baseColor}
+        color={STYLES.color}
         size={"lg"}
       />
       {time}

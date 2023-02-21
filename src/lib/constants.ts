@@ -4,7 +4,7 @@ import { join } from "path";
 export const HOME_OG_IMAGE_URL =
   'https://og-image.vercel.app/Next.js%20Blog%20Starter%20Example.png?theme=light&md=1&fontSize=100px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg'
 export const BLOG_NAME = 'hskpg blog'
-export const BLOG_DISCRIPTION = "memo"
+export const BLOG_DESCRIPTION = "memo"
 
 // pagination
 export const POST_COUNT_PER_PAGE = 10
@@ -35,9 +35,14 @@ const contentMaxWidth = `calc(${mainWidth} + ${gap} * 2)`
 const contentGap = '20px'
 const navMaxWidth = `calc(${navWidth} + ${gap} * 2)`
 const baseColorScheme: ThemeTypings["colorSchemes"] = 'blue'
-const baseColor: ThemeTypings["colors"] = `${baseColorScheme}.300`
+const color: ThemeTypings["colors"] = `${baseColorScheme}.300`
 const colorLight: ThemeTypings["colors"] = `${baseColorScheme}.200`
 const colorLighter: ThemeTypings["colors"] = `${baseColorScheme}.50`
+const baseTextColor: ThemeTypings["colorSchemes"] = 'gray'
+const textColor: ThemeTypings["colors"] = `${baseTextColor}.50`
+const textColorDark: ThemeTypings["colors"] = `${baseTextColor}.100`
+const textColorDarker: ThemeTypings["colors"] = `${baseTextColor}.400`
+
 const baseHoverStyle = {
   textDecoration: 'none'
 }
@@ -62,9 +67,12 @@ export const STYLES = {
   navMaxWidth,
   radius,
   baseColorScheme,
-  baseColor,
+  color,
   colorLight,
   colorLighter,
+  textColor,
+  textColorDark,
+  textColorDarker,
   baseHoverStyle,
   hoverLightStyle,
   hoverLighterStyle
