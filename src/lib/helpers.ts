@@ -9,3 +9,15 @@ export const serverOrBrowser = (): string => {
   }
   return 'browser'
 }
+
+
+/**
+ * 開発時だけログを出力する。
+ * @param args
+ * @param isOutput 開発時でもログを出力するかどうか
+ */
+export const devLog = (args: any[], isOutput: boolean = true): void => {
+  if (process.env.NODE_ENV === 'development' && isOutput) {
+    console.log(...args)
+  }
+}

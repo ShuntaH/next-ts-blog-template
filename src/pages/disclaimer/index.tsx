@@ -9,7 +9,6 @@ import { useFuse } from "hooks/useFuse";
 
 
 export const getStaticProps = async () => {
-  // const article = getArticleBySlug(params.slug)
   const article = getArticleBySlug('disclaimer')
   const allPosts = getAllPosts()
   return {

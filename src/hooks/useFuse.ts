@@ -1,9 +1,10 @@
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { getFilteredInitialPost } from "lib/search";
 import { FilteredPost, FilteredPosts, Posts } from "interfaces/post";
 import Fuse from "fuse.js";
 import { SearchKeys } from "interfaces/search";
 import { markdownToPlainText } from "lib/transformMarkdown";
+import { devLog } from "lib/helpers";
 
 /**
  * 取得した記事情報と検索オプションを Fuse クラスに渡してインスタン化したものを返す。
@@ -13,6 +14,9 @@ import { markdownToPlainText } from "lib/transformMarkdown";
  * @param allPosts
  */
 export function useFuse(allPosts: Posts) {
+  const initialPost = getFilteredInitialPost()
+  const [ fuse, setFuse ] = useState<Fuse<FilteredPost>>(new Fuse([ initialPost ], {}))
+
   const setupFullTextSearch = useCallback(async (allPosts: Posts): Promise<Fuse<FilteredPost>> => {
       // 記事データの中で検索対象のデータを指定する
       const keys: SearchKeys[] = [
@@ -43,7 +47,6 @@ export function useFuse(allPosts: Posts) {
 
         keys.forEach(async (key) => {
           if (key === "tags") {
-            // filteredPost[key] だと 配列の参照渡しなので ts 型エラー
             filteredPost.tags = [ ...post[key] ]
             return
           }
@@ -61,5 +64,13 @@ export function useFuse(allPosts: Posts) {
     },
     [ allPosts ])
 
-  return setupFullTextSearch(allPosts)
+  useEffect(() => {
+    (async () => {
+      setFuse(await setupFullTextSearch(allPosts))
+    })()
+    devLog([ 'useFuse called' ])
+  }, []);
+
+
+  return fuse
 }

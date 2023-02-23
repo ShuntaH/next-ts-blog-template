@@ -9,10 +9,10 @@ type Props = {
   match: Fuse.FuseResultMatch
 }
 
-const SearchModalContentBodyHighlight: React.FC<Props> = ({
+const SearchModalContentBodyHighlight = ({
   match,
   textProps
-}) => {
+}: Props) => {
 
   /**
    * 全文検索して、マッチしたとき、マッチ結果の中に含まれる、マッチ結果の単語の最初と
@@ -74,6 +74,7 @@ const SearchModalContentBodyHighlight: React.FC<Props> = ({
       }
     })
     // マッチした文字列を含む文字列を連結して、検索結果として表示する文字列を作成する。
+    // ヒット数が多すぎて長くなったら css の方でトリムする。
     return cleanParts.join('.........')
   }, [ match ])
 

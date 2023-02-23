@@ -9,11 +9,11 @@ import { FullTextSearchProvider } from "contexts/fullTextSearchContext";
 
 
 type Props = {
-  fuse: Promise<Fuse<FilteredPost>>
+  fuse: Fuse<FilteredPost>
   children: React.ReactNode
 }
 
-const Layout: React.FC<Props> = ({ fuse, children }) => {
+const Layout = ({ fuse, children }: Props) => {
   return (
     // fuse をサーバーサイドで作成するために getStaticProps に書く。そのために _app.tsx には書かない。
     <FullTextSearchProvider fuse={fuse}>

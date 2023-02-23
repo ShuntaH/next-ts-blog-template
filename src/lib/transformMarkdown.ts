@@ -7,6 +7,7 @@ import rehypeReact from "rehype-react";
 import React from "react";
 import LinkNextProvide from "components/markdown/link-next-provide";
 import remarkStripBadges from "remark-strip-badges";
+import { devLog } from "lib/helpers";
 
 export async function markdownToReactElements(markdown: string): Promise<React.ReactNode> {
   return remark()
@@ -30,6 +31,7 @@ export async function markdownToReactElements(markdown: string): Promise<React.R
     .processSync(markdown).result
 }
 
+
 /**
  * 検索対象を作る時、htmlタグやmarkdown記法が混在していて欲しくないのでなるべく取り除く。
  * @param markdown
@@ -44,9 +46,10 @@ export async function markdownToPlainText(markdown: string): Promise<string> {
     .use(strip)
     .process(markdown, (error, file) => {
       if (error) throw error;
-      console.log(String(file));
       result = String(file)
     })
-  return removeMd(result)
+  result = removeMd(result)
+  devLog([ 'markdown to plain text result', result ])
+  return result
 }
 

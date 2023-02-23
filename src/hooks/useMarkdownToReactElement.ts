@@ -16,6 +16,6 @@ export function useMarkdownToReactElements(content: string) {
       const elm = await markdownToReactElements(content)
       setReactElements(elm)
     })()
-  }, [])
+  }, [ content ])
   return reactElements
 }

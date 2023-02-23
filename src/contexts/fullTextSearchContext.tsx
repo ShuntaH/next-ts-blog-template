@@ -6,11 +6,11 @@ import { FilteredPost } from "interfaces/post";
 // クライアントサイドで処理されるので記事を取得する中の fs が呼べない
 // 書いても良いが export してはいけない。
 
-const FullTextSearchContext = createContext<Promise<Fuse<FilteredPost>> | null>(null)
+const FullTextSearchContext = createContext<Fuse<FilteredPost> | null>(null)
 
 type FullTextSearchProviderProps = {
   children: React.ReactNode
-  fuse: Promise<Fuse<FilteredPost>>
+  fuse: Fuse<FilteredPost>
 }
 
 /**
@@ -19,7 +19,7 @@ type FullTextSearchProviderProps = {
  * @param fuse
  * @constructor
  */
-export const FullTextSearchProvider: React.FC<FullTextSearchProviderProps> = ({ children, fuse }) => (
+export const FullTextSearchProvider = ({ children, fuse }: FullTextSearchProviderProps) => (
   <FullTextSearchContext.Provider value={fuse}>
     {children}
   </FullTextSearchContext.Provider>
