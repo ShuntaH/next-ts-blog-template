@@ -7,7 +7,7 @@ type Props = {
   boxProps?: BoxProps
 }
 
-const PostBody: React.FC<Props> = ({ content, boxProps }) => {
+function PostBody ({ content, boxProps }: Props) {
   return (
     <Box w={"full"} {...boxProps}>
       <MarkdownBox content={content}/>

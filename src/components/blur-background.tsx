@@ -3,7 +3,7 @@ import React from "react";
 import { BACKGROUND_IMAGE_PATH } from "lib/constants";
 import { useBlurBackground } from "hooks/useBlurBackground";
 
-const BlurBackground: React.FC = () => {
+function BlurBackground() {
   const blurOpacity = useBlurBackground()
 
   return (

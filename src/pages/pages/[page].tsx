@@ -3,7 +3,7 @@ import { Pagination } from "interfaces/pagination";
 import { Posts } from "interfaces/post";
 import Layout from "components/layouts/layout";
 import PostList from "components/post/postList/post-list";
-import { useFuse } from "hooks/useFuse";
+import { useSetupFuse } from "hooks/useFuse";
 
 
 export async function getStaticPaths() {
@@ -49,7 +49,7 @@ type Props = {
 }
 
 export default function PaginatedPage({ pagination, allPosts }: Props) {
-  const fuse = useFuse(allPosts)
+  const fuse = useSetupFuse(allPosts)
 
   return (
     // ページ固有のhead内容を設定したい時

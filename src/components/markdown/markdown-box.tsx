@@ -5,7 +5,7 @@ import { useMarkdownToReactElements } from "hooks/useMarkdownToReactElement";
 
 type Props = { content: string }
 
-const MarkdownBox: React.FC<Props> = ({ content }) => {
+function MarkdownBox({ content }: Props) {
   const reactElements = useMarkdownToReactElements(content)
   return (
       <Box className={markdownStyles['markdown']}>

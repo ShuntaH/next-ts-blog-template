@@ -3,7 +3,7 @@ import { Posts } from "interfaces/post";
 import { Box, Flex } from "@chakra-ui/react";
 import Layout from "components/layouts/layout";
 import TagLink from "components/foundations/tag-link";
-import { useFuse } from "hooks/useFuse";
+import { useSetupFuse } from "hooks/useFuse";
 import NextLink from "next/link";
 
 
@@ -27,7 +27,7 @@ type Props = {
  * This is the page that is rendered when the user visits the root of your application.
  */
 export default function Index({ allPosts, allTags }: Props) {
-  const fuse = useFuse(allPosts)
+  const fuse = useSetupFuse(allPosts)
 
   return (
     // ページ固有のhead内容を設定したい時

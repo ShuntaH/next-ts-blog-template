@@ -9,26 +9,27 @@ type Props = {
   cardHeaderProps?: CardHeaderProps
 }
 
-const PostCardHeader: React.FC<Props> = ({ post, cardHeaderProps }) => (
-  <CardHeader
-    as={"header"}
-    paddingY={1}
-    paddingX={0}
-    {...cardHeaderProps}
-  >
-    <PostCardTitle>{post.title}</PostCardTitle>
-    <PostMeta
-      time={post.time}
-      publishedAt={post.publishedAt}
-      updatedAt={post.updatedAt}
-      tags={post.tags}
-      boxProps={{
-        marginBottom: { base: 1, md: 1 },
-        fontSize: { base: "xs", md: 'sm' }
-      }}
-    />
-  </CardHeader>
-)
-
+function PostCardHeader({ post, cardHeaderProps }: Props) {
+  return (
+    <CardHeader
+      as={"header"}
+      paddingY={1}
+      paddingX={0}
+      {...cardHeaderProps}
+    >
+      <PostCardTitle>{post.title}</PostCardTitle>
+      <PostMeta
+        time={post.time}
+        publishedAt={post.publishedAt}
+        updatedAt={post.updatedAt}
+        tags={post.tags}
+        boxProps={{
+          marginBottom: { base: 1, md: 1 },
+          fontSize: { base: "xs", md: 'sm' }
+        }}
+      />
+    </CardHeader>
+  )
+}
 
 export default PostCardHeader

@@ -8,7 +8,7 @@ type Props = {
   time: string
 }
 
-const PostTime: React.FC<Props> = ({ time }) => {
+function PostTime ({ time }: Props) {
   return (
     <Text as={"span"} display={"inline-flex"} alignItems={"center"}>
       <ChakraFontAwesomeIcon

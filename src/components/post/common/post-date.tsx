@@ -11,7 +11,7 @@ type Props = {
   textProps?: TextProps
 }
 
-const PostDate: React.FC<Props> = ({ publishedAt, updatedAt, textProps }) => {
+function PostDate({ publishedAt, updatedAt, textProps }: Props) {
   return (
     <Text letterSpacing={'0.03em'} {...textProps}>
       <ChakraFontAwesomeIcon

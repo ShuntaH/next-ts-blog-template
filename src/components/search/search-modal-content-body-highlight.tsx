@@ -9,10 +9,7 @@ type Props = {
   match: Fuse.FuseResultMatch
 }
 
-const SearchModalContentBodyHighlight = ({
-  match,
-  textProps
-}: Props) => {
+function SearchModalContentBodyHighlight({match, textProps}: Props) {
 
   /**
    * 全文検索して、マッチしたとき、マッチ結果の中に含まれる、マッチ結果の単語の最初と

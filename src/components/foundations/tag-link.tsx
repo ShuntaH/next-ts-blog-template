@@ -1,5 +1,5 @@
 import { Tag, TagLabel, TagLabelProps } from "@chakra-ui/react";
-import React, { FC } from "react";
+import React from "react";
 import { STYLES } from "lib/constants";
 import { TagLinkProps } from "interfaces/foundation";
 
@@ -9,15 +9,16 @@ type Props = {
   tagLabelProps?: TagLabelProps,
   children?: React.ReactNode
 }
+
 /**
  * colorScheme は props によって変更できない
  * @param props
  */
-const TagLink: FC<Props> = ({
+function TagLink({
   tagLinkProps,
   tagLabelProps,
   children
-}) => {
+}: Props) {
   return (
     <Tag
       size={"sm"}

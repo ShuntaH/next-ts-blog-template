@@ -10,27 +10,30 @@ type Props = {
   tagLabelProps?: TagLabelProps
 }
 
-const PostTags: React.FC<Props> = ({
+function PostTags({
   tags,
   stackProps,
   tagLinkProps,
   tagLabelProps
-}) => (
-  tags.length > 0 ?
-    <HStack {...stackProps}>
-      {
-        tags.map((tag, index) => (
-          <TagLink
-            key={index}
-            tagLinkProps={tagLinkProps}
-            tagLabelProps={tagLabelProps}
-          >
-            {tag}
-          </TagLink>
-      ))}
-    </HStack>
-    :
-    null
+}: Props)
+{
+  return (
+    tags.length > 0 ?
+      <HStack {...stackProps}>
+        {
+          tags.map((tag, index) => (
+            <TagLink
+              key={index}
+              tagLinkProps={tagLinkProps}
+              tagLabelProps={tagLabelProps}
+            >
+              {tag}
+            </TagLink>
+          ))}
+      </HStack>
+      :
+      null
   )
+}
 
 export default PostTags

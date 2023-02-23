@@ -14,7 +14,7 @@ type Props =  {
  * @param formControlProps
  * @param refOrFunc
  */
-const SearchFormControl: React.VFC<Props> = ({formControlProps,refOrFunc }) => {
+function SearchFormControl({formControlProps,refOrFunc }: Props) {
   // モーダルを開くイベントファンクションが渡されていれば
   // それはヘッダーにあるので,レスポンシブを考慮する。
   // 渡されていなければ、モーダルの中の入力欄になるので、

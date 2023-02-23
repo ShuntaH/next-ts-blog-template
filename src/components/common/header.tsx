@@ -23,7 +23,7 @@ const icons: NavigationIcon[] = [
   }
 ]
 
-const Header: React.FC<BoxProps> = (props) => {
+function Header (props: BoxProps){
   return (
     // md 以上は flex でアイテムは横並び、 それ以下は block で縦並び
     <Box {...props}>

@@ -5,7 +5,7 @@ import Header from "components/common/header";
 import { Box } from "@chakra-ui/react";
 import { STYLES } from "lib/constants";
 import Footer from "components/common/footer";
-import { FullTextSearchProvider } from "contexts/fullTextSearchContext";
+import { FuseProvider } from "contexts/fuseContext";
 
 
 type Props = {
@@ -13,10 +13,10 @@ type Props = {
   children: React.ReactNode
 }
 
-const Layout = ({ fuse, children }: Props) => {
+function Layout({ fuse, children }: Props){
   return (
     // fuse をサーバーサイドで作成するために getStaticProps に書く。そのために _app.tsx には書かない。
-    <FullTextSearchProvider fuse={fuse}>
+    <FuseProvider fuse={fuse}>
       <Header/>
       {/*<Box>*/}
       {/*  /!*<Alert preview={preview}/>*!/*/}
@@ -34,7 +34,7 @@ const Layout = ({ fuse, children }: Props) => {
         {children}
       </Box>
       <Footer/>
-    </FullTextSearchProvider>
+    </FuseProvider>
   )
 }
 

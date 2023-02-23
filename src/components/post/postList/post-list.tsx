@@ -2,15 +2,15 @@ import { Box, BoxProps, Text } from "@chakra-ui/react";
 import PostCards from "components/post/postList/post-cards";
 import { Pagination as PaginationType } from "interfaces/pagination";
 import Pagination from "components/common/pagination";
-import React from "react";
+import React, { useMemo } from "react";
 
 type Props = {
   pagination: PaginationType,
   boxProps?: BoxProps
 }
 
-const PostList: React.FC<Props> = ({ pagination, boxProps }) => {
-  const posts = pagination.currentPagePosts
+function PostList({ pagination, boxProps } : Props) {
+  const posts = useMemo(() => pagination.currentPagePosts, [pagination]);
 
   return (
     <Box {...boxProps} position={"relative"}>
@@ -35,7 +35,6 @@ const PostList: React.FC<Props> = ({ pagination, boxProps }) => {
       }
     </Box>
   )
-
 }
 
 export default PostList

@@ -12,7 +12,7 @@ type Props = {
   cardProps?: CardProps
 }
 
-const PostCard: React.FC<Props> = ({ post, cardProps}) => {
+function PostCard({ post, cardProps}: Props){
   const postHref = useMemo(
     () => `/posts/${post.slug}`,
     [post]

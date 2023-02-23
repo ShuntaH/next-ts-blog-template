@@ -8,7 +8,7 @@ type Props = {
   cardBodyProps?: CardBodyProps
 }
 
-const PostCardBody: React.FC<Props> = ({ post, cardBodyProps }) => {
+function PostCardBody({ post, cardBodyProps }: Props) {
   return (
     <CardBody
       sx={{

@@ -16,7 +16,7 @@ type Props = {
   tagLabelProps?: TagLabelProps
 }
 
-const PostMeta: React.FC<Props> = ({
+function PostMeta({
   time,
   publishedAt,
   updatedAt,
@@ -24,7 +24,8 @@ const PostMeta: React.FC<Props> = ({
   boxProps,
   tagLinkProps,
   tagLabelProps
-}) => (
+}: Props) {
+  return (
   <Box
     display={{ base: 'block', md: "flex" }}
     fontSize={"smaller"}
@@ -46,6 +47,6 @@ const PostMeta: React.FC<Props> = ({
       />
     </Flex>
   </Box>
-)
+) }
 
 export default PostMeta

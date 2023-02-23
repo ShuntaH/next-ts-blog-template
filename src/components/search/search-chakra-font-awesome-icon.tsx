@@ -8,7 +8,7 @@ type Props = {
   refOrFunc: SearchModalHook
 }
 
-const SearchChakraFontAwesomeIcon = ({ refOrFunc }: Props) => {
+function SearchChakraFontAwesomeIcon({ refOrFunc }: Props) {
   const isFunc = typeof refOrFunc === 'function'
 
   // イベントごとにモーダルを開く関数を割り振る

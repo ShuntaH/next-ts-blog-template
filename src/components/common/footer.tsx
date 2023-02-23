@@ -8,13 +8,12 @@ type Menu = {
   content: string
 }
 
-const memo = [
+const menus: Menu[] = [
   { href: '/terms', content: 'Terms' },
   { href: '/about', content: 'About' },
 ]
 
-const Footer: React.FC = () => {
-  const menus: Menu[] = memo
+function Footer () {
   return (
     <Box
       as={"footer"}

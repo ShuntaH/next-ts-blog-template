@@ -16,7 +16,7 @@ const textProps: TextProps = {
   overflowX: "hidden",
   width: "70px",
   textAlign: "center",
-  _hover: {cursor: "default"}
+  _hover: { cursor: "default" }
 }
 
 const linkProps: LinkProps = {
@@ -27,9 +27,8 @@ const linkProps: LinkProps = {
   as: NextLink
 }
 
-const Pagination: React.FC<Props> = ({ pagination, flexProps }) => (
-
-  <Flex
+function Pagination({ pagination, flexProps }: Props) {
+  return <Flex
     justifyContent={"space-between"}
     width={"full"}
     {...flexProps}
@@ -52,6 +51,7 @@ const Pagination: React.FC<Props> = ({ pagination, flexProps }) => (
         <Text {...textProps}>Next</Text>
     }
   </Flex>
-)
+}
+
 
 export default Pagination

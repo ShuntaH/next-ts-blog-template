@@ -5,7 +5,7 @@ type Props = {
   dateString: string
 }
 
-const DateFormatter = ({ dateString }: Props) => {
+function DateFormatter ({ dateString }: Props) {
   const date = useMemo(() => parseISO(dateString), [dateString])
   return (
     <time dateTime={dateString}>

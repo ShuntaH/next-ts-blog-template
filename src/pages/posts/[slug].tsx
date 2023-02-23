@@ -1,7 +1,7 @@
 import { getAllPosts, getPostBySlug, getSortedPosts } from 'lib/api/post'
 import Head from 'next/head'
 import { Post, Posts } from "interfaces/post";
-import { useFuse } from "hooks/useFuse";
+import { useSetupFuse } from "hooks/useFuse";
 import Layout from "components/layouts/layout";
 import React from "react";
 import PostDetail from "components/post/postDetail/post-detail";
@@ -69,7 +69,7 @@ type Props = {
 }
 
 export default function PostPage({ post, allPosts }: Props) {
-  const fuse = useFuse(allPosts)
+  const fuse = useSetupFuse(allPosts)
   return (
     <Layout fuse={fuse}>
       <Head>

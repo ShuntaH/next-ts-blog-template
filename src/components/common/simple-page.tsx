@@ -6,7 +6,7 @@ type Props = {
   children?: React.ReactNode
 }
 
-const SimplePage: React.FC<Props> = ({ title, children }) => {
+function SimplePage({ title, children }: Props) {
   return (
     <Box position={"relative"}>
       <Heading

@@ -11,7 +11,7 @@ type Props = {
   boxProps?: Omit<BoxProps, 'as'>
 }
 
-const PostHeader: React.FC<Props> = ({ post, boxProps }) => {
+function PostHeader({ post, boxProps }: Props) {
   const breadCrumbItems: BreadcrumbItem[] = useMemo(
     () => [
     { title: 'home', href: '/' },

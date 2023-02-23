@@ -9,7 +9,7 @@ type Props = {
   boxProps?: BoxProps
 }
 
-const SearchForm: React.VFC<Props> = ({boxProps}) => {
+function SearchForm({boxProps}: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const modalRef = React.useRef(null)
 

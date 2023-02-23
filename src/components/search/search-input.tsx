@@ -17,7 +17,7 @@ type Props = {
  * @param refOrFunc
  * @constructor
  */
-const SearchInput: React.FC<Props> = ({ inputProps, refOrFunc }) => {
+function SearchInput({ inputProps, refOrFunc }: Props){
   const isFunc = typeof refOrFunc === 'function'
   const modalRef = !isFunc ? refOrFunc : null
 
