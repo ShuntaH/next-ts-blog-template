@@ -1,33 +1,32 @@
 import { getAllPosts, getAllTags } from "lib/api/post";
-import { Posts } from "interfaces/post";
+import { FilteredPosts } from "interfaces/post";
 import { Box, Flex } from "@chakra-ui/react";
 import Layout from "components/layouts/layout";
 import TagLink from "components/foundations/tag-link";
 import { useSetupFuse } from "hooks/useFuse";
 import NextLink from "next/link";
+import { getFilteredPosts } from "lib/api/filterPost";
 
 
 export const getStaticProps = async () => {
   const allPosts = getAllPosts()
+  const filteredPosts = getFilteredPosts(allPosts)
   const allTags = getAllTags(allPosts)
   return {
     props: {
-      allPosts,
+      filteredPosts,
       allTags
-    },
+    }
   }
 }
 
 type Props = {
-  allPosts: Posts
+  filteredPosts: FilteredPosts
   allTags: string[]
 }
 
-/**
- * This is the page that is rendered when the user visits the root of your application.
- */
-export default function Index({ allPosts, allTags }: Props) {
-  const fuse = useSetupFuse(allPosts)
+export default function Index({ allTags, filteredPosts }: Props) {
+  const fuse = useSetupFuse(filteredPosts)
 
   return (
     // ページ固有のhead内容を設定したい時

@@ -1,9 +1,9 @@
 import React from "react";
 import { Text, TextProps } from "@chakra-ui/react";
 import DateFormatter from "components/common/date-formatter";
-import { STYLES } from "lib/constants";
 import ChakraFontAwesomeIcon from "components/chakra-font-awesome-icon";
 import { faFeather } from "@fortawesome/free-solid-svg-icons";
+import { STYLES } from "lib/constants";
 
 type Props = {
   publishedAt: string

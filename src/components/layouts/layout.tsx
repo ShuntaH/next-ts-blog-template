@@ -14,6 +14,7 @@ type Props = {
 }
 
 function Layout({ fuse, children }: Props){
+  // devLog(["fuse", fuse])
   return (
     // fuse をサーバーサイドで作成するために getStaticProps に書く。そのために _app.tsx には書かない。
     <FuseProvider fuse={fuse}>

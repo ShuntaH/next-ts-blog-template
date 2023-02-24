@@ -49,7 +49,7 @@ export async function markdownToPlainText(markdown: string): Promise<string> {
       result = String(file)
     })
   result = removeMd(result)
-  devLog([ 'markdown to plain text result', result ])
+  devLog([ 'MD to plaintext', result.slice(1, 50) ])
   return result
 }
 

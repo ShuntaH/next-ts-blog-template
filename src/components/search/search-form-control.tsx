@@ -3,6 +3,7 @@ import React from "react";
 import { SearchModalHook } from "interfaces/search";
 import SearchInput from "components/search/search-input";
 import SearchChakraFontAwesomeIcon from "components/search/search-chakra-font-awesome-icon";
+import { devLog } from "lib/helpers";
 
 
 type Props =  {
@@ -22,6 +23,8 @@ function SearchFormControl({formControlProps,refOrFunc }: Props) {
   const isFunc = typeof refOrFunc === 'function'
   const widthAttr = isFunc ?
     { base: 'full', md: '2xs' } : 'full'
+
+  devLog(['SearchFormControl'])
 
   return (
     <FormControl

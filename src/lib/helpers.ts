@@ -18,6 +18,6 @@ export const serverOrBrowser = (): string => {
  */
 export const devLog = (args: any[], isOutput: boolean = true): void => {
   if (process.env.NODE_ENV === 'development' && isOutput) {
-    console.log(...args)
+    console.log(serverOrBrowser(), ...args)
   }
 }

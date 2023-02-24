@@ -32,6 +32,7 @@ function SearchInput({ inputProps, refOrFunc }: Props){
    * @param e
    */
   const handleInput = (e: React.MouseEvent<HTMLInputElement>): void => {
+
     if(isFunc) {
       e.preventDefault()
       return

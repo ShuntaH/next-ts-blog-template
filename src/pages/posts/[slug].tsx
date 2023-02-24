@@ -1,10 +1,12 @@
 import { getAllPosts, getPostBySlug, getSortedPosts } from 'lib/api/post'
-import Head from 'next/head'
-import { Post, Posts } from "interfaces/post";
-import { useSetupFuse } from "hooks/useFuse";
-import Layout from "components/layouts/layout";
+import { FilteredPost, FilteredPosts, Post } from "interfaces/post";
 import React from "react";
+import Fuse from "fuse.js";
+import Layout from "components/layouts/layout";
+import { useSetupFuse } from "hooks/useFuse";
+import Head from "next/head";
 import PostDetail from "components/post/postDetail/post-detail";
+import { getFilteredPosts } from "lib/api/filterPost";
 
 
 /**
@@ -21,10 +23,7 @@ export async function getStaticPaths() {
         }
       }
     }),
-    // true だと fallback するために getStaticProps が動作する。はずだがしなかった。
-    // undefined の props が FC に渡されてレンダーエラー。
-    // false だと開発中に存在しないパスにアクセスしたら fallback しないのでそのままエラーページに行く。
-    fallback: false
+    fallback: false // そのままエラー用のページに飛ぶ
   }
 }
 
@@ -42,34 +41,28 @@ type Context = {
  * @param params ルートパラメーター [slug].tsx
  *
  * https://nextjs.org/docs/api-reference/data-fetching/get-static-props
- * params contains the route parameters for pages using dynamic routes. For example, if the page name is [id].js , then params will look like { id: ... }. You should use this together with getStaticPaths, which we’ll explain later.
- * preview is true if the page is in the Preview Mode and undefined otherwise.
- * previewData contains the preview data set by setPreviewData.
- * locale contains the active locale (if enabled).
- * locales contains all supported locales (if enabled).
- * defaultLocale contains the configured default locale (if enabled).
- */
+ * */
 export async function getStaticProps({ params }: Context) {
-  const allPosts = getAllPosts()
+  const filteredPosts = await getFilteredPosts(getAllPosts())
   const post = await getPostBySlug(params.slug) as Post
   // 記事が非公開だとそのパスは getStaticPath に存在しない。
-  // fallback も false でそのままエラー用のページに飛ぶので null は来ない。
-
+  // fallback も false でそのままエラー用のページに飛ぶので null は来ない
   return {
     props: {
       post,
-      allPosts
+      filteredPosts
     },
   }
 }
 
 type Props = {
   post: Post
-  allPosts: Posts
+  filteredPosts: FilteredPosts
 }
 
-export default function PostPage({ post, allPosts }: Props) {
-  const fuse = useSetupFuse(allPosts)
+export default function PostPage({ post, filteredPosts }: Props) {
+  const fuse: Fuse<FilteredPost> = useSetupFuse(filteredPosts)
+
   return (
     <Layout fuse={fuse}>
       <Head>

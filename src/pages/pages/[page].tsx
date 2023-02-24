@@ -1,6 +1,6 @@
 import { getAllPosts, getPagination, getSortedPosts, getTotalPageCountRange } from "lib/api/post";
 import { Pagination } from "interfaces/pagination";
-import { Posts } from "interfaces/post";
+import { FilteredPosts } from "interfaces/post";
 import Layout from "components/layouts/layout";
 import PostList from "components/post/postList/post-list";
 import { useSetupFuse } from "hooks/useFuse";
@@ -29,6 +29,7 @@ type Context = {
 
 export const getStaticProps = async ({ params }: Context) => {
   const allPosts = getAllPosts()
+  const filteredPosts = getSortedPosts(allPosts)
   const pagination: Pagination = getPagination({
     currentPageNumber: Number(params.page),
     posts: getSortedPosts(allPosts),
@@ -38,18 +39,18 @@ export const getStaticProps = async ({ params }: Context) => {
   return {
     props: {
       pagination,
-      allPosts
+      filteredPosts
     },
   }
 }
 
 type Props = {
   pagination: Pagination
-  allPosts: Posts
+  filteredPosts: FilteredPosts
 }
 
-export default function PaginatedPage({ pagination, allPosts }: Props) {
-  const fuse = useSetupFuse(allPosts)
+export default function PaginatedPage({ pagination, filteredPosts }: Props) {
+  const fuse = useSetupFuse(filteredPosts)
 
   return (
     // ページ固有のhead内容を設定したい時

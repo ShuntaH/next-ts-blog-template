@@ -7,10 +7,11 @@ import {
   getTotalPageCountRange
 } from "lib/api/post";
 import { Pagination } from "interfaces/pagination";
-import { Posts } from "interfaces/post";
+import { FilteredPosts } from "interfaces/post";
 import Layout from "components/layouts/layout";
 import PostList from "components/post/postList/post-list";
 import { useSetupFuse } from "hooks/useFuse";
+import { getFilteredPosts } from "lib/api/filterPost";
 
 export async function getStaticPaths() {
   const posts = getSortedPosts(getAllPosts())
@@ -65,10 +66,11 @@ export const getStaticProps = async ({ params }: Context) => {
     posts: getSortedPosts(taggedPosts),
     basePaths: `/tags/${params.tag}`,
   })
+  const filteredPosts = getFilteredPosts(allPosts)
 
   return {
     props: {
-      allPosts,
+      filteredPosts,
       pagination,
     },
   }
@@ -76,14 +78,14 @@ export const getStaticProps = async ({ params }: Context) => {
 
 type Props = {
   pagination: Pagination
-  allPosts: Posts
+  filteredPosts: FilteredPosts
 }
 
 /**
  * This is the page that is rendered when the user visits the root of your application.
  */
-export default function PaginatedPage({ pagination, allPosts }: Props) {
-  const fuse = useSetupFuse(allPosts)
+export default function PaginatedPage({ pagination, filteredPosts }: Props) {
+  const fuse = useSetupFuse(filteredPosts)
   return (
     // ページ固有のhead内容を設定したい時
     // <Head>
