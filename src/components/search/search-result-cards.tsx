@@ -32,6 +32,7 @@ function SearchResultCards({ modalBodyProps }: Props) {
                 onClose={onClose}
                 searchResultPost={post}
                 index={index}
+                key={index}
               />
             )
           })

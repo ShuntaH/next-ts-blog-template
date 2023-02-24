@@ -3,7 +3,7 @@ import React from "react";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import ChakraFontAwesomeIcon from "components/chakra-font-awesome-icon";
 import { STYLES } from "lib/constants";
-import { useSearchInput } from "contexts/searchInputContext";
+import { useSearchInputContext } from "contexts/searchInputContext";
 import { useDisclosureContext } from "contexts/disclouserContext";
 import { devLog } from "lib/helpers";
 
@@ -13,7 +13,7 @@ type Props =  {
 }
 
 function SearchFormControlModal({ formControlProps }: Props) {
-  const {searchInput, dispatch} = useSearchInput()
+  const {searchInput, dispatch} = useSearchInputContext()
   const { modalRef } = useDisclosureContext()
 
   const handleInput = (e: React.MouseEvent<HTMLInputElement>): void => {

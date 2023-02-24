@@ -3,7 +3,7 @@ import { FilteredPost, FilteredPosts } from "interfaces/post";
 import Fuse from "fuse.js";
 import { devLog } from "lib/helpers";
 import { FUSE_OPTIONS, SEARCH_MIN_CHARS } from "lib/constants";
-import { useSearchInput } from "contexts/searchInputContext";
+import { useSearchInputContext } from "contexts/searchInputContext";
 import { useFuseContext } from "contexts/fuseContext";
 
 /**
@@ -28,7 +28,7 @@ export function useSetupFuse(filteredPosts: FilteredPosts) {
 // fuseで検索して結果を返す
 export function useSearch() {
   const [ searchResultPosts, setSearchResultPosts ] = useState<Fuse.FuseResult<FilteredPost>[]>([])
-  const { searchInput } = useSearchInput()
+  const { searchInput } = useSearchInputContext()
   const fuse = useFuseContext()
 
   /**

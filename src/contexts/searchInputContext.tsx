@@ -59,4 +59,4 @@ export const SearchInputProvider = ({ children }: SearchInputProviderProps) => {
   )
 }
 
-export const useSearchInput = () => useContext(SearchInputContext)
+export const useSearchInputContext = () => useContext(SearchInputContext)

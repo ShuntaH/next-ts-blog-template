@@ -1,7 +1,7 @@
 import { FormControl, FormControlProps, Input, InputGroup, InputRightElement } from '@chakra-ui/react'
 import React from "react";
 import { STYLES } from "lib/constants";
-import { useSearchInput } from "contexts/searchInputContext";
+import { useSearchInputContext } from "contexts/searchInputContext";
 import { useDisclosureContext } from "contexts/disclouserContext";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import ChakraFontAwesomeIcon from "components/chakra-font-awesome-icon";
@@ -13,7 +13,7 @@ type Props = {
 
 function SearchFormControlHeader({ formControlProps }: Props) {
   const { onOpen } = useDisclosureContext()
-  const {searchInput} = useSearchInput()
+  const {searchInput} = useSearchInputContext()
   return (
     <FormControl
       width={{ base: 'full', md: '2xs' }}

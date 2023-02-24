@@ -3,6 +3,7 @@ import React from "react";
 import SearchModal from "components/search/search-modal";
 import SearchFormControlHeader from "components/search/header/search-form-control-header";
 import { DisclosureProvider } from "contexts/disclouserContext";
+import { SearchInputProvider } from "contexts/searchInputContext";
 
 
 type Props = {
@@ -11,12 +12,14 @@ type Props = {
 
 function SearchFormHeader({boxProps}: Props) {
   return (
-    <DisclosureProvider>
-      <Box {...boxProps}>
-        <SearchFormControlHeader />
-        <SearchModal/>
-      </Box>
-    </DisclosureProvider>
+    <SearchInputProvider>
+      <DisclosureProvider>
+        <Box {...boxProps}>
+          <SearchFormControlHeader />
+          <SearchModal/>
+        </Box>
+      </DisclosureProvider>
+    </SearchInputProvider>
   );
 }
 
