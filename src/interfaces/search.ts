@@ -14,17 +14,6 @@ export type SearchKeys = keyof typeof BadgeColors
 export type BadgeColorValues = typeof BadgeColors[keyof typeof BadgeColors]
 
 /**
- * モーダルを発火させるファンクションが渡される
- * イベント種類の一覧
- *
- * onClick はスマホのタップでも発火する
- */
-export type SearchModalOpenEvents = {
-  onClick: EventHandler<any>
-}
-
-
-/**
  * 検索に使われる入力欄は２箇所ある。
  * ヘッダーに埋め込まれている検索モーダルを開くのを
  * 発火させるための入力欄と

@@ -58,7 +58,7 @@ type Context = {
   }
 }
 
-export const getStaticProps = async ({ params }: Context) => {
+export async function getStaticProps({ params }: Context) {
   const allPosts = getAllPosts()
   const taggedPosts = allPosts.filter((post) => post.tags.includes(params.tag))
   const pagination: Pagination = getPagination({
@@ -66,7 +66,7 @@ export const getStaticProps = async ({ params }: Context) => {
     posts: getSortedPosts(taggedPosts),
     basePaths: `/tags/${params.tag}`,
   })
-  const filteredPosts = getFilteredPosts(allPosts)
+  const filteredPosts = await getFilteredPosts(allPosts)
 
   return {
     props: {

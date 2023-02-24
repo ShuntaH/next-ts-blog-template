@@ -5,7 +5,7 @@ import { faTags } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import { faGithubAlt } from "@fortawesome/free-brands-svg-icons";
 import { NavigationIcon } from "interfaces/icon";
-import SearchForm from "components/search/search-form";
+import SearchFormHeader from "components/search/header/search-form-header";
 import ChakraFontAwesomeIcon from "components/chakra-font-awesome-icon";
 
 const icons: NavigationIcon[] = [
@@ -61,7 +61,7 @@ function Header (props: BoxProps){
           alignItems={"center"}
         >
           {/*スマホの時はヘッダーの右サイドのアイテムリストの中から非表示にする*/}
-          <SearchForm
+          <SearchFormHeader
             boxProps={{
               marginRight:STYLES.gap,
               display: {
@@ -93,7 +93,7 @@ function Header (props: BoxProps){
       </Flex>
 
       {/*スマホサイズの時は行を変えて表示する*/}
-      <SearchForm
+      <SearchFormHeader
         boxProps={{
           display: {md: 'none'},
           maxWidth: STYLES.navMaxWidth,

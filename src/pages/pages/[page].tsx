@@ -4,6 +4,7 @@ import { FilteredPosts } from "interfaces/post";
 import Layout from "components/layouts/layout";
 import PostList from "components/post/postList/post-list";
 import { useSetupFuse } from "hooks/useFuse";
+import { getFilteredPosts } from "lib/api/filterPost";
 
 
 export async function getStaticPaths() {
@@ -27,9 +28,9 @@ type Context = {
   }
 }
 
-export const getStaticProps = async ({ params }: Context) => {
+export async function getStaticProps({ params }: Context){
   const allPosts = getAllPosts()
-  const filteredPosts = getSortedPosts(allPosts)
+  const filteredPosts = await getFilteredPosts(allPosts)
   const pagination: Pagination = getPagination({
     currentPageNumber: Number(params.page),
     posts: getSortedPosts(allPosts),

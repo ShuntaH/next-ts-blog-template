@@ -8,9 +8,9 @@ import NextLink from "next/link";
 import { getFilteredPosts } from "lib/api/filterPost";
 
 
-export const getStaticProps = async () => {
+export async function getStaticProps() {
   const allPosts = getAllPosts()
-  const filteredPosts = getFilteredPosts(allPosts)
+  const filteredPosts = await getFilteredPosts(allPosts)
   const allTags = getAllTags(allPosts)
   return {
     props: {

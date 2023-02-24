@@ -28,7 +28,7 @@ export function useSetupFuse(filteredPosts: FilteredPosts) {
 // fuseで検索して結果を返す
 export function useSearch() {
   const [ searchResultPosts, setSearchResultPosts ] = useState<Fuse.FuseResult<FilteredPost>[]>([])
-  const { searchInput, dispatch } = useSearchInput()
+  const { searchInput } = useSearchInput()
   const fuse = useFuseContext()
 
   /**
@@ -39,13 +39,14 @@ export function useSearch() {
       setSearchResultPosts([])
       return
     }
-    
+    devLog([ 'searchInput', searchInput ])
     const result = fuse.search(searchInput)
     setSearchResultPosts(result)
   }, [ searchInput ])
 
   useEffect(
     () => {
+      devLog([ 'searchInput changed', searchInput ])
       // 入力文字数に関わらず更新する。制限すると入力文字数が検索を開始する文字数より少なくても
       // 前の検索結果を残してしまう。
       handleSearch()

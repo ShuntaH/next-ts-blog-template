@@ -9,24 +9,17 @@ import {
   ModalOverlay
 } from '@chakra-ui/react'
 import React from "react";
-import SearchFormControl from "./search-form-control";
 import SearchResultCards from "components/search/search-result-cards";
+import { useDisclosureContext } from "contexts/disclouserContext";
+import SearchFormModal from "components/search/search-form-modal";
 
 
 type Props = {
   boxProps?: BoxProps
-  onClose: () => void
-  isOpen: boolean
-  modalRef: React.MutableRefObject<null | HTMLInputElement>
 }
 
-function SearchModal ({
-  boxProps,
-  onClose,
-  isOpen,
-  modalRef
-}: Props) {
-
+function SearchModal ({ boxProps }: Props) {
+  const { isOpen, onClose, modalRef } = useDisclosureContext()
   return (
     <Box {...boxProps}>
       <Modal
@@ -41,14 +34,14 @@ function SearchModal ({
           backdropFilter={'blur(2px)'}
           bgColor={"whiteAlpha.200"}
         >
+          {/*検索欄*/}
           <ModalHeader>
-            <SearchFormControl
-              formControlProps={{ marginTop: 7 }}
-              refOrFunc={modalRef}
-            />
+            <SearchFormModal/>
             <ModalCloseButton tabIndex={-1}/>
           </ModalHeader>
-          <SearchResultCards onClose={onClose} />
+
+          {/*検索結果*/}
+          <SearchResultCards />
           <ModalFooter/>
         </ModalContent>
       </Modal>
