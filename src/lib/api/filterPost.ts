@@ -1,6 +1,16 @@
 import { FilteredPost, FilteredPosts, Posts } from "interfaces/post";
-import { getFilteredInitialPost } from "lib/search";
 import { markdownToPlainText } from "lib/transformMarkdown";
+
+// 新規オブジェクトを返すよう関数にする
+export const getFilteredInitialPost = (): FilteredPost => {
+  return {
+    title: '',
+    excerpt: '',
+    content: '',
+    slug: '',
+    tags: []
+  }
+}
 
 /**
  * 記事データからそれぞれ、検索対象ではないデータ(slug や time など)

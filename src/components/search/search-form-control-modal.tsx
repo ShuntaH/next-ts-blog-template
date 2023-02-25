@@ -17,7 +17,8 @@ function SearchFormControlModal({ formControlProps }: Props) {
   const { modalRef } = useDisclosureContext()
 
   const handleInput = (e: React.MouseEvent<HTMLInputElement>): void => {
-    devLog(['handleInput', e.currentTarget.value])
+    devLog(['handleInput new input', e.currentTarget.value])
+
     dispatch({
       searchInput: e.currentTarget.value,
       type: 'update'
