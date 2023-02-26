@@ -48,7 +48,11 @@ export function useSearch() {
     clearTimeout(timer)
 
     const newTimer = setTimeout(() => {
-      devLog([ "setTimeout called", "timer", timer ])
+      devLog([
+        "setTimeout called",
+        "timer", timer
+      ])
+
       if (!fuse || searchInput.length <= SEARCH_MIN_CHARS) {
         // 入力文字数に関わらず更新する。制限すると入力文字数が検索を開始する文字数より少なくても
         // 前の検索結果を残してしまう。
@@ -58,7 +62,14 @@ export function useSearch() {
       const result = fuse.search(searchInput)
       setSearchResultPosts(result)
     }, 300)
-    devLog([ "setNewTimer", newTimer, "search input", `"${searchInput}"`, 'timer', timer, 'trigger render' ])
+
+    devLog([
+      "setNewTimer", newTimer,
+      "search input", `"${searchInput}"`,
+      'timer', timer,
+      'trigger render'
+    ])
+
     setTimer(newTimer)
   }, [ searchInput ])
 
