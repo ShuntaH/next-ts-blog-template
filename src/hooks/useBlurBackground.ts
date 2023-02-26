@@ -4,11 +4,12 @@ import { useCallback, useEffect, useState } from "react";
 export function useBlurBackground() {
   const [ blurOpacity, setBlurOpacity ] = useState(0)
 
-  const handleBlurOpacity = useCallback(() => {
-    const scrollY = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
-    const calculatedOpacity = window.pageYOffset / 300
-    setBlurOpacity(calculatedOpacity)
-  }, [ blurOpacity ])
+  const handleBlurOpacity = useCallback(
+    () => {
+      const calculatedOpacity = window.pageYOffset / 300
+      setBlurOpacity(calculatedOpacity)
+    },
+    [ blurOpacity ])
 
 
   useEffect(() => {
