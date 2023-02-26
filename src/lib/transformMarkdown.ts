@@ -5,9 +5,10 @@ import remarkRehype from "remark-rehype";
 import rehypeRaw from "rehype-raw";
 import rehypeReact from "rehype-react";
 import React from "react";
-import LinkNextProvide from "components/markdown/link-next-provide";
+import MarkdownLink from "components/markdown/markdown-link";
 import remarkStripBadges from "remark-strip-badges";
 import { devLog } from "lib/helpers";
+import { Image } from "@chakra-ui/react";
 
 export async function markdownToReactElements(markdown: string): Promise<React.ReactNode> {
   return remark()
@@ -15,17 +16,16 @@ export async function markdownToReactElements(markdown: string): Promise<React.R
     .use(remarkBreaks) // hard breaks w/o needing spaces
     .use(
       remarkRehype, {
-        allowDangerousHtml: true,
+        allowDangerousHtml: true, // mdast to hast で htmlタグをそのまま維持する
       })
-    .use(rehypeRaw) // parse the tree again
+    .use(rehypeRaw) // parse the tree again 直接書かれたタグをそのタグのまま維持する
     .use(
       rehypeReact,  // compile to React
       {
         createElement: React.createElement,
         components: {
-          // chakra を使っているので chakraComponent
-          // が一番型をつけるのが簡単
-          a: LinkNextProvide,
+          a: MarkdownLink,
+          img: Image // todo chakra が next/image に対応しているか確認する
         }
       })
     .processSync(markdown).result

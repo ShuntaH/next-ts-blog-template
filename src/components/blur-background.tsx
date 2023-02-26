@@ -1,4 +1,5 @@
-import { Box, Image } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
+import Image from "next/image";
 import React from "react";
 import { BACKGROUND_IMAGE_PATH } from "lib/constants";
 import { useBlurBackground } from "hooks/useBlurBackground";
@@ -7,7 +8,7 @@ function BlurBackground() {
   const blurOpacity = useBlurBackground()
 
   return (
-    <Box>
+    <Box position={"relative"}>
       <Box
         position={"fixed"}
         top={0}
@@ -20,17 +21,10 @@ function BlurBackground() {
           BACKGROUND_IMAGE_PATH ?
             (
               <Image
-                position={"fixed"}
-                top={0}
-                right={0}
-                left={0}
-                width={"full"}
-                height={"full"}
-                htmlWidth={'100%'}
-                htmlHeight={'100%'}
+                style={{ objectFit: "cover" }}
+                alt={"background image"}
                 src={BACKGROUND_IMAGE_PATH}
-                fit={"cover"}
-                align={"center"}
+                fill
               />
             )
             :

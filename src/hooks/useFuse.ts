@@ -43,7 +43,7 @@ export function useSearch() {
     // 直前のスナップショットでの timer をキャンセルする。
     // useEffect のクリーンアップで clearTimeout はしない。
     // そこですると、作成した NewTimer ではなく、直前の timer をキャンセルするので
-    // 新しい入力があった時に NewTimer は cleanTimeout されないままのため。
+    // 新しい入力があった時に NewTimer は cleanTimeout されないため。
     devLog([ "clearTimeout", timer ])
     clearTimeout(timer)
 
