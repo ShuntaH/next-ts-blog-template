@@ -13,7 +13,12 @@ function MarkdownLink({ href, children }: LinkProps){
   return href?.startsWith("/") ? (
     <Link href={href} as={NextLink}>{children}</Link>
   ) : (
-    <Link isExternal href={href} rel="noreferrer" target="_blank">
+    <Link
+      isExternal
+      href={href}
+      rel="noreferrer"
+      target="_blank"
+    >
       {children}
     </Link>
   )

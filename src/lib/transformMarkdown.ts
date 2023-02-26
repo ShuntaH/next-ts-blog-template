@@ -8,7 +8,7 @@ import React from "react";
 import MarkdownLink from "components/markdown/markdown-link";
 import remarkStripBadges from "remark-strip-badges";
 import { devLog } from "lib/helpers";
-import { Image } from "@chakra-ui/react";
+import MarkdownNextImage from "components/markdown/markdown-next-image";
 
 export async function markdownToReactElements(markdown: string): Promise<React.ReactNode> {
   return remark()
@@ -24,8 +24,9 @@ export async function markdownToReactElements(markdown: string): Promise<React.R
       {
         createElement: React.createElement,
         components: {
+          // htmlタグの attr にないものを FC の props に渡せない
           a: MarkdownLink,
-          img: Image // todo chakra が next/image に対応しているか確認する
+          img: MarkdownNextImage
         }
       })
     .processSync(markdown).result
