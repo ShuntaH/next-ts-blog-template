@@ -1,6 +1,7 @@
 import { join } from "path";
 import matter from "gray-matter";
 import * as fs from "fs";
+import { devLog } from "lib/helpers";
 
 /**
  * マークダウンの全ての slug を取得する。
@@ -28,38 +29,56 @@ export const getMarkdownBySlug = (slug: string, directoryPath: string): {
 }
 
 /**
- * マークダウンのデータ部分を取得するが any 。補完が効くように型をつけると、
- * 書いたマークダウンファイルに不足または余計なデータを書き込んでいないか
- * 検証する。TS だとタイプエラーが出やいため短く書くのが難しかった。そのため関数に切り出した。
+ * マークダウンの全ての記事を読み込み、meta data と content に分けて返す。
+ * meta data は any なのでデータが整っているかチェックする必要がある。
  *
  * @param markdownData マークダウンから取得したメタデータ 何が入っているかは動的なので不明
  * @param keysShouldExist このメタデータが持っているべきキーの配列
  * @param slug エラーメッセージ用にこの記事を特定できる slug
  */
-export const validateMarkdownData = (
+export function validateMarkdownData(
   markdownData: any,
   keysShouldExist: string[],
   slug: string
-): never | void => {
+): never | void {
   const markdownDataKeys = Object.keys(markdownData)
   let message = undefined
 
-  markdownDataKeys.forEach((k => {
-    // キーが不足していないか
-    if (!keysShouldExist.includes(k)) {
-      message = `Markdown file "${slug}" contains unknown data "${k}".`
-      return
-    }
-  }))
+  if (!markdownDataKeys.length) {
+    // data の部分が空か --- の数を間違えているなどして取れていない
+    message = `Markdown file "${slug}" data is empty. check data part syntax.`
+  } else {
+    markdownDataKeys.forEach((k => {
+      // キーが不足していないか
+      if (!keysShouldExist.includes(k)) {
+        message = `Markdown file "${slug}" contains unknown data "${k}".`
+        return
+      }
+    }))
 
-  keysShouldExist.forEach((k) => {
-    // 余計なキーが入っていないか
-    if (markdownData[k] === undefined) {
-      message = `Markdown file "${slug}" is lack of markdown data "${k}".`
-      return
-    }
-  })
+    keysShouldExist.forEach((k) => {
+      // 余計なキーが入っていないか
+      if (markdownData[k] === undefined) {
+        message = `Markdown file "${slug}" is lack of markdown data "${k}".`
+        return
+      }
+    })
+  }
 
-  message && Error(message)
+  if (message) {
+    throw new Error(message)
+  }
 }
 
+/**
+ * 記事が公開済みか判定する
+ * @param publishedAt
+ * @param updateAt
+ * @param status
+ */
+export function isPublished(publishedAt: Date, updateAt: Date, status: boolean) {
+  devLog([ 'isPublished', publishedAt, updateAt, status ], false)
+  // UTC
+  const now = new Date()
+  return publishedAt <= now && updateAt <= now && status
+}

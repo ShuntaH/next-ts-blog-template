@@ -50,7 +50,7 @@ export async function markdownToPlainText(markdown: string): Promise<string> {
       result = String(file)
     })
   result = removeMd(result)
-  devLog([ 'MD to plaintext', result.slice(1, 50) ])
+  devLog([ 'MD to plaintext', result.slice(1, 50) ], false)
   return result
 }
 

@@ -1,11 +1,11 @@
 ---
-title: 'Dynamic Routing and Static Generation'
-status: true
+title: 'タグのテスト記事'
 excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus.'
+status: true
 publishedAt: '2020-03-16T01:00:00.000+09:00'
 updatedAt: '2020-03-16T01:00:00.000+09:00'
-ogImageUrl: '/assets/blog/dynamic-routing/cover.jpg'
-tags: ['tag1', 'tag2']
+ogImageUrl: ''
+tags: ['tag', '日本語のタグ', '長いタグabcdefghijklmnopqrstuvwxyz']
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus. Praesent elementum facilisis leo vel fringilla. Congue mauris rhoncus aenean vel. Egestas sed tempus urna et pharetra pharetra massa massa ultricies.

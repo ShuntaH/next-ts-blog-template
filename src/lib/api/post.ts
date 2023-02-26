@@ -1,7 +1,8 @@
 import { Post, PostMarkdownData, Posts } from "interfaces/post";
 import { Pagination, PaginationProps } from "interfaces/pagination";
 import { POST_COUNT_PER_PAGE, POST_DIRECTORY_PATH } from "lib/constants";
-import { getAllMarkdownSlugs, getMarkdownBySlug, validateMarkdownData } from "lib/api/index";
+import { getAllMarkdownSlugs, getMarkdownBySlug, isPublished, validateMarkdownData } from "lib/api/index";
+import { parseISO } from "date-fns";
 
 
 // type Post と一致させること
@@ -14,6 +15,7 @@ const keysShouldExist = [
   'ogImageUrl',
   'tags'
 ]
+
 const source = POST_DIRECTORY_PATH
 
 /**
@@ -21,13 +23,18 @@ const source = POST_DIRECTORY_PATH
  * @param slug マークダウンファイルの名前
  */
 export const getPostBySlug = (slug: string): Post | null => {
+
   const { data, content, cleanedSlug } = getMarkdownBySlug(slug, source)
   const _markdownData = data
   validateMarkdownData(_markdownData, keysShouldExist, slug)
   const markdownData = _markdownData as PostMarkdownData
 
+  // UTC
+  const publishedAt = parseISO(markdownData.publishedAt)
+  const updatedAt = parseISO(markdownData.updatedAt)
+
   // 非公開なので返す post はない。
-  if (!markdownData.status) return null
+  if (!isPublished(publishedAt, updatedAt, markdownData.status)) return null
 
   // サロゲートペアの文字を考慮する
   const charLength: number = [ ...content ].length
@@ -63,7 +70,7 @@ export const getPostBySlug = (slug: string): Post | null => {
  * 下書き状態の記事は除く。公開できる全ての記事が対象になる。
  */
 export const getAllPosts = (): Posts => {
-  const slugs: string[] = getAllMarkdownSlugs(source) // [ 'hoge.md', 'hello-world.md' ]
+  const slugs: string[] = getAllMarkdownSlugs(source) // [ 'hoge.md', 'html-md.md' ]
   const allPosts = slugs.map((slug) => getPostBySlug(slug))
   return <Posts> allPosts.filter((post) => post)
 }

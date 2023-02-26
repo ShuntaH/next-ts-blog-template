@@ -8,7 +8,8 @@ import { useFuseContext } from "contexts/fuseContext";
 
 /**
  * Fuseをセットアップする。
- * Fuse はインスタンスで getStaticProps から コンポーネントに渡せないので、クライアントサイドでセットアップする。
+ * Fuse はインスタンスで getStaticProps から コンポーネントに渡せないので、
+ * クライアントサイドでセットアップする。
  * @param filteredPosts
  */
 export function useSetupFuse(filteredPosts: FilteredPosts) {
@@ -23,7 +24,7 @@ export function useSetupFuse(filteredPosts: FilteredPosts) {
 // fuseで検索して結果を返す
 export function useSearch() {
   // debounce の中で timer を作ると再レンダーの時に前の timer が追えなくなるので以前の
-  // setTimeout を 止められなくなるので state で管理する
+  // setTimeout を止められなくなる。 state で管理する
   const [ timer, setTimer ] = useState<NodeJS.Timeout | undefined>(undefined)
   const [ searchResultPosts, setSearchResultPosts ] = useState<Fuse.FuseResult<FilteredPost>[]>([])
   const { searchInput } = useSearchInputContext()
@@ -51,7 +52,7 @@ export function useSearch() {
       devLog([
         "setTimeout called",
         "timer", timer
-      ])
+      ], false)
 
       if (!fuse || searchInput.length <= SEARCH_MIN_CHARS) {
         // 入力文字数に関わらず更新する。制限すると入力文字数が検索を開始する文字数より少なくても
@@ -68,7 +69,7 @@ export function useSearch() {
       "search input", `"${searchInput}"`,
       'timer', timer,
       'trigger render'
-    ])
+    ], false)
 
     setTimer(newTimer)
   }, [ searchInput ])

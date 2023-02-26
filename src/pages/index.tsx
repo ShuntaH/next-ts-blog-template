@@ -11,7 +11,7 @@ export async function getStaticProps () {
   const allPosts: Posts = getAllPosts()
   const pagination: Pagination = getPagination({
     currentPageNumber: 1,
-    posts: getSortedPosts(getAllPosts()),
+    posts: getSortedPosts(allPosts),
     basePaths: '/pages',
   })
   const filteredPosts = await getFilteredPosts(allPosts)

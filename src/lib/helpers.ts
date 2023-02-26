@@ -21,3 +21,4 @@ export function devLog(args: any[], isOutput: boolean = true): void {
     console.log(serverOrBrowser(), ...args)
   }
 }
+
