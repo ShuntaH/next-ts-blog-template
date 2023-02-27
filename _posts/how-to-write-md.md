@@ -254,7 +254,8 @@ URLが長くて読みづらくなる場合や同じリンクを何度も使用�
 ## Images 画像
 
 ```先頭の`!`で画像の<img>```と認識されます。画像の大きさなどの指定をする場合はimgタグを使用します。
-imgタグは next/image コンポーネントに変換されます。
+imgタグは next/image コンポーネントに変換されます。サイズは指定しなくても自動で調整されます。ただし16:9の比率で調整されます。
+他の文章の前後におくと p タグに組み込まれるので、空行を入れてください。組み込まれると p タグの中に div タグがあることになります。
 
 ```
 ![alt](/assets/hongkong-bg.png)
@@ -267,6 +268,7 @@ imgタグは next/image コンポーネントに変換されます。
 ![ブログ内の画像](/assets/hongkong-bg.png)
 
 ブログ内の画像 imgタグ
+
 <img src="/assets/hongkong-bg.png" alt="this is for test" width=200 height=200>
 
 # Table 表

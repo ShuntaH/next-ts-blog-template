@@ -4,6 +4,7 @@ import remarkBreaks from "remark-breaks";
 import remarkPrism from "remark-prism";
 import remarkRehype from "remark-rehype";
 import rehypeStringify from "rehype-stringify";
+import remarkUnwrapImages from "remark-unwrap-images";
 
 
 export async function markdownToHtml(markdown: string): Promise<string> {
@@ -11,6 +12,7 @@ export async function markdownToHtml(markdown: string): Promise<string> {
     .use(remarkGfm) //  support GFM (autolink literals, footnotes, strikethrough, tables, tasklists)
     .use(remarkBreaks) // hard breaks w/o needing spaces
     .use(remarkPrism, {}) // code highlight
+    .use(remarkUnwrapImages) // md の中の img タグを p タグで囲むのをHTMLに違反しないためにやめる
     .use(remarkRehype, { allowDangerousHtml: true })// markdownの中の img タグを img タグのままにする
     // .use(rehypeFormat) // 整形されていないHTMLを空白や改行を消して整える。
     .use(rehypeStringify, { allowDangerousHtml: true }) // htmlタグをそのまま出力する
