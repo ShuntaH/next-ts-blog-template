@@ -172,6 +172,9 @@ hoge
 1. 番号付きリスト2
 1. 番号付きリスト3
 
+
+
+
 # Span Elements
 
 ## Link リンク
@@ -182,13 +185,13 @@ Next.jsのLinkコンポーネントに変換されます。
 ```
 [Google](https://www.google.co.jp/)
 ```
+
 外部リンク
 [Google](https://www.google.co.jp/)
 
 ブログ内部のリンク
 [タグのテスト記事](/posts/how-to-use-tag)
 
-```
 
 ### 外部参照リンク
 
@@ -215,6 +218,9 @@ URLが長くて読みづらくなる場合や同じリンクを何度も使用�
 これは *イタリック* です
 これは _イタリック_ です
 
+
+
+
 ### strong
 
 アスタリスク`*`もしくはアンダースコア`_`2個で文字列を囲みます。
@@ -226,6 +232,9 @@ URLが長くて読みづらくなる場合や同じリンクを何度も使用�
 
 これは **ボールド** です
 これは __ボールド__ です
+
+
+
 
 ### em + strong
 
@@ -239,21 +248,26 @@ URLが長くて読みづらくなる場合や同じリンクを何度も使用�
 これは ***イタリック＆ボールド*** です
 これは ___イタリック＆ボールド___ です
 
+
+
+
 ## Images 画像
 
-先頭の`!`で画像の<img>と認識されます。画像の大きさなどの指定をする場合はimgタグを使用します。
+```先頭の`!`で画像の<img>```と認識されます。画像の大きさなどの指定をする場合はimgタグを使用します。
 imgタグは next/image コンポーネントに変換されます。
 
 ```
 ![alt](/assets/hongkong-bg.png)
 ![代替文字列](/assets/hongkong-bg.png "タイトル")
+<img src="/assets/hongkong-bg.png" alt="this is background image." width=200 height=200>
+```
 
 ブログ内の画像 md記法
+
 ![ブログ内の画像](/assets/hongkong-bg.png)
 
 ブログ内の画像 imgタグ
-<img src="/assets/hongkong-bg.png" alt="this is background image." width=200 height=200>
-```
+<img src="/assets/hongkong-bg.png" alt="this is for test" width=200 height=200>
 
 # Table 表
 

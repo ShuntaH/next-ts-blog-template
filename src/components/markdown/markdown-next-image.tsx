@@ -1,11 +1,18 @@
 import React, { ImgHTMLAttributes } from "react";
-import { Box } from "@chakra-ui/react";
 import NextImage from "components/foundations/next-image";
+import { devLog } from "lib/helpers";
+import { Box } from "@chakra-ui/react";
 
 /**
  * MarkdownのimgをNext.jsのImageコンポーネントに置き換える。
  * img の attributes が next/image と一致していないので、それに合わせたコンポーネントを作成。
  * 例えば width="100%" は img では許容されるが、next/image では許容されないので width=100 と数字に限定している。
+ *
+ * CLI対策でサイズ指定が必要だが、実際サイズを指定するのは難しい。
+ * next/image の fill=ture にしたいが position: absolute width: 100% height: 100% を強制してくる
+ * markdownからのDOM生成だと、親は高さをもっていないので表示されない。height 100% を上書きもできない。
+ * 固定の高さを親に与えるのは難しいが、比率を決めておけば親のサイズは動的に確保できる。
+ * 比率が整えば見た目も整うしこれでいくとする。
  * @param width
  * @param height
  * @param src
@@ -13,11 +20,19 @@ import NextImage from "components/foundations/next-image";
  * @constructor
  */
 function MarkdownNextImage({ width, height, src, alt }: ImgHTMLAttributes<HTMLImageElement>) {
-  if (!(typeof width === "number" || typeof width === "undefined")) {
+  devLog([
+    'MarkdownNextImage',
+    'width', width, typeof width, '/',
+    'height', height, typeof height, '/',
+    'src', src, typeof src, '/',
+    'alt', typeof alt, alt
+  ])
+
+  if (typeof width === "string") {
     throw new Error(`width must be number [${width}]`)
   }
 
-  if (!(typeof height === "number" || typeof height === "undefined")) {
+  if (typeof height === "string") {
     throw new Error(`height must be number [${height}]`)
   }
 
@@ -30,7 +45,7 @@ function MarkdownNextImage({ width, height, src, alt }: ImgHTMLAttributes<HTMLIm
   }
 
   return (
-    <Box>
+    <Box position={"relative"}  width={"full"} style={{aspectRatio: '16/9'}}>
       <NextImage
         src={src}
         alt={alt}

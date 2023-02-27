@@ -1,6 +1,6 @@
 import React from "react";
-import { Box } from "@chakra-ui/react";
 import Image, { ImageProps } from "next/image";
+import { devLog } from "lib/helpers";
 
 /**
  * width と height　が必須だが、指定しないことが多いので、それに合わせたコンポーネントを作成。
@@ -9,13 +9,19 @@ import Image, { ImageProps } from "next/image";
  * @constructor
  */
 function NextImage(props: ImageProps) {
+  const propsCopy = { ...props }
+  const hasSize = Boolean(props.width && props.height)
+  if (!hasSize) {
+    delete propsCopy.width
+    delete propsCopy.height
+  }
+  devLog([ 'NextImage', 'propsCopy', propsCopy ])
   return (
-    <Box>
-      <Image
-        style={props.style === undefined ? { objectFit: "cover" } : props.style}
-        fill={!props.width || !props.height}
-        {...props}/>
-    </Box>
+    // 親がサイズを持っていないといけない
+    <Image
+      style={props.style === undefined ? { objectFit: "cover" } : props.style}
+      fill={!hasSize}
+      {...propsCopy}/>
   )
 }
 
