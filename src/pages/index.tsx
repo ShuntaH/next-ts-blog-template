@@ -1,4 +1,4 @@
-import { getAllPosts, getPagination, getSortedPosts } from "lib/api/post";
+import { getAllPosts, getHtmlContentPosts, getPagination, getSortedPosts } from "lib/api/post";
 import { FilteredPosts, Posts } from "interfaces/post";
 import { Pagination } from "interfaces/pagination";
 import Layout from "components/layouts/layout";
@@ -9,12 +9,13 @@ import { getFilteredPosts } from "lib/api/filterPost";
 
 export async function getStaticProps () {
   const allPosts: Posts = getAllPosts()
+  const filteredPosts = await getFilteredPosts(allPosts)
   const pagination: Pagination = getPagination({
     currentPageNumber: 1,
-    posts: getSortedPosts(allPosts),
+    posts: await getHtmlContentPosts(getSortedPosts(allPosts)),
     basePaths: '/pages',
   })
-  const filteredPosts = await getFilteredPosts(allPosts)
+
 
   return {
     props: {

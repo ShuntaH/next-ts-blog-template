@@ -3,6 +3,7 @@ import { Pagination, PaginationProps } from "interfaces/pagination";
 import { POST_COUNT_PER_PAGE, POST_DIRECTORY_PATH } from "lib/constants";
 import { getAllMarkdownSlugs, getMarkdownBySlug, isPublished, validateMarkdownData } from "lib/api/index";
 import { parseISO } from "date-fns";
+import { markdownToHtml } from "lib/markdown/server";
 
 
 // type Post と一致させること
@@ -29,11 +30,14 @@ export const getPostBySlug = (slug: string): Post | null => {
   validateMarkdownData(_markdownData, keysShouldExist, slug)
   const markdownData = _markdownData as PostMarkdownData
 
+  // ここで content を処理しない。全文検索と記事本文の２パターンで処理するため。
+  // getStaticProps で処理する。
+
   // UTC
   const publishedAt = parseISO(markdownData.publishedAt)
   const updatedAt = parseISO(markdownData.updatedAt)
 
-  // 非公開なので返す post はない。
+  // 非公開
   if (!isPublished(publishedAt, updatedAt, markdownData.status)) return null
 
   // サロゲートペアの文字を考慮する
@@ -81,6 +85,15 @@ export const getAllPosts = (): Posts => {
 export const getSortedPosts = (posts: Posts): Posts => {
   // sort posts by date in descending order
   return posts.sort((post1, post2) => (post1.publishedAt > post2.publishedAt ? -1 : 1))
+}
+
+export const getHtmlContentPosts = (posts: Posts): Promise<Posts> => {
+  return Promise.all(posts.map(async (post) => {
+    return {
+      ...post,
+      content: await markdownToHtml(post.content)
+    }
+  }))
 }
 
 export const getAllTags = (posts: Posts): string[] => {

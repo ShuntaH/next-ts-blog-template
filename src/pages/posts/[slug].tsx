@@ -7,6 +7,7 @@ import { useSetupFuse } from "hooks/useFuse";
 import Head from "next/head";
 import PostDetail from "components/post/postDetail/post-detail";
 import { getFilteredPosts } from "lib/api/filterPost";
+import { markdownToHtml } from "lib/markdown/server";
 
 
 /**
@@ -45,8 +46,8 @@ type Context = {
 export async function getStaticProps({ params }: Context) {
   const filteredPosts = await getFilteredPosts(getAllPosts())
   const post = getPostBySlug(params.slug) as Post
-  // 記事が非公開だとそのパスは getStaticPath に存在しない。
-  // fallback も false でそのままエラー用のページに飛ぶので null は来ない
+  post.content = await markdownToHtml(post.content)
+
   return {
     props: {
       post,

@@ -1,4 +1,4 @@
-import { getAllPosts, getPagination, getSortedPosts, getTotalPageCountRange } from "lib/api/post";
+import { getAllPosts, getHtmlContentPosts, getPagination, getSortedPosts, getTotalPageCountRange } from "lib/api/post";
 import { Pagination } from "interfaces/pagination";
 import { FilteredPosts } from "interfaces/post";
 import Layout from "components/layouts/layout";
@@ -33,7 +33,7 @@ export async function getStaticProps({ params }: Context){
   const filteredPosts = await getFilteredPosts(allPosts)
   const pagination: Pagination = getPagination({
     currentPageNumber: Number(params.page),
-    posts: getSortedPosts(allPosts),
+    posts: await getHtmlContentPosts(getSortedPosts(allPosts)),
     basePaths: '/pages',
   })
 

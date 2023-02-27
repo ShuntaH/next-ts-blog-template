@@ -1,6 +1,7 @@
 import {
   getAllPosts,
   getAllTags,
+  getHtmlContentPosts,
   getPagination,
   getSortedPosts,
   getTaggedPosts,
@@ -63,7 +64,7 @@ export async function getStaticProps({ params }: Context) {
   const taggedPosts = allPosts.filter((post) => post.tags.includes(params.tag))
   const pagination: Pagination = getPagination({
     currentPageNumber: Number(params.page),
-    posts: getSortedPosts(taggedPosts),
+    posts: await getHtmlContentPosts(getSortedPosts(taggedPosts)),
     basePaths: `/tags/${params.tag}`,
   })
   const filteredPosts = await getFilteredPosts(allPosts)
