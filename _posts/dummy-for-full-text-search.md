@@ -4,7 +4,7 @@ excerpt: '全文検索のダミーテキスト'
 status: true
 publishedAt: '2020-03-16T01:00:00.000+09:00'
 updatedAt: '2020-03-16T01:00:00.000+09:00'
-ogImageUrl: '/assets/blog/hello-world/cover.jpg'
+ogImageUrl: ''
 tags: ['国民', '国会']
 ---
 
