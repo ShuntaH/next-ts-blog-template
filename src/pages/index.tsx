@@ -7,7 +7,7 @@ import { useSetupFuse } from "hooks/useFuse";
 import { getFilteredPosts } from "lib/api/filterPost";
 
 
-export async function getStaticProps () {
+export async function getStaticProps() {
   const allPosts: Posts = getAllPosts()
   const filteredPosts = await getFilteredPosts(allPosts)
   const pagination: Pagination = getPagination({
@@ -15,8 +15,6 @@ export async function getStaticProps () {
     posts: await getHtmlContentPosts(getSortedPosts(allPosts)),
     basePaths: '/pages',
   })
-
-
   return {
     props: {
       pagination,
