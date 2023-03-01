@@ -26,27 +26,32 @@ function PostMeta({
   tagLabelProps
 }: Props) {
   return (
-  <Box
-    display={{ base: 'block', md: "flex" }}
-    fontSize={"smaller"}
-    color={STYLES.textColorDark}
-    {...boxProps}
-  >
-    <PostDate
-      publishedAt={publishedAt}
-      updatedAt={updatedAt}
-      textProps={{ marginBottom: {base: 0.5}, paddingRight: 2 }}
-    />
-    <Flex alignItems={"center"}>
-      <PostTime time={time}/>
-      <PostTags
-        tags={tags}
-        stackProps={{spacing: 2, paddingLeft: 2}}
-        tagLinkProps={tagLinkProps}
-        tagLabelProps={tagLabelProps}
+    <Box
+      display={{ base: 'block', md: "flex" }}
+      fontSize={"smaller"}
+      color={STYLES.textColorDark}
+      {...boxProps}
+    >
+      <PostDate
+        publishedAt={publishedAt}
+        updatedAt={updatedAt}
+        textProps={{ marginBottom: { base: 0.5 }, paddingRight: 2 }}
       />
-    </Flex>
-  </Box>
-) }
+      <Flex alignItems={"center"} flexWrap={"wrap"}>
+        <PostTime time={time}/>
+        <PostTags
+          tags={tags}
+          stackProps={{
+            spacing: 2,
+            paddingLeft: { base: 0, md: 0.5 },
+            marginBlockStart: { base: 1, md: 0 }
+          }}
+          tagLinkProps={tagLinkProps}
+          tagLabelProps={tagLabelProps}
+        />
+      </Flex>
+    </Box>
+  )
+}
 
 export default PostMeta

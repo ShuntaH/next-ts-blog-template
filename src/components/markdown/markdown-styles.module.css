@@ -71,3 +71,33 @@
     padding: 1rem;
     margin: 20px auto;
 }
+
+.markdown table {
+    display: block;
+    overflow-x: scroll;
+    white-space: nowrap;
+    overflow-scrolling: touch;
+    background-color: var(--chakra-colors-gray-800);
+    backdrop-filter: blur(20px);
+    border-radius: 8px;
+    border: 1px solid var(--chakra-colors-gray-700);
+    padding-inline: 1rem;
+}
+
+.markdown table th {
+    font-weight: bold;
+    padding: 1rem 0;
+    min-width: 200px;
+}
+
+.markdown table td {
+    padding: 1rem 2rem 1rem 0;
+    vertical-align: top;
+    text-align: left;
+    max-width: 300px;
+    white-space: break-spaces;
+}
+
+.markdown table tr {
+    border-bottom: 1px solid var(--chakra-colors-gray-700);
+}

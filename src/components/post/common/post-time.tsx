@@ -8,9 +8,15 @@ type Props = {
   time: string
 }
 
-function PostTime ({ time }: Props) {
+function PostTime({ time }: Props) {
   return (
-    <Text as={"span"} display={"inline-flex"} alignItems={"center"}>
+    <Text
+      as={"span"}
+      display={"inline-flex"}
+      alignItems={"center"}
+      flexWrap={"wrap"}
+      paddingInlineEnd={1}
+    >
       <ChakraFontAwesomeIcon
         paddingTop={0.5}
         paddingRight={1}
@@ -18,7 +24,7 @@ function PostTime ({ time }: Props) {
         color={STYLES.color}
         size={"lg"}
       />
-      {time}
+      <Text as={"span"}>{time}</Text>
     </Text>
   )
 }

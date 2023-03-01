@@ -19,7 +19,7 @@ function PostTags({
 {
   return (
     tags.length > 0 ?
-      <HStack {...stackProps}>
+      <HStack {...stackProps} shouldWrapChildren flexWrap={"nowrap"}>
         {
           tags.map((tag, index) => (
             <TagLink
