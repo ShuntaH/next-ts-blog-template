@@ -8,37 +8,31 @@
 
 .markdown h1 {
     font-size: var(--chakra-fontSizes-2xl);
-    margin: 60px 0 10px;
     font-weight: bold;
 }
 
 .markdown h2 {
     font-size: var(--chakra-fontSizes-xl);
-    margin: 60px 0 10px;
     font-weight: bold;
 }
 
 .markdown h3 {
     font-size: var(--chakra-fontSizes-lg);
-    margin: 60px 0 10px;
     font-weight: bold;
 }
 
 .markdown h4 {
     font-size: var(--chakra-fontSizes-md);
-    margin: 60px 0 10px;
     font-weight: bold;
 }
 
 .markdown h5 {
     font-size: var(--chakra-fontSizes-sm);
-    margin: 60px 0 10px;
     font-weight: bold;
 }
 
 .markdown h6 {
     font-size: var(--chakra-fontSizes-xs);
-    margin: 60px 0 10px;
     font-weight: bold;
 }
 
@@ -100,4 +94,8 @@
 
 .markdown table tr {
     border-bottom: 1px solid var(--chakra-colors-gray-700);
+}
+
+.markdown table tr:last-child {
+    border-bottom: none;
 }

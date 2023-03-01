@@ -26,7 +26,7 @@ function MarkdownNextImage({ width, height, src, alt }: ImgHTMLAttributes<HTMLIm
     'height', height, typeof height, '/',
     'src', src, typeof src, '/',
     'alt', typeof alt, alt
-  ])
+  ], false)
 
   if (typeof width === "string") {
     throw new Error(`width must be number [${width}]`)
@@ -45,7 +45,12 @@ function MarkdownNextImage({ width, height, src, alt }: ImgHTMLAttributes<HTMLIm
   }
 
   return (
-    <Box position={"relative"}  width={"full"} style={{aspectRatio: '16/9'}}>
+    <Box
+      width={"full"}
+      position={"relative"}
+      style={width && height ? {} : { aspectRatio: '16/9' }}
+      marginBlock={4}
+    >
       <NextImage
         src={src}
         alt={alt}
