@@ -12,7 +12,7 @@ type Props = {
 function PostDetail({ post, boxProps }: Props){
   return (
     <Box as={"article"} {...boxProps}>
-      <PostHeader post={post} boxProps={{ marginBottom: 20, width: "full" }}/>
+      <PostHeader post={post} boxProps={{ marginBottom: 32, width: "full" }}/>
       <PostBody content={post.content} boxProps={{ width: "full" }}/>
     </Box>
   )

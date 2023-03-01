@@ -34,7 +34,6 @@ function PostHeader({ post, boxProps }: Props) {
         publishedAt={post.publishedAt}
         updatedAt={post.updatedAt}
         tags={post.tags}
-        boxProps={{ marginBottom: { base: 1, md: 2 }}}
       />
     </Box>
   )
