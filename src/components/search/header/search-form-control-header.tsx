@@ -4,7 +4,7 @@ import { STYLES } from "lib/constants";
 import { useSearchInputContext } from "contexts/searchInputContext";
 import { useDisclosureContext } from "contexts/disclouserContext";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import ChakraFontAwesomeIcon from "components/chakra-font-awesome-icon";
+import ChakraFontAwesomeIcon from "components/foundations/chakra-font-awesome-icon";
 
 
 type Props = {

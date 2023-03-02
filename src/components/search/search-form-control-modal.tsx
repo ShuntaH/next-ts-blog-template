@@ -1,11 +1,10 @@
 import { FormControl, FormControlProps, Input, InputGroup, InputRightElement } from '@chakra-ui/react'
 import React from "react";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import ChakraFontAwesomeIcon from "components/chakra-font-awesome-icon";
+import ChakraFontAwesomeIcon from "components/foundations/chakra-font-awesome-icon";
 import { STYLES } from "lib/constants";
 import { useSearchInputContext } from "contexts/searchInputContext";
 import { useDisclosureContext } from "contexts/disclouserContext";
-import { devLog } from "lib/helpers";
 
 
 type Props =  {
@@ -17,8 +16,6 @@ function SearchFormControlModal({ formControlProps }: Props) {
   const { modalRef } = useDisclosureContext()
 
   const handleInput = (e: React.MouseEvent<HTMLInputElement>): void => {
-    devLog(['handleInput new input', e.currentTarget.value])
-
     dispatch({
       searchInput: e.currentTarget.value,
       type: 'update'

@@ -7,6 +7,7 @@ import rehypeReact from "rehype-react";
 import { createElement, Fragment } from "react";
 import MarkdownLink from "components/markdown/markdown-link";
 import MarkdownNextImage from "components/markdown/markdown-next-image";
+import MarkdownBlockquote from "components/markdown/markdown-blockquote";
 
 const strip = require('remark-strip-html');
 const removeMd = require('remove-markdown');
@@ -22,7 +23,8 @@ export async function htmlToReactElements(htmlContent: string) {
       Fragment, // div で囲まないようにする
       components: {
         a: MarkdownLink,
-        img: MarkdownNextImage
+        img: MarkdownNextImage,
+        blockquote: MarkdownBlockquote
       }
     })
     .processSync(htmlContent).result;

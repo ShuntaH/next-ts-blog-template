@@ -1,3 +1,6 @@
+/*link や next/image コンポーネントに置き換えている要素はコンポーネントの中で見た目のスタイリングをする。
+ここは置き換える必要のない要素のスタイリングをしている。配置関係は全てここに書く*/
+
 .markdown {
     letter-spacing: 0.1em;
     line-height: 1.5;
@@ -42,6 +45,7 @@
 }
 
 .markdown blockquote {
+    margin: 1rem 0;
 }
 
 .markdown ul,
@@ -58,10 +62,11 @@
 .markdown pre {
     font-size: var(--chakra-fontSizes-sm) !important;
     font-weight: var(--chakra-fontWeights-semibold);
-    font-family: "JetBrains Mono";
+    font-family: "JetBrains Mono", serif;
     letter-spacing: 0.05rem;
     background-color: var(--chakra-colors-gray-800);
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(40px);
+    opacity: 0.8;
     border-radius: 8px;
     border: 1px solid var(--chakra-colors-gray-700);
     padding: 1rem;

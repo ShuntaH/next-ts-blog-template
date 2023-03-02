@@ -8,7 +8,7 @@ import {
 import { STYLES } from "lib/constants";
 import { BreadcrumbItem } from "interfaces/breadcrumb";
 import React, { useMemo } from "react";
-import ChakraFontAwesomeIcon from "components/chakra-font-awesome-icon";
+import ChakraFontAwesomeIcon from "components/foundations/chakra-font-awesome-icon";
 
 
 type Props = {

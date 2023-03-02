@@ -6,7 +6,7 @@ import React from "react";
 import { faGithubAlt } from "@fortawesome/free-brands-svg-icons";
 import { NavigationIcon } from "interfaces/icon";
 import SearchFormHeader from "components/search/header/search-form-header";
-import ChakraFontAwesomeIcon from "components/chakra-font-awesome-icon";
+import ChakraFontAwesomeIcon from "components/foundations/chakra-font-awesome-icon";
 
 const icons: NavigationIcon[] = [
   {

@@ -10,6 +10,7 @@ const hoverColor: ThemeTypings["colors"] = "orange.50"
  * MarkdownのリンクをNext.jsのLinkコンポーネントに置き換える。
  * rehypeReactのcomponentsに渡す。
  * @param href
+ * @param title hover時のtitle
  * @param children
  * @constructor
  */

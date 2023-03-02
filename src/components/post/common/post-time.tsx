@@ -1,6 +1,6 @@
 import React from "react";
 import { Text } from "@chakra-ui/react";
-import ChakraFontAwesomeIcon from "components/chakra-font-awesome-icon";
+import ChakraFontAwesomeIcon from "components/foundations/chakra-font-awesome-icon";
 import { faReadme } from "@fortawesome/free-brands-svg-icons";
 import { STYLES } from "lib/constants";
 

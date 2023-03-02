@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, TextProps } from "@chakra-ui/react";
 import DateFormatter from "components/common/date-formatter";
-import ChakraFontAwesomeIcon from "components/chakra-font-awesome-icon";
+import ChakraFontAwesomeIcon from "components/foundations/chakra-font-awesome-icon";
 import { faFeather } from "@fortawesome/free-solid-svg-icons";
 import { STYLES } from "lib/constants";
 
