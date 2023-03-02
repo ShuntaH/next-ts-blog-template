@@ -39,9 +39,12 @@ export const FUSE_OPTIONS: Fuse.IFuseOptions<FilteredPost> = {
 export const BACKGROUND_IMAGE_PATH = "/assets/hongkong-bg.png"
 // export const BackgroundImagePath = ""
 
-//
+// markdown file path
 export const POST_DIRECTORY_PATH = join(process.cwd(), '_posts')
 export const ARTICLE_DIRECTORY_PATH = join(process.cwd(), '_articles')
+
+// TOC hook
+export const TOC_HEADING = 'お品書き'
 
 /**
  * todo chakra ui で css var の定義がいまいち上手く書けないので js でかく。

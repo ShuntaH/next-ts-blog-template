@@ -1,6 +1,10 @@
 import React from "react";
 import { Link, LinkProps } from "@chakra-ui/react";
 import NextLink from "next/link";
+import { ThemeTypings } from "@chakra-ui/styled-system";
+
+const color: ThemeTypings["colors"] = "orange.100"
+const hoverColor: ThemeTypings["colors"] = "orange.50"
 
 /**
  * MarkdownのリンクをNext.jsのLinkコンポーネントに置き換える。
@@ -9,15 +13,28 @@ import NextLink from "next/link";
  * @param children
  * @constructor
  */
-function MarkdownLink({ href, children }: LinkProps){
-  return href?.startsWith("/") ? (
-    <Link href={href} as={NextLink}>{children}</Link>
+function MarkdownLink({ href, title, children }: LinkProps) {
+  const titleAttr = title || href
+  return href?.startsWith("/") || href?.startsWith('#') ? (
+    // サイト内リンク
+    <Link
+      href={href}
+      title={titleAttr}
+      as={NextLink}
+      color={color}
+      _hover={{ color: hoverColor }}
+    >
+      {children}
+    </Link>
   ) : (
     <Link
-      isExternal
       href={href}
+      title={titleAttr}
       rel="noreferrer"
       target="_blank"
+      isExternal
+      color={color}
+      _hover={{ color: hoverColor }}
     >
       {children}
     </Link>

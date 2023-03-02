@@ -4,10 +4,8 @@ import { htmlToReactElements } from "lib/markdown/client";
 
 
 /**
- * マークダウンを表示するために react element に変換する。
- *
- * promise を返すので、post を作成する際に react element にすると その周辺の関数を切り出した時、型が Promise<Promise ...>
- * のようになってしまうので string で扱い、レンダーする直前で変換する。
+ * html を ReactElement に変換する。
+ * img と a タグは react next のコンポーネントに変換する。
  * @param htmlContent
  */
 export function useHtmlToReactElements(htmlContent: string) {
