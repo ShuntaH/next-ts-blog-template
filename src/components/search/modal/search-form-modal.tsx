@@ -1,6 +1,6 @@
 import { Box, BoxProps } from '@chakra-ui/react'
 import React from "react";
-import SearchFormControlModal from "components/search/search-form-control-modal";
+import SearchFormControlModal from "components/search/modal/search-form-control-modal";
 
 
 type Props = { boxProps?: BoxProps }

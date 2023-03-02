@@ -1,7 +1,7 @@
 import { Badge, Box, Card, CardBody, CardHeader, CardProps, Divider, Flex, Heading } from "@chakra-ui/react";
 import React, { useCallback } from "react";
 import { STYLES } from "lib/constants";
-import SearchModalContentBodyHighlight from "components/search/search-modal-content-body-highlight";
+import SearchModalContentBodyHighlight from "components/search/modal/search-modal-content-body-highlight";
 import { useRouter } from "next/router";
 import { FilteredPost } from "interfaces/post";
 import Fuse from "fuse.js";

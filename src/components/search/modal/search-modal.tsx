@@ -11,7 +11,7 @@ import {
 import React from "react";
 import SearchResultCards from "components/search/search-result-cards";
 import { useDisclosureContext } from "contexts/disclouserContext";
-import SearchFormModal from "components/search/search-form-modal";
+import SearchFormModal from "components/search/modal/search-form-modal";
 
 
 type Props = {

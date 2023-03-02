@@ -1,6 +1,6 @@
 import { Box, BoxProps } from '@chakra-ui/react'
 import React from "react";
-import SearchModal from "components/search/search-modal";
+import SearchModal from "components/search/modal/search-modal";
 import SearchFormControlHeader from "components/search/header/search-form-control-header";
 import { DisclosureProvider } from "contexts/disclouserContext";
 import { SearchInputProvider } from "contexts/searchInputContext";
