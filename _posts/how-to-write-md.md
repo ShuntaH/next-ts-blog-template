@@ -1,7 +1,7 @@
 ---
-title: 'マークダウン記法の検証'
+title: 'マークダウンの書き方'
 status: true
-excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus.'
+excerpt: 'マークダウンの書き方を確認するための記事。このブログ独自の仕様もまとめています。'
 publishedAt: '2020-03-16T01:00:00.000+09:00'
 updatedAt: '2020-03-16T01:00:00.000+09:00'
 ogImageUrl: ''
@@ -13,6 +13,9 @@ tags: ['md-article', 'md-post', 'md', 'markdown', 'markdown-arti']
 
 ### Headers 見出し
 先頭に`#`をレベルの数だけ記述します。
+
+**書き方**
+
 ```md
 # 見出し1
 ## 見出し2
@@ -22,6 +25,8 @@ tags: ['md-article', 'md-post', 'md', 'markdown', 'markdown-arti']
 ###### 見出し6
 ```
 
+**出力**
+
 # 見出し1
 ## 見出し2
 ### 見出し3
@@ -29,21 +34,34 @@ tags: ['md-article', 'md-post', 'md', 'markdown', 'markdown-arti']
 ##### 見出し5
 ###### 見出し6
 
+
+
+
 ### 目次
 ある言葉を heading にいれると、その文言の目次が生成されます。
 ある言葉は constant.ts の 'TOC_HEADING' に設定できる。
+
+**書き方**
+
 ```md
 ## TOC_HEADING
 ```
 と記述すると、それより下の heading を調べて目次を作ります 。
 
+
 ### Block 段落
 空白行を挟むことで段落となります。
+
+**書き方**
+
 ```md
 段落1
 (空行)
 段落2
 ```
+
+**出力**
+
 段落1
 
 段落2
@@ -52,17 +70,28 @@ tags: ['md-article', 'md-post', 'md', 'markdown', 'markdown-arti']
 ### Br 改行
 改行の前に半角スペース`  `を2つ記述します。またはプラグインを入れているので、改行をすると自動的に改行されます。
 2以上空行を挟むと、新しいpタグで始めます。
+
+**書き方**
+
 ```md
 hoge
 fuga(スペース2つ)
 piyo
 ```
+
+**出力**
+
 hoge
 fuga
 piyo
 
+
+
 ### Blockquotes 引用
 先頭に`>`を記述します。ネストは`>`を多重に記述します。
+
+**書き方**
+
 ```md
 > 引用
 
@@ -72,6 +101,8 @@ piyo
 >> ネストされた引用です
 ```
 
+**出力**
+
 > 引用
 
 > 引用
@@ -79,22 +110,36 @@ piyo
 
 >> ネストされた引用です
 
-## Code シンタックスハイライト
 
+
+
+## Code シンタックスハイライト
 ### Code コード
 `バッククオート` 3つ、あるいはダッシュ`~`３つで囲みます。
 preタグの中にcodeタグが入ります。
 ` ```js ` とすると、jsのシンタックスハイライトが適用されます。
+
+**書き方**
+
+` ```js
+const hoge = 'hoge';
+console.log(hoge);
+``` `
+
+**出力**
+
 ```js
 const hoge = 'hoge';
 console.log(hoge);
 ```
 
 
-
 ### インラインコード
 ` `バッククオート` ` で単語を囲むとインラインコードになります。
 マークダウン記法などをエスケープしたい時にも使えます。
+
+**書き方**
+
 ```md
 これは `インラインコード`です。
 ```
@@ -106,15 +151,20 @@ console.log(hoge);
 ### pre 整形済みテキスト(コードブロック)
 半角スペース4個もしくはタブで、preタグを作成します。その内部はコードタグで囲まれます。
 Codeの方がシンタックスハイライトが適用されるので、Codeを使うことを推奨します。
-```python
-class Markdown:
-    def __init__(self):
-        self.hoge = 'hoge'
 
-    def fuga(self):
-        print(self.hoge)
+**書き方**
 
+```md
+    class Markdown:
+        def __init__(self):
+            self.hoge = 'hoge'
+
+        def fuga(self):
+            print(self.hoge)
 ```
+
+**出力**
+
     class Markdown:
         def __init__(self):
             self.hoge = 'hoge'
@@ -125,13 +175,17 @@ class Markdown:
 
 ### Hr 水平線
 アンダースコア`_` 、アスタリスク`*`を3つ以上連続して記述します。
+
+**書き方**
+
 ```md
 水平線
 ***
 水平線
 ___
-
 ```
+
+**出力**
 水平線
 ***
 水平線
@@ -143,6 +197,9 @@ ___
 ### Ul 箇条書きリスト
 ハイフン`-`、プラス`+`、アスタリスク`*`のいずれかを先頭に記述します。
 ネストはタブで表現します。
+
+**書き方**
+
 ```md
 - リスト1
     - リスト1_1
@@ -153,6 +210,8 @@ ___
 - リスト3
 ```
 
+**出力**
+
 - リスト1
   - リスト1_1
     - リスト1_1_1
@@ -161,9 +220,14 @@ ___
 - リスト2
 - リスト3
 
+
+
 ## Ol 番号付きリスト
 `番号.`を先頭に記述します。ネストはタブで表現します。
 番号は自動的に採番されるため、すべての行を1.と記述するのがお勧めです。
+
+**書き方**
+
 ```md
 1. 番号付きリスト1
     1. 番号付きリスト1-1
@@ -172,6 +236,7 @@ ___
 1. 番号付きリスト3
 ```
 
+**出力**
 1. 番号付きリスト1
   1. 番号付きリスト1-1
   1. 番号付きリスト1-2
@@ -183,13 +248,19 @@ ___
 ### Link リンク
 `[表示文字](URL, Title)`でリンクに変換されます。
 Next.jsのLinkコンポーネントに変換されます。
+
+#### 外部リンク
 ```md
 [Google](https://www.google.co.jp/, "Google")
 ```
-#### 外部リンク
+
 [Google](https://www.google.co.jp/, "Google")
 
 #### ブログ内部のリンク
+```md
+[タグのテスト記事](/posts/how-to-use-tag, "タグのテスト記事")
+```
+
 [タグのテスト記事](/posts/how-to-use-tag, "タグのテスト記事")
 
 #### 外部参照リンク
@@ -201,64 +272,99 @@ URLが長くて読みづらくなる場合や同じリンクを何度も使用�
 [Googleを見る][Google]
 [Google]: http://www.yahoo.co.jp
 
+
 ### 強調
 #### em
 アスタリスク`*`もしくはアンダースコア`_`1個で文字列を囲みます。
+
+**書き方**
+
 ```md
 これは *イタリック* です
 これは _イタリック_ です
 ```
+
+**出力**
 これは *イタリック* です
 これは _イタリック_ です
+
 
 ### strong
 アスタリスク`*`もしくはアンダースコア`_`2個で文字列を囲みます。
+
+**書き方**
+
 ```md
 これは **ボールド** です
 これは __ボールド__ です
 ```
 
+**出力**
+
 これは **ボールド** です
 これは __ボールド__ です
+
+
 
 #### em + strong
 アスタリスク`*`もしくはアンダースコア`_`3個で文字列を囲みます。
+
+**書き方**
+
 ```md
 これは ***イタリック＆ボールド*** です
 これは ___イタリック＆ボールド___ です
 ```
+
+**出力**
+
 これは ***イタリック＆ボールド*** です
 これは ___イタリック＆ボールド___ です
+
 
 ### Images 画像
 ```先頭の`!`で画像の<img>```と認識されます。画像の大きさなどの指定をする場合はimgタグを使用します。
 imgタグは next/image コンポーネントに変換されます。サイズは指定しなくても自動で調整されます。ただし16:9の比率で調整されます。
 他の文章の前後におくと p タグに組み込まれるので、空行を入れてください。組み込まれると p タグの中に div タグがあることになります。
+
+**書き方**
+
 ```md
 ![alt](/assets/hongkong-bg.png)
 ![代替文字列](/assets/hongkong-bg.png "タイトル")
 <img src="/assets/hongkong-bg.png" alt="this is background image." width=200 height=200>
 ```
-ブログ内の画像 md記法
+##### md記法
+**出力**
+
 ![ブログ内の画像](/assets/hongkong-bg.png)
 
-ブログ内の画像 imgタグ
+##### ブログ内の画像 imgタグ
+**出力**
+
 <img src="/assets/hongkong-bg.png" alt="this is for test" width=200 height=200>
 
 ## Table 表
 `-`と`|`を使ってtableを作成します。
+
+**書き方**
+
 ```md
 | TH1 | TH2 |
 ----|----
 | TD1 | TD3 |
 | TD2 | TD4 |
 ```
-と書くと
+
+**出力**
 
 | TH1 | TH2 |
 ----|----
 | TD1 | TD3 |
 | TD2 | TD4 |
+
+
+**書き方**
 
 ```md
 | 左揃え | 中央揃え | 右揃え |
@@ -266,7 +372,8 @@ imgタグは next/image コンポーネントに変換されます。サイズ�
 |1 |2 |3 |
 |4 |5 |6 |
 ```
-と書くと
+
+**出力**
 | 左揃え | 中央揃え | 右揃え |
 |:---|:---:|---:|
 |1 |2 |3 |
