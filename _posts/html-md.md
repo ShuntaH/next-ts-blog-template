@@ -1,7 +1,7 @@
 ---
-title: 'HTMLが入っているマークダウン'
+title: 'HTML in Markdown の書き方'
 status: true
-excerpt: 'HTMLが反映されている記事'
+excerpt: 'マークダウンに直接 HTML を書く方法を確認するための記事。'
 publishedAt: '2020-03-16T01:00:00.000+09:00'
 updatedAt: '2020-03-16T01:00:00.000+09:00'
 ogImageUrl: ''
