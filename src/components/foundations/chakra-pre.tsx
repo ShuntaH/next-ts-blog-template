@@ -12,8 +12,8 @@ function Pre({ children, className }: HTMLAttributes<HTMLPreElement>) {
       padding={'4 !important'}
       letterSpacing={"0.05rem"}
       fontSize={"sm !important"}
-      backdropFilter={'blur(2px) !important'}
-      bgColor={"whiteAlpha.200 !important"}
+      backdropFilter={'blur(20px) !important'}
+      bgColor={"blackAlpha.300 !important"}
       border={"unset !important"}
     >
       {children}

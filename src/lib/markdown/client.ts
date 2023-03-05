@@ -12,6 +12,12 @@ import MarkdownCode from "components/markdown/markdown-code";
 import MarkdownOrderedList from "components/markdown/markdown-ordered-list";
 import MarkdownUnorderedList from "components/markdown/markdown-unordered-list";
 import MarkdownListItem from "components/markdown/markdown-list-item";
+import MarkdownTable from "components/markdown/markdown-table";
+import MarkdownThead from "components/markdown/markdown-thead";
+import MarkdownTbody from "components/markdown/markdown-tbody";
+import MarkdownTfoot from "components/markdown/markdown-tfoot";
+import MarkdownTr from "components/markdown/markdown-tr";
+import MarkdownTd from "components/markdown/markdown-td";
 
 const strip = require('remark-strip-html');
 const removeMd = require('remove-markdown');
@@ -26,6 +32,8 @@ export async function htmlToReactElements(htmlContent: string) {
       createElement,
       Fragment, // div で囲まないようにする
       components: {
+        // 要素タグの attr に component の props の type を一致させること。
+        // react独自の機能や、スタイリングが必要な要素は react のコンポーネントを用意する。
         a: MarkdownLink,
         img: MarkdownNextImage,
         blockquote: MarkdownBlockquote,
@@ -33,7 +41,13 @@ export async function htmlToReactElements(htmlContent: string) {
         code: MarkdownCode,
         ol: MarkdownOrderedList,
         ul: MarkdownUnorderedList,
-        li: MarkdownListItem
+        li: MarkdownListItem,
+        table: MarkdownTable,
+        thead: MarkdownThead,
+        tbody: MarkdownTbody,
+        tfoot: MarkdownTfoot,
+        tr: MarkdownTr,
+        td: MarkdownTd
       }
     })
     .processSync(htmlContent).result;
