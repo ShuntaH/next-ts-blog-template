@@ -6,10 +6,8 @@ function MarkdownTable({ children }: TableProps) {
   return (
     <TableContainer
       overflowX={"scroll"}
-      borderRadius={'6px'}
-      padding={4}
-      backdropFilter={'blur(2px)'}
-      bgColor={"whiteAlpha.200"}
+      backdropFilter={'blur(2px) !important'}
+      bgColor={"whiteAlpha.200 !important"}
     >
       <Table variant='simple'>
         {children}

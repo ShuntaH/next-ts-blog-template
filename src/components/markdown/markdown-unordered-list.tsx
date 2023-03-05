@@ -3,7 +3,7 @@ import React, { HTMLAttributes } from "react";
 
 function MarkdownUnorderedList({ children }: HTMLAttributes<HTMLUListElement>) {
   return (
-    <UnorderedList spacing={2}>
+    <UnorderedList spacing={'2 !important'}>
       {children}
     </UnorderedList>
   )

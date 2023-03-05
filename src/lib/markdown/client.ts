@@ -47,7 +47,7 @@ export async function htmlToReactElements(htmlContent: string) {
         tbody: MarkdownTbody,
         tfoot: MarkdownTfoot,
         tr: MarkdownTr,
-        td: MarkdownTd
+        td: MarkdownTd,
       }
     })
     .processSync(htmlContent).result;

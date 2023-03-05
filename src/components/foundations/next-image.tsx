@@ -1,6 +1,5 @@
 import React from "react";
 import Image, { ImageProps } from "next/image";
-import { devLog } from "lib/helpers";
 
 /**
  * width と height　が必須だが、指定しないことが多いので、それに合わせたコンポーネントを作成。
@@ -15,9 +14,7 @@ function NextImage(props: ImageProps) {
     delete propsCopy.width
     delete propsCopy.height
   }
-  devLog([ 'NextImage', 'propsCopy', propsCopy ])
   return (
-    // 親がサイズを持っていないといけない
     <Image
       style={props.style === undefined ? { objectFit: "cover" } : props.style}
       fill={!hasSize}

@@ -3,7 +3,7 @@ import { OrderedList } from "@chakra-ui/react";
 
 function MarkdownUnorderedList({ children }: HTMLAttributes<HTMLOListElement>) {
   return (
-    <OrderedList spacing={2}>
+    <OrderedList spacing={'2 !important'}>
       {children}
     </OrderedList>
   )

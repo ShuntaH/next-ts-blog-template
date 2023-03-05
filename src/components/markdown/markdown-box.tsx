@@ -9,7 +9,7 @@ type Props = { content: string }
 function MarkdownBox({ content }: Props) {
   const reactElements = useHtmlToReactElements(content)
   return (
-      <Box className={markdownStyles['markdown']}>
+      <Box className={markdownStyles['markdown-body']}>
         {reactElements}
       </Box>
   )

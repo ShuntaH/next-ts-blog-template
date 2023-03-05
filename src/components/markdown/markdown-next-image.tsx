@@ -48,8 +48,8 @@ function MarkdownNextImage({ width, height, src, alt }: ImgHTMLAttributes<HTMLIm
     <Box
       width={"full"}
       position={"relative"}
+      backgroundColor={"gray.100"}
       style={width && height ? {} : { aspectRatio: '16/9' }}
-      marginBlock={4}
     >
       <NextImage
         src={src}
