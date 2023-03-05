@@ -5,6 +5,7 @@ import { TableProps } from "@chakra-ui/table/dist/table";
 function MarkdownTable({ children }: TableProps) {
   return (
     <TableContainer
+      marginBlockEnd={4}
       overflowX={"scroll"}
       backdropFilter={'blur(2px) !important'}
       bgColor={"whiteAlpha.200 !important"}
