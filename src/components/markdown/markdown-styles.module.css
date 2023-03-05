@@ -50,8 +50,6 @@
 
 .markdown ul,
 .markdown ol {
-    /*右に少し寄せないと、頭の記号がコンテナからはみ出る*/
-    list-style: disc;
     padding-left: 1rem;
 }
 

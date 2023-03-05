@@ -224,7 +224,7 @@ ___
 
 
 
-## Ol 番号付きリスト
+### Ol 番号付きリスト
 `番号.`を先頭に記述します。ネストはタブで表現します。
 番号は自動的に採番されるため、すべての行を1.と記述するのがお勧めです。
 
@@ -244,6 +244,31 @@ ___
   1. 番号付きリスト1-2
 1. 番号付きリスト2
 1. 番号付きリスト3
+
+
+### Description List 説明リスト
+HTMLでそのまま記述します。
+
+**書き方**
+
+```md
+<dl>
+  <dt>Apple</dt>
+  <dd>red color</dd>
+  <dt>Banana</dt>
+  <dd>yellow color</dd>
+</dl>
+```
+
+**出力**
+
+<dl>
+  <dt>Apple</dt>
+  <dd>red color</dd>
+  <dt>Banana</dt>
+  <dd>yellow color</dd>
+</dl>
+
 
 ## Span Elements
 

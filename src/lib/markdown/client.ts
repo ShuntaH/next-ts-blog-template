@@ -1,6 +1,5 @@
 import { remark } from "remark";
 import remarkStripBadges from "remark-strip-badges";
-import { devLog } from "lib/helpers";
 import { unified } from "unified";
 import rehypeParse from "rehype-parse";
 import rehypeReact from "rehype-react";
@@ -10,6 +9,9 @@ import MarkdownNextImage from "components/markdown/markdown-next-image";
 import MarkdownBlockquote from "components/markdown/markdown-blockquote";
 import MarkdownPre from "components/markdown/markdown-pre";
 import MarkdownCode from "components/markdown/markdown-code";
+import MarkdownOrderedList from "components/markdown/markdown-ordered-list";
+import MarkdownUnorderedList from "components/markdown/markdown-unordered-list";
+import MarkdownListItem from "components/markdown/markdown-list-item";
 
 const strip = require('remark-strip-html');
 const removeMd = require('remove-markdown');
@@ -28,7 +30,10 @@ export async function htmlToReactElements(htmlContent: string) {
         img: MarkdownNextImage,
         blockquote: MarkdownBlockquote,
         pre: MarkdownPre,
-        code: MarkdownCode
+        code: MarkdownCode,
+        ol: MarkdownOrderedList,
+        ul: MarkdownUnorderedList,
+        li: MarkdownListItem
       }
     })
     .processSync(htmlContent).result;
@@ -48,6 +53,5 @@ export async function markdownToPlainText(markdown: string): Promise<string> {
       result = String(file)
     })
   result = removeMd(result)
-  devLog([ 'MD to plaintext', result.slice(1, 50) ], false)
   return result
 }

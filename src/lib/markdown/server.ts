@@ -13,7 +13,7 @@ export async function markdownToHtml(markdown: string): Promise<string> {
   return remark()
     .use(remarkGfm) //  support GFM (autolink literals, footnotes, strikethrough, tables, tasklists)
     .use(remarkBreaks) // hard breaks w/o needing spaces
-    .use(remarkToc, { heading: TOC_HEADING, tight: true, ordered: true })
+    .use(remarkToc, { heading: TOC_HEADING })
     .use(remarkPrism, {}) // code highlight
     .use(remarkUnwrapImages) // md の中の img タグを p タグで囲むのをHTMLに違反しないためにやめる
     .use(remarkRehype, { allowDangerousHtml: true })// markdownの中の img タグを img タグのままにする
