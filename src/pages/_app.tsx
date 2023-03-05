@@ -3,7 +3,6 @@ import { ChakraProvider } from "@chakra-ui/react";
 import React from "react";
 import theme from "theme";
 import BlurBackground from "components/blur-background";
-import 'prismjs/themes/prism-tomorrow.min.css'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

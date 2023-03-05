@@ -14,6 +14,7 @@ function Pre({ children, className }: HTMLAttributes<HTMLPreElement>) {
       fontSize={"sm !important"}
       backdropFilter={'blur(2px) !important'}
       bgColor={"whiteAlpha.200 !important"}
+      border={"unset !important"}
     >
       {children}
     </ChakraPre>
