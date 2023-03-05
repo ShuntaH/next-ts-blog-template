@@ -1,4 +1,4 @@
-import { chakra, Code } from "@chakra-ui/react";
+import { chakra } from "@chakra-ui/react";
 import React, { HTMLAttributes } from "react";
 
 const ChakraPre = chakra("pre")
@@ -7,24 +7,15 @@ function Pre({ children, className }: HTMLAttributes<HTMLPreElement>) {
   return (
     <ChakraPre
       className={className}
-      display={"block"}
+      display={"block !important"}
       position={"relative"}
-      padding={4}
-      marginBlockEnd={4}
+      padding={'4 !important'}
       letterSpacing={"0.05rem"}
-      fontSize={"sm"}
-      backdropFilter={'blur(2px)'}
-      bgColor={"whiteAlpha.200"}
+      fontSize={"sm !important"}
+      backdropFilter={'blur(2px) !important'}
+      bgColor={"whiteAlpha.200 !important"}
     >
-
-      <Code
-        position={"relative"}
-        paddingInlineStart={4}
-        fontStyle={"italic"}
-        fontSize={"sm"}
-      >
-        {children}
-      </Code>
+      {children}
     </ChakraPre>
   )
 }

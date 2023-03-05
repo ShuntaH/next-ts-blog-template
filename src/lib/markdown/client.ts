@@ -8,6 +8,8 @@ import { createElement, Fragment } from "react";
 import MarkdownLink from "components/markdown/markdown-link";
 import MarkdownNextImage from "components/markdown/markdown-next-image";
 import MarkdownBlockquote from "components/markdown/markdown-blockquote";
+import MarkdownPre from "components/markdown/markdown-pre";
+import MarkdownCode from "components/markdown/markdown-code";
 
 const strip = require('remark-strip-html');
 const removeMd = require('remove-markdown');
@@ -24,7 +26,9 @@ export async function htmlToReactElements(htmlContent: string) {
       components: {
         a: MarkdownLink,
         img: MarkdownNextImage,
-        blockquote: MarkdownBlockquote
+        blockquote: MarkdownBlockquote,
+        pre: MarkdownPre,
+        code: MarkdownCode
       }
     })
     .processSync(htmlContent).result;

@@ -59,20 +59,6 @@
     margin-bottom: 10px;
 }
 
-.markdown pre {
-    font-size: var(--chakra-fontSizes-sm) !important;
-    font-weight: var(--chakra-fontWeights-semibold);
-    font-family: "JetBrains Mono", serif;
-    letter-spacing: 0.05rem;
-    background-color: var(--chakra-colors-gray-800);
-    backdrop-filter: blur(40px);
-    opacity: 0.8;
-    border-radius: 8px;
-    border: 1px solid var(--chakra-colors-gray-700);
-    padding: 1rem;
-    margin: 20px auto;
-}
-
 .markdown table {
     display: block;
     overflow-x: scroll;
