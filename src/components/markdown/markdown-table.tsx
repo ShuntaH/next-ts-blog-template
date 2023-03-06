@@ -6,6 +6,7 @@ function MarkdownTable({ children }: TableProps) {
   return (
     <TableContainer
       marginBlockEnd={4}
+      padding={4}
       overflowX={"scroll"}
       backdropFilter={'blur(2px) !important'}
       bgColor={"whiteAlpha.200 !important"}
