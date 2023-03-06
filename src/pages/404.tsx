@@ -1,12 +1,11 @@
 // pages/404.js
-import { CardBody, CardHeader, Flex } from "@chakra-ui/react";
 import React from "react";
 import { getAllPosts } from "lib/api/post";
 import { getFilteredPosts } from "lib/api/filterPost";
 import { FilteredPosts } from "interfaces/post";
 import { useSetupFuse } from "hooks/useFuse";
 import Layout from "components/layouts/layout";
-import BlurCard from "components/common/blur-card";
+import ErrorCard from "components/common/error-card";
 
 
 export async function getStaticProps() {
@@ -21,26 +20,17 @@ type Props = {
   filteredPosts: FilteredPosts
 }
 
-export default function Custom404({filteredPosts}: Props) {
+const error_messages = 'Page Not Found'
+const status_code = '404'
 
+export default function Custom404({filteredPosts}: Props) {
   const fuse = useSetupFuse(filteredPosts)
   return (
-    // ページ固有のhead内容を設定したい時
-    // <Head>
-    //   <title>hskpg blog</title>
-    // </Head>
     <Layout fuse={fuse}>
-      <Flex justifyContent={"center"}>
-        <BlurCard
-          maxW={'lg'}
-          minW={'md'}
-          textAlign={"center"}
-        >
-          {/*todo head*/}
-          <CardHeader>404</CardHeader>
-          <CardBody>Page Not Found</CardBody>
-        </BlurCard>
-      </Flex>
+      <ErrorCard
+        status_code={status_code}
+        error_messages={error_messages}
+      />
     </Layout>
   )
 }

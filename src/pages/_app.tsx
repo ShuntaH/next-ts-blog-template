@@ -1,5 +1,7 @@
 import { AppProps } from 'next/app'
 import { ChakraProvider } from "@chakra-ui/react";
+import { DefaultSeo } from 'next-seo';
+import { DEFAULT_SEO } from "lib/constants";
 import React from "react";
 import theme from "theme";
 import BlurBackground from "components/blur-background";
@@ -13,6 +15,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     // SSG では画像の最適化がされなくなるので、使わない。
     // ref: https://nextjs.org/docs/advanced-features/custom-app
     <ChakraProvider theme={theme}>
+      <DefaultSeo {...DEFAULT_SEO}/>
       <BlurBackground/>
       <Component {...pageProps} />
     </ChakraProvider>

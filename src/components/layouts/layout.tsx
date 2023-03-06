@@ -1,10 +1,10 @@
 import Fuse from "fuse.js";
 import { FilteredPost } from "interfaces/post";
 import React from "react";
-import Header from "components/common/header";
+import Header from "components/header";
 import { Box } from "@chakra-ui/react";
 import { STYLES } from "lib/constants";
-import Footer from "components/common/footer";
+import Footer from "components/footer";
 import { FuseProvider } from "contexts/fuseContext";
 
 

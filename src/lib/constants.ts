@@ -3,6 +3,7 @@ import { join } from "path";
 import Fuse from "fuse.js";
 import { FilteredPost } from "interfaces/post";
 import { SearchKeys } from "interfaces/search";
+import { DefaultSeoProps } from "next-seo";
 
 export const HOME_OG_IMAGE_URL =
   'https://og-image.vercel.app/Next.js%20Blog%20Starter%20Example.png?theme=light&md=1&fontSize=100px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg'
@@ -46,7 +47,7 @@ export const ARTICLE_DIRECTORY_PATH = join(file_base_path, '_articles')
 // TOC hook
 export const TOC_HEADING = 'お品書き'
 
-
+// Style
 /**
  * todo chakra ui で css var の定義がいまいち上手く書けないので js でかく。
  */
@@ -103,3 +104,40 @@ export const STYLES = {
   hoverLightStyle,
   hoverLighterStyle
 }
+
+// SEO
+export const DEFAULT_SEO: DefaultSeoProps = {
+  title: BLOG_NAME,
+  titleTemplate: '%s | ' + BLOG_NAME,
+  defaultTitle: 'Page',
+  description: BLOG_DESCRIPTION,
+  twitter: {
+    cardType: 'summary_large_image',
+  },
+  openGraph: {
+    url: 'https://blog.hskpg.site',
+    type: 'website',
+    locale: 'ja_JP',
+    siteName: BLOG_NAME,
+    title: BLOG_NAME,
+    description: BLOG_DESCRIPTION,
+    images: [
+      {
+        url: '/assets/hongkong-bg.png',
+        width: 800,
+        height: 600,
+        alt: BLOG_NAME + ' Og Image Alt',
+      },
+      {
+        url: '/assets/icon.png',
+        width: 800,
+        height: 600,
+        alt: BLOG_NAME + ' Og Image Alt',
+      },
+    ],
+    profile: {
+      username: 'hskpg',
+    },
+  },
+};
+
