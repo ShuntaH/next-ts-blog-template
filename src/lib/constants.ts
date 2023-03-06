@@ -5,8 +5,8 @@ import { FilteredPost } from "interfaces/post";
 import { SearchKeys } from "interfaces/search";
 import { DefaultSeoProps } from "next-seo";
 
-export const HOME_OG_IMAGE_URL =
-  'https://og-image.vercel.app/Next.js%20Blog%20Starter%20Example.png?theme=light&md=1&fontSize=100px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg'
+const HOME_IMAGE = "/assets/hongkong-bg.png";
+export const HOME_OG_IMAGE_URL = HOME_IMAGE
 export const BLOG_NAME = 'hskpg blog'
 export const BLOG_DESCRIPTION = "hskpg's tech and daily life blog"
 
@@ -37,7 +37,7 @@ export const FUSE_OPTIONS: Fuse.IFuseOptions<FilteredPost> = {
 }
 
 // blur background image src
-export const BACKGROUND_IMAGE_PATH = "/assets/hongkong-bg.png"
+export const BACKGROUND_IMAGE_PATH = HOME_IMAGE
 
 // markdown file path
 const file_base_path = join(process.cwd(), '_md_files')
@@ -111,6 +111,29 @@ export const DEFAULT_SEO: DefaultSeoProps = {
   titleTemplate: '%s | ' + BLOG_NAME,
   defaultTitle: 'Page',
   description: BLOG_DESCRIPTION,
+  additionalLinkTags: [
+    {
+      rel: 'icon',
+      type: 'image/png',
+      sizes: '16x16',
+      href: '/favicon/icon-16x16.png',
+    },
+    {
+      rel: 'icon',
+      type: 'image/png',
+      sizes: '32x32',
+      href: '/favicon/icon-32x32.png',
+    },
+    {
+      rel: 'apple-touch-icon',
+      sizes: '180x180',
+      href: '/favicon/apple-touch-icon-180x180.png',
+    },
+    {
+      rel: 'manifest',
+      href: '/favicon/manifest.json',
+    }
+  ],
   twitter: {
     cardType: 'summary_large_image',
   },
@@ -123,7 +146,7 @@ export const DEFAULT_SEO: DefaultSeoProps = {
     description: BLOG_DESCRIPTION,
     images: [
       {
-        url: '/assets/hongkong-bg.png',
+        url: HOME_OG_IMAGE_URL,
         width: 800,
         height: 600,
         alt: BLOG_NAME + ' Og Image Alt',
