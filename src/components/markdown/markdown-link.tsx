@@ -3,8 +3,8 @@ import { Link, LinkProps } from "@chakra-ui/react";
 import { ThemeTypings } from "@chakra-ui/styled-system";
 import NextLink from "next/link";
 
-const color: ThemeTypings["colors"] = "orange.100 !important"
-const hoverColor: ThemeTypings["colors"] = "orange.50 !important"
+const color: ThemeTypings["colors"] = "blue.100 !important"
+const hoverColor: ThemeTypings["colors"] = "blue.50 !important"
 
 /**
  * MarkdownのリンクをNext.jsのLinkコンポーネントに置き換える。
