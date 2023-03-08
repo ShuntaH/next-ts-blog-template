@@ -52,6 +52,7 @@ function Breadcrumb({ breadcrumbProps, breadcrumbItems }: Props) {
                 textDecoration={"none"}
                 _hover={STYLES.hoverLightStyle}
                 color={STYLES.textColorDark}
+                title={item.title}
               >
                 {item.title}
               </BreadcrumbLink>

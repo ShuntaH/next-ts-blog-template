@@ -24,7 +24,7 @@ function PostTags({
           tags.map((tag, index) => (
             <TagLink
               key={index}
-              tagLinkProps={tagLinkProps}
+              tagLinkProps={{...tagLinkProps, title: tag}}
               tagLabelProps={tagLabelProps}
             >
               {tag}
