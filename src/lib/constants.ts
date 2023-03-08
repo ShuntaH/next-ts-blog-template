@@ -4,6 +4,7 @@ import Fuse from "fuse.js";
 import { FilteredPost } from "interfaces/post";
 import { SearchKeys } from "interfaces/search";
 import { DefaultSeoProps } from "next-seo";
+import { OpenGraph } from "next-seo/lib/types";
 
 const HOME_IMAGE = "/assets/hongkong-bg.png";
 export const HOME_OG_IMAGE_URL = HOME_IMAGE
@@ -106,6 +107,32 @@ export const STYLES = {
 }
 
 // SEO
+export const DEFAULT_OPEN_GRAPH: OpenGraph = {
+  url: '/',
+  type: 'website',
+  locale: 'ja_JP',
+  siteName: BLOG_NAME,
+  title: BLOG_NAME,
+  description: BLOG_DESCRIPTION,
+  images: [
+    {
+      url: HOME_OG_IMAGE_URL,
+      width: 800,
+      height: 600,
+      alt: BLOG_NAME + ' Og Image Alt',
+    },
+    {
+      url: '/assets/icon.png',
+      width: 800,
+      height: 600,
+      alt: BLOG_NAME + ' Og Image Alt',
+    },
+  ],
+  profile: {
+    username: 'hskpg',
+  },
+}
+
 export const DEFAULT_SEO: DefaultSeoProps = {
   title: BLOG_NAME,
   titleTemplate: '%s | ' + BLOG_NAME,
@@ -137,30 +164,6 @@ export const DEFAULT_SEO: DefaultSeoProps = {
   twitter: {
     cardType: 'summary_large_image',
   },
-  openGraph: {
-    url: 'https://blog.hskpg.site',
-    type: 'website',
-    locale: 'ja_JP',
-    siteName: BLOG_NAME,
-    title: BLOG_NAME,
-    description: BLOG_DESCRIPTION,
-    images: [
-      {
-        url: HOME_OG_IMAGE_URL,
-        width: 800,
-        height: 600,
-        alt: BLOG_NAME + ' Og Image Alt',
-      },
-      {
-        url: '/assets/icon.png',
-        width: 800,
-        height: 600,
-        alt: BLOG_NAME + ' Og Image Alt',
-      },
-    ],
-    profile: {
-      username: 'hskpg',
-    },
-  },
+  openGraph: DEFAULT_OPEN_GRAPH
 };
 

@@ -17,7 +17,6 @@ export function useSetupFuse(filteredPosts: FilteredPosts) {
     () => new Fuse(filteredPosts, FUSE_OPTIONS),
     [ filteredPosts ]
   );
-  devLog([ "useSetupFuse called" ])
   return handleSetupFuse()
 }
 
@@ -45,7 +44,6 @@ export function useSearch() {
     // useEffect のクリーンアップで clearTimeout はしない。
     // そこですると、作成した NewTimer ではなく、直前の timer をキャンセルするので
     // 新しい入力があった時に NewTimer は cleanTimeout されないため。
-    devLog([ "clearTimeout", timer ])
     clearTimeout(timer)
 
     const newTimer = setTimeout(() => {
@@ -63,14 +61,7 @@ export function useSearch() {
       const result = fuse.search(searchInput)
       setSearchResultPosts(result)
     }, 300)
-
-    devLog([
-      "setNewTimer", newTimer,
-      "search input", `"${searchInput}"`,
-      'timer', timer,
-      'trigger render'
-    ], false)
-
+    
     setTimer(newTimer)
   }, [ searchInput ])
 

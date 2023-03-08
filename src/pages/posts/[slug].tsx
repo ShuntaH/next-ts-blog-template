@@ -4,10 +4,11 @@ import React from "react";
 import Fuse from "fuse.js";
 import Layout from "components/layouts/layout";
 import { useSetupFuse } from "hooks/useFuse";
-import Head from "next/head";
 import PostDetail from "components/post/postDetail/post-detail";
 import { getFilteredPosts } from "lib/api/filterPost";
 import { markdownToHtml } from "lib/markdown/server";
+import { useSeo } from "hooks/useSeo";
+import { NextSeo } from "next-seo";
 
 
 /**
@@ -63,13 +64,15 @@ type Props = {
 
 export default function PostPage({ post, filteredPosts }: Props) {
   const fuse: Fuse<FilteredPost> = useSetupFuse(filteredPosts)
+  const seo = useSeo(
+    post.title,
+    post.excerpt,
+    `/posts/${post.slug}`,
+  )
 
   return (
     <Layout fuse={fuse}>
-      <Head>
-        <title>{post.title}</title>
-        <meta property="og:image" content={post.ogImageUrl}/>
-      </Head>
+      <NextSeo {...seo} />
       <PostDetail post={post}/>
     </Layout>
   )

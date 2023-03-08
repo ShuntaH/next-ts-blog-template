@@ -6,6 +6,9 @@ import TagLink from "components/foundations/tag-link";
 import { useSetupFuse } from "hooks/useFuse";
 import NextLink from "next/link";
 import { getFilteredPosts } from "lib/api/filterPost";
+import { NextSeo } from "next-seo";
+import React from "react";
+import { useSeo } from "hooks/useSeo";
 
 
 export async function getStaticProps() {
@@ -26,14 +29,11 @@ type Props = {
 }
 
 export default function Index({ allTags, filteredPosts }: Props) {
+  const seo = useSeo('タグ一覧', 'このブログの記事のタグ一覧ページ。', '/tags')
   const fuse = useSetupFuse(filteredPosts)
-
   return (
-    // ページ固有のhead内容を設定したい時
-    // <Head>
-    //   <title>hskpg blog</title>
-    // </Head>
     <Layout fuse={fuse}>
+      <NextSeo {...seo}/>
       <Box position={"relative"}>
         <Flex
           flexWrap={"wrap"}

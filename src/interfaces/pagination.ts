@@ -4,7 +4,8 @@ export type PaginationProps = {
   currentPageNumber: number;
   postCountPerPage?: number;
   posts: Posts;
-  basePaths: string
+  basePaths: string,
+  pageTitle: string,
 }
 
 export type Pagination = {
@@ -15,4 +16,6 @@ export type Pagination = {
   currentPagePosts: Posts,
   nextPageHref: string | null
   prevPageHref: string | null
+  pageTitle: string
+  currentUrl: string
 }

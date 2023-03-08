@@ -5,7 +5,9 @@ import { FilteredPosts } from "interfaces/post";
 import { useSetupFuse } from "hooks/useFuse";
 import Layout from "components/layouts/layout";
 import ErrorCard from "components/common/error-card";
+import { getPageSeo } from "lib/seo";
 
+const seo = getPageSeo('Status code 500', 'サーバーエラー', '/tags')
 
 export async function getStaticProps() {
   return {

@@ -5,6 +5,8 @@ import Layout from "components/layouts/layout";
 import PostList from "components/post/postList/post-list";
 import { useSetupFuse } from "hooks/useFuse";
 import { getFilteredPosts } from "lib/api/filterPost";
+import { useSeo } from "hooks/useSeo";
+import { NextSeo } from "next-seo";
 
 
 export async function getStaticPaths() {
@@ -32,6 +34,7 @@ export async function getStaticProps({ params }: Context){
   const allPosts = getAllPosts()
   const filteredPosts = await getFilteredPosts(allPosts)
   const pagination: Pagination = getPagination({
+    pageTitle: `記事一覧${params.page}ページ目`,
     currentPageNumber: Number(params.page),
     posts: await getHtmlContentPosts(getSortedPosts(allPosts)),
     basePaths: '/pages',
@@ -51,14 +54,16 @@ type Props = {
 }
 
 export default function PaginatedPage({ pagination, filteredPosts }: Props) {
+  const seo = useSeo(
+    `${pagination.pageTitle}`,
+    `${pagination.pageTitle}です`,
+    pagination.currentUrl
+  )
   const fuse = useSetupFuse(filteredPosts)
 
   return (
-    // ページ固有のhead内容を設定したい時
-    // <Head>
-    //   <title>hskpg blog</title>
-    // </Head>
     <Layout fuse={fuse}>
+      <NextSeo {...seo} />
       <PostList
         pagination={pagination}
         boxProps={{minHeight: "inherit"}}

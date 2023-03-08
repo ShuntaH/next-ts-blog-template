@@ -130,6 +130,7 @@ export const getTotalPageCountRange = (posts: Posts): number[] => {
  * @param currentPageNumber
  * @param posts
  * @param basePaths
+ * @param pageTitle
  * @param postCountPerPage
  */
 export const getPagination = (
@@ -137,6 +138,7 @@ export const getPagination = (
     currentPageNumber,
     posts,
     basePaths,
+    pageTitle,
     postCountPerPage = POST_COUNT_PER_PAGE
   }
     : PaginationProps
@@ -161,6 +163,8 @@ export const getPagination = (
   return {
     currentPageNumber,
     postCountPerPage,
+    pageTitle,
+    currentUrl: `${basePaths}/${currentPageNumber}`,
     totalPostCount,
     totalPageCount,
     nextPageHref,
