@@ -1,10 +1,9 @@
 import { STYLES } from "lib/constants";
-import { Card, CardProps, LinkProps } from "@chakra-ui/react";
+import { Card } from "@chakra-ui/react";
 import React from "react";
+import { CardLinkProps } from "interfaces/foundation";
 
-type Props = CardProps & LinkProps
-
-function BlurCard({ children, ...props }: Props) {
+function BlurCard({ children, ...props }: CardLinkProps) {
   return (
     <Card
       position={"relative"}

@@ -5,7 +5,7 @@ import { STYLES } from "lib/constants";
 function PostCardTitle(props : HeadingProps) {
   return (
     <Heading
-      as={'h3'}
+      as={'h2'}
       letterSpacing={'0.03em'}
       wordBreak={"break-word"}
       _hover={STYLES.hoverLighterStyle}
