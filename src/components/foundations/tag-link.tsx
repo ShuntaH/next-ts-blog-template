@@ -11,7 +11,7 @@ type Props = {
 }
 
 /**
- * colorScheme は props によって変更できない
+ * colorScheme は props によって変更できないようにしている
  * @param props
  */
 function TagLink({

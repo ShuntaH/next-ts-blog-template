@@ -26,9 +26,9 @@ function Breadcrumb({ breadcrumbProps, breadcrumbItems }: Props) {
       {...breadcrumbProps}
       separator={
         <ChakraFontAwesomeIcon
+          width={1}
           icon={faChevronRight}
           color={STYLES.color}
-          size={"xs"}
         />}
     >
       {
@@ -52,6 +52,7 @@ function Breadcrumb({ breadcrumbProps, breadcrumbItems }: Props) {
                 textDecoration={"none"}
                 _hover={STYLES.hoverLightStyle}
                 color={STYLES.textColorDark}
+                title={item.title}
               >
                 {item.title}
               </BreadcrumbLink>

@@ -37,7 +37,11 @@ function SearchFormControlModal({ formControlProps }: Props) {
           value={searchInput}
         />
         <InputRightElement>
-          <ChakraFontAwesomeIcon icon={faMagnifyingGlass}/>
+          <ChakraFontAwesomeIcon
+            icon={faMagnifyingGlass}
+            width={4}
+            display={"inline"}
+          />
         </InputRightElement>
       </InputGroup>
     </FormControl>

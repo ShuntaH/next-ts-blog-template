@@ -15,11 +15,12 @@ function PostDate({ publishedAt, updatedAt, textProps }: Props) {
   return (
     <Text letterSpacing={'0.03em'} {...textProps}>
       <ChakraFontAwesomeIcon
+        display={'inline'}
         paddingTop={0.5}
         paddingRight={1}
         icon={faFeather}
         color={STYLES.color}
-        size={"lg"}
+        width={4}
       />
       <DateFormatter dateString={publishedAt}/>
       {

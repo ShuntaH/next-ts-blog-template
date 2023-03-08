@@ -48,6 +48,7 @@ function Header (props: BoxProps){
             fontWeight={700}
             letterSpacing={'0.02em'}
             _hover={STYLES.hoverLighterStyle}
+            title={'Home'}
           >
             {BLOG_NAME}
           </Link>

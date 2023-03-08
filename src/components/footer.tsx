@@ -38,7 +38,7 @@ function Footer () {
         {menus.map((menu: Menu, index: number) => {
           return (
             <ListItem key={index} _notFirst={{ marginInlineStart: `${STYLES.gap}` }}>
-              <Link href={menu.href} as={NextLink} display={"block"}>
+              <Link href={menu.href} as={NextLink} display={"block"} title={menu.content}>
                 {menu.content}
               </Link>
             </ListItem>

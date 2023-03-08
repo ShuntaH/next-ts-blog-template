@@ -35,7 +35,7 @@ function Pagination({ pagination, flexProps }: Props) {
   >
     {
       pagination.prevPageHref ?
-        <Link {...linkProps} href={pagination.prevPageHref}>Previous</Link>
+        <Link {...linkProps} href={pagination.prevPageHref} title={'previous page'} >Previous</Link>
         :
         <Text {...textProps}>Previous</Text>
     }
@@ -46,7 +46,7 @@ function Pagination({ pagination, flexProps }: Props) {
 
     {
       pagination.nextPageHref ?
-        <Link {...linkProps} href={pagination.nextPageHref}>Next</Link>
+        <Link {...linkProps} href={pagination.nextPageHref} title={'next page'}>Next</Link>
         :
         <Text {...textProps}>Next</Text>
     }

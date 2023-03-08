@@ -6,11 +6,11 @@ import PostList from "components/post/postList/post-list";
 import { useSetupFuse } from "hooks/useFuse";
 import { getFilteredPosts } from "lib/api/filterPost";
 
-
 export async function getStaticProps() {
   const allPosts: Posts = getAllPosts()
   const filteredPosts = await getFilteredPosts(allPosts)
   const pagination: Pagination = getPagination({
+    pageTitle: 'hskpg blog トップページ',
     currentPageNumber: 1,
     posts: await getHtmlContentPosts(getSortedPosts(allPosts)),
     basePaths: '/pages',
