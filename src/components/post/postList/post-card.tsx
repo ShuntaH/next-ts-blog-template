@@ -22,6 +22,7 @@ function PostCard({ post, cardLinkProps }: Props) {
     <BlurCard
       as={NextLink}
       href={postHref}
+      title={post.title}
       {...cardLinkProps}
     >
       <PostCardHeader
