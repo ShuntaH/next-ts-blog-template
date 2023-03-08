@@ -26,9 +26,9 @@ function Breadcrumb({ breadcrumbProps, breadcrumbItems }: Props) {
       {...breadcrumbProps}
       separator={
         <ChakraFontAwesomeIcon
+          width={1}
           icon={faChevronRight}
           color={STYLES.color}
-          size={"xs"}
         />}
     >
       {

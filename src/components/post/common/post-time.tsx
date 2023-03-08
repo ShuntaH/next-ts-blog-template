@@ -22,7 +22,8 @@ function PostTime({ time }: Props) {
         paddingRight={1}
         icon={faReadme}
         color={STYLES.color}
-        size={"lg"}
+        width={4}
+        display={"inline"}
       />
       <Text as={"span"}>{time}</Text>
     </Text>

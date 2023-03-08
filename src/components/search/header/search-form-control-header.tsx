@@ -32,6 +32,8 @@ function SearchFormControlHeader({ formControlProps }: Props) {
           <ChakraFontAwesomeIcon
             icon={faMagnifyingGlass}
             onClick={onOpen}
+            display={"inline"}
+            width={4}
           />
         </InputRightElement>
       </InputGroup>
