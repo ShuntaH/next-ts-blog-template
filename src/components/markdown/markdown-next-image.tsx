@@ -1,6 +1,5 @@
 import React, { ImgHTMLAttributes } from "react";
 import NextImage from "components/foundations/next-image";
-import { devLog } from "lib/helpers";
 import { Box } from "@chakra-ui/react";
 
 /**
@@ -20,14 +19,6 @@ import { Box } from "@chakra-ui/react";
  * @constructor
  */
 function MarkdownNextImage({ width, height, src, alt }: ImgHTMLAttributes<HTMLImageElement>) {
-  devLog([
-    'MarkdownNextImage',
-    'width', width, typeof width, '/',
-    'height', height, typeof height, '/',
-    'src', src, typeof src, '/',
-    'alt', typeof alt, alt
-  ])
-
   if (typeof width === "string") {
     throw new Error(`width must be number [${width}]`)
   }
