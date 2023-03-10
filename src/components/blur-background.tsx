@@ -17,7 +17,14 @@ function BlurBackground() {
         height={"full"}
         zIndex={-10}
       >
-        { BACKGROUND_IMAGE_PATH ? <NextImage src={BACKGROUND_IMAGE_PATH} alt={"background image"}/> : null }
+        {
+          BACKGROUND_IMAGE_PATH ?
+            <NextImage
+              src={BACKGROUND_IMAGE_PATH}
+              alt={"background image"}/>
+            :
+            null
+        }
         <Box
           position={"absolute"}
           top={0}

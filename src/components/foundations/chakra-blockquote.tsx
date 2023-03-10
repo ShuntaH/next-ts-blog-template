@@ -18,14 +18,14 @@ function Blockquote({ cite, children }: BlockquoteHTMLAttributes<HTMLQuoteElemen
       <ChakraFontAwesomeIcon
         icon={faQuoteLeft}
         position={"absolute"}
-        fontSize={"sm"}
+        width={4}
         left={4}
         top={4}
       />
       <ChakraFontAwesomeIcon
         icon={faQuoteRight}
         position={"absolute"}
-        fontSize={"sm"}
+        width={4}
         right={4}
         bottom={4}
       />
