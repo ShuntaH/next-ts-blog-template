@@ -26,7 +26,7 @@ function MarkdownNextImage({ width, height, src, alt }: ImgHTMLAttributes<HTMLIm
     'height', height, typeof height, '/',
     'src', src, typeof src, '/',
     'alt', typeof alt, alt
-  ], false)
+  ])
 
   if (typeof width === "string") {
     throw new Error(`width must be number [${width}]`)

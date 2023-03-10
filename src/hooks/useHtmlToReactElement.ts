@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { devLog } from "lib/helpers";
 import { htmlToReactElements } from "lib/markdown/client";
 
 
@@ -13,7 +12,6 @@ export function useHtmlToReactElements(htmlContent: string) {
   useEffect(() => {
     (async () => {
       const elm = await htmlToReactElements(htmlContent)
-      devLog([ 'react content', elm ])
       setReactElements(elm)
     })()
   }, [ htmlContent ])

@@ -10,8 +10,8 @@ function Blockquote({ cite, children }: BlockquoteHTMLAttributes<HTMLQuoteElemen
     <ChakraBlockquote
       display={"block"}
       position={"relative"}
-      paddingBlock={8}
-      paddingInline={4}
+      paddingBlock={10}
+      paddingInline={8}
       backdropFilter={'blur(2px)'}
       bgColor={"whiteAlpha.200"}
     >
@@ -29,15 +29,7 @@ function Blockquote({ cite, children }: BlockquoteHTMLAttributes<HTMLQuoteElemen
         right={4}
         bottom={4}
       />
-      <Text
-        position={"relative"}
-        paddingInlineStart={4}
-        paddingBlockEnd={cite? 6:0}
-        fontStyle={"italic"}
-        fontSize={"sm"}
-      >
         {children}
-      </Text>
       {cite && (
         <Text
           as={'cite'}
