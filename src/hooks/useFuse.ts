@@ -32,7 +32,6 @@ export function useSearch() {
   useEffect(
     () => {
       // 初期レンダーの時はから文字なので検索しない
-      devLog([ "useEffect called", 'timer', timer ])
       searchInput && handleSearch()
     },
     [ searchInput ]
@@ -61,7 +60,7 @@ export function useSearch() {
       const result = fuse.search(searchInput)
       setSearchResultPosts(result)
     }, 300)
-    
+
     setTimer(newTimer)
   }, [ searchInput ])
 

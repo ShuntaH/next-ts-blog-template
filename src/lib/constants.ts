@@ -14,7 +14,7 @@ export const BLOG_DESCRIPTION = "hskpg's tech and daily life blog"
 // pagination
 export const POST_COUNT_PER_PAGE = 10
 
-// search
+// search options
 export const SEARCH_MIN_CHARS = 2
 export const SEARCH_CHAR_DISTANCE_IN_VALUE = 15 // 全文検索対象の単語が複数近く見つかった時、何文字の間隔まで1hitとみなすか
 export const SEARCH_CHAR_NUMBER_AROUND_IN_VALUE = 20 // 全文検索対象の単語の前後の何文字を表示するか
@@ -25,8 +25,9 @@ export const SEARCH_KEYS: SearchKeys[] = [
   "tags",
   "slug"
 ]
+export const SEARCH_FORM_PLACEHOLDER = 'FULL TEXT SEARCH 全文検索'
 
-// fuse
+// fuse options
 export const FUSE_OPTIONS: Fuse.IFuseOptions<FilteredPost> = {
   isCaseSensitive: true, // 大文字・小文字を区別しない
   minMatchCharLength: 2, // ヒット文字数がこれ以上。入力文字数ではない。2の時、1文字入力でも曖昧検索の結果2文字がヒットすれば出る

@@ -1,19 +1,17 @@
 import { FormControl, FormControlProps, Input, InputGroup, InputRightElement } from '@chakra-ui/react'
 import React from "react";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import ChakraFontAwesomeIcon from "components/foundations/chakra-font-awesome-icon";
-import { STYLES } from "lib/constants";
 import { useSearchInputContext } from "contexts/searchInputContext";
 import { useDisclosureContext } from "contexts/disclouserContext";
+import { SEARCH_FORM_PLACEHOLDER, STYLES } from "lib/constants";
+import ChakraFontAwesomeIcon from "components/foundations/chakra-font-awesome-icon";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 
-type Props =  {
-  formControlProps?: FormControlProps
-}
+type Props = { formControlProps?: FormControlProps }
 
-function SearchFormControlModal({ formControlProps }: Props) {
+function SearchFormControlInModal({formControlProps}: Props) {
   const {searchInput, dispatch} = useSearchInputContext()
-  const { modalRef } = useDisclosureContext()
+  const { afterOpenRef } = useDisclosureContext()
 
   const handleInput = (e: React.MouseEvent<HTMLInputElement>): void => {
     dispatch({
@@ -30,10 +28,10 @@ function SearchFormControlModal({ formControlProps }: Props) {
       <InputGroup size='md'>
         <Input
           type='text'
-          placeholder={"Full-text search 全文検索"}
+          placeholder={SEARCH_FORM_PLACEHOLDER}
           focusBorderColor={STYLES.colorLight}
           onInput={handleInput}
-          ref={modalRef}
+          ref={afterOpenRef}
           value={searchInput}
         />
         <InputRightElement>
@@ -48,4 +46,4 @@ function SearchFormControlModal({ formControlProps }: Props) {
   );
 }
 
-export default SearchFormControlModal
+export default SearchFormControlInModal

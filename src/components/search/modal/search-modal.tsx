@@ -11,7 +11,7 @@ import {
 import React from "react";
 import SearchResultCards from "components/search/search-result-cards";
 import { useDisclosureContext } from "contexts/disclouserContext";
-import SearchFormModal from "components/search/modal/search-form-modal";
+import SearchFormControlInModal from "components/search/modal/search-form-control-in-modal";
 
 
 type Props = {
@@ -19,13 +19,14 @@ type Props = {
 }
 
 function SearchModal ({ boxProps }: Props) {
-  const { isOpen, onClose, modalRef } = useDisclosureContext()
+  const { isOpen, onClose, afterOpenRef, afterCloseRef } = useDisclosureContext()
   return (
     <Box {...boxProps}>
       <Modal
         isOpen={isOpen}
         onClose={onClose}
-        initialFocusRef={modalRef}
+        initialFocusRef={afterOpenRef}
+        finalFocusRef={afterCloseRef}
         returnFocusOnClose={false}
         scrollBehavior={"inside"}
       >
@@ -36,7 +37,7 @@ function SearchModal ({ boxProps }: Props) {
         >
           {/*検索欄*/}
           <ModalHeader>
-            <SearchFormModal/>
+            <SearchFormControlInModal formControlProps={{marginTop: 7}}/>
             <ModalCloseButton tabIndex={-1}/>
           </ModalHeader>
 

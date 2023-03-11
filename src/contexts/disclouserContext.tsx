@@ -5,12 +5,14 @@ const DisclosureContext = createContext<{
   isOpen: boolean,
   onOpen: () => void,
   onClose: () => void,
-  modalRef: React.MutableRefObject<null | HTMLInputElement>
+  afterOpenRef: React.MutableRefObject<null | HTMLInputElement>
+  afterCloseRef: React.MutableRefObject<null | HTMLDivElement>
 }>({
   isOpen: false,
   onOpen: () => {},
   onClose: () => {},
-  modalRef: { current: null }
+  afterOpenRef: { current: null }, // モーダルが開いた後にフォーカスする要素
+  afterCloseRef: { current: null } // モーダルが閉じた後にフォーカスする要素
 })
 
 type DisclosureProviderProps = {
@@ -24,9 +26,10 @@ type DisclosureProviderProps = {
  * @constructor
  */
 export function DisclosureProvider({ children }: DisclosureProviderProps) {
-  const modalRef = React.useRef(null)
+  const afterOpenRef = React.useRef(null)
+  const afterCloseRef = React.useRef(null)
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const disclosure = { modalRef, isOpen, onOpen, onClose }
+  const disclosure = { afterOpenRef, afterCloseRef, isOpen, onOpen, onClose }
   return (
     <DisclosureContext.Provider value={disclosure}>
       {children}

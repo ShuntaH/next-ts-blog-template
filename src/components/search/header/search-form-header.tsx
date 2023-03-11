@@ -1,7 +1,7 @@
 import { Box, BoxProps } from '@chakra-ui/react'
 import React from "react";
 import SearchModal from "components/search/modal/search-modal";
-import SearchFormControlHeader from "components/search/header/search-form-control-header";
+import SearchFormControlInHeader from "components/search/header/search-form-control-in-header";
 import { DisclosureProvider } from "contexts/disclouserContext";
 import { SearchInputProvider } from "contexts/searchInputContext";
 
@@ -15,7 +15,7 @@ function SearchFormHeader({boxProps}: Props) {
     <SearchInputProvider>
       <DisclosureProvider>
         <Box {...boxProps}>
-          <SearchFormControlHeader />
+          <SearchFormControlInHeader />
           <SearchModal/>
         </Box>
       </DisclosureProvider>
