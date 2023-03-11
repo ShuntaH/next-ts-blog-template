@@ -5,12 +5,13 @@ import { DEFAULT_SEO } from "lib/constants";
 import React from "react";
 import theme from "theme";
 import BlurBackground from "components/blur-background";
+import { useToggleSearchModal } from "hooks/useKeyboradEvents";
 
 function MyApp({ Component, pageProps }: AppProps) {
+  useToggleSearchModal()
   return (
     // 本来はここに Layout のコンポーネントを置きたい。
-    // 検索データを共通レイアウトの Layout に渡すために
-    // getServersideProps 使うために pages に書いている。
+    // 検索データを getServersideProps で取得したいので pages に書いている。
     // app.tsx でも getInitialProps を使えばサーバーサイドの処理になるが、
     // SSG では画像の最適化がされなくなるので、使わない。
     // ref: https://nextjs.org/docs/advanced-features/custom-app

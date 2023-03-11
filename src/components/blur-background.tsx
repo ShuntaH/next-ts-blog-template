@@ -6,7 +6,7 @@ import NextImage from "components/foundations/next-image";
 
 function BlurBackground() {
   const blurOpacity = useBlurBackground()
-
+  
   return (
     <Box position={"relative"}>
       <Box

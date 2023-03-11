@@ -25,7 +25,7 @@ export const SEARCH_KEYS: SearchKeys[] = [
   "tags",
   "slug"
 ]
-export const SEARCH_FORM_PLACEHOLDER = 'FULL TEXT SEARCH 全文検索'
+export const SEARCH_FORM_PLACEHOLDER = 'Full text search'
 
 // fuse options
 export const FUSE_OPTIONS: Fuse.IFuseOptions<FilteredPost> = {

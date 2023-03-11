@@ -6,7 +6,7 @@ const DisclosureContext = createContext<{
   onOpen: () => void,
   onClose: () => void,
   afterOpenRef: React.MutableRefObject<null | HTMLInputElement>
-  afterCloseRef: React.MutableRefObject<null | HTMLDivElement>
+  afterCloseRef: React.MutableRefObject<null | HTMLInputElement>
 }>({
   isOpen: false,
   onOpen: () => {},
