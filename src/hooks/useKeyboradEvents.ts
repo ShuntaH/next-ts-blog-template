@@ -3,7 +3,7 @@ import { useDisclosureContext } from "contexts/disclouserContext";
 
 
 /**
- * 検索モーダルを開閉するためのフック
+ * 検索モーダルをキーボードイベントで開閉するためのフック
  */
 export function useToggleSearchModal() {
   const { isOpen, onOpen, onClose } = useDisclosureContext()
@@ -18,16 +18,18 @@ export function useToggleSearchModal() {
     [ isOpen ]
   )
 
+  /**
+   * addEventListerをmountedの時だけすれば、
+   * handleToggle は keydown のたびに呼ばれるが、
+   * コンポーネントはスナップショットのようなものなので、
+   * isOpen が更新されていない。
+   * isOpen が更新された EventHandler を毎回 window に追加する。
+   */
   useEffect(
     () => {
       window.addEventListener("keydown", handleToggleSearchModal);
       return () => window.removeEventListener("keydown", handleToggleSearchModal);
     },
-    // addEventListerをmountedの時だけすれば、
-    // handleToggle は keydown のたびに呼ばれるが、
-    // コンポーネントはスナップショットのようなものなので、
-    // isOpen が更新されていない。
-    // isOpen が更新された EventHandler を毎回 window に追加する。
     [ isOpen ]
   );
 }

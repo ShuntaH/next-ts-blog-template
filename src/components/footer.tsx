@@ -9,7 +9,7 @@ type Menu = {
 }
 
 const menus: Menu[] = [
-  { href: '/terms', content: 'Terms' },
+  { href: '/disclaimer', content: 'Disclaimer' },
   { href: '/about', content: 'About' },
 ]
 

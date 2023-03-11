@@ -6,13 +6,19 @@ import { Posts } from "interfaces/post";
 import SimplePage from "components/common/simple-page";
 import MarkdownBox from "components/markdown/markdown-box";
 import { useSetupFuse } from "hooks/useFuse";
+import { getFilteredPosts } from "lib/api/filterPost";
+import { markdownToHtml } from "lib/markdown/server";
+import { useSeo } from "hooks/useSeo";
+import { NextSeo } from "next-seo";
+import React from "react";
 
 
 export const getStaticProps = async () => {
   const article = getArticleBySlug('disclaimer')
-  const allPosts = getAllPosts()
+  const filteredPosts = await getFilteredPosts(getAllPosts())
+  article.content = await markdownToHtml(article.content)
   return {
-    props: { article, allPosts }
+    props: { article, filteredPosts }
   }
 }
 
@@ -26,15 +32,17 @@ type Props = {
  */
 export default function Index({ article, allPosts }: Props) {
   const fuse = useSetupFuse(allPosts)
+  const seo = useSeo(
+    article.title,
+    article.excerpt,
+    '/disclaimer',
+  )
 
   return (
-    // ページ固有のhead内容を設定したい時
-    // <Head>
-    //   <title>hskpg blog</title>
-    // </Head>
     <Layout fuse={fuse}>
+      <NextSeo {...seo} />
       <SimplePage title={article.title}>
-      <MarkdownBox content={article.content}/>
+        <MarkdownBox content={article.content}/>
       </SimplePage>
     </Layout>
   )

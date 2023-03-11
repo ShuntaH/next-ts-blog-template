@@ -3,7 +3,7 @@ import { getMarkdownBySlug, validateMarkdownData } from "lib/api/index";
 import { ARTICLE_DIRECTORY_PATH } from "lib/constants";
 
 
-const keysShouldExist = [ 'title' ]
+const keysShouldExist = [ 'title', 'excerpt', 'status' ]
 const source = ARTICLE_DIRECTORY_PATH
 
 /**
@@ -17,6 +17,8 @@ export const getArticleBySlug = (slug: string): Article => {
   const markdownData = _markdownData as ArticleMarkdownData
   return {
     title: markdownData.title,
+    excerpt: markdownData.excerpt,
+    status: markdownData.status,
     content
   }
 }

@@ -10,6 +10,11 @@ import { TOC_HEADING } from "lib/constants";
 import rehypeSlug from "rehype-slug";
 
 
+/**
+ * markdown content で 記事として表示したい時に
+ * getStaticProps の中で HTML に変換する。
+ * @param markdown
+ */
 export async function markdownToHtml(markdown: string): Promise<string> {
   return remark()
     .use(remarkGfm) //  support GFM (autolink literals, footnotes, strikethrough, tables, tasklists)
