@@ -8,6 +8,7 @@ import BlurBackground from "components/blur-background";
 import { useToggleSearchModal } from "hooks/useKeyboradEvents";
 
 function MyApp({ Component, pageProps }: AppProps) {
+  // todo aタグにしているカードなどはLinkBoxとLinkOverlayを使うようにする
   useToggleSearchModal()
   return (
     // 本来はここに Layout のコンポーネントを置きたい。

@@ -11,9 +11,10 @@ export function useToggleSearchModal() {
     (e: KeyboardEvent): void => {
       if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
         isOpen ? onClose() : onOpen();
+        e.preventDefault();
         return;
       }
-      e.preventDefault()
+      // 他のキーイベントは止めない。
     },
     [ isOpen ]
   )

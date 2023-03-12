@@ -85,11 +85,16 @@ function Header (props: BoxProps){
                   fontSize={'xl'}
                   _notLast={{marginRight: STYLES.gap}}
                 >
-                  <ChakraFontAwesomeIcon icon={ni.icon}/>
+                  <ChakraFontAwesomeIcon
+                    icon={ni.icon}
+                    display={"inline"}
+                    width={4}
+                  />
                 </Link>
               ))
             }
           </Flex>
+
         </Flex>
       </Flex>
 
