@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
 import { FilteredPost, FilteredPosts } from "interfaces/post";
 import Fuse from "fuse.js";
-import { devLog } from "lib/helpers";
 import { FUSE_OPTIONS, SEARCH_MIN_CHARS } from "lib/constants";
 import { useSearchInputContext } from "contexts/searchInputContext";
 import { useFuseContext } from "contexts/fuseContext";
+import { devLog } from "lib/helpers";
 
 /**
  * Fuseをセットアップする。
@@ -46,11 +46,6 @@ export function useSearch() {
     clearTimeout(timer)
 
     const newTimer = setTimeout(() => {
-      devLog([
-        "setTimeout called",
-        "timer", timer
-      ], false)
-
       if (!fuse || searchInput.length <= SEARCH_MIN_CHARS) {
         // 入力文字数に関わらず更新する。制限すると入力文字数が検索を開始する文字数より少なくても
         // 前の検索結果を残してしまう。
@@ -58,6 +53,7 @@ export function useSearch() {
         return
       }
       const result = fuse.search(searchInput)
+      devLog([ "search result", result ])
       setSearchResultPosts(result)
     }, 300)
 

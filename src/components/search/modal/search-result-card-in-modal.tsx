@@ -7,16 +7,17 @@ import { useRouter } from "next/router";
 import { FilteredPost } from "interfaces/post";
 import Fuse from "fuse.js";
 import { BadgeColors, BadgeColorValues, SearchKeys } from "interfaces/search";
+import { useDisclosureContext } from "contexts/disclouserContext";
 
 type Props = {
   cardProps?: CardProps
-  onClose: () => void
   searchResultPost: Fuse.FuseResult<FilteredPost>,
   index: number
 }
 
-function SearchResultCardInModal({ searchResultPost, onClose, cardProps, index }: Props) {
+function SearchResultCardInModal({ searchResultPost, cardProps, index }: Props) {
   const router = useRouter()
+  const { onClose } = useDisclosureContext()
 
   const handleNavigation = async (
     e: React.KeyboardEvent<HTMLDivElement> | React.MouseEvent<HTMLDivElement>,
@@ -96,7 +97,8 @@ function SearchResultCardInModal({ searchResultPost, onClose, cardProps, index }
               // slug は その記事に飛ぶために追加している。検索結果に表示する必要はない。
               return null
             }
-            return <Box key={index}>
+            return (
+              <Box key={index}>
               <Flex
                 justifyContent={"space-between"}
                 alignItems={"start"}
@@ -122,7 +124,9 @@ function SearchResultCardInModal({ searchResultPost, onClose, cardProps, index }
                   <Divider borderColor={"gray.600"}/>
               }
             </Box>
-          })}
+            )
+          })
+        }
       </CardBody>
     </Card>
   )

@@ -6,6 +6,7 @@ import PostList from "components/post/postList/post-list";
 import { useSetupFuse } from "hooks/useFuse";
 import { getFilteredPosts } from "lib/api/filterPost";
 import { GetStaticPropsResult } from "next";
+import { devLog } from "lib/helpers";
 
 type Props = {
   pagination: Pagination,
@@ -34,6 +35,7 @@ export async function getStaticProps(): Promise<GetStaticPropsResult<Props>> {
 
 export default function Index({ pagination, filteredPosts }: Props) {
   const fuse = useSetupFuse(filteredPosts)
+  devLog(['filteredPosts', filteredPosts])
 
   // このページは top page なので デフォルト設定があるため、
   // seo は設定は不要。

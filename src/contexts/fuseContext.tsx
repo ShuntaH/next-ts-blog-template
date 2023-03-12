@@ -4,7 +4,9 @@ import { FilteredPost } from "interfaces/post";
 import { getFilteredInitialPost } from "lib/api/filterPost";
 
 // client-side only fuse はサーバーサイドのみ
-const FuseContext = createContext<Fuse<FilteredPost>>(new Fuse([getFilteredInitialPost()], {  }))
+const FuseContext = createContext<Fuse<FilteredPost>>(
+  new Fuse([ getFilteredInitialPost() ], {})
+)
 
 type FuseProviderProps = {
   children: React.ReactNode
@@ -15,7 +17,6 @@ type FuseProviderProps = {
  * 全文検索するための fuse インスタンス を children に渡す
  * @param children
  * @param fuse
- * @constructor
  */
 export function FuseProvider({ children, fuse }: FuseProviderProps) {
   return (

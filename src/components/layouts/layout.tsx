@@ -6,6 +6,7 @@ import { Box } from "@chakra-ui/react";
 import { STYLES } from "lib/constants";
 import Footer from "components/footer";
 import { FuseProvider } from "contexts/fuseContext";
+import { devLog } from "lib/helpers";
 
 
 type Props = {
@@ -14,7 +15,7 @@ type Props = {
 }
 
 function Layout({ fuse, children }: Props){
-  // devLog(["fuse", fuse])
+  devLog(["setuped fuse in layout", fuse])
   return (
     // fuse をサーバーサイドで作成するために getStaticProps に書く。そのために _app.tsx には書かない。
     <FuseProvider fuse={fuse}>
