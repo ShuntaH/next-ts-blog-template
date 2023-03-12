@@ -4,7 +4,6 @@ import Fuse from "fuse.js";
 import { FUSE_OPTIONS, SEARCH_MIN_CHARS } from "lib/constants";
 import { useSearchInputContext } from "contexts/searchInputContext";
 import { useFuseContext } from "contexts/fuseContext";
-import { devLog } from "lib/helpers";
 
 /**
  * Fuseをセットアップする。
@@ -53,7 +52,6 @@ export function useSearch() {
         return
       }
       const result = fuse.search(searchInput)
-      devLog([ "search result", result ])
       setSearchResultPosts(result)
     }, 300)
 

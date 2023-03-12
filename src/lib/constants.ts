@@ -34,6 +34,7 @@ export const FUSE_OPTIONS: Fuse.IFuseOptions<FilteredPost> = {
   findAllMatches: true, // 検索対象が見つかっても最後まで探す
   includeScore: true, // 検索結果と検索クエリとの一致度のスコア
   threshold: 0.2, // どれくらいの一致度か 0だと完全一致していないとヒットしない
+  distance: 100000, // 難しいのでドキュメント参照すること。多めに設定しないと文章の後半がヒットしない。
   includeMatches: true, // 一致した場所
   keys: SEARCH_KEYS // 検索対象のキー
 }
