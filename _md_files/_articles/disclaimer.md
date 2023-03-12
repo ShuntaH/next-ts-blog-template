@@ -1,6 +1,6 @@
 ---
 title: 'Disclaimer'
-status: false
+status: true
 excerpt: 'hskpg blog の利用規約ページです。'
 ---
 

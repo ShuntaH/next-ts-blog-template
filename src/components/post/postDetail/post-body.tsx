@@ -10,7 +10,7 @@ type Props = {
 function PostBody ({ content, boxProps }: Props) {
   return (
     <Box w={"full"} {...boxProps}>
-      <MarkdownBox content={content}/>
+      <MarkdownBox htmlContent={content}/>
     </Box>
   )
 }
