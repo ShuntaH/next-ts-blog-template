@@ -17,7 +17,7 @@ type Props = {
  * @param formControlProps
  */
 function SearchFormControlInHeader({ formControlProps }: Props) {
-  const { onOpen, afterCloseRef } = useDisclosureContext()
+  const { onOpen } = useDisclosureContext()
   const { searchInput } = useSearchInputContext()
   useToggleSearchModal()
 
@@ -34,7 +34,6 @@ function SearchFormControlInHeader({ formControlProps }: Props) {
           placeholder={SEARCH_FORM_PLACEHOLDER}
           focusBorderColor={STYLES.colorLight}
           onClick={onOpen}
-          ref={afterCloseRef}
           defaultValue={searchInput}
         />
         <InputRightElement>

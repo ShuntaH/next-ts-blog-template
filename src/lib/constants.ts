@@ -33,7 +33,7 @@ export const FUSE_OPTIONS: Fuse.IFuseOptions<FilteredPost> = {
   minMatchCharLength: 2, // ヒット文字数がこれ以上。入力文字数ではない。2の時、1文字入力でも曖昧検索の結果2文字がヒットすれば出る
   findAllMatches: true, // 検索対象が見つかっても最後まで探す
   includeScore: true, // 検索結果と検索クエリとの一致度のスコア
-  threshold: 0.2, // どれくらいの一致度か 0だと完全一致していないとヒットしない
+  threshold: 0.1, // どれくらいの一致度か 0だと完全一致していないとヒットしない
   distance: 100000, // 難しいのでドキュメント参照すること。多めに設定しないと文章の後半がヒットしない。
   includeMatches: true, // 一致した場所
   keys: SEARCH_KEYS // 検索対象のキー
