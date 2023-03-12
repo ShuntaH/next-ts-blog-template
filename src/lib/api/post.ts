@@ -1,7 +1,7 @@
 import { Post, PostMarkdownData, Posts } from "interfaces/post";
 import { Pagination, PaginationProps } from "interfaces/pagination";
 import { POST_COUNT_PER_PAGE, POST_DIRECTORY_PATH } from "lib/constants";
-import { getAllMarkdownSlugs, getMarkdownBySlug, isPublished, validateMarkdownData } from "lib/api/index";
+import { getAllMarkdownSlugs, getMarkdownBySlug, validateMarkdownData } from "lib/api/base";
 import { parseISO } from "date-fns";
 import { markdownToHtml } from "lib/markdown/server";
 
@@ -20,6 +20,18 @@ const keysShouldExist = [
 const source = POST_DIRECTORY_PATH
 
 /**
+ * 記事が公開済みか判定する
+ * @param publishedAt
+ * @param updateAt
+ * @param status
+ */
+export function isPublished(publishedAt: Date, updateAt: Date, status: boolean) {
+  // UTC
+  const now = new Date()
+  return publishedAt <= now && updateAt <= now && status
+}
+
+/**
  * ファイル名からそのファイルの中身を取得する。
  * @param slug マークダウンファイルの名前
  */
@@ -33,7 +45,7 @@ export const getPostBySlug = (slug: string): Post | null => {
   // ここで content を処理しない。全文検索と記事本文の２パターンで処理するため。
   // getStaticProps で処理する。
 
-  // UTC
+  // UTCで扱う
   const publishedAt = parseISO(markdownData.publishedAt)
   const updatedAt = parseISO(markdownData.updatedAt)
 
@@ -96,17 +108,34 @@ export const getHtmlContentPosts = (posts: Posts): Promise<Posts> => {
   }))
 }
 
+/**
+ * タグを全種類取得する。
+ * @param posts
+ */
 export const getAllTags = (posts: Posts): string[] => {
   return [ ...new Set(posts.flatMap((post) => post.tags)) ]
 }
 
+/**
+ * タグをもとにそのタグがついている記事を取得する。
+ * @param posts
+ * @param tag
+ */
 export const getTaggedPosts = (posts: Posts, tag: string): Posts => {
   return posts.filter((post) => post.tags.includes(tag))
 }
 
+/**
+ * 記事数を返す。
+ * @param posts
+ */
 export const getTotalPostCount = (posts: Posts): number => posts.length
 
-
+/**
+ * 記事数からページ数を返す。
+ * @param totalPostCount
+ * @param postCountPerPage
+ */
 export const getTotalPageCount = (
   totalPostCount: number,
   postCountPerPage: number = POST_COUNT_PER_PAGE

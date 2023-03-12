@@ -12,13 +12,8 @@ function SimplePage({ title, children }: Props) {
       <Heading
         as={'h1'}
         letterSpacing={'0.03em'}
-        lineHeight={1.5}
         wordBreak={"break-word"}
-        fontSize={{base: "3xl", md: "4xl"}}
-        marginBottom={{base: 2, md: 1}}
-        borderBottom={'2px'}
-        borderColor={"rgba(51, 65, 85, 1)"}
-        borderStyle={"solid"}
+        fontSize={{base: "2xl", md: "3xl"}}
       >
         {title}
       </Heading>

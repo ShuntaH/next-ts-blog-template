@@ -2,7 +2,7 @@ import Layout from "components/layouts/layout";
 import { getArticleBySlug } from "lib/api/article";
 import { Article } from "interfaces/article";
 import { getAllPosts } from "lib/api/post";
-import { Posts } from "interfaces/post";
+import { FilteredPosts } from "interfaces/post";
 import SimplePage from "components/common/simple-page";
 import MarkdownBox from "components/markdown/markdown-box";
 import { useSetupFuse } from "hooks/useFuse";
@@ -11,27 +11,31 @@ import { markdownToHtml } from "lib/markdown/server";
 import { useSeo } from "hooks/useSeo";
 import { NextSeo } from "next-seo";
 import React from "react";
-
-
-export const getStaticProps = async () => {
-  const article = getArticleBySlug('disclaimer')
-  const filteredPosts = await getFilteredPosts(getAllPosts())
-  article.content = await markdownToHtml(article.content)
-  return {
-    props: { article, filteredPosts }
-  }
-}
+import { GetStaticPropsResult } from "next";
 
 type Props = {
   article: Article,
-  allPosts: Posts
+  filteredPosts: FilteredPosts
+}
+
+async function getStaticProps(): Promise<GetStaticPropsResult<Props>> {
+  // 検索対象データを取得する
+  const filteredPosts = await getFilteredPosts(getAllPosts())
+
+  const article = getArticleBySlug('disclaimer')
+  if(!article) return { notFound: true }
+  article.content = await markdownToHtml(article.content)
+
+  return {
+    props: { article, filteredPosts },
+  }
 }
 
 /**
  * This is the page that is rendered when the user visits the root of your application.
  */
-export default function Index({ article, allPosts }: Props) {
-  const fuse = useSetupFuse(allPosts)
+export default function Index({ article, filteredPosts }: Props) {
+  const fuse = useSetupFuse(filteredPosts)
   const seo = useSeo(
     article.title,
     article.excerpt,

@@ -1,7 +1,6 @@
 import { join } from "path";
 import matter from "gray-matter";
 import * as fs from "fs";
-import { devLog } from "lib/helpers";
 
 /**
  * マークダウンの全ての slug を取得する。
@@ -68,17 +67,4 @@ export function validateMarkdownData(
   if (message) {
     throw new Error(message)
   }
-}
-
-/**
- * 記事が公開済みか判定する
- * @param publishedAt
- * @param updateAt
- * @param status
- */
-export function isPublished(publishedAt: Date, updateAt: Date, status: boolean) {
-  devLog([ 'isPublished', publishedAt, updateAt, status ], false)
-  // UTC
-  const now = new Date()
-  return publishedAt <= now && updateAt <= now && status
 }
