@@ -18,10 +18,15 @@ export const getFilteredInitialPost = (): FilteredPost => {
  * は除いて、必要なデータのみから検索用途の記事データを作成する。
  */
 export async function getFilteredPosts(allPosts: Posts): Promise<FilteredPosts> {
-  return await Promise.all(allPosts.map(async (post) => {
-    return {
-      ...post,
-      content: await markdownToPlainText(post.content),
-    }
-  }))
+  return await Promise.all(
+    allPosts.map(async (post) => {
+      const filteredPost: FilteredPost = {
+        title: post.title,
+        excerpt: post.excerpt,
+        slug: post.slug,
+        tags: post.tags,
+        content: await markdownToPlainText(post.content),
+      }
+      return filteredPost
+    }))
 }
