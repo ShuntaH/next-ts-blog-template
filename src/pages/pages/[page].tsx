@@ -7,7 +7,7 @@ import { useSetupFuse } from "hooks/useFuse";
 import { getFilteredPosts } from "lib/api/filterPost";
 import { useSeo } from "hooks/useSeo";
 import { NextSeo } from "next-seo";
-
+import { GetStaticPropsResult } from "next";
 
 export async function getStaticPaths() {
   const allPosts = getAllPosts()
@@ -19,7 +19,9 @@ export async function getStaticPaths() {
       return {
         params: {
           page: String(pageNumber)
-        }}}),
+        }
+      }
+    }),
     fallback: false,
   }
 }
@@ -30,11 +32,16 @@ type Context = {
   }
 }
 
-export async function getStaticProps({ params }: Context){
+type Props = {
+  pagination: Pagination
+  filteredPosts: FilteredPosts
+}
+
+export async function getStaticProps({ params }: Context): Promise<GetStaticPropsResult<Props>> {
   const allPosts = getAllPosts()
   const filteredPosts = await getFilteredPosts(allPosts)
   const pagination: Pagination = getPagination({
-    pageTitle: `記事一覧${params.page}ページ目`,
+    pageTitle: `記事一覧 ${params.page}ページ目`,
     currentPageNumber: Number(params.page),
     posts: await getHtmlContentPosts(getSortedPosts(allPosts)),
     basePaths: '/pages',
@@ -46,11 +53,6 @@ export async function getStaticProps({ params }: Context){
       filteredPosts
     },
   }
-}
-
-type Props = {
-  pagination: Pagination
-  filteredPosts: FilteredPosts
 }
 
 export default function PaginatedPage({ pagination, filteredPosts }: Props) {
@@ -66,7 +68,7 @@ export default function PaginatedPage({ pagination, filteredPosts }: Props) {
       <NextSeo {...seo} />
       <PostList
         pagination={pagination}
-        boxProps={{minHeight: "inherit"}}
+        boxProps={{ minHeight: "inherit" }}
       />
     </Layout>
   )

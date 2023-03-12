@@ -9,7 +9,7 @@ import { OpenGraph } from "next-seo/lib/types";
 const HOME_IMAGE = "/assets/hongkong-bg.png";
 export const HOME_OG_IMAGE_URL = HOME_IMAGE
 export const BLOG_NAME = 'hskpg blog'
-export const BLOG_DESCRIPTION = "hskpg's tech and daily life blog"
+export const BLOG_DESCRIPTION = "hskpg's tech and daily life blog."
 
 // pagination
 export const POST_COUNT_PER_PAGE = 10

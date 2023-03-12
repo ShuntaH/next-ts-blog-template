@@ -9,9 +9,14 @@ import { getFilteredPosts } from "lib/api/filterPost";
 import { NextSeo } from "next-seo";
 import React from "react";
 import { useSeo } from "hooks/useSeo";
+import { GetStaticPropsResult } from "next";
 
+type Props = {
+  filteredPosts: FilteredPosts
+  allTags: string[]
+}
 
-export async function getStaticProps() {
+export async function getStaticProps(): Promise<GetStaticPropsResult<Props>> {
   const allPosts = getAllPosts()
   const filteredPosts = await getFilteredPosts(allPosts)
   const allTags = getAllTags(allPosts)
@@ -23,14 +28,15 @@ export async function getStaticProps() {
   }
 }
 
-type Props = {
-  filteredPosts: FilteredPosts
-  allTags: string[]
-}
-
 export default function Index({ allTags, filteredPosts }: Props) {
-  const seo = useSeo('タグ一覧', 'このブログの記事のタグ一覧ページ。', '/tags')
+  const seo = useSeo(
+    'タグ一覧',
+    'このブログの記事のタグ一覧ページ。',
+    '/tags'
+  )
+
   const fuse = useSetupFuse(filteredPosts)
+
   return (
     <Layout fuse={fuse}>
       <NextSeo {...seo}/>

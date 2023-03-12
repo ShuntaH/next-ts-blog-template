@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 
-async function getStaticProps(): Promise<GetStaticPropsResult<undefined>> {
+export function getStaticProps(): GetStaticPropsResult<undefined> {
   return {
     redirect: {
       destination: '/pages/1',

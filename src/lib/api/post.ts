@@ -99,6 +99,10 @@ export const getSortedPosts = (posts: Posts): Posts => {
   return posts.sort((post1, post2) => (post1.publishedAt > post2.publishedAt ? -1 : 1))
 }
 
+/**
+ * 全記事一括でマークダウンの内容をHTMLに変換する
+ * @param posts
+ */
 export const getHtmlContentPosts = (posts: Posts): Promise<Posts> => {
   return Promise.all(posts.map(async (post) => {
     return {

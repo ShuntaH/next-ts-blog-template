@@ -9,7 +9,7 @@ import { getFilteredPosts } from "lib/api/filterPost";
 import { markdownToHtml } from "lib/markdown/server";
 import { useSeo } from "hooks/useSeo";
 import { NextSeo } from "next-seo";
-
+import { GetStaticPropsResult } from "next";
 
 /**
  * Next.js は動的パラメーターをもとに全てのパスをレンダリングする。
@@ -35,6 +35,11 @@ type Context = {
   }
 }
 
+type Props = {
+  post: Post
+  filteredPosts: FilteredPosts
+}
+
 /**
  *  この関数はサーバー側のビルド時に呼び出されます。
  *  クライアント側では呼び出されない。
@@ -44,7 +49,7 @@ type Context = {
  *
  * https://nextjs.org/docs/api-reference/data-fetching/get-static-props
  * */
-export async function getStaticProps({ params }: Context) {
+export async function getStaticProps({ params }: Context): Promise<GetStaticPropsResult<Props>> {
   const filteredPosts = await getFilteredPosts(getAllPosts())
   const post = getPostBySlug(params.slug) as Post
   post.content = await markdownToHtml(post.content)
@@ -57,13 +62,9 @@ export async function getStaticProps({ params }: Context) {
   }
 }
 
-type Props = {
-  post: Post
-  filteredPosts: FilteredPosts
-}
-
 export default function PostPage({ post, filteredPosts }: Props) {
   const fuse: Fuse<FilteredPost> = useSetupFuse(filteredPosts)
+
   const seo = useSeo(
     post.title,
     post.excerpt,

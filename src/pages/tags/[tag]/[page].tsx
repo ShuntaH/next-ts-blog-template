@@ -15,6 +15,7 @@ import { useSetupFuse } from "hooks/useFuse";
 import { getFilteredPosts } from "lib/api/filterPost";
 import { useSeo } from "hooks/useSeo";
 import { NextSeo } from "next-seo";
+import { GetStaticPropsResult } from "next";
 
 export async function getStaticPaths() {
   const posts = getSortedPosts(getAllPosts())
@@ -61,15 +62,23 @@ type Context = {
   }
 }
 
-export async function getStaticProps({ params }: Context) {
+type Props = {
+  pagination: Pagination
+  filteredPosts: FilteredPosts
+}
+
+export async function getStaticProps({ params }: Context): Promise<GetStaticPropsResult<Props>> {
   const allPosts = getAllPosts()
+
   const taggedPosts = allPosts.filter((post) => post.tags.includes(params.tag))
+
   const pagination: Pagination = getPagination({
-    pageTitle: `${params.tag}タグの記事一覧${params.page}ページ目`,
+    pageTitle: `${params.tag}タグの記事一覧 ${params.page}ページ目`,
     currentPageNumber: Number(params.page),
     posts: await getHtmlContentPosts(getSortedPosts(taggedPosts)),
     basePaths: `/tags/${params.tag}`,
   })
+
   const filteredPosts = await getFilteredPosts(allPosts)
 
   return {
@@ -80,14 +89,6 @@ export async function getStaticProps({ params }: Context) {
   }
 }
 
-type Props = {
-  pagination: Pagination
-  filteredPosts: FilteredPosts
-}
-
-/**
- * This is the page that is rendered when the user visits the root of your application.
- */
 export default function PaginatedPage({ pagination, filteredPosts }: Props) {
   const seo = useSeo(
     `${pagination.pageTitle}`,
@@ -96,10 +97,6 @@ export default function PaginatedPage({ pagination, filteredPosts }: Props) {
   )
   const fuse = useSetupFuse(filteredPosts)
   return (
-    // ページ固有のhead内容を設定したい時
-    // <Head>
-    //   <title>hskpg blog</title>
-    // </Head>
     <Layout fuse={fuse}>
       <NextSeo {...seo} />
       <PostList

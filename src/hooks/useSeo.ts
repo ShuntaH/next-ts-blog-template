@@ -1,4 +1,4 @@
-import { DEFAULT_OPEN_GRAPH } from "lib/constants";
+import { BLOG_DESCRIPTION, DEFAULT_OPEN_GRAPH } from "lib/constants";
 import { PageSeo } from "interfaces/seo";
 import { useMemo } from "react";
 
@@ -8,7 +8,7 @@ export function useSeo(title: string, description: string, url?: string): PageSe
     () => {
       const openGraph = { ...DEFAULT_OPEN_GRAPH }
       openGraph.title = title
-      openGraph.description = description
+      openGraph.description = BLOG_DESCRIPTION + description
       if (url) { openGraph.url = url }
 
       return {

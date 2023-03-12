@@ -15,21 +15,16 @@ export async function getStaticProps() {
   }
 }
 
-type Props = {
-  filteredPosts: FilteredPosts
-}
-
-const error_messages = 'Server-side error occurred'
-const status_code = '500'
+type Props = { filteredPosts: FilteredPosts }
 
 export default function Custom500({filteredPosts}: Props) {
-
   const fuse = useSetupFuse(filteredPosts)
+
   return (
     <Layout fuse={fuse}>
       <ErrorCard
-        status_code={status_code}
-        error_messages={error_messages}
+        status_code={'500'}
+        error_messages={'Server-side error occurred'}
       />
     </Layout>
   )

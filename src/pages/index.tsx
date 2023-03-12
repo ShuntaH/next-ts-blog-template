@@ -5,16 +5,25 @@ import Layout from "components/layouts/layout";
 import PostList from "components/post/postList/post-list";
 import { useSetupFuse } from "hooks/useFuse";
 import { getFilteredPosts } from "lib/api/filterPost";
+import { GetStaticPropsResult } from "next";
 
-export async function getStaticProps() {
+type Props = {
+  pagination: Pagination,
+  filteredPosts: FilteredPosts
+}
+
+export async function getStaticProps(): Promise<GetStaticPropsResult<Props>> {
   const allPosts: Posts = getAllPosts()
+
   const filteredPosts = await getFilteredPosts(allPosts)
+
   const pagination: Pagination = getPagination({
-    pageTitle: 'hskpg blog トップページ',
+    pageTitle: 'TOP',
     currentPageNumber: 1,
     posts: await getHtmlContentPosts(getSortedPosts(allPosts)),
     basePaths: '/pages',
   })
+
   return {
     props: {
       pagination,
@@ -23,18 +32,12 @@ export async function getStaticProps() {
   }
 }
 
-type Props = {
-  pagination: Pagination,
-  filteredPosts: FilteredPosts
-}
-
 export default function Index({ pagination, filteredPosts }: Props) {
   const fuse = useSetupFuse(filteredPosts)
+
+  // このページは top page なので デフォルト設定があるため、
+  // seo は設定は不要。
   return (
-    // ページ固有のhead内容を設定したい時
-    // <Head>
-    //   <title>hskpg blog</title>
-    // </Head>
     <Layout fuse={fuse}>
       <PostList pagination={pagination}/>
     </Layout>

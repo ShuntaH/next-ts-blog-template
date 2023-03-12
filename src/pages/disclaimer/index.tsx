@@ -18,7 +18,7 @@ type Props = {
   filteredPosts: FilteredPosts
 }
 
-async function getStaticProps(): Promise<GetStaticPropsResult<Props>> {
+export async function getStaticProps(): Promise<GetStaticPropsResult<Props>> {
   // 検索対象データを取得する
   const filteredPosts = await getFilteredPosts(getAllPosts())
 
