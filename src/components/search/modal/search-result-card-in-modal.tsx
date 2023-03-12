@@ -1,7 +1,8 @@
 import { Badge, Box, Card, CardBody, CardHeader, CardProps, Divider, Flex, Heading } from "@chakra-ui/react";
 import React, { useCallback } from "react";
 import { STYLES } from "lib/constants";
-import SearchModalContentBodyHighlight from "components/search/modal/search-modal-content-body-highlight";
+import SearchModalContentBodyHighlightInModal
+  from "components/search/modal/search-modal-content-body-highlight-in-modal";
 import { useRouter } from "next/router";
 import { FilteredPost } from "interfaces/post";
 import Fuse from "fuse.js";
@@ -14,7 +15,7 @@ type Props = {
   index: number
 }
 
-function SearchResultCard({ searchResultPost, onClose, cardProps, index }: Props) {
+function SearchResultCardInModal({ searchResultPost, onClose, cardProps, index }: Props) {
   const router = useRouter()
 
   const handleNavigation = async (
@@ -108,7 +109,7 @@ function SearchResultCard({ searchResultPost, onClose, cardProps, index }: Props
                     {match.key}
                   </Badge>
                 </Flex>
-                <SearchModalContentBodyHighlight
+                <SearchModalContentBodyHighlightInModal
                   match={match}
                   textProps={{ flexGrow: 1, paddingLeft: 2 }}
                 />
@@ -127,4 +128,4 @@ function SearchResultCard({ searchResultPost, onClose, cardProps, index }: Props
   )
 }
 
-export default SearchResultCard
+export default SearchResultCardInModal

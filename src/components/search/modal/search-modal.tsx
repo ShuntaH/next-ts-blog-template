@@ -9,7 +9,7 @@ import {
   ModalOverlay
 } from '@chakra-ui/react'
 import React from "react";
-import SearchResultCards from "components/search/search-result-cards";
+import SearchResultCardsInModal from "components/search/modal/search-result-cards-in-modal";
 import { useDisclosureContext } from "contexts/disclouserContext";
 import SearchFormControlInModal from "components/search/modal/search-form-control-in-modal";
 
@@ -42,7 +42,7 @@ function SearchModal ({ boxProps }: Props) {
           </ModalHeader>
 
           {/*検索結果*/}
-          <SearchResultCards />
+          <SearchResultCardsInModal />
           <ModalFooter/>
         </ModalContent>
       </Modal>

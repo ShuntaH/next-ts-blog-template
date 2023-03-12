@@ -1,6 +1,6 @@
 import { Box, Kbd, ModalBody, ModalBodyProps, VStack } from '@chakra-ui/react'
 import React from "react";
-import SearchResultCard from "components/search/search-result-card";
+import SearchResultCardInModal from "components/search/modal/search-result-card-in-modal";
 import { useSearch } from "hooks/useFuse";
 import { useDisclosureContext } from "contexts/disclouserContext";
 
@@ -9,7 +9,7 @@ type Props = {
   modalBodyProps?: ModalBodyProps
 }
 
-function SearchResultCards({ modalBodyProps }: Props) {
+function SearchResultCardsInModal({ modalBodyProps }: Props) {
 
   const searchResultPosts = useSearch()
   const { onClose } = useDisclosureContext()
@@ -28,7 +28,7 @@ function SearchResultCards({ modalBodyProps }: Props) {
         {
           searchResultPosts.map((post, index) => {
             return (
-              <SearchResultCard
+              <SearchResultCardInModal
                 onClose={onClose}
                 searchResultPost={post}
                 index={index}
@@ -42,4 +42,4 @@ function SearchResultCards({ modalBodyProps }: Props) {
   );
 }
 
-export default SearchResultCards
+export default SearchResultCardsInModal
