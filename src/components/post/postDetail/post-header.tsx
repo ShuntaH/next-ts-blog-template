@@ -17,7 +17,9 @@ function PostHeader ({ post, boxProps }: Props) {
       { title: 'home', href: '/' },
       { title: 'posts', href: '/' },
       { title: post.title, href: `/posts/${post.slug}` }
-    ], [post.slug])
+    ],
+    [post.slug, post.title]
+  )
 
   return (
     <Box as={'header'} {...boxProps}>

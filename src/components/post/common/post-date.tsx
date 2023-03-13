@@ -24,7 +24,14 @@ function PostDate ({ publishedAt, updatedAt, textProps }: Props) {
       />
       <DateFormatter dateString={publishedAt}/>
       {
-        publishedAt === updatedAt ? null : ' / ' + <DateFormatter dateString={updatedAt}/>
+        publishedAt === updatedAt ?
+          null :
+          (
+            <>
+              <Text as={"span"}> / </Text>
+              <DateFormatter dateString={updatedAt}/>
+            </>
+        )
       }
     </Text>
   )

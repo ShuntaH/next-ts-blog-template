@@ -7,8 +7,7 @@
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "typecheck": "tsc",
-    "prepare": "husky install",
-    "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json}'"
+    "prepare": "husky install"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.4.9",

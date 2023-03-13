@@ -3,13 +3,13 @@ import { PageSeo } from 'interfaces/seo'
 import { useMemo } from 'react'
 
 // デフォルトの SEO 設定でページごとに変わる部分だけ変更して返す
-export function useSeo (title: string, description: string, url?: string): PageSeo {
+export function useSeo(title: string, description: string, url: string): PageSeo {
   return useMemo(
     () => {
       const openGraph = { ...DEFAULT_OPEN_GRAPH }
       openGraph.title = title
       openGraph.description = BLOG_DESCRIPTION + description
-      if (url) { openGraph.url = url }
+      openGraph.url = url
 
       return {
         title,
@@ -17,6 +17,6 @@ export function useSeo (title: string, description: string, url?: string): PageS
         openGraph
       }
     },
-    [title, description, url]
+    [ title, description, url ]
   )
 }

@@ -28,11 +28,11 @@ function MarkdownNextImage ({ width, height, src, alt }: ImgHTMLAttributes<HTMLI
   }
 
   if (typeof src !== 'string') {
-    throw new Error(`src must be string [${src}]`)
+    throw new Error('src must be string [undefined]')
   }
 
   if (typeof alt !== 'string') {
-    throw new Error(`alt must be string [${alt}]`)
+    throw new Error('alt must be string [undefined]')
   }
 
   return (

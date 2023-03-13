@@ -16,9 +16,9 @@ function SearchModalContentBodyHighlightInModal ({ match, textProps }: Props) {
    * @param match
    */
   const getHighlightQueries = useCallback(
-    (match: Fuse.FuseResultMatch) => match.indices.map(
+    () => match.indices.map(
       (range) => match.value!.slice(range[0], range[1] + 1))
-    , [match])
+    , [match.indices, match.value])
 
   /**
    * 表示される検索結果の文字列を作成する。
@@ -31,7 +31,7 @@ function SearchModalContentBodyHighlightInModal ({ match, textProps }: Props) {
    * @param match
    */
   const getCharsAroundHighlight = useCallback(
-    (match: Fuse.FuseResultMatch): string => {
+    (): string => {
       const valueLength = match.value!.length
       let shouldExclude: number[] = []
       let prevStart: number = 0
@@ -64,15 +64,11 @@ function SearchModalContentBodyHighlightInModal ({ match, textProps }: Props) {
           return match.value!.substring(start, end)
         })
 
-      const cleanParts = parts.filter((part, index) => {
-        if (!shouldExclude.includes(index)) {
-          return part
-        }
-      })
+      const cleanParts = parts.filter((part, index) => !shouldExclude.includes(index))
       // マッチした文字列を含む文字列を連結して、検索結果として表示する文字列を作成する。
       // ヒット数が多すぎて長くなったら css の方でトリムする。
       return cleanParts.join('.........')
-    }, [match])
+    }, [match.value, match.indices])
 
   return (
     <Text
@@ -84,10 +80,10 @@ function SearchModalContentBodyHighlightInModal ({ match, textProps }: Props) {
         WebkitLineClamp: '4'
       }}>
       <Highlight
-        query={getHighlightQueries(match)}
+        query={getHighlightQueries()}
         styles={{ py: '0', bg: 'teal.100' }}
       >
-        {getCharsAroundHighlight(match)}
+        {getCharsAroundHighlight()}
       </Highlight>
     </Text>
   )

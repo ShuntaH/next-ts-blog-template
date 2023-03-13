@@ -43,9 +43,9 @@ export const FUSE_OPTIONS: Fuse.IFuseOptions<FilteredPost> = {
 export const BACKGROUND_IMAGE_PATH = HOME_IMAGE
 
 // markdown file path
-const file_base_path = join(process.cwd(), '_md_files')
-export const POST_DIRECTORY_PATH = join(file_base_path, '_posts')
-export const ARTICLE_DIRECTORY_PATH = join(file_base_path, '_articles')
+const FILE_PATH = join(process.cwd(), '_md_files')
+export const POST_DIRECTORY_PATH = join(FILE_PATH, '_posts')
+export const ARTICLE_DIRECTORY_PATH = join(FILE_PATH, '_articles')
 
 // TOC hook
 export const TOC_HEADING = 'お品書き'

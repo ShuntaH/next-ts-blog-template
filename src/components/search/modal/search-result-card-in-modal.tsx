@@ -36,7 +36,7 @@ function SearchResultCardInModal ({ searchResultPost, cardProps, index }: Props)
       return BadgeColors[k]
     }
     return BadgeColors.title
-  }, [searchResultPost.item.slug])
+  }, [])
 
   return (
     <Card

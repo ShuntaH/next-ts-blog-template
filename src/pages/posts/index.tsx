@@ -20,5 +20,5 @@ export default function PaginatedPage () {
     (async () => {
       await router.replace('/pages/1')
     })()
-  }, [])
+  }, [router])
 }

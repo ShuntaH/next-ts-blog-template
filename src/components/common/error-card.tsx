@@ -4,16 +4,16 @@ import BlurCard from 'components/common/blur-card'
 import React from 'react'
 
 interface Props {
-  status_code: string
-  error_messages: string
+  statusCode: string
+  errorMessage: string
 }
 
-function ErrorCard ({ status_code, error_messages }: Props) {
+function ErrorCard ({ statusCode, errorMessage }: Props) {
   return (
   <Flex justifyContent={'center'}>
     <NextSeo
-      title={status_code}
-      description={error_messages}
+      title={statusCode}
+      description={errorMessage}
       nofollow={true}
       noindex={true}
     />
@@ -22,8 +22,8 @@ function ErrorCard ({ status_code, error_messages }: Props) {
       minW={'md'}
       textAlign={'center'}
     >
-      <CardHeader>{status_code}</CardHeader>
-      <CardBody>{error_messages}</CardBody>
+      <CardHeader>{statusCode}</CardHeader>
+      <CardBody>{errorMessage}</CardBody>
     </BlurCard>
   </Flex>
   )

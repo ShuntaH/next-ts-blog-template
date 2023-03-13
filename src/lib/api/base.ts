@@ -35,7 +35,7 @@ export const getMarkdownBySlug = (slug: string, directoryPath: string): {
  * @param keysShouldExist このメタデータが持っているべきキーの配列
  * @param slug エラーメッセージ用にこの記事を特定できる slug
  */
-export function validateMarkdownData (
+export function validateMarkdownData(
   markdownData: any,
   keysShouldExist: string[],
   slug: string
@@ -62,7 +62,6 @@ export function validateMarkdownData (
     })
   }
 
-  if (message) {
-    throw new Error(message)
-  }
+  if (!message) return;
+  throw new Error(message)
 }

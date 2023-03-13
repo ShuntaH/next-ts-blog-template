@@ -22,8 +22,8 @@ export default function Custom500 ({ filteredPosts }: Props) {
   return (
     <Layout fuse={fuse}>
       <ErrorCard
-        status_code={'500'}
-        error_messages={'Server-side error occurred'}
+        statusCode={'500'}
+        errorMessage={'Server-side error occurred'}
       />
     </Layout>
   )
