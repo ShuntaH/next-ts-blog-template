@@ -1,38 +1,40 @@
-import { ThemeTypings } from "@chakra-ui/styled-system";
-import { join } from "path";
-import Fuse from "fuse.js";
-import { FilteredPost } from "interfaces/post";
-import { SearchKeys } from "interfaces/search";
-import { DefaultSeoProps } from "next-seo";
-import { OpenGraph } from "next-seo/lib/types";
+import { ThemeTypings } from '@chakra-ui/styled-system'
+import { join } from 'path'
+import Fuse from 'fuse.js'
+import { FilteredPost } from 'interfaces/post'
+import { SearchKeys } from 'interfaces/search'
+import { DefaultSeoProps } from 'next-seo'
+import { OpenGraph } from 'next-seo/lib/types'
 
-const HOME_IMAGE = "/assets/hongkong-bg.png";
+const HOME_IMAGE = '/assets/hongkong-bg.png'
 export const HOME_OG_IMAGE_URL = HOME_IMAGE
 export const BLOG_NAME = 'hskpg blog'
-export const BLOG_DESCRIPTION = "hskpg's tech and daily life blog"
+export const BLOG_DESCRIPTION = "hskpg's tech and daily life blog."
 
 // pagination
 export const POST_COUNT_PER_PAGE = 10
 
-// search
+// search options
 export const SEARCH_MIN_CHARS = 2
 export const SEARCH_CHAR_DISTANCE_IN_VALUE = 15 // 全文検索対象の単語が複数近く見つかった時、何文字の間隔まで1hitとみなすか
 export const SEARCH_CHAR_NUMBER_AROUND_IN_VALUE = 20 // 全文検索対象の単語の前後の何文字を表示するか
 export const SEARCH_KEYS: SearchKeys[] = [
-  "title",
-  "excerpt",
-  "content",
-  "tags",
-  "slug"
+  'title',
+  'excerpt',
+  'content',
+  'tags',
+  'slug'
 ]
+export const SEARCH_FORM_PLACEHOLDER = 'Full text search'
 
-// fuse
+// fuse options
 export const FUSE_OPTIONS: Fuse.IFuseOptions<FilteredPost> = {
   isCaseSensitive: true, // 大文字・小文字を区別しない
   minMatchCharLength: 2, // ヒット文字数がこれ以上。入力文字数ではない。2の時、1文字入力でも曖昧検索の結果2文字がヒットすれば出る
   findAllMatches: true, // 検索対象が見つかっても最後まで探す
   includeScore: true, // 検索結果と検索クエリとの一致度のスコア
-  threshold: 0.2, // どれくらいの一致度か 0だと完全一致
+  threshold: 0.1, // どれくらいの一致度か 0だと完全一致していないとヒットしない
+  distance: 100000, // 難しいのでドキュメント参照すること。多めに設定しないと文章の後半がヒットしない。
   includeMatches: true, // 一致した場所
   keys: SEARCH_KEYS // 検索対象のキー
 }
@@ -62,14 +64,14 @@ const radius = '8px'
 const contentMaxWidth = `calc(${mainWidth} + ${gap} * 2)`
 const contentGap = '20px'
 const navMaxWidth = `calc(${navWidth} + ${gap} * 2)`
-const baseColorScheme: ThemeTypings["colorSchemes"] = 'blue'
-const color: ThemeTypings["colors"] = `${baseColorScheme}.300`
-const colorLight: ThemeTypings["colors"] = `${baseColorScheme}.200`
-const colorLighter: ThemeTypings["colors"] = `${baseColorScheme}.50`
-const baseTextColor: ThemeTypings["colorSchemes"] = 'gray'
-const textColor: ThemeTypings["colors"] = `${baseTextColor}.50`
-const textColorDark: ThemeTypings["colors"] = `${baseTextColor}.100`
-const textColorDarker: ThemeTypings["colors"] = `${baseTextColor}.400`
+const baseColorScheme: ThemeTypings['colorSchemes'] = 'blue'
+const color: ThemeTypings['colors'] = `${baseColorScheme}.300`
+const colorLight: ThemeTypings['colors'] = `${baseColorScheme}.200`
+const colorLighter: ThemeTypings['colors'] = `${baseColorScheme}.50`
+const baseTextColor: ThemeTypings['colorSchemes'] = 'gray'
+const textColor: ThemeTypings['colors'] = `${baseTextColor}.50`
+const textColorDark: ThemeTypings['colors'] = `${baseTextColor}.100`
+const textColorDarker: ThemeTypings['colors'] = `${baseTextColor}.400`
 
 const baseHoverStyle = {
   textDecoration: 'none'
@@ -119,18 +121,18 @@ export const DEFAULT_OPEN_GRAPH: OpenGraph = {
       url: HOME_OG_IMAGE_URL,
       width: 800,
       height: 600,
-      alt: BLOG_NAME + ' Og Image Alt',
+      alt: BLOG_NAME + ' Og Image Alt'
     },
     {
       url: '/assets/icon.png',
       width: 800,
       height: 600,
-      alt: BLOG_NAME + ' Og Image Alt',
-    },
+      alt: BLOG_NAME + ' Og Image Alt'
+    }
   ],
   profile: {
-    username: 'hskpg',
-  },
+    username: 'hskpg'
+  }
 }
 
 export const DEFAULT_SEO: DefaultSeoProps = {
@@ -143,27 +145,26 @@ export const DEFAULT_SEO: DefaultSeoProps = {
       rel: 'icon',
       type: 'image/png',
       sizes: '16x16',
-      href: '/favicon/icon-16x16.png',
+      href: '/favicon/icon-16x16.png'
     },
     {
       rel: 'icon',
       type: 'image/png',
       sizes: '32x32',
-      href: '/favicon/icon-32x32.png',
+      href: '/favicon/icon-32x32.png'
     },
     {
       rel: 'apple-touch-icon',
       sizes: '180x180',
-      href: '/favicon/apple-touch-icon-180x180.png',
+      href: '/favicon/apple-touch-icon-180x180.png'
     },
     {
       rel: 'manifest',
-      href: '/favicon/manifest.json',
+      href: '/favicon/manifest.json'
     }
   ],
   twitter: {
-    cardType: 'summary_large_image',
+    cardType: 'summary_large_image'
   },
   openGraph: DEFAULT_OPEN_GRAPH
-};
-
+}

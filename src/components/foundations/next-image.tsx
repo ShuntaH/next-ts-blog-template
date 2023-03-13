@@ -1,5 +1,5 @@
-import React from "react";
-import Image, { ImageProps } from "next/image";
+import React from 'react'
+import Image, { ImageProps } from 'next/image'
 
 /**
  * width と height　が必須だが、指定しないことが多いので、それに合わせたコンポーネントを作成。
@@ -7,7 +7,7 @@ import Image, { ImageProps } from "next/image";
  * @param props
  * @constructor
  */
-function NextImage(props: ImageProps) {
+function NextImage (props: ImageProps) {
   const propsCopy = { ...props }
   const hasSize = Boolean(props.width && props.height)
   if (!hasSize) {
@@ -16,7 +16,7 @@ function NextImage(props: ImageProps) {
   }
   return (
     <Image
-      style={props.style === undefined ? { objectFit: "cover" } : props.style}
+      style={props.style === undefined ? { objectFit: 'cover' } : props.style}
       fill={!hasSize}
       {...propsCopy}/>
   )

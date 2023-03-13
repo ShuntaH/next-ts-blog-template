@@ -1,15 +1,15 @@
-import React from "react";
-import { Table, TableContainer } from "@chakra-ui/react";
-import { TableProps } from "@chakra-ui/table/dist/table";
+import React from 'react'
+import { Table, TableContainer } from '@chakra-ui/react'
+import { TableProps } from '@chakra-ui/table/dist/table'
 
-function MarkdownTable({ children }: TableProps) {
+function MarkdownTable ({ children }: TableProps) {
   return (
     <TableContainer
       marginBlockEnd={4}
       padding={4}
-      overflowX={"scroll"}
+      overflowX={'scroll'}
       backdropFilter={'blur(2px) !important'}
-      bgColor={"whiteAlpha.200 !important"}
+      bgColor={'whiteAlpha.200 !important'}
     >
       <Table variant='simple'>
         {children}

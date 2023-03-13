@@ -1,21 +1,21 @@
-import { CardBody, CardBodyProps, Text } from "@chakra-ui/react";
-import React from "react";
-import { Post } from "interfaces/post";
-import { STYLES } from "lib/constants";
+import { CardBody, CardBodyProps, Text } from '@chakra-ui/react'
+import React from 'react'
+import { Post } from 'interfaces/post'
+import { STYLES } from 'lib/constants'
 
-type Props = {
+interface Props {
   post: Post
   cardBodyProps?: CardBodyProps
 }
 
-function PostCardBody({ post, cardBodyProps }: Props) {
+function PostCardBody ({ post, cardBodyProps }: Props) {
   return (
     <CardBody
       sx={{
-        overflow: "hidden",
-        display: "-webkit-box",
-        "WebkitBoxOrient": "vertical",
-        "WebkitLineClamp": "2"
+        overflow: 'hidden',
+        display: '-webkit-box',
+        WebkitBoxOrient: 'vertical',
+        WebkitLineClamp: '2'
       }}
       letterSpacing={'0.04em'}
       paddingTop={1}
@@ -23,7 +23,7 @@ function PostCardBody({ post, cardBodyProps }: Props) {
       paddingX={0}
       {...cardBodyProps}
     >
-      <Text fontSize={"xs"} color={STYLES.textColor} lineHeight={1.5}>
+      <Text fontSize={'xs'} color={STYLES.textColor} lineHeight={1.5}>
         {post.excerpt}
       </Text>
     </CardBody>

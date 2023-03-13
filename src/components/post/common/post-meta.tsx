@@ -1,12 +1,12 @@
-import React from "react";
-import { Box, BoxProps, Flex, TagLabelProps } from "@chakra-ui/react";
-import PostDate from "components/post/common/post-date";
-import PostTime from "components/post/common/post-time";
-import PostTags from "components/post/common/post-tags";
-import { TagLinkProps } from "interfaces/foundation";
-import { STYLES } from "lib/constants";
+import React from 'react'
+import { Box, BoxProps, Flex, TagLabelProps } from '@chakra-ui/react'
+import PostDate from 'components/post/common/post-date'
+import PostTime from 'components/post/common/post-time'
+import PostTags from 'components/post/common/post-tags'
+import { TagLinkProps } from 'interfaces/foundation'
+import { STYLES } from 'lib/constants'
 
-type Props = {
+interface Props {
   time: string
   publishedAt: string
   updatedAt: string
@@ -16,7 +16,7 @@ type Props = {
   tagLabelProps?: TagLabelProps
 }
 
-function PostMeta({
+function PostMeta ({
   time,
   publishedAt,
   updatedAt,
@@ -27,8 +27,8 @@ function PostMeta({
 }: Props) {
   return (
     <Box
-      display={{ base: 'block', md: "flex" }}
-      fontSize={"smaller"}
+      display={{ base: 'block', md: 'flex' }}
+      fontSize={'smaller'}
       color={STYLES.textColorDark}
       {...boxProps}
     >
@@ -37,7 +37,7 @@ function PostMeta({
         updatedAt={updatedAt}
         textProps={{ marginBottom: { base: 0.5 }, paddingRight: 2 }}
       />
-      <Flex alignItems={"center"} flexWrap={"wrap"}>
+      <Flex alignItems={'center'} flexWrap={'wrap'}>
         <PostTime time={time}/>
         <PostTags
           tags={tags}

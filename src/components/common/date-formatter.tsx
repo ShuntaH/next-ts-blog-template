@@ -1,7 +1,7 @@
 import { format, parseISO } from 'date-fns'
-import React, { useMemo } from "react";
+import React, { useMemo } from 'react'
 
-type Props = {
+interface Props {
   dateString: string
 }
 

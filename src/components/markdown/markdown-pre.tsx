@@ -1,5 +1,4 @@
-import Pre from "components/foundations/chakra-pre";
+import Pre from 'components/foundations/chakra-pre'
 
-const MarkdownPre = Pre;
+const MarkdownPre = Pre
 export default MarkdownPre
-

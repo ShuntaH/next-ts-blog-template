@@ -1,35 +1,28 @@
 import { Box, Kbd, ModalBody, ModalBodyProps, VStack } from '@chakra-ui/react'
-import React from "react";
-import SearchResultCard from "components/search/search-result-card";
-import { useSearch } from "hooks/useFuse";
-import { useDisclosureContext } from "contexts/disclouserContext";
+import React from 'react'
+import SearchResultCardInModal from 'components/search/modal/search-result-card-in-modal'
+import { useSearch } from 'hooks/useFuse'
 
-
-type Props = {
+interface Props {
   modalBodyProps?: ModalBodyProps
 }
 
-function SearchResultCards({ modalBodyProps }: Props) {
-
+function SearchResultCardsInModal ({ modalBodyProps }: Props) {
   const searchResultPosts = useSearch()
-  const { onClose } = useDisclosureContext()
-
   return (
     <ModalBody paddingY={0} {...modalBodyProps}>
       {
-        searchResultPosts.length ?
-          <Box marginY={3} textAlign={"right"}>
+        (searchResultPosts.length > 0)
+          ? <Box marginY={3} textAlign={'right'}>
             <span><Kbd>tab</Kbd></span>
           </Box>
-          :
-          null
+          : null
       }
       <VStack>
         {
           searchResultPosts.map((post, index) => {
             return (
-              <SearchResultCard
-                onClose={onClose}
+              <SearchResultCardInModal
                 searchResultPost={post}
                 index={index}
                 key={index}
@@ -39,7 +32,7 @@ function SearchResultCards({ modalBodyProps }: Props) {
         }
       </VStack>
     </ModalBody>
-  );
+  )
 }
 
-export default SearchResultCards
+export default SearchResultCardsInModal

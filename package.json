@@ -5,7 +5,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "typecheck": "tsc"
+    "lint:fix": "next lint --fix",
+    "typecheck": "tsc",
+    "prepare": "husky install",
+    "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json}'"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.4.9",
@@ -55,6 +58,7 @@
     "@typescript-eslint/eslint-plugin": "^5.41.0",
     "eslint": "^8.26.0",
     "eslint-config-next": "^13.0.0",
+    "eslint-config-prettier": "^8.7.0",
     "eslint-config-standard": "^17.0.0",
     "eslint-config-standard-with-typescript": "^23.0.0",
     "eslint-plugin-import": "^2.26.0",
@@ -62,7 +66,9 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.31.10",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-standard": "^5.0.0",
+    "husky": "^8.0.3",
     "typescript": "^4.8.4"
   }
 }

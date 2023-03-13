@@ -1,12 +1,12 @@
 import { Box, BoxProps, Flex, Link } from '@chakra-ui/react'
-import { BLOG_NAME, STYLES } from "lib/constants";
+import { BLOG_NAME, STYLES } from 'lib/constants'
 import NextLink from 'next/link'
-import { faTags } from "@fortawesome/free-solid-svg-icons";
-import React from "react";
-import { faGithubAlt } from "@fortawesome/free-brands-svg-icons";
-import { NavigationIcon } from "interfaces/icon";
-import SearchFormHeader from "components/search/header/search-form-header";
-import ChakraFontAwesomeIcon from "components/foundations/chakra-font-awesome-icon";
+import { faTags } from '@fortawesome/free-solid-svg-icons'
+import React from 'react'
+import { faGithubAlt } from '@fortawesome/free-brands-svg-icons'
+import { NavigationIcon } from 'interfaces/icon'
+import SearchFormHeader from 'components/search/header/search-form-header'
+import ChakraFontAwesomeIcon from 'components/foundations/chakra-font-awesome-icon'
 
 const icons: NavigationIcon[] = [
   {
@@ -23,8 +23,7 @@ const icons: NavigationIcon[] = [
   }
 ]
 
-function Header (props: BoxProps){
-
+function Header (props: BoxProps) {
   return (
     // md 以上は flex でアイテムは横並び、 それ以下は block で縦並び
     <Box {...props}>
@@ -37,14 +36,14 @@ function Header (props: BoxProps){
         marginInlineEnd="auto"
         lineHeight={STYLES.headerHeight}
         letterSpacing={'0.01em'}
-        overflow={"hidden"}
+        overflow={'hidden'}
       >
-        {/*左サイド*/}
+        {/* 左サイド */}
         <Flex margin={`auto ${STYLES.gap}`}>
           <Link
             href='/'
             as={NextLink}
-            fontSize={"24px"}
+            fontSize={'24px'}
             fontWeight={700}
             letterSpacing={'0.02em'}
             _hover={STYLES.hoverLighterStyle}
@@ -54,21 +53,22 @@ function Header (props: BoxProps){
           </Link>
         </Flex>
 
-        {/*右サイド*/}
+        {/* 右サイド */}
         <Flex
           margin={`auto ${STYLES.gap}`}
-          justifyContent={"space-between"}
-          flexWrap={"nowrap"}
-          alignItems={"center"}
+          justifyContent={'space-between'}
+          flexWrap={'nowrap'}
+          alignItems={'center'}
         >
-          {/*スマホの時はヘッダーの右サイドのアイテムリストの中から非表示にする*/}
+          {/* スマホの時はヘッダーの右サイドのアイテムリストの中から非表示にする */}
           <SearchFormHeader
             boxProps={{
-              marginRight:STYLES.gap,
+              marginRight: STYLES.gap,
               display: {
                 base: 'none',
-                md: "block"
-              }}}
+                md: 'block'
+              }
+            }}
           />
 
           <Flex>
@@ -76,32 +76,37 @@ function Header (props: BoxProps){
               icons.map((ni: NavigationIcon, index) => (
                 <Link
                   key={index}
-                  display={"block"}
+                  display={'block'}
                   href={ni.href}
                   as={NextLink}
-                  target={ni.external ? "_blank" : ""}
-                  rel={"noopener"}
+                  target={ni.external ? '_blank' : ''}
+                  rel={'noopener'}
                   title={ni.title}
                   fontSize={'xl'}
-                  _notLast={{marginRight: STYLES.gap}}
+                  _notLast={{ marginRight: STYLES.gap }}
                 >
-                  <ChakraFontAwesomeIcon icon={ni.icon}/>
+                  <ChakraFontAwesomeIcon
+                    icon={ni.icon}
+                    display={'inline'}
+                    width={4}
+                  />
                 </Link>
               ))
             }
           </Flex>
+
         </Flex>
       </Flex>
 
-      {/*スマホサイズの時は行を変えて表示する*/}
+      {/* スマホサイズの時は行を変えて表示する */}
       <SearchFormHeader
         boxProps={{
-          display: {md: 'none'},
+          display: { md: 'none' },
           maxWidth: STYLES.navMaxWidth,
           margin: `auto ${STYLES.gap}`,
           lineHeight: STYLES.headerHeight,
           letterSpacing: '0.01em',
-          overflow: "hidden"
+          overflow: 'hidden'
         }}
       />
     </Box>

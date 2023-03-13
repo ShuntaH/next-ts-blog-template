@@ -1,16 +1,16 @@
-import { NextSeo } from "next-seo";
-import { CardBody, CardHeader, Flex } from "@chakra-ui/react";
-import BlurCard from "components/common/blur-card";
-import React from "react";
+import { NextSeo } from 'next-seo'
+import { CardBody, CardHeader, Flex } from '@chakra-ui/react'
+import BlurCard from 'components/common/blur-card'
+import React from 'react'
 
-type Props = {
+interface Props {
   status_code: string
   error_messages: string
 }
 
-function ErrorCard({status_code, error_messages}: Props) {
+function ErrorCard ({ status_code, error_messages }: Props) {
   return (
-  <Flex justifyContent={"center"}>
+  <Flex justifyContent={'center'}>
     <NextSeo
       title={status_code}
       description={error_messages}
@@ -20,7 +20,7 @@ function ErrorCard({status_code, error_messages}: Props) {
     <BlurCard
       maxW={'lg'}
       minW={'md'}
-      textAlign={"center"}
+      textAlign={'center'}
     >
       <CardHeader>{status_code}</CardHeader>
       <CardBody>{error_messages}</CardBody>
@@ -30,5 +30,3 @@ function ErrorCard({status_code, error_messages}: Props) {
 }
 
 export default ErrorCard
-
-

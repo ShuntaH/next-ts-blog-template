@@ -1,7 +1,6 @@
-import React, { ImgHTMLAttributes } from "react";
-import NextImage from "components/foundations/next-image";
-import { devLog } from "lib/helpers";
-import { Box } from "@chakra-ui/react";
+import React, { ImgHTMLAttributes } from 'react'
+import NextImage from 'components/foundations/next-image'
+import { Box } from '@chakra-ui/react'
 
 /**
  * MarkdownのimgをNext.jsのImageコンポーネントに置き換える。
@@ -19,35 +18,27 @@ import { Box } from "@chakra-ui/react";
  * @param alt
  * @constructor
  */
-function MarkdownNextImage({ width, height, src, alt }: ImgHTMLAttributes<HTMLImageElement>) {
-  devLog([
-    'MarkdownNextImage',
-    'width', width, typeof width, '/',
-    'height', height, typeof height, '/',
-    'src', src, typeof src, '/',
-    'alt', typeof alt, alt
-  ], false)
-
-  if (typeof width === "string") {
+function MarkdownNextImage ({ width, height, src, alt }: ImgHTMLAttributes<HTMLImageElement>) {
+  if (typeof width === 'string') {
     throw new Error(`width must be number [${width}]`)
   }
 
-  if (typeof height === "string") {
+  if (typeof height === 'string') {
     throw new Error(`height must be number [${height}]`)
   }
 
-  if (typeof src !== "string") {
+  if (typeof src !== 'string') {
     throw new Error(`src must be string [${src}]`)
   }
 
-  if (typeof alt !== "string") {
+  if (typeof alt !== 'string') {
     throw new Error(`alt must be string [${alt}]`)
   }
 
   return (
     <Box
-      width={"full"}
-      position={"relative"}
+      width={'full'}
+      position={'relative'}
       style={width && height ? {} : { aspectRatio: '16/9' }}
     >
       <NextImage

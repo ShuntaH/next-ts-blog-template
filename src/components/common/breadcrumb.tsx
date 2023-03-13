@@ -1,23 +1,21 @@
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import {
   Breadcrumb as ChakraBreadcrumb,
   BreadcrumbItem as ChakraBreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbProps
-} from "@chakra-ui/react";
-import { STYLES } from "lib/constants";
-import { BreadcrumbItem } from "interfaces/breadcrumb";
-import React, { useMemo } from "react";
-import ChakraFontAwesomeIcon from "components/foundations/chakra-font-awesome-icon";
+} from '@chakra-ui/react'
+import { STYLES } from 'lib/constants'
+import { BreadcrumbItem } from 'interfaces/breadcrumb'
+import React, { useMemo } from 'react'
+import ChakraFontAwesomeIcon from 'components/foundations/chakra-font-awesome-icon'
 
-
-type Props = {
-  breadcrumbItems: BreadcrumbItem[],
+interface Props {
+  breadcrumbItems: BreadcrumbItem[]
   breadcrumbProps?: BreadcrumbProps
 }
 
-
-function Breadcrumb({ breadcrumbProps, breadcrumbItems }: Props) {
+function Breadcrumb ({ breadcrumbProps, breadcrumbItems }: Props) {
   const length = useMemo(() => breadcrumbItems.length, [breadcrumbItems])
 
   return (
@@ -40,16 +38,16 @@ function Breadcrumb({ breadcrumbProps, breadcrumbItems }: Props) {
               isCurrentPage={isLastItem}
               isLastChild={isLastItem}
               key={index}
-              overflowX={isLastItem ? "hidden" : 'inherit'}
+              overflowX={isLastItem ? 'hidden' : 'inherit'}
             >
               <BreadcrumbLink
                 isCurrentPage={isLastItem}
                 href={item.href}
-                width={"full"}
-                overflowX={isLastItem ? "hidden" : 'inherit'}
-                textOverflow={"ellipsis"}
-                whiteSpace={"nowrap"}
-                textDecoration={"none"}
+                width={'full'}
+                overflowX={isLastItem ? 'hidden' : 'inherit'}
+                textOverflow={'ellipsis'}
+                whiteSpace={'nowrap'}
+                textDecoration={'none'}
                 _hover={STYLES.hoverLightStyle}
                 color={STYLES.textColorDark}
                 title={item.title}
@@ -62,6 +60,5 @@ function Breadcrumb({ breadcrumbProps, breadcrumbItems }: Props) {
     </ChakraBreadcrumb>
   )
 }
-
 
 export default Breadcrumb

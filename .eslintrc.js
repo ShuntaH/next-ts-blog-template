@@ -4,34 +4,18 @@ module.exports = {
     es2021: true
   },
   extends: [
-    'plugin:react/recommended',
     'standard-with-typescript',
     'next/core-web-vitals',
-    // "standard"
+    'prettier'
   ],
   overrides: [],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
-    parser: '@typescript-eslint/parser'
+    parser: '@typescript-eslint/parser',
+    project: ["./tsconfig.json"]
   },
   plugins: [
-    'react',
     '@typescript-eslint'
   ],
-  rules: {
-    'indent': ['error', 2],
-    'linebreak-style': [
-      'error',
-      'unix'
-    ],
-    'quotes': [
-      'error',
-      'single'
-    ],
-    'semi': [
-      'error',
-      'always'
-    ],
-  }
 };
