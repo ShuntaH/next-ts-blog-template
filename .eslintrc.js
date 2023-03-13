@@ -13,25 +13,11 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
-    parser: '@typescript-eslint/parser'
+    parser: '@typescript-eslint/parser',
+    project: ["./tsconfig.json"]
   },
   plugins: [
     'react',
     '@typescript-eslint'
   ],
-  rules: {
-    'indent': ['error', 2],
-    'linebreak-style': [
-      'error',
-      'unix'
-    ],
-    'quotes': [
-      'error',
-      'single'
-    ],
-    'semi': [
-      'error',
-      'always'
-    ],
-  }
 };
