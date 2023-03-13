@@ -23,8 +23,8 @@ export default function Custom404 ({ filteredPosts }: Props) {
   return (
     <Layout fuse={fuse}>
       <ErrorCard
-        status_code={'404'}
-        error_messages={'Page Not Found'}
+        statusCode={'404'}
+        errorMessage={'Page Not Found'}
       />
     </Layout>
   )

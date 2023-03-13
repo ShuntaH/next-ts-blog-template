@@ -1,10 +1,10 @@
 import { Flex, FlexProps, Link, LinkProps, Text, TextProps } from '@chakra-ui/react'
-import { Pagination } from 'interfaces/pagination'
+import { Pagination as PaginationType } from 'interfaces/pagination'
 import NextLink from 'next/link'
 import React from 'react'
 
 interface Props {
-  pagination: Pagination
+  pagination: PaginationType
   flexProps?: FlexProps
 }
 
@@ -26,7 +26,7 @@ const linkProps: LinkProps = {
   as: NextLink
 }
 
-function Pagination ({ pagination, flexProps }: Props) {
+function Pagination({ pagination, flexProps }: Props) {
   return <Flex
     justifyContent={'space-between'}
     width={'full'}
@@ -34,7 +34,13 @@ function Pagination ({ pagination, flexProps }: Props) {
   >
     {
       pagination.prevPageHref
-        ? <Link {...linkProps} href={pagination.prevPageHref} title={'previous page'} >Previous</Link>
+        ? <Link
+          {...linkProps}
+          href={pagination.prevPageHref}
+          title={'previous page'}
+        >
+          Previous
+        </Link>
         : <Text {...textProps}>Previous</Text>
     }
 

@@ -4,7 +4,7 @@ import { useDisclosureContext } from 'contexts/disclouserContext'
 /**
  * 検索モーダルをキーボードイベントで開閉するためのフック
  */
-export function useToggleSearchModal () {
+export function useToggleSearchModal() {
   const { isOpen, onOpen, onClose } = useDisclosureContext()
   const handleToggleSearchModal = useCallback(
     (e: KeyboardEvent): void => {
@@ -14,7 +14,7 @@ export function useToggleSearchModal () {
       }
       // 他のキーイベントは止めない。
     },
-    [isOpen]
+    [ isOpen, onOpen, onClose ]
   )
 
   /**
@@ -29,6 +29,6 @@ export function useToggleSearchModal () {
       window.addEventListener('keydown', handleToggleSearchModal)
       return () => window.removeEventListener('keydown', handleToggleSearchModal)
     },
-    [isOpen]
+    [ isOpen, handleToggleSearchModal ]
   )
 }

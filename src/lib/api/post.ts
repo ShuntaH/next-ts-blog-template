@@ -24,7 +24,7 @@ const source = POST_DIRECTORY_PATH
  * @param updateAt
  * @param status
  */
-export function isPublished (publishedAt: Date, updateAt: Date, status: boolean) {
+export function isPublished(publishedAt: Date, updateAt: Date, status: boolean) {
   // UTC
   const now = new Date()
   return publishedAt <= now && updateAt <= now && status
@@ -51,7 +51,7 @@ export const getPostBySlug = (slug: string): Post | null => {
   if (!isPublished(publishedAt, updatedAt, markdownData.status)) return null
 
   // サロゲートペアの文字を考慮する
-  const charLength: number = [...content].length
+  const charLength: number = [ ...content ].length
 
   // 220文字を読むのに1分かかるとする。 hugo のプラグインのロジックを参考にした。
   const charsPerMin = 220
@@ -86,7 +86,7 @@ export const getPostBySlug = (slug: string): Post | null => {
 export const getAllPosts = (): Posts => {
   const slugs: string[] = getAllMarkdownSlugs(source) // [ 'hoge.md', 'html-md.md' ]
   const allPosts = slugs.map((slug) => getPostBySlug(slug))
-  return <Posts> allPosts.filter((post) => post)
+  return allPosts.filter((post) => post) as Posts
 }
 
 /**
@@ -115,7 +115,7 @@ export const getHtmlContentPosts = async (posts: Posts): Promise<Posts> => {
  * @param posts
  */
 export const getAllTags = (posts: Posts): string[] => {
-  return [...new Set(posts.flatMap((post) => post.tags))]
+  return [ ...new Set(posts.flatMap((post) => post.tags)) ]
 }
 
 /**
@@ -150,7 +150,7 @@ export const getTotalPageCount = (
  */
 export const getTotalPageCountRange = (posts: Posts): number[] => {
   const postCount = getTotalPostCount(posts)
-  return [...Array(getTotalPageCount(postCount)).keys()].map((pageNumber) => {
+  return [ ...Array(getTotalPageCount(postCount)).keys() ].map((pageNumber) => {
     return pageNumber + 1
   })
 }

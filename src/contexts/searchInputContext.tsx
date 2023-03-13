@@ -35,8 +35,6 @@ const searchInputReducer = (
       // return で値を返す必要がある
       return action.searchInput
     }
-    default:
-      throw Error('Unknown SearchInputAction: ' + action.type)
   }
 }
 

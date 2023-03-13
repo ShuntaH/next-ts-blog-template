@@ -11,30 +11,22 @@ import { useFuseContext } from 'contexts/fuseContext'
  * クライアントサイドでセットアップする。
  * @param filteredPosts
  */
-export function useSetupFuse (filteredPosts: FilteredPosts) {
+export function useSetupFuse(filteredPosts: FilteredPosts) {
   const handleSetupFuse = useCallback(
     () => new Fuse(filteredPosts, FUSE_OPTIONS),
-    [filteredPosts]
+    [ filteredPosts ]
   )
   return handleSetupFuse()
 }
 
 // fuseで検索して結果を返す
-export function useSearch () {
+export function useSearch() {
   // debounce の中で timer を作ると再レンダーの時に前の timer が追えなくなるので以前の
   // setTimeout を止められなくなる。 state で管理する
-  const [timer, setTimer] = useState<NodeJS.Timeout | undefined>(undefined)
-  const [searchResultPosts, setSearchResultPosts] = useState<Array<Fuse.FuseResult<FilteredPost>>>([])
+  const [ timer, setTimer ] = useState<NodeJS.Timeout | undefined>(undefined)
+  const [ searchResultPosts, setSearchResultPosts ] = useState<Array<Fuse.FuseResult<FilteredPost>>>([])
   const { searchInput } = useSearchInputContext()
   const fuse = useFuseContext()
-
-  useEffect(
-    () => {
-      // 初期レンダーの時はから文字なので検索しない
-      searchInput && handleSearch()
-    },
-    [searchInput]
-  )
 
   // 入力値から検索して最新の検索結果に更新する
   const handleSearch = useCallback(() => {
@@ -56,7 +48,15 @@ export function useSearch () {
     }, 300)
 
     setTimer(newTimer)
-  }, [searchInput])
+  }, [ searchInput ])
+
+  useEffect(
+    () => {
+      // 初期レンダーの時はから文字なので検索しない
+      searchInput && handleSearch()
+    },
+    [ searchInput, handleSearch ]
+  )
 
   return searchResultPosts
 }

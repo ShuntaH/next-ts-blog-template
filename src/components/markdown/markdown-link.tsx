@@ -15,8 +15,8 @@ const hoverColor: ThemeTypings['colors'] = 'blue.50 !important'
  * @constructor
  */
 function MarkdownLink ({ href, title, children }: LinkProps) {
-  const titleAttr = title || href
-  return href?.startsWith('/') || href?.startsWith('#') ? (
+  const titleAttr = title ?? href
+  return href?.startsWith('/') ?? href?.startsWith('#') ? (
     // サイト内リンク
     <Link
       href={href}
