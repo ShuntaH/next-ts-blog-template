@@ -14,7 +14,7 @@ export function useToggleSearchModal() {
       }
       // 他のキーイベントは止めない。
     },
-    [ isOpen, onOpen, onClose ]
+    [ isOpen ]
   )
 
   /**
@@ -29,6 +29,6 @@ export function useToggleSearchModal() {
       window.addEventListener('keydown', handleToggleSearchModal)
       return () => window.removeEventListener('keydown', handleToggleSearchModal)
     },
-    [ isOpen, handleToggleSearchModal ]
+    [ isOpen ]
   )
 }
