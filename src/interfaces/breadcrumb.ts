@@ -1,4 +1,4 @@
-export type BreadcrumbItem = {
+export interface BreadcrumbItem {
   title: string
   href: string
 }

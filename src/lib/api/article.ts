@@ -1,11 +1,9 @@
-import { Article, ArticleMarkdownData } from "interfaces/article";
-import { getMarkdownBySlug, validateMarkdownData } from "lib/api/base";
-import { ARTICLE_DIRECTORY_PATH } from "lib/constants";
+import { Article, ArticleMarkdownData } from 'interfaces/article'
+import { getMarkdownBySlug, validateMarkdownData } from 'lib/api/base'
+import { ARTICLE_DIRECTORY_PATH } from 'lib/constants'
 
-
-const keysShouldExist = [ 'title', 'excerpt', 'status' ]
+const keysShouldExist = ['title', 'excerpt', 'status']
 const source = ARTICLE_DIRECTORY_PATH
-
 
 /**
  * ファイル名からそのファイルの中身を取得する。

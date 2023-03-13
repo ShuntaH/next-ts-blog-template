@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer } from 'react';
+import React, { createContext, useContext, useReducer } from 'react'
 // 全文検索のために入力欄に打ち込まれている文字の管理と更新をする
 
 // 検索入力欄の値
@@ -12,7 +12,7 @@ const initialSearchInput: string = ''
  * 値と dispatch を useState の返り値のようにまとめて管理する。
  */
 const SearchInputContext = createContext<{
-  searchInput: string,
+  searchInput: string
   dispatch: React.Dispatch<SearchInputAction>
 }>({
   // グローバルに管理したい状態
@@ -21,7 +21,7 @@ const SearchInputContext = createContext<{
   dispatch: () => {}
 })
 
-type SearchInputAction = {
+interface SearchInputAction {
   type: 'update'
   searchInput: string
 }
@@ -36,16 +36,16 @@ const searchInputReducer = (
       return action.searchInput
     }
     default:
-      throw Error('Unknown SearchInputAction: ' + action.type);
+      throw Error('Unknown SearchInputAction: ' + action.type)
   }
 }
 
-type SearchInputProviderProps = {
+interface SearchInputProviderProps {
   children: React.ReactNode
 }
 
 export const SearchInputProvider = ({ children }: SearchInputProviderProps) => {
-  const [ searchInput, dispatch ] = useReducer(
+  const [searchInput, dispatch] = useReducer(
     // 更新するための関数
     searchInputReducer,
     // 検索入力の初期値

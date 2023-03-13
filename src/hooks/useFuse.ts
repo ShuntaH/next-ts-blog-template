@@ -1,9 +1,9 @@
-import { useCallback, useEffect, useState } from "react";
-import { FilteredPost, FilteredPosts } from "interfaces/post";
-import Fuse from "fuse.js";
-import { FUSE_OPTIONS, SEARCH_MIN_CHARS } from "lib/constants";
-import { useSearchInputContext } from "contexts/searchInputContext";
-import { useFuseContext } from "contexts/fuseContext";
+import { useCallback, useEffect, useState } from 'react'
+import { FilteredPost, FilteredPosts } from 'interfaces/post'
+import Fuse from 'fuse.js'
+import { FUSE_OPTIONS, SEARCH_MIN_CHARS } from 'lib/constants'
+import { useSearchInputContext } from 'contexts/searchInputContext'
+import { useFuseContext } from 'contexts/fuseContext'
 
 /**
  * Fuseをセットアップする。
@@ -11,20 +11,20 @@ import { useFuseContext } from "contexts/fuseContext";
  * クライアントサイドでセットアップする。
  * @param filteredPosts
  */
-export function useSetupFuse(filteredPosts: FilteredPosts) {
+export function useSetupFuse (filteredPosts: FilteredPosts) {
   const handleSetupFuse = useCallback(
     () => new Fuse(filteredPosts, FUSE_OPTIONS),
-    [ filteredPosts ]
-  );
+    [filteredPosts]
+  )
   return handleSetupFuse()
 }
 
 // fuseで検索して結果を返す
-export function useSearch() {
+export function useSearch () {
   // debounce の中で timer を作ると再レンダーの時に前の timer が追えなくなるので以前の
   // setTimeout を止められなくなる。 state で管理する
-  const [ timer, setTimer ] = useState<NodeJS.Timeout | undefined>(undefined)
-  const [ searchResultPosts, setSearchResultPosts ] = useState<Fuse.FuseResult<FilteredPost>[]>([])
+  const [timer, setTimer] = useState<NodeJS.Timeout | undefined>(undefined)
+  const [searchResultPosts, setSearchResultPosts] = useState<Array<Fuse.FuseResult<FilteredPost>>>([])
   const { searchInput } = useSearchInputContext()
   const fuse = useFuseContext()
 
@@ -33,7 +33,7 @@ export function useSearch() {
       // 初期レンダーの時はから文字なので検索しない
       searchInput && handleSearch()
     },
-    [ searchInput ]
+    [searchInput]
   )
 
   // 入力値から検索して最新の検索結果に更新する
@@ -56,7 +56,7 @@ export function useSearch() {
     }, 300)
 
     setTimer(newTimer)
-  }, [ searchInput ])
+  }, [searchInput])
 
   return searchResultPosts
 }

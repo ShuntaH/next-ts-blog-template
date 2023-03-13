@@ -1,24 +1,22 @@
 import { Box, Kbd, ModalBody, ModalBodyProps, VStack } from '@chakra-ui/react'
-import React from "react";
-import SearchResultCardInModal from "components/search/modal/search-result-card-in-modal";
-import { useSearch } from "hooks/useFuse";
+import React from 'react'
+import SearchResultCardInModal from 'components/search/modal/search-result-card-in-modal'
+import { useSearch } from 'hooks/useFuse'
 
-
-type Props = {
+interface Props {
   modalBodyProps?: ModalBodyProps
 }
 
-function SearchResultCardsInModal({ modalBodyProps }: Props) {
+function SearchResultCardsInModal ({ modalBodyProps }: Props) {
   const searchResultPosts = useSearch()
   return (
     <ModalBody paddingY={0} {...modalBodyProps}>
       {
-        searchResultPosts.length ?
-          <Box marginY={3} textAlign={"right"}>
+        (searchResultPosts.length > 0)
+          ? <Box marginY={3} textAlign={'right'}>
             <span><Kbd>tab</Kbd></span>
           </Box>
-          :
-          null
+          : null
       }
       <VStack>
         {
@@ -34,7 +32,7 @@ function SearchResultCardsInModal({ modalBodyProps }: Props) {
         }
       </VStack>
     </ModalBody>
-  );
+  )
 }
 
 export default SearchResultCardsInModal

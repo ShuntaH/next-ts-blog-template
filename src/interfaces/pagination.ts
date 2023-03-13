@@ -1,19 +1,19 @@
-import { Posts } from "interfaces/post";
+import { Posts } from 'interfaces/post'
 
-export type PaginationProps = {
-  currentPageNumber: number;
-  postCountPerPage?: number;
-  posts: Posts;
-  basePaths: string,
-  pageTitle: string,
+export interface PaginationProps {
+  currentPageNumber: number
+  postCountPerPage?: number
+  posts: Posts
+  basePaths: string
+  pageTitle: string
 }
 
-export type Pagination = {
+export interface Pagination {
   currentPageNumber: number
   postCountPerPage: number
   totalPostCount: number
   totalPageCount: number
-  currentPagePosts: Posts,
+  currentPagePosts: Posts
   nextPageHref: string | null
   prevPageHref: string | null
   pageTitle: string

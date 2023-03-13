@@ -1,21 +1,21 @@
-import React, { createContext, useContext } from 'react';
-import { useDisclosure } from "@chakra-ui/react";
+import React, { createContext, useContext } from 'react'
+import { useDisclosure } from '@chakra-ui/react'
 
 const DisclosureContext = createContext<{
-  isOpen: boolean,
-  onOpen: () => void,
-  onClose: () => void,
+  isOpen: boolean
+  onOpen: () => void
+  onClose: () => void
   afterOpenRef: React.MutableRefObject<null | HTMLInputElement>
   afterCloseRef: React.MutableRefObject<null | HTMLInputElement>
 }>({
-  isOpen: false,
-  onOpen: () => {},
-  onClose: () => {},
-  afterOpenRef: { current: null }, // モーダルが開いた後にフォーカスする要素
-  afterCloseRef: { current: null } // モーダルが閉じた後にフォーカスする要素
-})
+      isOpen: false,
+      onOpen: () => {},
+      onClose: () => {},
+      afterOpenRef: { current: null }, // モーダルが開いた後にフォーカスする要素
+      afterCloseRef: { current: null } // モーダルが閉じた後にフォーカスする要素
+    })
 
-type DisclosureProviderProps = {
+interface DisclosureProviderProps {
   children: React.ReactNode
 }
 
@@ -25,7 +25,7 @@ type DisclosureProviderProps = {
  * @param children
  * @constructor
  */
-export function DisclosureProvider({ children }: DisclosureProviderProps) {
+export function DisclosureProvider ({ children }: DisclosureProviderProps) {
   const afterOpenRef = React.useRef(null)
   const afterCloseRef = React.useRef(null)
   const { isOpen, onOpen, onClose } = useDisclosure()

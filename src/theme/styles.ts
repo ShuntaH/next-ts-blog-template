@@ -1,3 +1,3 @@
-import { STYLES } from "lib/constants";
+import { STYLES } from 'lib/constants'
 
 export default STYLES

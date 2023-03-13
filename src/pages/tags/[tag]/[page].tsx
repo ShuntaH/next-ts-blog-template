@@ -6,18 +6,18 @@ import {
   getSortedPosts,
   getTaggedPosts,
   getTotalPageCountRange
-} from "lib/api/post";
-import { Pagination } from "interfaces/pagination";
-import { FilteredPosts } from "interfaces/post";
-import Layout from "components/layouts/layout";
-import PostList from "components/post/postList/post-list";
-import { useSetupFuse } from "hooks/useFuse";
-import { getFilteredPosts } from "lib/api/filterPost";
-import { useSeo } from "hooks/useSeo";
-import { NextSeo } from "next-seo";
-import { GetStaticPropsResult } from "next";
+} from 'lib/api/post'
+import { Pagination } from 'interfaces/pagination'
+import { FilteredPosts } from 'interfaces/post'
+import Layout from 'components/layouts/layout'
+import PostList from 'components/post/postList/post-list'
+import { useSetupFuse } from 'hooks/useFuse'
+import { getFilteredPosts } from 'lib/api/filterPost'
+import { useSeo } from 'hooks/useSeo'
+import { NextSeo } from 'next-seo'
+import { GetStaticPropsResult } from 'next'
 
-export async function getStaticPaths() {
+export async function getStaticPaths () {
   const posts = getSortedPosts(getAllPosts())
   const tags = getAllTags(posts)
   let paths: object[] = []
@@ -40,7 +40,7 @@ export async function getStaticPaths() {
         ...paths,
         {
           params: {
-            tag: tag,
+            tag,
             page: pageNumber
           }
         }
@@ -51,23 +51,23 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: false,
+    fallback: false
   }
 }
 
-type Context = {
+interface Context {
   params: {
-    tag: string,
+    tag: string
     page: string
   }
 }
 
-type Props = {
+interface Props {
   pagination: Pagination
   filteredPosts: FilteredPosts
 }
 
-export async function getStaticProps({ params }: Context): Promise<GetStaticPropsResult<Props>> {
+export async function getStaticProps ({ params }: Context): Promise<GetStaticPropsResult<Props>> {
   const allPosts = getAllPosts()
 
   const taggedPosts = allPosts.filter((post) => post.tags.includes(params.tag))
@@ -76,7 +76,7 @@ export async function getStaticProps({ params }: Context): Promise<GetStaticProp
     pageTitle: `${params.tag}タグの記事一覧 ${params.page}ページ目`,
     currentPageNumber: Number(params.page),
     posts: await getHtmlContentPosts(getSortedPosts(taggedPosts)),
-    basePaths: `/tags/${params.tag}`,
+    basePaths: `/tags/${params.tag}`
   })
 
   const filteredPosts = await getFilteredPosts(allPosts)
@@ -84,16 +84,16 @@ export async function getStaticProps({ params }: Context): Promise<GetStaticProp
   return {
     props: {
       filteredPosts,
-      pagination,
-    },
+      pagination
+    }
   }
 }
 
-export default function PaginatedPage({ pagination, filteredPosts }: Props) {
+export default function PaginatedPage ({ pagination, filteredPosts }: Props) {
   const seo = useSeo(
     `${pagination.pageTitle}`,
     `${pagination.pageTitle}です`,
-     pagination.currentUrl
+    pagination.currentUrl
   )
   const fuse = useSetupFuse(filteredPosts)
   return (
@@ -101,7 +101,7 @@ export default function PaginatedPage({ pagination, filteredPosts }: Props) {
       <NextSeo {...seo} />
       <PostList
         pagination={pagination}
-        boxProps={{ minHeight: "inherit" }}
+        boxProps={{ minHeight: 'inherit' }}
       />
     </Layout>
   )

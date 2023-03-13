@@ -1,16 +1,15 @@
 import { FormControl, FormControlProps, Input, InputGroup, InputRightElement } from '@chakra-ui/react'
-import React from "react";
-import { useSearchInputContext } from "contexts/searchInputContext";
-import { useDisclosureContext } from "contexts/disclouserContext";
-import { SEARCH_FORM_PLACEHOLDER, STYLES } from "lib/constants";
-import ChakraFontAwesomeIcon from "components/foundations/chakra-font-awesome-icon";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import React from 'react'
+import { useSearchInputContext } from 'contexts/searchInputContext'
+import { useDisclosureContext } from 'contexts/disclouserContext'
+import { SEARCH_FORM_PLACEHOLDER, STYLES } from 'lib/constants'
+import ChakraFontAwesomeIcon from 'components/foundations/chakra-font-awesome-icon'
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 
+interface Props { formControlProps?: FormControlProps }
 
-type Props = { formControlProps?: FormControlProps }
-
-function SearchFormControlInModal({formControlProps}: Props) {
-  const {searchInput, dispatch} = useSearchInputContext()
+function SearchFormControlInModal ({ formControlProps }: Props) {
+  const { searchInput, dispatch } = useSearchInputContext()
   const { afterOpenRef } = useDisclosureContext()
 
   const handleInput = (e: React.MouseEvent<HTMLInputElement>): void => {
@@ -22,7 +21,7 @@ function SearchFormControlInModal({formControlProps}: Props) {
 
   return (
     <FormControl
-      width={"full"}
+      width={'full'}
       {...formControlProps}
     >
       <InputGroup size='md'>
@@ -38,12 +37,12 @@ function SearchFormControlInModal({formControlProps}: Props) {
           <ChakraFontAwesomeIcon
             icon={faMagnifyingGlass}
             width={4}
-            display={"inline"}
+            display={'inline'}
           />
         </InputRightElement>
       </InputGroup>
     </FormControl>
-  );
+  )
 }
 
 export default SearchFormControlInModal

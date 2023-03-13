@@ -1,16 +1,14 @@
 import { Highlight, Text, TextProps } from '@chakra-ui/react'
-import React, { useCallback } from "react";
-import Fuse from "fuse.js";
-import { SEARCH_CHAR_DISTANCE_IN_VALUE, SEARCH_CHAR_NUMBER_AROUND_IN_VALUE } from "lib/constants";
+import React, { useCallback } from 'react'
+import Fuse from 'fuse.js'
+import { SEARCH_CHAR_DISTANCE_IN_VALUE, SEARCH_CHAR_NUMBER_AROUND_IN_VALUE } from 'lib/constants'
 
-
-type Props = {
+interface Props {
   textProps?: TextProps
   match: Fuse.FuseResultMatch
 }
 
-function SearchModalContentBodyHighlightInModal({ match, textProps }: Props) {
-
+function SearchModalContentBodyHighlightInModal ({ match, textProps }: Props) {
   /**
    * 全文検索して、マッチしたとき、マッチ結果の中に含まれる、マッチ結果の単語の最初と
    * 最後が何文字目にあるかの情報をもとに、マッチした単語を取得する。
@@ -20,7 +18,7 @@ function SearchModalContentBodyHighlightInModal({ match, textProps }: Props) {
   const getHighlightQueries = useCallback(
     (match: Fuse.FuseResultMatch) => match.indices.map(
       (range) => match.value!.slice(range[0], range[1] + 1))
-    , [ match ])
+    , [match])
 
   /**
    * 表示される検索結果の文字列を作成する。
@@ -46,8 +44,9 @@ function SearchModalContentBodyHighlightInModal({ match, textProps }: Props) {
 
           // 検索対象の文字列の周辺の文字で、最後の文字のインデックスが全体の文字数を上回るとき、
           // 抜き取られる文字列の最後の文字は検索対象の最後の文字になる。
-          let end = (range[1] + SEARCH_CHAR_NUMBER_AROUND_IN_VALUE + 1) > valueLength + 1 ?
-            valueLength : range[1] + SEARCH_CHAR_NUMBER_AROUND_IN_VALUE + 1
+          const end = (range[1] + SEARCH_CHAR_NUMBER_AROUND_IN_VALUE + 1) > valueLength + 1
+            ? valueLength
+            : range[1] + SEARCH_CHAR_NUMBER_AROUND_IN_VALUE + 1
 
           // 前の end とこのループの start を比較して、表示する文字列同士が近くにあったら
           // 前の start から今の end まで1つのマッチした表示結果文字列として扱う。
@@ -58,7 +57,7 @@ function SearchModalContentBodyHighlightInModal({ match, textProps }: Props) {
             start - prevEnd <= SEARCH_CHAR_DISTANCE_IN_VALUE
           ) {
             start = prevStart
-            shouldExclude = [ ...shouldExclude, index - 1 ]
+            shouldExclude = [...shouldExclude, index - 1]
           }
           prevStart = start
           prevEnd = end
@@ -73,16 +72,16 @@ function SearchModalContentBodyHighlightInModal({ match, textProps }: Props) {
       // マッチした文字列を含む文字列を連結して、検索結果として表示する文字列を作成する。
       // ヒット数が多すぎて長くなったら css の方でトリムする。
       return cleanParts.join('.........')
-    }, [ match ])
+    }, [match])
 
   return (
     <Text
       {...textProps}
       sx={{
-        overflow: "hidden",
-        display: "-webkit-box",
-        "WebkitBoxOrient": "vertical",
-        "WebkitLineClamp": "4"
+        overflow: 'hidden',
+        display: '-webkit-box',
+        WebkitBoxOrient: 'vertical',
+        WebkitLineClamp: '4'
       }}>
       <Highlight
         query={getHighlightQueries(match)}
@@ -91,7 +90,7 @@ function SearchModalContentBodyHighlightInModal({ match, textProps }: Props) {
         {getCharsAroundHighlight(match)}
       </Highlight>
     </Text>
-  );
+  )
 }
 
 export default SearchModalContentBodyHighlightInModal

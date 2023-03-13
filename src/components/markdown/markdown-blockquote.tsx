@@ -1,5 +1,4 @@
-import Blockquote from "components/foundations/chakra-blockquote";
+import Blockquote from 'components/foundations/chakra-blockquote'
 
-const MarkdownBlockquote = Blockquote;
-export default MarkdownBlockquote;
-
+const MarkdownBlockquote = Blockquote
+export default MarkdownBlockquote

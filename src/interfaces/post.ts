@@ -1,7 +1,6 @@
-import { SearchKeys } from "interfaces/search";
+import { SearchKeys } from 'interfaces/search'
 
-
-export type PostMarkdownData = {
+export interface PostMarkdownData {
   title: string
   publishedAt: string
   updatedAt: string
@@ -11,7 +10,7 @@ export type PostMarkdownData = {
   tags: string[]
 }
 
-export type Post = {
+export interface Post {
   title: string
   publishedAt: string
   updatedAt: string

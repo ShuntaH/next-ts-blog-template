@@ -1,6 +1,6 @@
-import { join } from "path";
-import matter from "gray-matter";
-import * as fs from "fs";
+import { join } from 'path'
+import matter from 'gray-matter'
+import * as fs from 'fs'
 
 /**
  * マークダウンの全ての slug を取得する。
@@ -16,8 +16,8 @@ export const getAllMarkdownSlugs = (directoryPath: string) => fs.readdirSync(dir
  * @param directoryPath
  */
 export const getMarkdownBySlug = (slug: string, directoryPath: string): {
-  data: {},
-  content: string,
+  data: {}
+  content: string
   cleanedSlug: string
 } => {
   // ディレクトリから .md つきでも、パスからでも slug を渡せる
@@ -35,31 +35,29 @@ export const getMarkdownBySlug = (slug: string, directoryPath: string): {
  * @param keysShouldExist このメタデータが持っているべきキーの配列
  * @param slug エラーメッセージ用にこの記事を特定できる slug
  */
-export function validateMarkdownData(
+export function validateMarkdownData (
   markdownData: any,
   keysShouldExist: string[],
   slug: string
 ): never | void {
   const markdownDataKeys = Object.keys(markdownData)
-  let message = undefined
+  let message
 
-  if (!markdownDataKeys.length) {
+  if (markdownDataKeys.length === 0) {
     // data の部分が空か --- の数を間違えているなどして取れていない
     message = `Markdown file "${slug}" data is empty. check data part syntax.`
   } else {
-    markdownDataKeys.forEach((k => {
+    markdownDataKeys.forEach(k => {
       // キーが不足していないか
       if (!keysShouldExist.includes(k)) {
         message = `Markdown file "${slug}" contains unknown data "${k}".`
-        return
       }
-    }))
+    })
 
     keysShouldExist.forEach((k) => {
       // 余計なキーが入っていないか
       if (markdownData[k] === undefined) {
         message = `Markdown file "${slug}" is lack of markdown data "${k}".`
-        return
       }
     })
   }

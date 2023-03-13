@@ -8,13 +8,12 @@ import {
   ModalHeader,
   ModalOverlay
 } from '@chakra-ui/react'
-import React from "react";
-import SearchResultCardsInModal from "components/search/modal/search-result-cards-in-modal";
-import { useDisclosureContext } from "contexts/disclouserContext";
-import SearchFormControlInModal from "components/search/modal/search-form-control-in-modal";
+import React from 'react'
+import SearchResultCardsInModal from 'components/search/modal/search-result-cards-in-modal'
+import { useDisclosureContext } from 'contexts/disclouserContext'
+import SearchFormControlInModal from 'components/search/modal/search-form-control-in-modal'
 
-
-type Props = {
+interface Props {
   boxProps?: BoxProps
 }
 
@@ -28,26 +27,26 @@ function SearchModal ({ boxProps }: Props) {
         initialFocusRef={afterOpenRef}
         finalFocusRef={afterCloseRef}
         returnFocusOnClose={false}
-        scrollBehavior={"inside"}
+        scrollBehavior={'inside'}
       >
-        <ModalOverlay width={"full"}/>
+        <ModalOverlay width={'full'}/>
         <ModalContent
           backdropFilter={'blur(2px)'}
-          bgColor={"whiteAlpha.200"}
+          bgColor={'whiteAlpha.200'}
         >
-          {/*検索欄*/}
+          {/* 検索欄 */}
           <ModalHeader>
-            <SearchFormControlInModal formControlProps={{marginTop: 7}}/>
+            <SearchFormControlInModal formControlProps={{ marginTop: 7 }}/>
             <ModalCloseButton tabIndex={-1}/>
           </ModalHeader>
 
-          {/*検索結果*/}
+          {/* 検索結果 */}
           <SearchResultCardsInModal />
           <ModalFooter/>
         </ModalContent>
       </Modal>
     </Box>
-  );
+  )
 }
 
 export default SearchModal

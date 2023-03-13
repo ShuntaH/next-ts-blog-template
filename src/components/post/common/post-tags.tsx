@@ -1,38 +1,36 @@
-import { HStack, StackProps, TagLabelProps } from "@chakra-ui/react";
-import React from "react";
-import TagLink from "components/foundations/tag-link";
-import { TagLinkProps } from "interfaces/foundation";
+import { HStack, StackProps, TagLabelProps } from '@chakra-ui/react'
+import React from 'react'
+import TagLink from 'components/foundations/tag-link'
+import { TagLinkProps } from 'interfaces/foundation'
 
-type Props = {
-  tags : string[]
+interface Props {
+  tags: string[]
   stackProps?: StackProps
   tagLinkProps?: TagLinkProps
   tagLabelProps?: TagLabelProps
 }
 
-function PostTags({
+function PostTags ({
   tags,
   stackProps,
   tagLinkProps,
   tagLabelProps
-}: Props)
-{
+}: Props) {
   return (
-    tags.length > 0 ?
-      <HStack {...stackProps} shouldWrapChildren flexWrap={"nowrap"}>
+    tags.length > 0
+      ? <HStack {...stackProps} shouldWrapChildren flexWrap={'nowrap'}>
         {
           tags.map((tag, index) => (
             <TagLink
               key={index}
-              tagLinkProps={{...tagLinkProps, title: tag}}
+              tagLinkProps={{ ...tagLinkProps, title: tag }}
               tagLabelProps={tagLabelProps}
             >
               {tag}
             </TagLink>
           ))}
       </HStack>
-      :
-      null
+      : null
   )
 }
 

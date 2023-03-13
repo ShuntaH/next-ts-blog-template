@@ -1,13 +1,13 @@
 import { AppProps } from 'next/app'
-import { ChakraProvider } from "@chakra-ui/react";
-import { DefaultSeo } from 'next-seo';
-import { DEFAULT_SEO } from "lib/constants";
-import React from "react";
-import theme from "theme";
-import BlurBackground from "components/blur-background";
-import { useToggleSearchModal } from "hooks/useKeyboradEvents";
+import { ChakraProvider } from '@chakra-ui/react'
+import { DefaultSeo } from 'next-seo'
+import { DEFAULT_SEO } from 'lib/constants'
+import React from 'react'
+import theme from 'theme'
+import BlurBackground from 'components/blur-background'
+import { useToggleSearchModal } from 'hooks/useKeyboradEvents'
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp ({ Component, pageProps }: AppProps) {
   // todo aタグにしているカードなどはLinkBoxとLinkOverlayを使うようにする
   useToggleSearchModal()
   return (

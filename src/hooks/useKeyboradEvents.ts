@@ -1,22 +1,20 @@
-import { useCallback, useEffect } from "react";
-import { useDisclosureContext } from "contexts/disclouserContext";
-
+import { useCallback, useEffect } from 'react'
+import { useDisclosureContext } from 'contexts/disclouserContext'
 
 /**
  * 検索モーダルをキーボードイベントで開閉するためのフック
  */
-export function useToggleSearchModal() {
+export function useToggleSearchModal () {
   const { isOpen, onOpen, onClose } = useDisclosureContext()
   const handleToggleSearchModal = useCallback(
     (e: KeyboardEvent): void => {
       if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
-        isOpen ? onClose() : onOpen();
-        e.preventDefault();
-        return;
+        isOpen ? onClose() : onOpen()
+        e.preventDefault()
       }
       // 他のキーイベントは止めない。
     },
-    [ isOpen ]
+    [isOpen]
   )
 
   /**
@@ -28,10 +26,9 @@ export function useToggleSearchModal() {
    */
   useEffect(
     () => {
-      window.addEventListener("keydown", handleToggleSearchModal);
-      return () => window.removeEventListener("keydown", handleToggleSearchModal);
+      window.addEventListener('keydown', handleToggleSearchModal)
+      return () => window.removeEventListener('keydown', handleToggleSearchModal)
     },
-    [ isOpen ]
-  );
+    [isOpen]
+  )
 }
-

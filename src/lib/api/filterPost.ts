@@ -1,6 +1,5 @@
-import { FilteredPost, FilteredPosts, Posts } from "interfaces/post";
-import { markdownToPlainText } from "lib/markdown/client";
-
+import { FilteredPost, FilteredPosts, Posts } from 'interfaces/post'
+import { markdownToPlainText } from 'lib/markdown/client'
 
 // 新規オブジェクトを返すよう関数にする
 export const getFilteredInitialPost = (): FilteredPost => {
@@ -17,7 +16,7 @@ export const getFilteredInitialPost = (): FilteredPost => {
  * 記事データからそれぞれ、検索対象ではないデータ(slug や time など)
  * は除いて、必要なデータのみから検索用途の記事データを作成する。
  */
-export async function getFilteredPosts(allPosts: Posts): Promise<FilteredPosts> {
+export async function getFilteredPosts (allPosts: Posts): Promise<FilteredPosts> {
   return await Promise.all(
     allPosts.map(async (post) => {
       const filteredPost: FilteredPost = {
@@ -25,7 +24,7 @@ export async function getFilteredPosts(allPosts: Posts): Promise<FilteredPosts> 
         excerpt: post.excerpt,
         slug: post.slug,
         tags: post.tags,
-        content: await markdownToPlainText(post.content),
+        content: await markdownToPlainText(post.content)
       }
       return filteredPost
     }))

@@ -1,10 +1,9 @@
-import { Post, PostMarkdownData, Posts } from "interfaces/post";
-import { Pagination, PaginationProps } from "interfaces/pagination";
-import { POST_COUNT_PER_PAGE, POST_DIRECTORY_PATH } from "lib/constants";
-import { getAllMarkdownSlugs, getMarkdownBySlug, validateMarkdownData } from "lib/api/base";
-import { parseISO } from "date-fns";
-import { markdownToHtml } from "lib/markdown/server";
-
+import { Post, PostMarkdownData, Posts } from 'interfaces/post'
+import { Pagination, PaginationProps } from 'interfaces/pagination'
+import { POST_COUNT_PER_PAGE, POST_DIRECTORY_PATH } from 'lib/constants'
+import { getAllMarkdownSlugs, getMarkdownBySlug, validateMarkdownData } from 'lib/api/base'
+import { parseISO } from 'date-fns'
+import { markdownToHtml } from 'lib/markdown/server'
 
 // type Post と一致させること
 const keysShouldExist = [
@@ -25,7 +24,7 @@ const source = POST_DIRECTORY_PATH
  * @param updateAt
  * @param status
  */
-export function isPublished(publishedAt: Date, updateAt: Date, status: boolean) {
+export function isPublished (publishedAt: Date, updateAt: Date, status: boolean) {
   // UTC
   const now = new Date()
   return publishedAt <= now && updateAt <= now && status
@@ -36,7 +35,6 @@ export function isPublished(publishedAt: Date, updateAt: Date, status: boolean) 
  * @param slug マークダウンファイルの名前
  */
 export const getPostBySlug = (slug: string): Post | null => {
-
   const { data, content, cleanedSlug } = getMarkdownBySlug(slug, source)
   const _markdownData = data
   validateMarkdownData(_markdownData, keysShouldExist, slug)
@@ -53,7 +51,7 @@ export const getPostBySlug = (slug: string): Post | null => {
   if (!isPublished(publishedAt, updatedAt, markdownData.status)) return null
 
   // サロゲートペアの文字を考慮する
-  const charLength: number = [ ...content ].length
+  const charLength: number = [...content].length
 
   // 220文字を読むのに1分かかるとする。 hugo のプラグインのロジックを参考にした。
   const charsPerMin = 220
@@ -68,7 +66,7 @@ export const getPostBySlug = (slug: string): Post | null => {
   // もしマークダウンで設定を忘れた項目があれば undefined はシリアライズ
   // できないのでビルドに失敗する。
   return {
-    content: content,
+    content,
     slug: cleanedSlug,
     status: markdownData.status,
     title: markdownData.title,
@@ -103,8 +101,8 @@ export const getSortedPosts = (posts: Posts): Posts => {
  * 全記事一括でマークダウンの内容をHTMLに変換する
  * @param posts
  */
-export const getHtmlContentPosts = (posts: Posts): Promise<Posts> => {
-  return Promise.all(posts.map(async (post) => {
+export const getHtmlContentPosts = async (posts: Posts): Promise<Posts> => {
+  return await Promise.all(posts.map(async (post) => {
     return {
       ...post,
       content: await markdownToHtml(post.content)
@@ -117,7 +115,7 @@ export const getHtmlContentPosts = (posts: Posts): Promise<Posts> => {
  * @param posts
  */
 export const getAllTags = (posts: Posts): string[] => {
-  return [ ...new Set(posts.flatMap((post) => post.tags)) ]
+  return [...new Set(posts.flatMap((post) => post.tags))]
 }
 
 /**
@@ -145,7 +143,6 @@ export const getTotalPageCount = (
   postCountPerPage: number = POST_COUNT_PER_PAGE
 ): number => Math.ceil(totalPostCount / postCountPerPage)
 
-
 /**
  * 渡された記事リストから記事数を取得して、パジネーションをした時に何ページあるかを返す。
  * 3ページあったら[ 1, 2, 3 ] と返す。
@@ -153,7 +150,7 @@ export const getTotalPageCount = (
  */
 export const getTotalPageCountRange = (posts: Posts): number[] => {
   const postCount = getTotalPostCount(posts)
-  return [ ...Array(getTotalPageCount(postCount)).keys() ].map((pageNumber) => {
+  return [...Array(getTotalPageCount(postCount)).keys()].map((pageNumber) => {
     return pageNumber + 1
   })
 }
@@ -173,10 +170,9 @@ export const getPagination = (
     basePaths,
     pageTitle,
     postCountPerPage = POST_COUNT_PER_PAGE
-  }
-    : PaginationProps
+  }: PaginationProps
 ): Pagination => {
-  const startIndex = (currentPageNumber - 1) * postCountPerPage;
+  const startIndex = (currentPageNumber - 1) * postCountPerPage
   const totalPostCount = getTotalPostCount(posts)
   const totalPageCount = getTotalPageCount(totalPostCount)
 
@@ -187,11 +183,13 @@ export const getPagination = (
     basePaths = basePaths.slice(0, -1)
   }
 
-  const prevPageHref = currentPageNumber === 1 ?
-    null : `${basePaths}/${currentPageNumber - 1}`
+  const prevPageHref = currentPageNumber === 1
+    ? null
+    : `${basePaths}/${currentPageNumber - 1}`
 
-  const nextPageHref = currentPageNumber === totalPageCount ?
-    null : `${basePaths}/${currentPageNumber + 1}`
+  const nextPageHref = currentPageNumber === totalPageCount
+    ? null
+    : `${basePaths}/${currentPageNumber + 1}`
 
   return {
     currentPageNumber,
@@ -202,8 +200,6 @@ export const getPagination = (
     totalPageCount,
     nextPageHref,
     prevPageHref,
-    currentPagePosts: posts!.slice(startIndex, startIndex + postCountPerPage),
+    currentPagePosts: posts.slice(startIndex, startIndex + postCountPerPage)
   }
 }
-
-

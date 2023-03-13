@@ -1,18 +1,18 @@
-import { CardHeader, CardHeaderProps } from "@chakra-ui/react";
-import { Post } from "interfaces/post";
-import PostMeta from "components/post/common/post-meta";
-import React from "react";
-import PostCardTitle from "components/post/postList/post-card-title";
+import { CardHeader, CardHeaderProps } from '@chakra-ui/react'
+import { Post } from 'interfaces/post'
+import PostMeta from 'components/post/common/post-meta'
+import React from 'react'
+import PostCardTitle from 'components/post/postList/post-card-title'
 
-type Props = {
+interface Props {
   post: Post
   cardHeaderProps?: CardHeaderProps
 }
 
-function PostCardHeader({ post, cardHeaderProps }: Props) {
+function PostCardHeader ({ post, cardHeaderProps }: Props) {
   return (
     <CardHeader
-      as={"header"}
+      as={'header'}
       paddingY={1}
       paddingX={0}
       {...cardHeaderProps}
@@ -25,7 +25,7 @@ function PostCardHeader({ post, cardHeaderProps }: Props) {
         tags={post.tags}
         boxProps={{
           marginBottom: { base: 1, md: 1 },
-          fontSize: { base: "xs", md: 'sm' }
+          fontSize: { base: 'xs', md: 'sm' }
         }}
       />
     </CardHeader>

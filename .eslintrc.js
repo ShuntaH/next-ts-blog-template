@@ -4,10 +4,9 @@ module.exports = {
     es2021: true
   },
   extends: [
-    'plugin:react/recommended',
     'standard-with-typescript',
     'next/core-web-vitals',
-    // "standard"
+    'prettier'
   ],
   overrides: [],
   parserOptions: {
@@ -17,7 +16,6 @@ module.exports = {
     project: ["./tsconfig.json"]
   },
   plugins: [
-    'react',
     '@typescript-eslint'
   ],
 };

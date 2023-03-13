@@ -1,18 +1,18 @@
-import { getAllPosts, getHtmlContentPosts, getPagination, getSortedPosts } from "lib/api/post";
-import { FilteredPosts, Posts } from "interfaces/post";
-import { Pagination } from "interfaces/pagination";
-import Layout from "components/layouts/layout";
-import PostList from "components/post/postList/post-list";
-import { useSetupFuse } from "hooks/useFuse";
-import { getFilteredPosts } from "lib/api/filterPost";
-import { GetStaticPropsResult } from "next";
+import { getAllPosts, getHtmlContentPosts, getPagination, getSortedPosts } from 'lib/api/post'
+import { FilteredPosts, Posts } from 'interfaces/post'
+import { Pagination } from 'interfaces/pagination'
+import Layout from 'components/layouts/layout'
+import PostList from 'components/post/postList/post-list'
+import { useSetupFuse } from 'hooks/useFuse'
+import { getFilteredPosts } from 'lib/api/filterPost'
+import { GetStaticPropsResult } from 'next'
 
-type Props = {
-  pagination: Pagination,
+interface Props {
+  pagination: Pagination
   filteredPosts: FilteredPosts
 }
 
-export async function getStaticProps(): Promise<GetStaticPropsResult<Props>> {
+export async function getStaticProps (): Promise<GetStaticPropsResult<Props>> {
   const allPosts: Posts = getAllPosts()
 
   const filteredPosts = await getFilteredPosts(allPosts)
@@ -21,18 +21,18 @@ export async function getStaticProps(): Promise<GetStaticPropsResult<Props>> {
     pageTitle: 'TOP',
     currentPageNumber: 1,
     posts: await getHtmlContentPosts(getSortedPosts(allPosts)),
-    basePaths: '/pages',
+    basePaths: '/pages'
   })
 
   return {
     props: {
       pagination,
       filteredPosts
-    },
+    }
   }
 }
 
-export default function Index({ pagination, filteredPosts }: Props) {
+export default function Index ({ pagination, filteredPosts }: Props) {
   const fuse = useSetupFuse(filteredPosts)
 
   // このページは top page なので デフォルト設定があるため、

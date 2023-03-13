@@ -1,10 +1,10 @@
-export type ArticleMarkdownData = {
+export interface ArticleMarkdownData {
   title: string
   status: boolean
   excerpt: string
 }
 
-export type Article = {
+export interface Article {
   title: string
   content: string
   status: boolean

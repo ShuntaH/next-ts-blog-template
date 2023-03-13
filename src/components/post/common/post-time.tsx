@@ -1,20 +1,20 @@
-import React from "react";
-import { Text } from "@chakra-ui/react";
-import ChakraFontAwesomeIcon from "components/foundations/chakra-font-awesome-icon";
-import { faReadme } from "@fortawesome/free-brands-svg-icons";
-import { STYLES } from "lib/constants";
+import React from 'react'
+import { Text } from '@chakra-ui/react'
+import ChakraFontAwesomeIcon from 'components/foundations/chakra-font-awesome-icon'
+import { faReadme } from '@fortawesome/free-brands-svg-icons'
+import { STYLES } from 'lib/constants'
 
-type Props = {
+interface Props {
   time: string
 }
 
-function PostTime({ time }: Props) {
+function PostTime ({ time }: Props) {
   return (
     <Text
-      as={"span"}
-      display={"inline-flex"}
-      alignItems={"center"}
-      flexWrap={"wrap"}
+      as={'span'}
+      display={'inline-flex'}
+      alignItems={'center'}
+      flexWrap={'wrap'}
       paddingInlineEnd={1}
     >
       <ChakraFontAwesomeIcon
@@ -23,9 +23,9 @@ function PostTime({ time }: Props) {
         icon={faReadme}
         color={STYLES.color}
         width={4}
-        display={"inline"}
+        display={'inline'}
       />
-      <Text as={"span"}>{time}</Text>
+      <Text as={'span'}>{time}</Text>
     </Text>
   )
 }

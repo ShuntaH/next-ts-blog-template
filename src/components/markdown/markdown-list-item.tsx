@@ -1,7 +1,7 @@
-import React, { HTMLAttributes } from "react";
-import { ListItem } from "@chakra-ui/react";
+import React, { HTMLAttributes } from 'react'
+import { ListItem } from '@chakra-ui/react'
 
-function MarkdownListItem({ children }: HTMLAttributes<HTMLElement>) {
+function MarkdownListItem ({ children }: HTMLAttributes<HTMLElement>) {
   return (
     <ListItem>{children}</ListItem>
   )
