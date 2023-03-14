@@ -1,7 +1,7 @@
 ---
-title: 'Disclaimer'
+title: '免責事項'
 status: true
-excerpt: 'hskpg blog の利用規約ページです。'
+excerpt: 'hskpg blog の免責事項です。'
 ---
 
 

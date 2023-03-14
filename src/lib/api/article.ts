@@ -1,8 +1,8 @@
-import { Article, ArticleMarkdownData } from 'interfaces/article'
-import { getMarkdownBySlug, validateMarkdownData } from 'lib/api/base'
+import { Article, ArticleMarkdownData, Articles } from 'interfaces/article'
+import { getAllMarkdownSlugs, getMarkdownBySlug, validateMarkdownData } from 'lib/api/base'
 import { ARTICLE_DIRECTORY_PATH } from 'lib/constants'
 
-const keysShouldExist = ['title', 'excerpt', 'status']
+const keysShouldExist = [ 'title', 'excerpt', 'status' ]
 const source = ARTICLE_DIRECTORY_PATH
 
 /**
@@ -10,7 +10,7 @@ const source = ARTICLE_DIRECTORY_PATH
  * @param slug マークダウンファイルの名前
  */
 export const getArticleBySlug = (slug: string): Article | null => {
-  const { data, content } = getMarkdownBySlug(slug, source)
+  const { data, content, cleanedSlug } = getMarkdownBySlug(slug, source)
   const _markdownData = data
   validateMarkdownData(_markdownData, keysShouldExist, slug)
   const markdownData = _markdownData as ArticleMarkdownData
@@ -21,7 +21,18 @@ export const getArticleBySlug = (slug: string): Article | null => {
   return {
     title: markdownData.title,
     excerpt: markdownData.excerpt,
+    slug: cleanedSlug,
     status: markdownData.status,
     content
   }
+}
+
+/**
+ * ブログの about や disclaimer などのページのマークダウンを解析された状態で取得する。
+ * 下書き状態の記事は除く。公開できる全ての記事が対象になる。
+ */
+export const getAllArticles = (): Articles => {
+  const slugs: string[] = getAllMarkdownSlugs(source)
+  const allArticles = slugs.map((slug) => getArticleBySlug(slug))
+  return allArticles.filter((article) => article) as Articles
 }
