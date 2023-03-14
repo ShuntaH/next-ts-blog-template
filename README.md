@@ -14,6 +14,9 @@ A blogging platform built using Next.js, TypeScript, Markdown for article manage
 - Rehype - a HTML processor for transforming HTML files into React components.
 - Chakra UI - a popular React component library for building responsive and accessible user interfaces.
 - Fuse - a lightweight fuzzy-search library for client-side full-text search functionality.
+- ESLint - a pluggable and configurable linter tool for identifying and reporting on patterns in JavaScript.
+- Prettier - an opinionated code formatter for JavaScript, JSON, CSS, YAML, and more.
+- Husky - a tool for managing Git hooks.
 
 ## Blog Structure
 The project structure is based on the following directory setup:
