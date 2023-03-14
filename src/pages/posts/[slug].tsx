@@ -1,4 +1,4 @@
-import { getAllPosts, getPostBySlug, getSortedPosts } from 'lib/api/post'
+import { getAllPosts, getPostBySlug } from 'lib/api/post'
 import { FilteredPost, FilteredPosts, Post } from 'interfaces/post'
 import React from 'react'
 import Fuse from 'fuse.js'
@@ -9,30 +9,23 @@ import { getFilteredPosts } from 'lib/api/filterPost'
 import { markdownToHtml } from 'lib/markdown/server'
 import { useSeo } from 'hooks/useSeo'
 import { NextSeo } from 'next-seo'
-import { GetStaticPropsResult } from 'next'
+import { GetStaticPathsResult, GetStaticPropsResult } from 'next'
 
 /**
  * Next.js は動的パラメーターをもとに全てのパスをレンダリングする。
  * これによって全ての記事を動的に作成できる。
  */
-export async function getStaticPaths () {
-  const posts = getSortedPosts(getAllPosts())
+export function getStaticPaths (): GetStaticPathsResult {
   return {
-    paths: posts.map((post) => {
-      return {
-        params: {
-          slug: post.slug
-        }
-      }
+    paths: getAllPosts().map((post) => {
+      return { params: { slug: post.slug } }
     }),
     fallback: false // そのままエラー用のページに飛ぶ
   }
 }
 
 interface Context {
-  params: {
-    slug: string
-  }
+  params: { slug: string }
 }
 
 interface Props {
@@ -40,15 +33,6 @@ interface Props {
   filteredPosts: FilteredPosts
 }
 
-/**
- *  この関数はサーバー側のビルド時に呼び出されます。
- *  クライアント側では呼び出されない。
- *  開発中はリクエストのたびに実行されますが、サーバーサイドで実行されるので console.log は
- *  ブラウザでは確認できません。npm run dev のコンソールで確認してください。
- * @param params ルートパラメーター [slug].tsx
- *
- * https://nextjs.org/docs/api-reference/data-fetching/get-static-props
- * */
 export async function getStaticProps ({ params }: Context): Promise<GetStaticPropsResult<Props>> {
   const filteredPosts = await getFilteredPosts(getAllPosts())
   const post = getPostBySlug(params.slug) as Post

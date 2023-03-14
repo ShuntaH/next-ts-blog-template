@@ -11,7 +11,7 @@ interface Props {
 function ArticleDetail ({ title, content, boxProps }: Props) {
   return (
     <Box position={'relative'} as={'article'} {...boxProps}>
-      <Box as={'header'} marginBottom={32} width={'full'}>
+      <Box as={'header'} marginBottom={16} width={'full'}>
         <Heading
           as={'h1'}
           letterSpacing={'0.03em'}

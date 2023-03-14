@@ -9,4 +9,7 @@ export interface Article {
   content: string
   status: boolean
   excerpt: string
+  slug: string
 }
+
+export type Articles = Article[]
