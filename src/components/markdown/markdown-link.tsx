@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, LinkProps } from '@chakra-ui/react'
 import { ThemeTypings } from '@chakra-ui/styled-system'
 import NextLink from 'next/link'
+import { devLog } from "../../lib/helpers";
 
 const color: ThemeTypings['colors'] = 'blue.100 !important'
 const hoverColor: ThemeTypings['colors'] = 'blue.50 !important'
@@ -16,7 +17,8 @@ const hoverColor: ThemeTypings['colors'] = 'blue.50 !important'
  */
 function MarkdownLink ({ href, title, children }: LinkProps) {
   const titleAttr = title ?? href
-  return href?.startsWith('/') ?? href?.startsWith('#') ? (
+  devLog(["href?.startsWith('/') ?? href?.startsWith('#')", href?.startsWith('/') ?? href?.startsWith('#')])
+  return href?.startsWith('/') || href?.startsWith('#') ? (
     // サイト内リンク
     <Link
       href={href}
