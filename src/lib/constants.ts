@@ -8,8 +8,8 @@ import { OpenGraph } from 'next-seo/lib/types'
 
 const HOME_IMAGE = '/assets/background-image.jpeg'
 export const HOME_OG_IMAGE_URL = HOME_IMAGE
-export const BLOG_NAME = 'hskpg blog'
-export const BLOG_DESCRIPTION = "hskpg's tech and daily life blog."
+export const BLOG_NAME = 'Demo Blog'
+export const BLOG_DESCRIPTION = "This is a Next.js blog focusing on technology topics such as software development, data science, AI, blockchain, and more. We aim to share knowledge on technical challenges to contribute to a better world."
 
 // pagination
 export const POST_COUNT_PER_PAGE = 10
@@ -131,7 +131,7 @@ export const DEFAULT_OPEN_GRAPH: OpenGraph = {
     }
   ],
   profile: {
-    username: 'hskpg'
+    username: 'Demo Blog'
   }
 }
 
