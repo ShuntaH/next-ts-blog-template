@@ -5,6 +5,9 @@ import { FilteredPost } from 'interfaces/post'
 import { SearchKeys } from 'interfaces/search'
 import { DefaultSeoProps } from 'next-seo'
 import { OpenGraph } from 'next-seo/lib/types'
+import { NavigationIcon } from "../interfaces/icon";
+import { faTags } from "@fortawesome/free-solid-svg-icons";
+import { faGithubAlt } from "@fortawesome/free-brands-svg-icons";
 
 const HOME_IMAGE = '/assets/background-image.jpeg'
 export const HOME_OG_IMAGE_URL = HOME_IMAGE
@@ -168,3 +171,20 @@ export const DEFAULT_SEO: DefaultSeoProps = {
   },
   openGraph: DEFAULT_OPEN_GRAPH
 }
+
+// icons in header
+export const headerIcons: NavigationIcon[] = [
+  // snsアカウントなどもここで設定
+  {
+    href: '/tags',
+    title: 'Tags',
+    external: false,
+    icon: faTags
+  },
+  {
+    href: 'https://github.com/',
+    title: 'GitHub',
+    external: true,
+    icon: faGithubAlt
+  }
+]

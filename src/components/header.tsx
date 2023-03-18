@@ -1,27 +1,11 @@
 import { Box, BoxProps, Flex, Link } from '@chakra-ui/react'
-import { BLOG_NAME, STYLES } from 'lib/constants'
+import { BLOG_NAME, headerIcons, STYLES } from 'lib/constants'
 import NextLink from 'next/link'
-import { faTags } from '@fortawesome/free-solid-svg-icons'
 import React from 'react'
-import { faGithubAlt } from '@fortawesome/free-brands-svg-icons'
 import { NavigationIcon } from 'interfaces/icon'
 import SearchFormHeader from 'components/search/header/search-form-header'
 import ChakraFontAwesomeIcon from 'components/foundations/chakra-font-awesome-icon'
 
-const icons: NavigationIcon[] = [
-  {
-    href: '/tags',
-    title: 'Tags',
-    external: false,
-    icon: faTags
-  },
-  {
-    href: 'https://github.com/ShuntaH',
-    title: 'GitHub',
-    external: true,
-    icon: faGithubAlt
-  }
-]
 
 function Header (props: BoxProps) {
   return (
@@ -73,7 +57,7 @@ function Header (props: BoxProps) {
 
           <Flex>
             {
-              icons.map((ni: NavigationIcon, index) => (
+              headerIcons.map((ni: NavigationIcon, index) => (
                 <Link
                   key={index}
                   display={'block'}
