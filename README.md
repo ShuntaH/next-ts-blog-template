@@ -1,6 +1,6 @@
 
 # next-ts-blog-template
-A blogging platform built using Next.js, TypeScript, Markdown for article management, Chakra UI for styling, client-side full-text search functionality, and SEO optimization.
+A blog template built using Next.js, TypeScript, Markdown for article management, Chakra UI for styling, client-side full-text search functionality, and SEO optimization.
 
 ## Features
 - Static Site Generation (SSG) using Next.js for improved performance and SEO optimization.
