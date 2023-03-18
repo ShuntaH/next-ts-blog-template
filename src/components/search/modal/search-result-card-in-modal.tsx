@@ -32,7 +32,7 @@ interface Props {
  * モーダル内の検索結果カード
  * @param searchResultPost
  * @param cardProps
- * @param index
+ * @param resultIndex
  */
 function SearchResultCardInModal ({ searchResultPost, cardProps, resultIndex }: Props) {
   const router = useRouter()
