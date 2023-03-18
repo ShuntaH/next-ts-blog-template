@@ -7,7 +7,7 @@ import SearchFormHeader from 'components/search/header/search-form-header'
 import ChakraFontAwesomeIcon from 'components/foundations/chakra-font-awesome-icon'
 
 
-function Header (props: BoxProps) {
+function Header(props: BoxProps) {
   return (
     // md 以上は flex でアイテムは横並び、 それ以下は block で縦並び
     <Box {...props}>
@@ -48,34 +48,30 @@ function Header (props: BoxProps) {
           <SearchFormHeader
             boxProps={{
               marginRight: STYLES.gap,
-              display: {
-                base: 'none',
-                md: 'block'
-              }
-            }}
-          />
-
+              display: { base: 'none', md: 'block' }
+            }}/>
           <Flex>
             {
-              headerIcons.map((ni: NavigationIcon, index) => (
-                <Link
-                  key={index}
-                  display={'block'}
-                  href={ni.href}
-                  as={NextLink}
-                  target={ni.external ? '_blank' : ''}
-                  rel={'noopener'}
-                  title={ni.title}
-                  fontSize={'xl'}
-                  _notLast={{ marginRight: STYLES.gap }}
-                >
-                  <ChakraFontAwesomeIcon
-                    icon={ni.icon}
-                    display={'inline'}
-                    width={4}
-                  />
-                </Link>
-              ))
+              headerIcons.map(
+                (ni: NavigationIcon, index) => (
+                  <Link
+                    key={index}
+                    display={'block'}
+                    href={ni.href}
+                    as={NextLink}
+                    target={ni.external ? '_blank' : ''}
+                    rel={'noopener'}
+                    title={ni.title}
+                    fontSize={'xl'}
+                    _notLast={{ marginRight: STYLES.gap }}
+                  >
+                    <ChakraFontAwesomeIcon
+                      icon={ni.icon}
+                      display={'inline'}
+                      width={4}
+                    />
+                  </Link>
+                ))
             }
           </Flex>
 

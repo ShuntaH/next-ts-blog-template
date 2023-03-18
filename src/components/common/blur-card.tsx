@@ -1,9 +1,8 @@
 import { STYLES } from 'lib/constants'
-import { Card } from '@chakra-ui/react'
+import { Card, CardProps } from '@chakra-ui/react'
 import React from 'react'
-import { CardLinkProps } from 'interfaces/foundation'
 
-function BlurCard ({ children, ...props }: CardLinkProps) {
+function BlurCard ({ children, ...props }: CardProps) {
   return (
     <Card
       position={'relative'}
