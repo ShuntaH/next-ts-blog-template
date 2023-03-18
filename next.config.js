@@ -15,6 +15,10 @@ const nextConfig = {
     // your project has type errors.
     // !! WARN !!
     ignoreBuildErrors: false
+  },
+  i18n: {
+    locales: ['ja'],
+    defaultLocale: 'ja'
   }
 };
 

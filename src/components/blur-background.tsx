@@ -19,9 +19,18 @@ function BlurBackground () {
       >
         {
           BACKGROUND_IMAGE_PATH
-            ? <NextImage
-              src={BACKGROUND_IMAGE_PATH}
-              alt={'background image'}/>
+            ? (
+              <Box
+                width={'full'}
+                position={'relative'}
+                paddingTop={'100vh'}
+              >
+                <NextImage
+                  src={BACKGROUND_IMAGE_PATH}
+                  alt={'background image'}
+                />
+              </Box>
+          )
             : null
         }
         <Box
