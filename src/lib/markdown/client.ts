@@ -18,12 +18,13 @@ import MarkdownTbody from 'components/markdown/markdown-tbody'
 import MarkdownTfoot from 'components/markdown/markdown-tfoot'
 import MarkdownTr from 'components/markdown/markdown-tr'
 import MarkdownTd from 'components/markdown/markdown-td'
+import MarkdownHeadingLinkIcon from "../../components/markdown/markdown-heading-link-icon";
 
 const strip = require('remark-strip-html')
 const removeMd = require('remove-markdown')
 
 // getStaticProps で react node は渡せないのでクライアントサイドで変換する
-export async function htmlToReactElements (htmlContent: string) {
+export async function htmlToReactElements(htmlContent: string) {
   return unified()
     .use(rehypeParse, {
       fragment: true // html, body head タグを取り除く
@@ -35,6 +36,7 @@ export async function htmlToReactElements (htmlContent: string) {
         // 要素タグの attr に component の props の type を一致させること。
         // react独自の機能や、スタイリングが必要な要素は react のコンポーネントを用意する。
         a: MarkdownLink,
+        span: MarkdownHeadingLinkIcon,
         img: MarkdownNextImage,
         blockquote: MarkdownBlockquote,
         pre: MarkdownPre,
@@ -57,7 +59,7 @@ export async function htmlToReactElements (htmlContent: string) {
  * 検索対象を作る時、htmlタグやmarkdown記法が混在していて欲しくないのでなるべく取り除く。
  * @param markdown
  */
-export async function markdownToPlainText (markdown: string): Promise<string> {
+export async function markdownToPlainText(markdown: string): Promise<string> {
   let result = ''
   remark()
     .use(remarkStripBadges)

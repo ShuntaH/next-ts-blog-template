@@ -6,15 +6,17 @@ import remarkRehype from 'remark-rehype'
 import rehypeStringify from 'rehype-stringify'
 import remarkUnwrapImages from 'remark-unwrap-images'
 import remarkToc from 'remark-toc'
-import { TOC_HEADING } from 'lib/constants'
+import { HEADING_LINK_ICON_CLASSNAME, TOC_HEADING } from 'lib/constants'
 import rehypeSlug from 'rehype-slug'
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import { h } from "hastscript";
 
 /**
  * markdown content で 記事として表示したい時に
  * getStaticProps の中で HTML に変換する。
  * @param markdown
  */
-export async function markdownToHtml (markdown: string): Promise<string> {
+export async function markdownToHtml(markdown: string): Promise<string> {
   return remark()
     .use(remarkGfm) //  support GFM (autolink literals, footnotes, strikethrough, tables, tasklists)
     .use(remarkBreaks) // hard breaks w/o needing spaces
@@ -23,6 +25,19 @@ export async function markdownToHtml (markdown: string): Promise<string> {
     .use(remarkUnwrapImages) // md の中の img タグを p タグで囲むのをHTMLに違反しないためにやめる
     .use(remarkRehype, { allowDangerousHtml: true })// markdownの中の img タグを img タグのままにする
     .use(rehypeSlug) // h1, h2, h3 に id を付与する
+    .use(
+      rehypeAutolinkHeadings,
+      {
+        behavior: 'append',
+        content() {
+          return [
+            h(
+              `span.${HEADING_LINK_ICON_CLASSNAME}`,
+              { ariaHidden: 'true' }
+            )
+          ]
+        }
+      }) // h1, h2, h3 のidからリンクを近くに作成する
     .use(rehypeStringify, { allowDangerousHtml: true }) // htmlタグをそのまま出力する
     .processSync(markdown).toString()
 }

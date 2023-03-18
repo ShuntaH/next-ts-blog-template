@@ -53,6 +53,9 @@ export const ARTICLE_DIRECTORY_PATH = join(FILE_PATH, '_articles')
 // TOC hook
 export const TOC_HEADING = 'お品書き'
 
+// rehypeAutolinkHeadings
+export const HEADING_LINK_ICON_CLASSNAME = 'heading-link-icon'
+
 // Style
 /**
  * todo chakra ui で css var の定義がいまいち上手く書けないので js でかく。
