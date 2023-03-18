@@ -148,13 +148,13 @@ export const DEFAULT_SEO: DefaultSeoProps = {
       rel: 'icon',
       type: 'image/png',
       sizes: '16x16',
-      href: '/favicon/icon-16x16.png'
+      href: '/favicon/favicon-16x16.png'
     },
     {
       rel: 'icon',
       type: 'image/png',
       sizes: '32x32',
-      href: '/favicon/icon-32x32.png'
+      href: '/favicon/favicon-32x32.png'
     },
     {
       rel: 'apple-touch-icon',
