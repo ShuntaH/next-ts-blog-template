@@ -156,11 +156,11 @@ export const DEFAULT_SEO: DefaultSeoProps = {
     {
       rel: 'apple-touch-icon',
       sizes: '180x180',
-      href: '/favicon/apple-touch-icon-180x180.png'
+      href: '/favicon/apple-touch-icon.png'
     },
     {
       rel: 'manifest',
-      href: '/favicon/manifest.json'
+      href: '/favicon/site.webmanifest'
     }
   ],
   twitter: {
