@@ -25,7 +25,7 @@ import NextLink from "next/link";
 interface Props {
   cardProps?: CardProps
   searchResultPost: Fuse.FuseResult<FilteredPost>
-  index: number
+  resultIndex: number
 }
 
 /**
@@ -34,7 +34,7 @@ interface Props {
  * @param cardProps
  * @param index
  */
-function SearchResultCardInModal ({ searchResultPost, cardProps, index }: Props) {
+function SearchResultCardInModal ({ searchResultPost, cardProps, resultIndex }: Props) {
   const router = useRouter()
   const { onClose } = useDisclosureContext()
   const postHref = `/posts/${searchResultPost.item.slug}`
@@ -62,11 +62,11 @@ function SearchResultCardInModal ({ searchResultPost, cardProps, index }: Props)
     <LinkBox width={"full"}>
       <Card
         onKeyUp={handleNavigation}
-        key={index}
-        tabIndex={index}
+        key={resultIndex}
+        tabIndex={resultIndex}
         width={'full'}
         variant={'elevated'}
-        backgroundColor={'blackAlpha.300'}
+        backgroundColor={'blackAlpha.900'}
         color={STYLES.textColorDarker}
         _focusVisible={{ outlineColor: STYLES.colorLight }}
         {...cardProps}
@@ -108,7 +108,7 @@ function SearchResultCardInModal ({ searchResultPost, cardProps, index }: Props)
         >
           {
             searchResultPost.matches!.map(
-              (match, index) => {
+              (match, matchIndex) => {
               /*
                * タイトルは必ず表示するのでループでは cardHeader で表示済みとしてスキップ。
                * slug は その記事に飛ぶために追加している。検索結果に表示する必要はない。
@@ -116,16 +116,14 @@ function SearchResultCardInModal ({ searchResultPost, cardProps, index }: Props)
               if (['title', 'slug'].includes(match.key!)) return null;
 
               return (
-                <Box key={index}>
+                <Box key={matchIndex}>
                   <Flex
                     justifyContent={'space-between'}
                     alignItems={'start'}
                     paddingY={1}
                   >
                     <Flex width={'70px'} alignItems={'center'}>
-                      <Badge
-                        colorScheme={handleBadgeColor(match.key!)}
-                        fontSize={'xs'}>
+                      <Badge colorScheme={handleBadgeColor(match.key!)} fontSize={'xs'}>
                         {match.key}
                       </Badge>
                     </Flex>
@@ -136,7 +134,7 @@ function SearchResultCardInModal ({ searchResultPost, cardProps, index }: Props)
                   </Flex>
                   {
                     // 最後には下線部をつけない
-                    (searchResultPost.matches!.length - 1) === index
+                    (searchResultPost.matches!.length - 1) === matchIndex
                       ? null
                       : <Divider borderColor={'gray.600'}/>
                   }
