@@ -1,29 +1,13 @@
 import { Box, BoxProps, Flex, Link } from '@chakra-ui/react'
-import { BLOG_NAME, STYLES } from 'lib/constants'
+import { BLOG_NAME, headerIcons, STYLES } from 'lib/constants'
 import NextLink from 'next/link'
-import { faTags } from '@fortawesome/free-solid-svg-icons'
 import React from 'react'
-import { faGithubAlt } from '@fortawesome/free-brands-svg-icons'
 import { NavigationIcon } from 'interfaces/icon'
 import SearchFormHeader from 'components/search/header/search-form-header'
 import ChakraFontAwesomeIcon from 'components/foundations/chakra-font-awesome-icon'
 
-const icons: NavigationIcon[] = [
-  {
-    href: '/tags',
-    title: 'Tags',
-    external: false,
-    icon: faTags
-  },
-  {
-    href: 'https://github.com/ShuntaH',
-    title: 'GitHub',
-    external: true,
-    icon: faGithubAlt
-  }
-]
 
-function Header (props: BoxProps) {
+function Header(props: BoxProps) {
   return (
     // md 以上は flex でアイテムは横並び、 それ以下は block で縦並び
     <Box {...props}>
@@ -64,34 +48,30 @@ function Header (props: BoxProps) {
           <SearchFormHeader
             boxProps={{
               marginRight: STYLES.gap,
-              display: {
-                base: 'none',
-                md: 'block'
-              }
-            }}
-          />
-
+              display: { base: 'none', md: 'block' }
+            }}/>
           <Flex>
             {
-              icons.map((ni: NavigationIcon, index) => (
-                <Link
-                  key={index}
-                  display={'block'}
-                  href={ni.href}
-                  as={NextLink}
-                  target={ni.external ? '_blank' : ''}
-                  rel={'noopener'}
-                  title={ni.title}
-                  fontSize={'xl'}
-                  _notLast={{ marginRight: STYLES.gap }}
-                >
-                  <ChakraFontAwesomeIcon
-                    icon={ni.icon}
-                    display={'inline'}
-                    width={4}
-                  />
-                </Link>
-              ))
+              headerIcons.map(
+                (ni: NavigationIcon, index) => (
+                  <Link
+                    key={index}
+                    display={'block'}
+                    href={ni.href}
+                    as={NextLink}
+                    target={ni.external ? '_blank' : ''}
+                    rel={'noopener'}
+                    title={ni.title}
+                    fontSize={'xl'}
+                    _notLast={{ marginRight: STYLES.gap }}
+                  >
+                    <ChakraFontAwesomeIcon
+                      icon={ni.icon}
+                      display={'inline'}
+                      width={4}
+                    />
+                  </Link>
+                ))
             }
           </Flex>
 

@@ -1,4 +1,16 @@
-import { Badge, Box, Card, CardBody, CardHeader, CardProps, Divider, Flex, Heading } from '@chakra-ui/react'
+import {
+  Badge,
+  Box,
+  Card,
+  CardBody,
+  CardHeader,
+  CardProps,
+  Divider,
+  Flex,
+  Heading,
+  LinkBox,
+  LinkOverlay
+} from '@chakra-ui/react'
 import React, { useCallback } from 'react'
 import { STYLES } from 'lib/constants'
 import SearchModalContentBodyHighlightInModal
@@ -8,22 +20,30 @@ import { FilteredPost } from 'interfaces/post'
 import Fuse from 'fuse.js'
 import { BadgeColors, BadgeColorValues, SearchKeys } from 'interfaces/search'
 import { useDisclosureContext } from 'contexts/disclouserContext'
+import NextLink from "next/link";
 
 interface Props {
   cardProps?: CardProps
   searchResultPost: Fuse.FuseResult<FilteredPost>
-  index: number
+  resultIndex: number
 }
 
-function SearchResultCardInModal ({ searchResultPost, cardProps, index }: Props) {
+/**
+ * モーダル内の検索結果カード
+ * @param searchResultPost
+ * @param cardProps
+ * @param resultIndex
+ */
+function SearchResultCardInModal ({ searchResultPost, cardProps, resultIndex }: Props) {
   const router = useRouter()
   const { onClose } = useDisclosureContext()
+  const postHref = `/posts/${searchResultPost.item.slug}`
 
-  const handleNavigation = async (
-    e: React.KeyboardEvent<HTMLDivElement> | React.MouseEvent<HTMLDivElement>,
-    slug: string
-  ): Promise<void> => {
-    await router.push(`/posts/${slug}`)
+  /**
+   * ヒットした記事ページに遷移する
+   */
+  const handleNavigation = async (): Promise<void> => {
+    await router.push(postHref)
     onClose()
   }
 
@@ -39,95 +59,92 @@ function SearchResultCardInModal ({ searchResultPost, cardProps, index }: Props)
   }, [])
 
   return (
-    <Card
-      onClick={async (e) => await handleNavigation(e, searchResultPost.item.slug)}
-      onKeyPress={async (e) => await handleNavigation(e, searchResultPost.item.slug)}
-      key={index}
-      tabIndex={index}
-      width={'full'}
-      variant={'elevated'}
-      backgroundColor={'blackAlpha.300'}
-      color={STYLES.textColorDarker}
-      _focusVisible={{
-        outlineColor: STYLES.colorLight
-      }}
-      {...cardProps}
-    >
-      <CardHeader
+    <LinkBox width={"full"}>
+      <Card
+        onKeyUp={handleNavigation}
+        key={resultIndex}
+        tabIndex={resultIndex}
         width={'full'}
-        paddingX={1}
-        paddingTop={1}
-        paddingBottom={0}
+        variant={'elevated'}
+        backgroundColor={'blackAlpha.900'}
+        color={STYLES.textColorDarker}
+        _focusVisible={{ outlineColor: STYLES.colorLight }}
+        {...cardProps}
       >
-        <Flex
-          justifyContent={'space-between'}
-          alignItems={'center'}
+        <CardHeader
+          width={'full'}
+          paddingX={1}
+          paddingTop={1}
+          paddingBottom={0}
         >
-          <Flex width={'70px'} alignItems={'center'}>
-            <Badge
-              colorScheme={handleBadgeColor('title')}
-              fontSize={'xs'}>
-              title
-            </Badge>
-          </Flex>
-          <Heading
-            as={'h4'}
-            fontSize={'xs'}
-            fontWeight={'normal'}
-            flexGrow={1}
-            textAlign={'left'}
-            paddingLeft={2}
-          >
-            {searchResultPost.item.title}
-          </Heading>
-        </Flex>
-      </CardHeader>
+          <Flex justifyContent={'space-between'} alignItems={'center'}>
+            <Flex width={'70px'} alignItems={'center'}>
+              <Badge colorScheme={handleBadgeColor('title')} fontSize={'xs'}>
+                title
+              </Badge>
+            </Flex>
 
-      <CardBody
-        width={'full'}
-        paddingX={1}
-        paddingBottom={1}
-        paddingTop={0}
-        fontSize={'xs'}
-      >
-        {
-          searchResultPost.matches!.map((match, index) => {
-            if (['title', 'slug'].includes(match.key!)) {
-              // タイトルは必ず表示するのでループでは cardHeader で表示済みとしてスキップ
-              // slug は その記事に飛ぶために追加している。検索結果に表示する必要はない。
-              return null
-            }
-            return (
-              <Box key={index}>
-              <Flex
-                justifyContent={'space-between'}
-                alignItems={'start'}
-                paddingY={1}
-              >
-                <Flex width={'70px'} alignItems={'center'}>
-                  <Badge
-                    colorScheme={handleBadgeColor(match.key!)}
-                    fontSize={'xs'}>
-                    {match.key}
-                  </Badge>
-                </Flex>
-                <SearchModalContentBodyHighlightInModal
-                  match={match}
-                  textProps={{ flexGrow: 1, paddingLeft: 2 }}
-                />
-              </Flex>
-              {
-                // 最後には下線部をつけない
-                (searchResultPost.matches!.length - 1) === index
-                  ? null
-                  : <Divider borderColor={'gray.600'}/>
-              }
-            </Box>
-            )
-          })
-        }
-      </CardBody>
-    </Card>
+            <Heading
+              as={'h3'}
+              fontSize={'xs'}
+              fontWeight={'normal'}
+              flexGrow={1}
+              textAlign={'left'}
+              paddingLeft={2}
+            >
+              <LinkOverlay as={NextLink} href={postHref}>
+                {searchResultPost.item.title}
+              </LinkOverlay>
+            </Heading>
+          </Flex>
+        </CardHeader>
+
+        <CardBody
+          width={'full'}
+          paddingX={1}
+          paddingBottom={1}
+          paddingTop={0}
+          fontSize={'xs'}
+        >
+          {
+            searchResultPost.matches!.map(
+              (match, matchIndex) => {
+              /*
+               * タイトルは必ず表示するのでループでは cardHeader で表示済みとしてスキップ。
+               * slug は その記事に飛ぶために追加している。検索結果に表示する必要はない。
+               */
+              if (['title', 'slug'].includes(match.key!)) return null;
+
+              return (
+                <Box key={matchIndex}>
+                  <Flex
+                    justifyContent={'space-between'}
+                    alignItems={'start'}
+                    paddingY={1}
+                  >
+                    <Flex width={'70px'} alignItems={'center'}>
+                      <Badge colorScheme={handleBadgeColor(match.key!)} fontSize={'xs'}>
+                        {match.key}
+                      </Badge>
+                    </Flex>
+                    <SearchModalContentBodyHighlightInModal
+                      match={match}
+                      textProps={{ flexGrow: 1, paddingLeft: 2 }}
+                    />
+                  </Flex>
+                  {
+                    // 最後には下線部をつけない
+                    (searchResultPost.matches!.length - 1) === matchIndex
+                      ? null
+                      : <Divider borderColor={'gray.600'}/>
+                  }
+                </Box>
+              )
+            })
+          }
+        </CardBody>
+      </Card>
+    </LinkBox>
   )
 }
 

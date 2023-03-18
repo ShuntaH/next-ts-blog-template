@@ -359,8 +359,8 @@ This is ***italic and bold*** text.
 This is ___italic and bold___ text.
 
 
-### Images 画像
-Add an exclamation mark ! at the beginning of the image URL to display the image using an <img> tag.
+### Images
+Add an exclamation mark ! at the beginning of the image URL to display the image using an `<img>` tag.
 If you want to specify the size of the image, use the `<img>` tag.
 
 The `<img>` tag is converted into the next/image component.
@@ -377,7 +377,7 @@ If it is integrated into a `<p>` tag, there will be a `<div>` tag inside `<p>`.
 ![alt text with title](/assets/background-image.jpeg "title")
 <img src="/assets/background-image.jpeg" alt="this is background image." width=200 height=200>
 ```
-##### md記法
+##### Image using markdown
 **Output**
 
 ![Image inside the blog](/assets/background-image.jpeg)
@@ -429,18 +429,18 @@ Create a table using - and |.
 
 ***
 
-#### テーブルの揃え方
+#### how to align table cell
 **Syntax**
 
 ```md
-| 左揃え | 中央揃え | 右揃え |
+| align left | center | right |
 |:---|:---:|---:|
 |1 |2 |3 |
 |4 |5 |6 |
 ```
 
 **Output**
-| 左揃え | 中央揃え | 右揃え |
+| align left | center | right |
 |:---|:---:|---:|
 |1 |2 |3 |
 |4 |5 |6 |

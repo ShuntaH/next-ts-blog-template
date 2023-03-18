@@ -24,7 +24,7 @@ function SearchResultCardsInModal ({ modalBodyProps }: Props) {
             return (
               <SearchResultCardInModal
                 searchResultPost={post}
-                index={index}
+                resultIndex={index}
                 key={index}
               />
             )
