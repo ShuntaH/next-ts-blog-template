@@ -84,7 +84,7 @@ export const getPostBySlug = (slug: string): Post | null => {
  * 下書き状態の記事は除く。公開できる全ての記事が対象になる。
  */
 export const getAllPosts = (): Posts => {
-  const slugs: string[] = getAllMarkdownSlugs(source) // [ 'hoge.md', 'html-md.md' ]
+  const slugs: string[] = getAllMarkdownSlugs(source) // [ 'hoge.md', 'html-in-md-ja.md' ]
   const allPosts = slugs.map((slug) => getPostBySlug(slug))
   return allPosts.filter((post) => post) as Posts
 }
