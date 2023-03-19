@@ -18,14 +18,15 @@ function MarkdownHeadingLinkIcon(props: TextProps) {
       <Text
         as={'span'}
         {...props}
-        display={"inline-flex"}
-        alignItems={"center"}
-        height={"full"}
+        display={'inline-flex'}
+        alignItems={'center'}
+        height={'1em'}
       >
         <ChakraFontAwesomeIcon
-          display={"inline-block"}
+          display={"inline"}
+          color={'gray.400'}
           icon={faLink}
-          height={'0.5em'} // headingのfont-sizeに応じて動的にアイコンの大きさを変える
+          height={'0.6em'} // headingのfont-sizeに応じて動的にアイコンの大きさを変える
           marginInlineStart={2}
         />
       </Text>
