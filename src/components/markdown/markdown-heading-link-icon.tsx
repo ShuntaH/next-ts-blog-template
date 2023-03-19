@@ -24,7 +24,8 @@ function MarkdownHeadingLinkIcon(props: TextProps) {
       >
         <ChakraFontAwesomeIcon
           display={"inline"}
-          color={'gray.400'}
+          color={'gray.300'}
+          _hover={{ color: 'gray.200' }}
           icon={faLink}
           height={'0.6em'} // headingのfont-sizeに応じて動的にアイコンの大きさを変える
           marginInlineStart={2}
