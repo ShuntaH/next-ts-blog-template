@@ -6,17 +6,31 @@ import ChakraFontAwesomeIcon from "../foundations/chakra-font-awesome-icon";
 
 /**
  * Headingにリンク要素をrehypeAutolinkHeadingsで追加している。そこにspan要素が含まれているので、
- * リンクアイコンをいれるクラスがspanについていたらリンクアイコンのコンポーネントに変換して返す。
+ * リンクアイコンをいれるクラス(HEADING_LINK_ICON_CLASSNAME)がspanについていたら、
+ * リンクアイコンのコンポーネントに変換して返す。
  * リンクアイコンを入れない普通のspanはそのままChakraUIのTextコンポーネントに変換して返す。
  * @param props
  */
-function MarkdownHeadingLinkIcon (props: TextProps) {
-    return (
-      props.className?.includes(HEADING_LINK_ICON_CLASSNAME) ?
-        <ChakraFontAwesomeIcon icon={faLink} width={4} display={"inline-block"} marginInlineStart={2}/>
-        :
-        <Text as={'span'} {...props}>{props.children}</Text>
-    )
+function MarkdownHeadingLinkIcon(props: TextProps) {
+  return (
+    props.className?.includes(HEADING_LINK_ICON_CLASSNAME) ?
+      <Text
+        as={'span'}
+        {...props}
+        display={"inline-flex"}
+        alignItems={"center"}
+        height={"full"}
+      >
+        <ChakraFontAwesomeIcon
+          display={"inline-block"}
+          icon={faLink}
+          height={'0.5em'} // headingのfont-sizeに応じて動的にアイコンの大きさを変える
+          marginInlineStart={2}
+        />
+      </Text>
+      :
+      <Text as={'span'} {...props}>{props.children}</Text>
+  )
 }
 
 export default MarkdownHeadingLinkIcon
