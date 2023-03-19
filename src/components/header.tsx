@@ -23,7 +23,7 @@ function Header(props: BoxProps) {
         letterSpacing={'0.01em'}
         overflow={'hidden'}
       >
-        {/*左サイド*/}
+        {/* 左サイド */}
         <Box margin={`auto ${STYLES.gap}`}>
           <Link
             href='/'

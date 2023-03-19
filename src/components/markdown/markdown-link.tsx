@@ -37,13 +37,15 @@ function MarkdownLink ({ href, title, children }: LinkProps) {
         target="_blank"
         isExternal
         color={color}
-        _hover={{ color: hoverColor }}>
+        _hover={{ color: hoverColor }}
+      >
         {children}
       </LinkOverlay>
       <ChakraFontAwesomeIcon
         display={"inline"}
         color={'gray.300'}
         _hover={{ color: 'gray.200' }}
+        opacity={0.3}
         icon={faExternalLink}
         height={'0.6em'} // headingのfont-sizeに応じて動的にアイコンの大きさを変える
         marginInlineStart={2}
