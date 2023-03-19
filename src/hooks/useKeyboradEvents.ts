@@ -18,7 +18,7 @@ export function useToggleSearchModal() {
   )
 
   /**
-   * addEventListerをmountedの時だけすれば、
+   * addEventListerをmountedの時に呼べば、
    * handleToggle は keydown のたびに呼ばれるが、
    * コンポーネントはスナップショットのようなものなので、
    * isOpen が更新されていない。
@@ -27,7 +27,9 @@ export function useToggleSearchModal() {
   useEffect(
     () => {
       window.addEventListener('keydown', handleToggleSearchModal)
-      return () => window.removeEventListener('keydown', handleToggleSearchModal)
+      return () => {
+        window.removeEventListener('keydown', handleToggleSearchModal)
+      }
     },
     [ isOpen ]
   )
