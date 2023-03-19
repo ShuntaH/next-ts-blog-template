@@ -29,7 +29,7 @@ function MarkdownLink ({ href, title, children }: LinkProps) {
       {children}
     </Link>
   ) : (
-    <LinkBox>
+    <LinkBox as={'span'}>
       <LinkOverlay
         href={href}
         title={titleAttr}

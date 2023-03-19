@@ -67,7 +67,9 @@ export function remarkTocCollapse(options: Options = {}) {
       return
     }
 
-    const summary = node.children[result.index - 1]
+    // const summary = node.children[result.index - 1]
+
+    // details の中に入れるので、既存の table of contents を削除する。
     node.children.splice(result.index - 1, 1)
 
     node.children = [
@@ -80,7 +82,12 @@ export function remarkTocCollapse(options: Options = {}) {
         type: 'html',
         value: '<summary>'
       },
-      summary,
+      // chakra ui のアコーディオンは details と summary で作られていない。
+      // summary に該当する部分を heading で包まなければならないのでただのテキストに変換する。
+      {
+        type: 'text',
+        value: TOC_HEADING
+      },
       {
         type: 'html',
         value: '</summary>'
