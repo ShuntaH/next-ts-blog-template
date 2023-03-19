@@ -50,7 +50,6 @@ export async function markdownToHtml(markdown: string): Promise<string> {
  */
 export function remarkTocCollapse(options: Options = {}) {
   return (node: Root) => {
-    // console.log('remarkToc', 'node', node)
     const result = toc(
       node,
       Object.assign({}, options, {
