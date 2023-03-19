@@ -1,10 +1,11 @@
-import { Box, BoxProps, Flex, Link } from '@chakra-ui/react'
+import { Box, BoxProps, Flex, Link, LinkBox, LinkOverlay } from '@chakra-ui/react'
 import { BLOG_NAME, headerIcons, STYLES } from 'lib/constants'
 import NextLink from 'next/link'
 import React from 'react'
 import { NavigationIcon } from 'interfaces/icon'
 import SearchFormHeader from 'components/search/header/search-form-header'
 import ChakraFontAwesomeIcon from 'components/foundations/chakra-font-awesome-icon'
+import { faExternalLink } from "@fortawesome/free-solid-svg-icons";
 
 
 function Header(props: BoxProps) {
@@ -22,8 +23,8 @@ function Header(props: BoxProps) {
         letterSpacing={'0.01em'}
         overflow={'hidden'}
       >
-        {/* 左サイド */}
-        <Flex margin={`auto ${STYLES.gap}`}>
+        {/*左サイド*/}
+        <Box margin={`auto ${STYLES.gap}`}>
           <Link
             href='/'
             as={NextLink}
@@ -35,7 +36,7 @@ function Header(props: BoxProps) {
           >
             {BLOG_NAME}
           </Link>
-        </Flex>
+        </Box>
 
         {/* 右サイド */}
         <Flex
@@ -49,32 +50,51 @@ function Header(props: BoxProps) {
             boxProps={{
               marginRight: STYLES.gap,
               display: { base: 'none', md: 'block' }
-            }}/>
-          <Flex>
-            {
-              headerIcons.map(
-                (ni: NavigationIcon, index) => (
-                  <Link
-                    key={index}
-                    display={'block'}
+            }}
+          />
+
+          {
+            headerIcons.map(
+              (ni: NavigationIcon, index) => (
+                <LinkBox
+                  key={index}
+                  position={"relative"}
+                  display={"flex"}
+                  alignItems={"center"}
+                  _notLast={{ marginRight: STYLES.gap }}
+                  height={'40px'}
+                >
+                  <LinkOverlay
                     href={ni.href}
                     as={NextLink}
                     target={ni.external ? '_blank' : ''}
                     rel={'noopener'}
                     title={ni.title}
-                    fontSize={'xl'}
-                    _notLast={{ marginRight: STYLES.gap }}
                   >
-                    <ChakraFontAwesomeIcon
-                      icon={ni.icon}
-                      display={'inline'}
-                      width={4}
-                    />
-                  </Link>
-                ))
-            }
-          </Flex>
-
+                  </LinkOverlay>
+                  <ChakraFontAwesomeIcon
+                    icon={ni.icon}
+                    display={'inline'}
+                    width={4}
+                    _hover={STYLES.hoverLightStyle}
+                  />
+                  {
+                    ni.external && (
+                      <ChakraFontAwesomeIcon
+                        position={"absolute"}
+                        top={'4px'}
+                        right={"-12px"}
+                        display={"inline"}
+                        color={'gray.200'}
+                        opacity={0.3}
+                        icon={faExternalLink}
+                        height={'0.6em'}
+                      />
+                    )
+                  }
+                </LinkBox>
+              ))
+          }
         </Flex>
       </Flex>
 
