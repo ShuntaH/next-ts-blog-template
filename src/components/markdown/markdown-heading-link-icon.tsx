@@ -5,7 +5,8 @@ import { faLink } from "@fortawesome/free-solid-svg-icons";
 import ChakraFontAwesomeIcon from "../foundations/chakra-font-awesome-icon";
 
 /**
- * Headingにリンク要素をrehypeAutolinkHeadingsで追加している。そこにspan要素が含まれているので、
+ * Headingにリンクアイコンを追加する。
+ * Headingにリンク要素をrehypeAutolinkHeadingsで追加している。span要素が作られている。
  * リンクアイコンをいれるクラス(HEADING_LINK_ICON_CLASSNAME)がspanについていたら、
  * リンクアイコンのコンポーネントに変換して返す。
  * リンクアイコンを入れない普通のspanはそのままChakraUIのTextコンポーネントに変換して返す。
