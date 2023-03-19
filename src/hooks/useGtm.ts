@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { pageview } from "../lib/gtm";
 
 /**
- * 検索モーダルをキーボードイベントで開閉するためのフック
+ * Google Tag Manager を使うためのフック
  */
 export function useGtm() {
   const router = useRouter()
