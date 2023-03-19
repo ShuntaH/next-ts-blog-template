@@ -17,7 +17,7 @@ function PostCardBody ({ post, cardBodyProps }: Props) {
         WebkitBoxOrient: 'vertical',
         WebkitLineClamp: '2'
       }}
-      letterSpacing={'0.04em'}
+      letterSpacing={'0.03em'}
       paddingTop={1}
       paddingBottom={1}
       paddingX={0}

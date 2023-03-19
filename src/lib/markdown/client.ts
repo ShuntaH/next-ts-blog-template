@@ -19,6 +19,7 @@ import MarkdownTfoot from 'components/markdown/markdown-tfoot'
 import MarkdownTr from 'components/markdown/markdown-tr'
 import MarkdownTd from 'components/markdown/markdown-td'
 import MarkdownHeadingLinkIcon from "../../components/markdown/markdown-heading-link-icon";
+import MarkdownDetails from "../../components/markdown/markdown-details";
 
 const strip = require('remark-strip-html')
 const removeMd = require('remove-markdown')
@@ -49,7 +50,8 @@ export async function htmlToReactElements(htmlContent: string) {
         tbody: MarkdownTbody,
         tfoot: MarkdownTfoot,
         tr: MarkdownTr,
-        td: MarkdownTd
+        td: MarkdownTd,
+        details: MarkdownDetails
       }
     })
     .processSync(htmlContent).result

@@ -10,7 +10,7 @@ function Pre ({ children, className }: HTMLAttributes<HTMLPreElement>) {
       display={'block !important'}
       position={'relative'}
       padding={'4 !important'}
-      letterSpacing={'0.05rem'}
+      letterSpacing={'0.03rem'}
       fontSize={'sm !important'}
       backdropFilter={'blur(20px) !important'}
       bgColor={'blackAlpha.300 !important'}

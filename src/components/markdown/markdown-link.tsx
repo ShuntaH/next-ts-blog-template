@@ -1,7 +1,9 @@
 import React from 'react'
-import { Link, LinkProps } from '@chakra-ui/react'
+import { Link, LinkBox, LinkOverlay, LinkProps } from '@chakra-ui/react'
 import { ThemeTypings } from '@chakra-ui/styled-system'
 import NextLink from 'next/link'
+import { faExternalLink } from "@fortawesome/free-solid-svg-icons";
+import ChakraFontAwesomeIcon from "../foundations/chakra-font-awesome-icon";
 
 const color: ThemeTypings['colors'] = 'blue.100 !important'
 const hoverColor: ThemeTypings['colors'] = 'blue.50 !important'
@@ -27,17 +29,28 @@ function MarkdownLink ({ href, title, children }: LinkProps) {
       {children}
     </Link>
   ) : (
-    <Link
-      href={href}
-      title={titleAttr}
-      rel="noreferrer"
-      target="_blank"
-      isExternal
-      color={color}
-      _hover={{ color: hoverColor }}
-    >
-      {children}
-    </Link>
+    <LinkBox as={'span'}>
+      <LinkOverlay
+        href={href}
+        title={titleAttr}
+        rel="noreferrer"
+        target="_blank"
+        isExternal
+        color={color}
+        _hover={{ color: hoverColor }}
+      >
+        {children}
+      </LinkOverlay>
+      <ChakraFontAwesomeIcon
+        display={"inline"}
+        color={'gray.300'}
+        _hover={{ color: 'gray.200' }}
+        opacity={0.3}
+        icon={faExternalLink}
+        height={'0.6em'} // headingのfont-sizeに応じて動的にアイコンの大きさを変える
+        marginInlineStart={2}
+      />
+    </LinkBox>
   )
 }
 
