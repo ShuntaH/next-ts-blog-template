@@ -7,8 +7,10 @@ import { GTM_ID } from "../lib/gtm";
  * Google Tag Manager - Global base code
  */
 function GtmScript() {
-  !GTM_ID && console.warn('GTM_ID is not set. Please set GTM_ID in .env.local')
-  
+  !GTM_ID && console.warn(
+    `GTM_ID is not set.` +
+     ' Please set NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID in .env.local')
+
   return (
     GTM_ID ?
       <Script
