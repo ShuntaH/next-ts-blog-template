@@ -2,10 +2,10 @@ import { FormControl, FormControlProps, Input, InputGroup, InputRightElement } f
 import React from 'react'
 import { SEARCH_FORM_PLACEHOLDER, STYLES } from 'lib/constants'
 import { useSearchInputContext } from 'contexts/searchInputContext'
-import { useDisclosureContext } from 'contexts/disclouserContext'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import ChakraFontAwesomeIcon from 'components/foundations/chakra-font-awesome-icon'
-import { useToggleSearchModal } from 'hooks/useKeyboradEvents'
+import { useSearchModalDisclouser } from "../../../hooks/useSearchModalDisclouser";
+
 
 interface Props {
   formControlProps?: FormControlProps
@@ -16,9 +16,9 @@ interface Props {
  * @param formControlProps
  */
 function SearchFormControlInHeader ({ formControlProps }: Props) {
-  const { onOpen } = useDisclosureContext()
   const { searchInput } = useSearchInputContext()
-  useToggleSearchModal()
+  const { onOpen } = useSearchModalDisclouser()
+
 
   return (
     <FormControl

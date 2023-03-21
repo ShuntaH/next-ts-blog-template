@@ -1,17 +1,20 @@
 import { useCallback, useEffect } from 'react'
 import { useDisclosureContext } from 'contexts/disclouserContext'
+import { devLog } from "../lib/helpers";
 
 /**
  * 検索モーダルをキーボードイベントで開閉するためのフック
  */
-export function useToggleSearchModal() {
-  const { isOpen, onOpen, onClose } = useDisclosureContext()
-  const handleToggleSearchModal = useCallback(
+export function useSearchModalDisclouser() {
+  const { isOpen, onOpen, onClose, id, hidden } = useDisclosureContext()
+
+  const handleToggleByKeyboard = useCallback(
     (e: KeyboardEvent): void => {
+      // todo 開発中に2回レンダーされてdisclouserが2つあるので、idでみて1つのモーダルの切り替えをするようにする。
       if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
         isOpen ? onClose() : onOpen()
-        e.preventDefault()
       }
+      e.preventDefault()
       // 他のキーイベントは止めない。
     },
     [ isOpen ]
@@ -22,15 +25,18 @@ export function useToggleSearchModal() {
    * handleToggle は keydown のたびに呼ばれるが、
    * コンポーネントはスナップショットのようなものなので、
    * isOpen が更新されていない。
-   * isOpen が更新された EventHandler を毎回 window に追加する。
+   * isOpen が更新された EventHand
    */
   useEffect(
     () => {
-      window.addEventListener('keydown', handleToggleSearchModal)
+      devLog([ 'id', id, 'hidden', hidden, 'isOpen', isOpen ])
+      window.addEventListener('keydown', handleToggleByKeyboard)
       return () => {
-        window.removeEventListener('keydown', handleToggleSearchModal)
+        window.removeEventListener('keydown', handleToggleByKeyboard)
       }
     },
     [ isOpen ]
   )
+
+  return { onOpen }
 }

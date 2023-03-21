@@ -8,17 +8,20 @@ import {
   ModalHeader,
   ModalOverlay
 } from '@chakra-ui/react'
-import React from 'react'
+import React, { useEffect } from 'react'
 import SearchResultCardsInModal from 'components/search/modal/search-result-cards-in-modal'
 import { useDisclosureContext } from 'contexts/disclouserContext'
 import SearchFormControlInModal from 'components/search/modal/search-form-control-in-modal'
+import { devLog } from "../../../lib/helpers";
 
 interface Props {
   boxProps?: BoxProps
 }
 
 function SearchModal ({ boxProps }: Props) {
-  const { isOpen, onClose, afterOpenRef, afterCloseRef } = useDisclosureContext()
+  const { isOpen, onClose, afterOpenRef, afterCloseRef, id } = useDisclosureContext()
+
+  useEffect(() => { devLog(['id in searchModal FC', id]) }, [])
   return (
     <Box {...boxProps}>
       <Modal
