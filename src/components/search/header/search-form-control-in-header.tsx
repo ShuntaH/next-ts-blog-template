@@ -4,7 +4,7 @@ import { SEARCH_FORM_PLACEHOLDER, STYLES } from 'lib/constants'
 import { useSearchInputContext } from 'contexts/searchInputContext'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import ChakraFontAwesomeIcon from 'components/foundations/chakra-font-awesome-icon'
-import { useSearchModalDisclouser } from "../../../hooks/useSearchModalDisclouser";
+import { useSearchModalDisclosure } from "../../../hooks/useSearchModalDisclosure";
 
 
 interface Props {
@@ -17,8 +17,7 @@ interface Props {
  */
 function SearchFormControlInHeader ({ formControlProps }: Props) {
   const { searchInput } = useSearchInputContext()
-  const { onOpen } = useSearchModalDisclouser()
-
+  const { onOpen } = useSearchModalDisclosure()
 
   return (
     <FormControl

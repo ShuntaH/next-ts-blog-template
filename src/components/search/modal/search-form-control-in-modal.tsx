@@ -5,7 +5,6 @@ import { useDisclosureContext } from 'contexts/disclouserContext'
 import { SEARCH_FORM_PLACEHOLDER, STYLES } from 'lib/constants'
 import ChakraFontAwesomeIcon from 'components/foundations/chakra-font-awesome-icon'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
-import { devLog } from "../../../lib/helpers";
 
 interface Props { formControlProps?: FormControlProps }
 
@@ -14,7 +13,6 @@ function SearchFormControlInModal ({ formControlProps }: Props) {
   const { afterOpenRef } = useDisclosureContext()
 
   const handleInput = (e: React.MouseEvent<HTMLInputElement>): void => {
-    devLog([ 'handleInput', e.currentTarget.value ])
     dispatch({
       searchInput: e.currentTarget.value,
       type: 'update'

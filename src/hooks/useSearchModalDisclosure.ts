@@ -5,13 +5,13 @@ import { devLog } from "../lib/helpers";
 /**
  * 検索モーダルをキーボードイベントで開閉するためのフック
  */
-export function useSearchModalDisclouser() {
+export function useSearchModalDisclosure() {
   const { isOpen, onOpen, onClose, id, hidden } = useDisclosureContext()
 
   const handleToggleByKeyboard = useCallback(
     (e: KeyboardEvent): void => {
-      // todo 開発中に2回レンダーされてdisclouserが2つあるので、idでみて1つのモーダルの切り替えをするようにする。
       if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
+        devLog([ 'handleToggleByKeyboard', id, isOpen ])
         isOpen ? onClose() : onOpen()
       }
       e.preventDefault()
@@ -29,7 +29,6 @@ export function useSearchModalDisclouser() {
    */
   useEffect(
     () => {
-      devLog([ 'id', id, 'hidden', hidden, 'isOpen', isOpen ])
       window.addEventListener('keydown', handleToggleByKeyboard)
       return () => {
         window.removeEventListener('keydown', handleToggleByKeyboard)
@@ -38,5 +37,5 @@ export function useSearchModalDisclouser() {
     [ isOpen ]
   )
 
-  return { onOpen }
+  return { isOpen, onOpen, onClose, id, hidden }
 }
