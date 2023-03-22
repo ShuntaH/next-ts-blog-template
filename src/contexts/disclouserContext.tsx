@@ -1,6 +1,5 @@
 import React, { createContext, useContext } from 'react'
 import { useDisclosure } from '@chakra-ui/react'
-import { devLog } from "../lib/helpers";
 
 
 interface DisclosureContextProps {
@@ -30,7 +29,7 @@ interface DisclosureProviderProps {
   children: React.ReactNode
 }
 
-let disclosureId: string | undefined
+// let disclosureId: string | undefined
 
 export const useDisclosureContext = () => useContext(DisclosureContext)
 
@@ -44,15 +43,9 @@ export function DisclosureProvider({ children }: DisclosureProviderProps) {
   const afterOpenRef = React.useRef(null)
   const afterCloseRef = React.useRef(null)
 
-  const disclosure = useDisclosure({ id: disclosureId })
-  devLog([ 'provider rendering isOpen', disclosure.isOpen ], { logType: 'info', isOutput: true } )
+  const disclosure = useDisclosure()
   const { isOpen, onOpen, onClose, getDisclosureProps } = disclosure
   const { hidden, id } = getDisclosureProps()
-
-  if (!disclosureId) {
-    // 初期モーダルの場合は、idを保存する
-    disclosureId = id
-  }
 
   const value = {
     id,
