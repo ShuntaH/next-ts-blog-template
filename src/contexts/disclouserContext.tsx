@@ -1,5 +1,6 @@
 import React, { createContext, useContext } from 'react'
 import { useDisclosure } from '@chakra-ui/react'
+import { devLog } from "../lib/helpers";
 
 
 interface DisclosureContextProps {
@@ -12,28 +13,24 @@ interface DisclosureContextProps {
   afterCloseRef: React.MutableRefObject<null | HTMLInputElement>
 }
 
-const defaultDisclosureContext: () => DisclosureContextProps = () => {
-  return {
-    id: null,
-    hidden: false,
-    isOpen: false,
-    onOpen: () => {
-    },
-    onClose: () => {
-    },
-    afterOpenRef: { current: null }, // モーダルが開いた後にフォーカスする要素
-    afterCloseRef: { current: null }, // モーダルが閉じた後にフォーカスする要素
-  }
-}
-
-const DisclosureContext = createContext<DisclosureContextProps>(defaultDisclosureContext())
+const DisclosureContext = createContext<DisclosureContextProps>({
+  id: null,
+  hidden: false,
+  isOpen: false,
+  onOpen: () => {
+  },
+  onClose: () => {
+  },
+  afterOpenRef: { current: null }, // モーダルが開いた後にフォーカスする要素
+  afterCloseRef: { current: null }, // モーダルが閉じた後にフォーカスする要素
+})
 
 
 interface DisclosureProviderProps {
   children: React.ReactNode
 }
 
-let disclosureId: string | undefined = undefined
+let disclosureId: string | undefined
 
 export const useDisclosureContext = () => useContext(DisclosureContext)
 
@@ -48,6 +45,7 @@ export function DisclosureProvider({ children }: DisclosureProviderProps) {
   const afterCloseRef = React.useRef(null)
 
   const disclosure = useDisclosure({ id: disclosureId })
+  devLog([ 'provider rendering isOpen', disclosure.isOpen ], { logType: 'info', isOutput: true } )
   const { isOpen, onOpen, onClose, getDisclosureProps } = disclosure
   const { hidden, id } = getDisclosureProps()
 

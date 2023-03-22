@@ -17,7 +17,7 @@ interface Props {
  */
 function SearchFormControlInHeader ({ formControlProps }: Props) {
   const { searchInput } = useSearchInputContext()
-  const { onOpen } = useSearchModalDisclosure()
+  const {onOpen} = useSearchModalDisclosure()
 
   return (
     <FormControl
