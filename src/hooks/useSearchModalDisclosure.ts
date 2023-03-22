@@ -7,27 +7,30 @@ import { devLog } from "../lib/helpers";
  */
 export function useSearchModalDisclosure() {
   const { isOpen, onOpen, onClose, id } = useDisclosureContext()
-  devLog([ 'disclosure rendering isOpen', isOpen ])
+  devLog([ 'disclosure rendering isOpen', id, isOpen ])
   const handleToggleByKeyboard = useCallback(
     (e: KeyboardEvent): void => {
+      devLog([ 'key', e.key, 'code', e.code, 'metaKey', e.metaKey, 'ctrlKey', e.ctrlKey ])
       if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
-        devLog([ 'in handler isOpen', isOpen ])
+        devLog([ 'in handler isOpen', id, isOpen ])
         isOpen ? onClose() : onOpen()
+        // devLog([ 'in handler isOpen', id, isOpen ])
+        // isOpen ? onClose() : onOpen()
       }
     },
-    [ isOpen, id ]
+    [ isOpen, onOpen, onClose ]
   )
 
   useEffect(
     () => {
-      devLog([ 'disclosure mounted isOpen', isOpen ])
-      window.addEventListener('keydown', handleToggleByKeyboard)
+      devLog([ 'disclosure mounted isOpen', id, isOpen ])
+      window.addEventListener('keyup', handleToggleByKeyboard)
       return () => {
-        devLog([ 'disclosure unmounted isOpen', isOpen ])
-        window.removeEventListener('keydown', handleToggleByKeyboard)
+        devLog([ 'disclosure unmounted isOpen', id, isOpen ])
+        window.removeEventListener('keyup', handleToggleByKeyboard)
       }
     },
-    [ handleToggleByKeyboard ]
+    [ isOpen ]
   )
 
   return { isOpen, onOpen, onClose }

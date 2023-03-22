@@ -50,6 +50,10 @@ const FILE_PATH = join(process.cwd(), '_md_files')
 export const POST_DIRECTORY_PATH = join(FILE_PATH, '_posts')
 export const ARTICLE_DIRECTORY_PATH = join(FILE_PATH, '_articles')
 
+// KEY
+export const ACTION_KEY_DEFAULT = [ 'Ctrl', 'Control' ]
+export const ACTION_KEY_APPLE = [ '⌘', 'Command' ]
+
 // TOC hook
 export const TOC_HEADING = 'お品書き'
 

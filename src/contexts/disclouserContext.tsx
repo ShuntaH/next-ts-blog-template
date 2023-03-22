@@ -29,7 +29,7 @@ interface DisclosureProviderProps {
   children: React.ReactNode
 }
 
-// let disclosureId: string | undefined
+let disclosureId: string | undefined
 
 export const useDisclosureContext = () => useContext(DisclosureContext)
 
@@ -43,7 +43,7 @@ export function DisclosureProvider({ children }: DisclosureProviderProps) {
   const afterOpenRef = React.useRef(null)
   const afterCloseRef = React.useRef(null)
 
-  const disclosure = useDisclosure()
+  const disclosure = useDisclosure({id: disclosureId})
   const { isOpen, onOpen, onClose, getDisclosureProps } = disclosure
   const { hidden, id } = getDisclosureProps()
 
