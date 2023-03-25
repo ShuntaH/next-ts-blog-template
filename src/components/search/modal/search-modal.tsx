@@ -20,6 +20,7 @@ interface Props {
 function SearchModal ({ boxProps }: Props) {
   const { isOpen, onClose, afterOpenRef, afterCloseRef, id } = useDisclosureContext()
 
+
   return (
     <Box {...boxProps}>
       <Modal
