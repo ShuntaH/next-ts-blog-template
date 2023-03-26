@@ -37,10 +37,12 @@ export function useSearchModalDisclosure() {
 
   useEffect(
     () => {
+      console.log('mounted', 'modalID', modalId, 'ID', id)
       if (modalId && modalId !== id) return;
       modalId = id
       window.addEventListener('keydown', handleToggleByKeyboard, false)
       return () => {
+        console.log('unmounted', 'modalID', modalId, 'ID', id)
         window.removeEventListener('keydown', handleToggleByKeyboard)
       }
     }, [ isOpen, handleToggleByKeyboard ]
