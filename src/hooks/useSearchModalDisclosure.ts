@@ -1,6 +1,7 @@
-import { useCallback } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useDisclosureContext } from 'contexts/disclouserContext'
 import { useKeyboard } from "./useKeyboard";
+import { useRouter } from "next/router";
 
 /**
  * react の strict mode のせいか、２回レンダーが走って、モーダルが２つ
@@ -9,7 +10,7 @@ import { useKeyboard } from "./useKeyboard";
  * ref に id を保管しても、処理を止めたい２回目のレンダーの時で ref が 初期値の null
  * なので2つ目のモーダルの処理が止まらないため、グローバル変数にした。
  */
-const modalId: string | null = null
+let modalId: string | null = null
 
 /**
  * 検索モーダルをキーボードイベントで開閉するためのフック
@@ -17,11 +18,11 @@ const modalId: string | null = null
 export function useSearchModalDisclosure() {
   const { isOpen, onToggle, onOpen, onClose, id } = useDisclosureContext()
   const { hotKey } = useKeyboard()
-  // const router = useRouter()
+  const router = useRouter()
 
-  // const resetModalId = () => {
-  //   modalId = null
-  // }
+  const resetModalId = () => {
+    modalId = null
+  }
 
   /**
    * キーボードイベントでモーダルを開閉する
@@ -34,28 +35,28 @@ export function useSearchModalDisclosure() {
     [ isOpen ]
   )
 
-  // useEffect(
-  //   () => {
-  //     console.log('mounted', 'modalID', modalId, 'ID', id)
-  //     if (modalId && modalId !== id) return;
-  //     modalId = id
-  //     window.addEventListener('keydown', handleToggleByKeyboard, false)
-  //     return () => {
-  //       console.log('unmounted', 'modalID', modalId, 'ID', id)
-  //       window.removeEventListener('keydown', handleToggleByKeyboard)
-  //     }
-  //   }, [ isOpen, handleToggleByKeyboard ]
-  // )
-  //
-  // useEffect(
-  //   // ページ遷移したときに、新しいモーダルIDが発行されるので、
-  //   // 遷移前に使用しているモーダルIDをリセットする。
-  //   () => {
-  //     router.events.on('routeChangeStart', resetModalId)
-  //     return () => {
-  //       router.events.off('routeChangeStart', resetModalId)
-  //     }
-  //   }, [ router ])
+  useEffect(
+    () => {
+      console.log('mounted', 'modalID', modalId, 'ID', id)
+      if (modalId && modalId !== id) return;
+      modalId = id
+      window.addEventListener('keydown', handleToggleByKeyboard, false)
+      return () => {
+        console.log('unmounted', 'modalID', modalId, 'ID', id)
+        window.removeEventListener('keydown', handleToggleByKeyboard)
+      }
+    }, [ isOpen, handleToggleByKeyboard ]
+  )
+
+  useEffect(
+    // ページ遷移したときに、新しいモーダルIDが発行されるので、
+    // 遷移前に使用しているモーダルIDをリセットする。
+    () => {
+      router.events.on('routeChangeStart', resetModalId)
+      return () => {
+        router.events.off('routeChangeStart', resetModalId)
+      }
+    }, [ router ])
 
   return { isOpen, onOpen, onClose, handleToggleByKeyboard, id, onToggle }
 }
