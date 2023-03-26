@@ -56,8 +56,6 @@ export function DisclosureProvider({ children }: DisclosureProviderProps) {
     onToggle
   }
 
-  // devLog([ 'DisclosureProvider ID', value.id, value ])
-
   return (
     <DisclosureContext.Provider value={value}>
       {children}
