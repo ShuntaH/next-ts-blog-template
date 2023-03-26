@@ -1,7 +1,6 @@
 import Fuse from 'fuse.js'
 import { FilteredPost } from 'interfaces/post'
 import React from 'react'
-import Header from 'components/header'
 import { Box } from '@chakra-ui/react'
 import { STYLES } from 'lib/constants'
 import Footer from 'components/footer'
@@ -16,9 +15,7 @@ function Layout ({ fuse, children }: Props) {
   return (
     // fuse をサーバーサイドで作成するために getStaticProps に書く。そのために _app.tsx には書かない。
     <FuseProvider fuse={fuse}>
-      <Header/>
-      {/* <Box> */}
-      {/*  /!*<Alert preview={preview}/>*!/ */}
+      { /* <Header/> */ }
       <Box
         as={'section'}
         position={'relative'}
