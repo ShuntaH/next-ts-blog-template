@@ -1,4 +1,4 @@
-import { FormControl, FormControlProps, Input, InputGroup, InputRightElement } from '@chakra-ui/react'
+import { Box, Flex, FormControl, FormControlProps, Input, InputGroup, InputRightElement, Kbd } from '@chakra-ui/react'
 import React from 'react'
 import { SEARCH_FORM_PLACEHOLDER, STYLES } from 'lib/constants'
 import { useSearchInputContext } from 'contexts/searchInputContext'
@@ -15,9 +15,9 @@ interface Props {
  * ヘッダーの検索入力欄
  * @param formControlProps
  */
-function SearchFormControlInHeader ({ formControlProps }: Props) {
+function SearchFormControlInHeader({ formControlProps }: Props) {
   const { searchInput } = useSearchInputContext()
-  const {onOpen} = useSearchModalDisclosure()
+  const { onOpen } = useSearchModalDisclosure()
 
   return (
     <FormControl
@@ -34,13 +34,18 @@ function SearchFormControlInHeader ({ formControlProps }: Props) {
           onClick={onOpen}
           defaultValue={searchInput}
         />
-        <InputRightElement>
-          <ChakraFontAwesomeIcon
-            icon={faMagnifyingGlass}
-            onClick={onOpen}
-            display={'inline'}
-            width={4}
-          />
+        <InputRightElement width={8}>
+          <Box height={"full"}>
+            <Flex height={"full"} whiteSpace={"nowrap"} alignItems={"center"}>
+              <Kbd>shift</Kbd> + <Kbd>H</Kbd>
+            </Flex>
+            <ChakraFontAwesomeIcon
+              icon={faMagnifyingGlass}
+              onClick={onOpen}
+              display={'inline'}
+              width={4}
+            />
+          </Box>
         </InputRightElement>
       </InputGroup>
     </FormControl>
