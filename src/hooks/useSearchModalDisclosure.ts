@@ -9,7 +9,7 @@ import { useKeyboard } from "./useKeyboard";
  * ref に id を保管しても、処理を止めたい２回目のレンダーの時で ref が 初期値の null
  * なので2つ目のモーダルの処理が止まらないため、グローバル変数にした。
  */
-let modalId: string | null = null
+const modalId: string | null = null
 
 /**
  * 検索モーダルをキーボードイベントで開閉するためのフック
