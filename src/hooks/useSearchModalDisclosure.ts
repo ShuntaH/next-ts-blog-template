@@ -25,7 +25,7 @@ export function useSearchModalDisclosure() {
   const handleToggleByKeyboard = useCallback(
     (e: KeyboardEvent): void => {
       if (modalId && modalId !== id) return;
-      if (e.key === 'k' && e[hotKey]) onToggle();
+      if (e.key.toLowerCase() === 'k' && e[hotKey]) onToggle();
     },
     [ isOpen ]
   )
