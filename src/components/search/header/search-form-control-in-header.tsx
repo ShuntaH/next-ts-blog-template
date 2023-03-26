@@ -26,13 +26,13 @@ interface Props {
  */
 function SearchFormControlInHeader({ formControlProps }: Props) {
   const { onOpen } = useSearchModalDisclosure()
-  const {actionKey} = useKeyboard()
+  const { actionKey } = useKeyboard()
 
   const handleInput: FormEventHandler = useCallback(
     (e: React.FormEvent<HTMLInputElement>) => {
       e.preventDefault()
     }
-, [])
+    , [])
 
 
   return (
@@ -66,15 +66,15 @@ function SearchFormControlInHeader({ formControlProps }: Props) {
           whiteSpace={"nowrap"}
           zIndex={1}
         >
-            <Flex
-              h={"full"}
-              alignItems={"center"}
-              opacity={0.4}
-            >
-              <Kbd>
-                {`${actionKey[0]}(${actionKey[1]})`}
-              </Kbd> + <Kbd>K</Kbd>
-            </Flex>
+          <Flex
+            h={"full"}
+            alignItems={"center"}
+            opacity={0.4}
+          >
+            <Kbd>
+              {`${actionKey[0]}(${actionKey[1]})`}
+            </Kbd> + <Kbd>K</Kbd>
+          </Flex>
         </InputRightElement>
       </InputGroup>
     </FormControl>
