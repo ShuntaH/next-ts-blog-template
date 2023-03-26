@@ -10,12 +10,12 @@ interface Props {
   cardHeaderProps?: CardHeaderProps
 }
 
-function PostCardHeader ({ post, cardHeaderProps }: Props) {
+function PostCardHeader({ post, cardHeaderProps }: Props) {
   const postHref = useMemo(
     () => `/posts/${post.slug}`,
-    [post]
+    [ post ]
   )
-  
+
   return (
     <CardHeader
       as={'header'}
@@ -23,9 +23,13 @@ function PostCardHeader ({ post, cardHeaderProps }: Props) {
       paddingX={0}
       {...cardHeaderProps}
     >
-      <LinkOverlay href={postHref} as={NextLink}>
-        <PostCardTitle>{post.title}</PostCardTitle>
-      </LinkOverlay>
+
+      <PostCardTitle>
+        <LinkOverlay href={postHref} as={NextLink}>
+          {post.title}
+        </LinkOverlay>
+      </PostCardTitle>
+
 
       <PostMeta
         time={post.time}
