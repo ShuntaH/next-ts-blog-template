@@ -5,7 +5,7 @@ status: true
 publishedAt: '2023-03-16T01:00:00.000+09:00'
 updatedAt: '2023-03-16T01:00:00.000+09:00'
 ogImageUrl: ''
-tags: ['code']
+tags: ['code', 'f fef']
 ---
 # Code syntax highlighting is applied to code blocks.
 ## JavaScript

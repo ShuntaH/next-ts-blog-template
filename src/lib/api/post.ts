@@ -115,7 +115,21 @@ export const getHtmlContentPosts = async (posts: Posts): Promise<Posts> => {
  * @param posts
  */
 export const getAllTags = (posts: Posts): string[] => {
-  return [ ...new Set(posts.flatMap((post) => post.tags)) ]
+  const tags = [ ...new Set(posts.flatMap((post) => post.tags)) ]
+  tags.forEach((tag) => {
+    if (/\s/.test(tag)) {
+      throw new Error('tag contains space.')
+    }
+
+    if (/\n/.test(tag)) {
+      throw new Error('tag contains new line.')
+    }
+
+    if (/\t/.test(tag)) {
+      throw new Error('tag contains tab.')
+    }
+  })
+  return tags
 }
 
 /**
