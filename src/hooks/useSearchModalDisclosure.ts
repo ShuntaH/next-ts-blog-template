@@ -19,6 +19,9 @@ export function useSearchModalDisclosure() {
   const { hotKey } = useKeyboard()
 
 
+  /**
+   * キーボードイベントでモーダルを開閉する
+   */
   const handleToggleByKeyboard = useCallback(
     (e: KeyboardEvent): void => {
       if (modalId && modalId !== id) return;

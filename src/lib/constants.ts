@@ -53,6 +53,8 @@ export const ARTICLE_DIRECTORY_PATH = join(FILE_PATH, '_articles')
 // KEY
 export const ACTION_KEY_DEFAULT = [ 'Ctrl', 'Control' ]
 export const ACTION_KEY_APPLE = [ '⌘', 'Command' ]
+export const HOT_KEY_DEFAULT = 'ctrlKey'
+export const HOT_KEY_APPLE = 'metaKey'
 
 // TOC hook
 export const TOC_HEADING = 'お品書き'

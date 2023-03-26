@@ -5,6 +5,7 @@ import { useSearchInputContext } from 'contexts/searchInputContext'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import ChakraFontAwesomeIcon from 'components/foundations/chakra-font-awesome-icon'
 import { useSearchModalDisclosure } from "../../../hooks/useSearchModalDisclosure";
+import { useKeyboard } from "../../../hooks/useKeyboard";
 
 
 interface Props {
@@ -18,6 +19,7 @@ interface Props {
 function SearchFormControlInHeader({ formControlProps }: Props) {
   const { searchInput } = useSearchInputContext()
   const { onOpen } = useSearchModalDisclosure()
+  const {actionKey} = useKeyboard()
 
   return (
     <FormControl
@@ -37,7 +39,11 @@ function SearchFormControlInHeader({ formControlProps }: Props) {
         <InputRightElement width={8}>
           <Box height={"full"}>
             <Flex height={"full"} whiteSpace={"nowrap"} alignItems={"center"}>
-              <Kbd>shift</Kbd> + <Kbd>H</Kbd>
+              {
+                actionKey.map(
+                  (key: string, index) => <Kbd key={key} ml={1}>{key}</Kbd>)
+              }
+
             </Flex>
             <ChakraFontAwesomeIcon
               icon={faMagnifyingGlass}
