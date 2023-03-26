@@ -118,15 +118,15 @@ export const getAllTags = (posts: Posts): string[] => {
   const tags = [ ...new Set(posts.flatMap((post) => post.tags)) ]
   tags.forEach((tag) => {
     if (/\s/.test(tag)) {
-      throw new Error('tag contains space.')
+      throw new Error(`tag ${tag} contains space.`)
     }
 
     if (/\n/.test(tag)) {
-      throw new Error('tag contains new line.')
+      throw new Error(`tag ${tag} contains new line.`)
     }
 
     if (/\t/.test(tag)) {
-      throw new Error('tag contains tab.')
+      throw new Error(`tag ${tag} contains tab.`)
     }
   })
   return tags
