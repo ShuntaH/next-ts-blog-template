@@ -17,10 +17,8 @@ interface Props {
   boxProps?: BoxProps
 }
 
-function SearchModal ({ boxProps }: Props) {
+function SearchModal({ boxProps }: Props) {
   const { isOpen, onClose, afterOpenRef, afterCloseRef, id } = useDisclosureContext()
-
-
   return (
     <Box {...boxProps}>
       <Modal
@@ -44,7 +42,7 @@ function SearchModal ({ boxProps }: Props) {
           </ModalHeader>
 
           {/* 検索結果 */}
-          <SearchResultCardsInModal />
+          <SearchResultCardsInModal/>
           <ModalFooter/>
         </ModalContent>
       </Modal>

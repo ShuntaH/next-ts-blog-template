@@ -19,8 +19,6 @@ function SearchFormControlInHeader ({ formControlProps }: Props) {
   const { searchInput } = useSearchInputContext()
   const {onOpen} = useSearchModalDisclosure()
 
-
-
   return (
     <FormControl
       position={'relative'}
