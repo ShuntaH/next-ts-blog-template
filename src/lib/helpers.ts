@@ -15,10 +15,24 @@ export function serverOrBrowser(): string {
 /**
  * 開発時だけログを出力する。
  * @param args
- * @param isOutput 開発時でもログを出力するかどうか
+ * @param options
  */
-export function devLog(args: any[], isOutput: boolean = true): void {
-  if (process.env.NODE_ENV === 'development' && isOutput) {
+export function devLog(
+  args: any[],
+  options = {
+    isOutput: true,
+    logType: 'log'
+  }
+): void {
+  if (process.env.NODE_ENV === 'development' && options.isOutput) {
+    if (options.logType === 'error') {
+      console.error(serverOrBrowser(), ...args)
+      return
+    }
+    if (options.logType === 'info') {
+      console.info(serverOrBrowser(), ...args)
+      return
+    }
     console.log(serverOrBrowser(), ...args)
   }
 }

@@ -1,23 +1,35 @@
 import React, { createContext, useContext } from 'react'
 import { useDisclosure } from '@chakra-ui/react'
 
-const DisclosureContext = createContext<{
+
+interface DisclosureContextProps {
+  id: string | null,
+  hidden: boolean,
   isOpen: boolean
   onOpen: () => void
   onClose: () => void
+  onToggle: () => void
   afterOpenRef: React.MutableRefObject<null | HTMLInputElement>
   afterCloseRef: React.MutableRefObject<null | HTMLInputElement>
-}>({
-      isOpen: false,
-      onOpen: () => {},
-      onClose: () => {},
-      afterOpenRef: { current: null }, // モーダルが開いた後にフォーカスする要素
-      afterCloseRef: { current: null } // モーダルが閉じた後にフォーカスする要素
-    })
+}
+
+const DisclosureContext = createContext<DisclosureContextProps>({
+  id: null,
+  hidden: false,
+  isOpen: false,
+  onOpen: () => {},
+  onClose: () => {},
+  onToggle: () => {},
+  afterOpenRef: { current: null }, // モーダルが開いた後にフォーカスする要素
+  afterCloseRef: { current: null }, // モーダルが閉じた後にフォーカスする要素
+})
+
 
 interface DisclosureProviderProps {
   children: React.ReactNode
 }
+
+export const useDisclosureContext = () => useContext(DisclosureContext)
 
 /**
  * DisclosureProvider
@@ -25,16 +37,28 @@ interface DisclosureProviderProps {
  * @param children
  * @constructor
  */
-export function DisclosureProvider ({ children }: DisclosureProviderProps) {
+export function DisclosureProvider({ children }: DisclosureProviderProps) {
   const afterOpenRef = React.useRef(null)
   const afterCloseRef = React.useRef(null)
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const disclosure = { afterOpenRef, afterCloseRef, isOpen, onOpen, onClose }
+
+  const disclosure = useDisclosure()
+  const { isOpen, onOpen, onClose, getDisclosureProps, onToggle } = disclosure
+  const { hidden, id } = getDisclosureProps()
+
+  const value = {
+    id,
+    hidden,
+    isOpen,
+    onOpen,
+    onClose,
+    afterOpenRef,
+    afterCloseRef,
+    onToggle
+  }
+
   return (
-    <DisclosureContext.Provider value={disclosure}>
+    <DisclosureContext.Provider value={value}>
       {children}
     </DisclosureContext.Provider>
   )
 }
-
-export const useDisclosureContext = () => useContext(DisclosureContext)

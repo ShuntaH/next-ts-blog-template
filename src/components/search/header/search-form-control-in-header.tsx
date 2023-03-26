@@ -1,11 +1,20 @@
-import { FormControl, FormControlProps, Input, InputGroup, InputRightElement } from '@chakra-ui/react'
-import React from 'react'
-import { SEARCH_FORM_PLACEHOLDER, STYLES } from 'lib/constants'
-import { useSearchInputContext } from 'contexts/searchInputContext'
-import { useDisclosureContext } from 'contexts/disclouserContext'
+import {
+  Flex,
+  FormControl,
+  FormControlProps,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  InputRightElement,
+  Kbd
+} from '@chakra-ui/react'
+import React, { FormEventHandler, useCallback } from 'react'
+import { STYLES } from 'lib/constants'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import ChakraFontAwesomeIcon from 'components/foundations/chakra-font-awesome-icon'
-import { useToggleSearchModal } from 'hooks/useKeyboradEvents'
+import { useSearchModalDisclosure } from "../../../hooks/useSearchModalDisclosure";
+import { useKeyboard } from "../../../hooks/useKeyboard";
+
 
 interface Props {
   formControlProps?: FormControlProps
@@ -15,10 +24,16 @@ interface Props {
  * ヘッダーの検索入力欄
  * @param formControlProps
  */
-function SearchFormControlInHeader ({ formControlProps }: Props) {
-  const { onOpen } = useDisclosureContext()
-  const { searchInput } = useSearchInputContext()
-  useToggleSearchModal()
+function SearchFormControlInHeader({ formControlProps }: Props) {
+  const { onOpen } = useSearchModalDisclosure()
+  const { actionKey } = useKeyboard()
+
+  const handleInput: FormEventHandler = useCallback(
+    (e: React.FormEvent<HTMLInputElement>) => {
+      e.preventDefault()
+    }
+    , [])
+
 
   return (
     <FormControl
@@ -27,21 +42,39 @@ function SearchFormControlInHeader ({ formControlProps }: Props) {
       {...formControlProps}
     >
       {/* 入力欄と虫眼鏡アイコンで1つの検索入力欄としてグループを作る */}
-      <InputGroup size='md'>
-        <Input
-          type='text'
-          placeholder={SEARCH_FORM_PLACEHOLDER}
-          focusBorderColor={STYLES.colorLight}
-          onClick={onOpen}
-          defaultValue={searchInput}
-        />
-        <InputRightElement>
+      <InputGroup
+        size='md'
+        position={"relative"}
+        onClick={onOpen}
+      >
+        <InputLeftElement zIndex={1}>
           <ChakraFontAwesomeIcon
             icon={faMagnifyingGlass}
-            onClick={onOpen}
             display={'inline'}
             width={4}
+            opacity={0.4}
           />
+        </InputLeftElement>
+        <Input
+          type='text'
+          focusBorderColor={STYLES.colorLight}
+          onInput={handleInput}
+          value={''}
+        />
+        <InputRightElement
+          width={36}
+          whiteSpace={"nowrap"}
+          zIndex={1}
+        >
+          <Flex
+            h={"full"}
+            alignItems={"center"}
+            opacity={0.4}
+          >
+            <Kbd>
+              {`${actionKey[0]}(${actionKey[1]})`}
+            </Kbd> + <Kbd>K</Kbd>
+          </Flex>
         </InputRightElement>
       </InputGroup>
     </FormControl>

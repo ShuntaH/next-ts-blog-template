@@ -42,9 +42,10 @@ function SearchResultCardInModal ({ searchResultPost, cardProps, resultIndex }: 
   /**
    * ヒットした記事ページに遷移する
    */
-  const handleNavigation = async (): Promise<void> => {
-    await router.push(postHref)
-    onClose()
+  const handleNavigation: React.KeyboardEventHandler<HTMLDivElement> = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      router.push(postHref).then(() => onClose())
+    }
   }
 
   /**
@@ -62,7 +63,6 @@ function SearchResultCardInModal ({ searchResultPost, cardProps, resultIndex }: 
     <LinkBox width={"full"}>
       <Card
         onKeyUp={handleNavigation}
-        key={resultIndex}
         tabIndex={resultIndex}
         width={'full'}
         variant={'elevated'}
@@ -92,7 +92,11 @@ function SearchResultCardInModal ({ searchResultPost, cardProps, resultIndex }: 
               textAlign={'left'}
               paddingLeft={2}
             >
-              <LinkOverlay as={NextLink} href={postHref}>
+              <LinkOverlay
+                as={NextLink}
+                href={postHref}
+                tabIndex={-1}
+              >
                 {searchResultPost.item.title}
               </LinkOverlay>
             </Heading>
