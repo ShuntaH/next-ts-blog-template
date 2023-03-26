@@ -16,10 +16,10 @@ const nextConfig = {
     // !! WARN !!
     ignoreBuildErrors: false
   },
-  i18n: {
-    locales: ['ja'],
-    defaultLocale: 'ja'
-  }
+  // i18n: {
+  //   locales: ['ja', 'en'],
+  //   defaultLocale: 'ja'
+  // }
 };
 
 module.exports = nextConfig;

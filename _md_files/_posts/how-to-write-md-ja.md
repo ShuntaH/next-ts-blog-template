@@ -5,7 +5,7 @@ excerpt: 'マークダウンの書き方を確認するための記事。この�
 publishedAt: '2020-03-16T01:00:00.000+09:00'
 updatedAt: '2020-03-16T01:00:00.000+09:00'
 ogImageUrl: ''
-tags: ['md-article', 'md-post', 'md', 'markdown', 'markdown-arti']
+tags: ['md-article', 'md-post', 'md', 'markdown-arti']
 ---
 ## お品書き
 
