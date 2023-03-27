@@ -11,7 +11,7 @@ import {
   LinkBox,
   LinkOverlay
 } from '@chakra-ui/react'
-import React, { useCallback } from 'react'
+import React, { useCallback, useMemo } from 'react'
 import { STYLES } from 'lib/constants'
 import SearchModalContentBodyHighlightInModal
   from 'components/search/modal/search-modal-content-body-highlight-in-modal'
@@ -37,7 +37,14 @@ interface Props {
 function SearchResultCardInModal ({ searchResultPost, cardProps, resultIndex }: Props) {
   const router = useRouter()
   const { onClose } = useDisclosureContext()
-  const postHref = `/posts/${searchResultPost.item.slug}`
+
+
+  const postHref = useMemo(
+    () => {
+      return `/posts/${searchResultPost.item.slug}`
+    },
+    [searchResultPost.item.slug]
+  )
 
   /**
    * ヒットした記事ページに遷移する
