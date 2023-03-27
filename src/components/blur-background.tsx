@@ -28,6 +28,8 @@ function BlurBackground () {
                 <NextImage
                   src={BACKGROUND_IMAGE_PATH}
                   alt={'background image'}
+                  decoding={"sync"}
+                  loading={"eager"}
                 />
               </Box>
           )
