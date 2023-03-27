@@ -60,6 +60,7 @@ function SearchFormControlInHeader({ formControlProps }: Props) {
           focusBorderColor={STYLES.colorLight}
           onInput={handleInput}
           value={''}
+          aria-label={'Full text search input form'}
         />
         <InputRightElement
           width={36}
