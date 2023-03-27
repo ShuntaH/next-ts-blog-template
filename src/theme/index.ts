@@ -16,5 +16,4 @@ const overrides = {
     Link
   }
 }
-// console.log('override', overrides)
 export default extendTheme(overrides)
