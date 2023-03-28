@@ -7,7 +7,7 @@ function BlurCard ({ children, ...props }: CardProps) {
     <Card
       position={'relative'}
       bgColor={'transparent'}
-      border={'2px'}
+      border={'1px'}
       borderColor={'rgba(51, 65, 85, 1)'}
       borderStyle={'solid'}
       marginBottom={STYLES.gap}
