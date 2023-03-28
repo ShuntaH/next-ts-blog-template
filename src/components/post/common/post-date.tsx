@@ -22,6 +22,7 @@ function PostDate({ publishedAt, updatedAt, textProps }: Props) {
         color={STYLES.color}
         width={4}
       />
+      <DateFormatter dateString={publishedAt}/>
       {
         publishedAt === updatedAt ?
           null :
