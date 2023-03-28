@@ -1,5 +1,5 @@
 import { format, parseISO } from 'date-fns'
-import { ja } from 'date-fns/locale'
+import { useMemo } from "react";
 
 interface Props {
   dateString: string
@@ -18,13 +18,17 @@ function DateFormatter({ dateString }: Props) {
   //   },
   //   [ dateString ]
   // )
+  const date = useMemo(
+    () => parseISO(dateString),
+    [ dateString ]
+  )
   return (
     <time dateTime={dateString}>
       {
         format(
-          parseISO(dateString),
+          date,
           'LLLL	d, yyyy',
-          { locale: ja })
+        )
       }
     </time>
   )
