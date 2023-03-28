@@ -74,7 +74,7 @@ function SearchFormControlInHeader({ formControlProps }: Props) {
           focusBorderColor={STYLES.colorLight}
           onInput={handleInput}
           value={trimSearchInput}
-          verticalAlign={'middle'}
+          lineHeight={'normal'} // safariで文字が下にずれるのを防ぐ
           aria-label={'Full text search input form'}
         />
         <InputRightElement
