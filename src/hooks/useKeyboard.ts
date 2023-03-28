@@ -23,7 +23,7 @@ export function useKeyboard() {
       } else {
         setIsMac(true)
       }
-    }, [])
+    }, [ isMac ])
 
   return { actionKey, hotKey, isMac }
 }
