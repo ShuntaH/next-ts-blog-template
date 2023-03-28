@@ -28,7 +28,7 @@ function DateFormatter({ dateString }: Props) {
   return (
     <time
       dateTime={dateString}
-      style={{display: "inline-block", minWidth: '100px'}}
+      style={{display: "inline-block", minWidth: '70px'}}
     >
       { date }
     </time>
