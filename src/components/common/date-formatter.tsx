@@ -5,8 +5,8 @@ interface Props {
   dateString: string
 }
 
-function DateFormatter ({ dateString }: Props) {
-  const [date, setDate] = useState(new Date())
+function DateFormatter({ dateString }: Props) {
+  const [ date, setDate ] = useState(new Date())
 
   useEffect(
     // デプロイ先のサーバーのタイムゾーンが異なる場合、
@@ -15,7 +15,7 @@ function DateFormatter ({ dateString }: Props) {
     () => {
       setDate(parseISO(dateString))
     },
-    [dateString]
+    [ dateString ]
   )
   return (
     <time dateTime={dateString}>
