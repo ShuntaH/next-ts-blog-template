@@ -19,17 +19,15 @@ function DateFormatter({ dateString }: Props) {
   //   [ dateString ]
   // )
   const date = useMemo(
-    () => parseISO(dateString),
+    () => format(
+      parseISO(dateString),
+      'LLLL	d, yyyy',
+    ),
     [ dateString ]
   )
   return (
     <time dateTime={dateString}>
-      {
-        format(
-          date,
-          'LLLL	d, yyyy',
-        )
-      }
+      {date}
     </time>
   )
 }
