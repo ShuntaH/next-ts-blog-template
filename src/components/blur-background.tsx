@@ -23,7 +23,7 @@ function BlurBackground () {
               <Box
                 width={'full'}
                 position={'relative'}
-                height={'full'}
+                height={'100vh'}
               >
                 <NextImage src={BACKGROUND_IMAGE_PATH} alt={'background'} />
               </Box>
