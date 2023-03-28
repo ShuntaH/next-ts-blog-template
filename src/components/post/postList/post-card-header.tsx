@@ -1,7 +1,9 @@
-import { CardHeader, CardHeaderProps } from '@chakra-ui/react'
+import { CardHeader, CardHeaderProps, LinkOverlay } from '@chakra-ui/react'
 import { Post } from 'interfaces/post'
 import PostMeta from 'components/post/common/post-meta'
-import React from 'react'
+import React, { useMemo } from 'react'
+import PostCardTitle from 'components/post/postList/post-card-title'
+import NextLink from "next/link";
 
 interface Props {
   post: Post
@@ -9,6 +11,11 @@ interface Props {
 }
 
 function PostCardHeader({ post, cardHeaderProps }: Props) {
+  const postHref = useMemo(
+    () => `/posts/${post.slug}`,
+    [ post ]
+  )
+
   return (
     <CardHeader
       as={'header'}
@@ -16,6 +23,14 @@ function PostCardHeader({ post, cardHeaderProps }: Props) {
       paddingX={0}
       {...cardHeaderProps}
     >
+
+      <PostCardTitle>
+        <LinkOverlay href={postHref} as={NextLink}>
+          {post.title}
+        </LinkOverlay>
+      </PostCardTitle>
+
+
       <PostMeta
         time={post.time}
         publishedAt={post.publishedAt}
