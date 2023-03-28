@@ -33,6 +33,7 @@ function Header(props: BoxProps) {
             letterSpacing={'0.02em'}
             _hover={STYLES.hoverLighterStyle}
             title={'Home'}
+            color={STYLES.textColor}
           >
             {BLOG_NAME}
           </Link>
@@ -75,6 +76,7 @@ function Header(props: BoxProps) {
                   <ChakraFontAwesomeIcon
                     icon={ni.icon}
                     display={'inline'}
+                    color={STYLES.textColor}
                     width={4}
                     _hover={STYLES.hoverLightStyle}
                   />
@@ -85,8 +87,8 @@ function Header(props: BoxProps) {
                         top={'4px'}
                         right={"-12px"}
                         display={"inline"}
-                        color={'gray.200'}
-                        opacity={0.3}
+                        color={STYLES.colorLight}
+                        opacity={0.8}
                         icon={faExternalLink}
                         height={'0.6em'}
                       />

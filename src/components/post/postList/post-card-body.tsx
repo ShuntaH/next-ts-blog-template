@@ -23,7 +23,11 @@ function PostCardBody ({ post, cardBodyProps }: Props) {
       paddingX={0}
       {...cardBodyProps}
     >
-      <Text fontSize={'xs'} color={STYLES.textColor} lineHeight={1.5}>
+      <Text
+        fontSize={'xs'}
+        color={STYLES.textColor}
+        lineHeight={1.5}
+      >
         {post.excerpt}
       </Text>
     </CardBody>

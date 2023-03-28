@@ -22,9 +22,10 @@ export async function getStaticPaths () {
   const tags = getAllTags(posts)
   let paths: object[] = []
 
+  // todo markdown タグを作るとビルドの時感知されない不具合がある
   tags.forEach((tag) => {
     // タグのパスを動的に作成するためにループ
-
+    console.log('tag', tag)
     const taggedPosts = getTaggedPosts(posts, tag)
     // あるタグを持っている記事を全て取得する
 

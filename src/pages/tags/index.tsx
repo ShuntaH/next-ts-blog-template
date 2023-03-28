@@ -20,6 +20,7 @@ export async function getStaticProps (): Promise<GetStaticPropsResult<Props>> {
   const allPosts = getAllPosts()
   const filteredPosts = await getFilteredPosts(allPosts)
   const allTags = getAllTags(allPosts)
+
   return {
     props: {
       filteredPosts,

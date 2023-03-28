@@ -11,7 +11,7 @@ import {
   LinkBox,
   LinkOverlay
 } from '@chakra-ui/react'
-import React, { useCallback } from 'react'
+import React, { useCallback, useMemo } from 'react'
 import { STYLES } from 'lib/constants'
 import SearchModalContentBodyHighlightInModal
   from 'components/search/modal/search-modal-content-body-highlight-in-modal'
@@ -37,15 +37,26 @@ interface Props {
 function SearchResultCardInModal ({ searchResultPost, cardProps, resultIndex }: Props) {
   const router = useRouter()
   const { onClose } = useDisclosureContext()
-  const postHref = `/posts/${searchResultPost.item.slug}`
+
+
+  const postHref = useMemo(
+    () => {
+      return `/posts/${searchResultPost.item.slug}`
+    },
+    [searchResultPost.item.slug]
+  )
 
   /**
    * ヒットした記事ページに遷移する
    */
-  const handleNavigation: React.KeyboardEventHandler<HTMLDivElement> = (e: React.KeyboardEvent) => {
+  const handleNavigationByKeyboard: React.KeyboardEventHandler<HTMLDivElement> = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
       router.push(postHref).then(() => onClose())
     }
+  }
+
+  const handleNavigationByClick: React.MouseEventHandler<HTMLDivElement> = (e: React.MouseEvent) => {
+      router.push(postHref).then(() => onClose())
   }
 
   /**
@@ -62,7 +73,8 @@ function SearchResultCardInModal ({ searchResultPost, cardProps, resultIndex }: 
   return (
     <LinkBox width={"full"}>
       <Card
-        onKeyUp={handleNavigation}
+        onKeyUp={handleNavigationByKeyboard}
+        onClick={handleNavigationByClick}
         tabIndex={resultIndex}
         width={'full'}
         variant={'elevated'}

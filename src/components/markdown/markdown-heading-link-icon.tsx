@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, TextProps } from '@chakra-ui/react'
-import { HEADING_LINK_ICON_CLASSNAME } from "../../lib/constants";
+import { HEADING_LINK_ICON_CLASSNAME, STYLES } from "../../lib/constants";
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 import ChakraFontAwesomeIcon from "../foundations/chakra-font-awesome-icon";
 
@@ -24,8 +24,9 @@ function MarkdownHeadingLinkIcon(props: TextProps) {
       >
         <ChakraFontAwesomeIcon
           display={"inline"}
-          color={'gray.300'}
-          _hover={{ color: 'gray.200' }}
+          color={STYLES.colorLight}
+          opacity={0.8}
+          _hover={{ color: STYLES.colorLighter }}
           icon={faLink}
           height={'0.6em'} // headingのfont-sizeに応じて動的にアイコンの大きさを変える
           marginInlineStart={2}

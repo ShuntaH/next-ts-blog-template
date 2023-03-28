@@ -8,12 +8,13 @@ import {
   InputRightElement,
   Kbd
 } from '@chakra-ui/react'
-import React, { FormEventHandler, useCallback } from 'react'
+import React, { FormEventHandler, useCallback, useMemo } from 'react'
 import { STYLES } from 'lib/constants'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import ChakraFontAwesomeIcon from 'components/foundations/chakra-font-awesome-icon'
 import { useSearchModalDisclosure } from "../../../hooks/useSearchModalDisclosure";
 import { useKeyboard } from "../../../hooks/useKeyboard";
+import { useSearchInputContext } from "../../../contexts/searchInputContext";
 
 
 interface Props {
@@ -27,6 +28,7 @@ interface Props {
 function SearchFormControlInHeader({ formControlProps }: Props) {
   const { onOpen } = useSearchModalDisclosure()
   const { actionKey } = useKeyboard()
+  const { searchInput } = useSearchInputContext()
 
   const handleInput: FormEventHandler = useCallback(
     (e: React.FormEvent<HTMLInputElement>) => {
@@ -34,6 +36,18 @@ function SearchFormControlInHeader({ formControlProps }: Props) {
     }
     , [])
 
+  /**
+   * 入力欄の中のアイコンと文字が重ならないように文字数が多ければ3点リーダをつける
+   */
+  const trimSearchInput = useMemo(
+    () => {
+      const MAX_LENGTH = 8
+      if (searchInput.length > MAX_LENGTH) {
+        return searchInput.substring(0, MAX_LENGTH) + '...'
+      }
+      return searchInput
+    }, [searchInput]
+  )
 
   return (
     <FormControl
@@ -59,7 +73,8 @@ function SearchFormControlInHeader({ formControlProps }: Props) {
           type='text'
           focusBorderColor={STYLES.colorLight}
           onInput={handleInput}
-          value={''}
+          value={trimSearchInput}
+          aria-label={'Full text search input form'}
         />
         <InputRightElement
           width={36}

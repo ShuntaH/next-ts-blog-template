@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, TextProps } from '@chakra-ui/react'
+import { Box, Text, TextProps } from '@chakra-ui/react'
 import DateFormatter from 'components/common/date-formatter'
 import ChakraFontAwesomeIcon from 'components/foundations/chakra-font-awesome-icon'
 import { faFeather } from '@fortawesome/free-solid-svg-icons'
@@ -11,9 +11,9 @@ interface Props {
   textProps?: TextProps
 }
 
-function PostDate ({ publishedAt, updatedAt, textProps }: Props) {
+function PostDate({ publishedAt, updatedAt, textProps }: Props) {
   return (
-    <Text letterSpacing={'0.03em'} {...textProps}>
+    <Box letterSpacing={'0.03em'} {...textProps}>
       <ChakraFontAwesomeIcon
         display={'inline'}
         paddingTop={0.5}
@@ -31,9 +31,9 @@ function PostDate ({ publishedAt, updatedAt, textProps }: Props) {
               <Text as={"span"}> / </Text>
               <DateFormatter dateString={updatedAt}/>
             </>
-        )
+          )
       }
-    </Text>
+    </Box>
   )
 }
 

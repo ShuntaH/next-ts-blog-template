@@ -2,7 +2,7 @@ import { Box } from '@chakra-ui/react'
 import React from 'react'
 import { BACKGROUND_IMAGE_PATH } from 'lib/constants'
 import { useBlurBackground } from 'hooks/useBlurBackground'
-import NextImage from 'components/foundations/next-image'
+import NextImage from "./foundations/next-image";
 
 function BlurBackground () {
   const blurOpacity = useBlurBackground()
@@ -23,12 +23,9 @@ function BlurBackground () {
               <Box
                 width={'full'}
                 position={'relative'}
-                paddingTop={'100vh'}
+                height={'full'}
               >
-                <NextImage
-                  src={BACKGROUND_IMAGE_PATH}
-                  alt={'background image'}
-                />
+                <NextImage src={BACKGROUND_IMAGE_PATH} alt={'background'} />
               </Box>
           )
             : null
