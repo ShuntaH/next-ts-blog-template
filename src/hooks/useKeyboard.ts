@@ -17,6 +17,7 @@ export function useKeyboard() {
       if (typeof navigator === 'undefined') return
 
       if (!/(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
+        // for windows
         setActionKey(ACTION_KEY_DEFAULT)
         setHotKey(HOT_KEY_DEFAULT)
         setIsMac(false)
