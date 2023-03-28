@@ -12,6 +12,7 @@ function DateFormatter({ dateString }: Props) {
     // デプロイ先のサーバーのタイムゾーンが異なる場合、
     // サーバーサイドレンダリング時とクライアントサイドレンダリング時で
     // 日付がずれるのでハイドレーションエラーが発生する。
+    // そのため、useEffectを使ってクライアントサイドレンダリング時に date を更新する。
     () => {
       setDate(parseISO(dateString))
     },
