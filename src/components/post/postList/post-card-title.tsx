@@ -11,6 +11,7 @@ function PostCardTitle (props: HeadingProps) {
       _hover={STYLES.hoverLighterStyle}
       fontSize={{ base: 'md', md: 'xl' }}
       marginBottom={{ base: 2, md: 1 }}
+      color={STYLES.textColor}
     >
       {props.children}
     </Heading>

@@ -33,6 +33,7 @@ function Header(props: BoxProps) {
             letterSpacing={'0.02em'}
             _hover={STYLES.hoverLighterStyle}
             title={'Home'}
+            color={STYLES.textColor}
           >
             {BLOG_NAME}
           </Link>
