@@ -2,6 +2,7 @@ import { Flex, FlexProps, Link, LinkProps, Text, TextProps } from '@chakra-ui/re
 import { Pagination as PaginationType } from 'interfaces/pagination'
 import NextLink from 'next/link'
 import React from 'react'
+import { STYLES } from "../../lib/constants";
 
 interface Props {
   pagination: PaginationType
@@ -11,7 +12,7 @@ interface Props {
 const textProps: TextProps = {
   as: 'span',
   display: 'inline-block',
-  color: 'gray.500',
+  color: STYLES.textColorDark,
   overflowX: 'hidden',
   width: '70px',
   textAlign: 'center',
