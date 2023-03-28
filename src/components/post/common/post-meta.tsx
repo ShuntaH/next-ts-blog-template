@@ -1,5 +1,6 @@
 import React from 'react'
 import { Box, BoxProps, Flex, TagLabelProps } from '@chakra-ui/react'
+import PostDate from 'components/post/common/post-date'
 import PostTime from 'components/post/common/post-time'
 import PostTags from 'components/post/common/post-tags'
 import { TagLinkProps } from 'interfaces/foundation'
@@ -31,6 +32,11 @@ function PostMeta ({
       color={STYLES.textColorDark}
       {...boxProps}
     >
+      <PostDate
+        publishedAt={publishedAt}
+        updatedAt={updatedAt}
+        textProps={{ marginBottom: { base: 0.5 }, paddingRight: 2 }}
+      />
       <Flex alignItems={'center'} flexWrap={'wrap'}>
         <PostTime time={time}/>
         <PostTags
