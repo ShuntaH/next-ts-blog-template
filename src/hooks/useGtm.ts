@@ -8,6 +8,7 @@ import { pageview } from "../lib/gtm";
 export function useGtm() {
   const router = useRouter()
   useEffect(() => {
+    pageview(router.asPath)
     router.events.on('routeChangeComplete', pageview)
     return () => {
       router.events.off('routeChangeComplete', pageview)

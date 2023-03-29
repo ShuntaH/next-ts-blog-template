@@ -7,7 +7,6 @@ import theme from 'theme'
 import BlurBackground from 'components/blur-background'
 import { useGtm } from "../hooks/useGtm";
 import GtmScript from "../components/gtm-script";
-import Head from "next/head";
 
 function MyApp({ Component, pageProps }: AppProps) {
   useGtm();
@@ -18,10 +17,8 @@ function MyApp({ Component, pageProps }: AppProps) {
     // SSG では画像の最適化がされなくなるので、使わない。
     // ref: https://nextjs.org/docs/advanced-features/custom-app
     <>
-      <Head>
-        <GtmScript/>
-      </Head>
       <ChakraProvider theme={theme}>
+        <GtmScript/>
         <DefaultSeo {...DEFAULT_SEO}/>
         <BlurBackground/>
         <Component {...pageProps} />

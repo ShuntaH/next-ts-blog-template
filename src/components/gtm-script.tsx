@@ -1,4 +1,5 @@
 import React from 'react'
+import Script from "next/script";
 import { GTM_ID } from "../lib/gtm";
 
 
@@ -11,7 +12,9 @@ function GtmScript() {
      ' Please set NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID in .env.local')
   return (
     GTM_ID ?
-      <script
+      <Script
+        id="gtag-base"
+        strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
