@@ -10,7 +10,6 @@ function GtmScript() {
   !GTM_ID && console.warn(
     `GTM_ID is not set.` +
      ' Please set NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID in .env.local')
-
   return (
     GTM_ID ?
       <Script

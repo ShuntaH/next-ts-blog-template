@@ -7,6 +7,7 @@ export const pageview = (url: string) => {
    * pageview は 「Google アナリティクス:GA4 設定」のタグを作成するだけ。
    * pageview イベントのタグやトリガーは作成不要。
    */
+  console.log('pageview', url)
   window.dataLayer.push({
     event: 'pageview',
     page: url,
