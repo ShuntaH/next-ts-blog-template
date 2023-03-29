@@ -1,6 +1,7 @@
 import React from 'react'
 import Script from "next/script";
 import { GTM_ID } from "../lib/gtm";
+import { useGtm } from "../hooks/useGtm";
 
 
 /**
@@ -10,6 +11,7 @@ function GtmScript() {
   !GTM_ID && console.warn(
     `GTM_ID is not set.` +
      ' Please set NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID in .env.local')
+  useGtm();
 
   return (
     GTM_ID ?

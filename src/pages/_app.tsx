@@ -5,11 +5,9 @@ import { DEFAULT_SEO } from 'lib/constants'
 import React from 'react'
 import theme from 'theme'
 import BlurBackground from 'components/blur-background'
-import { useGtm } from "../hooks/useGtm";
 import GtmScript from "../components/gtm-script";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  useGtm();
   return (
   // 本来はここに Layout のコンポーネントを置きたい。
   // 検索データを getServersideProps で取得したいので pages に書いている。
