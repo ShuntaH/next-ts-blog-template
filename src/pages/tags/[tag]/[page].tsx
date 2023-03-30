@@ -9,9 +9,7 @@ import {
 } from 'lib/api/post'
 import { Pagination } from 'interfaces/pagination'
 import { FilteredPosts } from 'interfaces/post'
-import Layout from 'components/layouts/layout'
 import PostList from 'components/post/postList/post-list'
-import { useSetupFuse } from 'hooks/useFuse'
 import { getFilteredPosts } from 'lib/api/filterPost'
 import { useSeo } from 'hooks/useSeo'
 import { NextSeo } from 'next-seo'
@@ -90,20 +88,20 @@ export async function getStaticProps ({ params }: Context): Promise<GetStaticPro
   }
 }
 
-export default function PaginatedPage ({ pagination, filteredPosts }: Props) {
+export default function PaginatedPage ({ pagination }: Props) {
   const seo = useSeo(
     `${pagination.pageTitle}`,
     `${pagination.pageTitle}です`,
     pagination.currentUrl
   )
-  const fuse = useSetupFuse(filteredPosts)
+
   return (
-    <Layout fuse={fuse}>
+    <>
       <NextSeo {...seo} />
       <PostList
         pagination={pagination}
         boxProps={{ minHeight: 'inherit' }}
       />
-    </Layout>
+    </>
   )
 }

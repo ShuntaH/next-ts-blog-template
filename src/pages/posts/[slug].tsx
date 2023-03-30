@@ -1,9 +1,6 @@
 import { getAllPosts, getPostBySlug } from 'lib/api/post'
-import { FilteredPost, FilteredPosts, Post } from 'interfaces/post'
+import { FilteredPosts, Post } from 'interfaces/post'
 import React from 'react'
-import Fuse from 'fuse.js'
-import Layout from 'components/layouts/layout'
-import { useSetupFuse } from 'hooks/useFuse'
 import PostDetail from 'components/post/postDetail/post-detail'
 import { getFilteredPosts } from 'lib/api/filterPost'
 import { markdownToHtml } from 'lib/markdown/server'
@@ -46,9 +43,7 @@ export async function getStaticProps ({ params }: Context): Promise<GetStaticPro
   }
 }
 
-export default function PostPage ({ post, filteredPosts }: Props) {
-  const fuse: Fuse<FilteredPost> = useSetupFuse(filteredPosts)
-
+export default function PostPage ({ post }: Props) {
   const seo = useSeo(
     post.title,
     post.excerpt,
@@ -56,9 +51,9 @@ export default function PostPage ({ post, filteredPosts }: Props) {
   )
 
   return (
-    <Layout fuse={fuse}>
+    <>
       <NextSeo {...seo} />
       <PostDetail post={post}/>
-    </Layout>
+    </>
   )
 }
