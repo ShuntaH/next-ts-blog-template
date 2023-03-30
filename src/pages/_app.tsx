@@ -18,7 +18,6 @@ function MyApp({ Component, pageProps }: AppProps) {
   useGTMPageView()
 
   return (
-    <>
       <ChakraProvider theme={theme}>
         <GtmScript/>
         <DefaultSeo {...DEFAULT_SEO}/>
@@ -27,7 +26,6 @@ function MyApp({ Component, pageProps }: AppProps) {
           <Component {...pageProps} />
         </Layout>
       </ChakraProvider>
-    </>
   )
 }
 
