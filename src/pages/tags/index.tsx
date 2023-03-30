@@ -1,9 +1,7 @@
 import { getAllPosts, getAllTags } from 'lib/api/post'
 import { FilteredPosts } from 'interfaces/post'
 import { Box, Flex } from '@chakra-ui/react'
-import Layout from 'components/layouts/layout'
 import TagLink from 'components/foundations/tag-link'
-import { useSetupFuse } from 'hooks/useFuse'
 import NextLink from 'next/link'
 import { getFilteredPosts } from 'lib/api/filterPost'
 import { NextSeo } from 'next-seo'
@@ -29,17 +27,15 @@ export async function getStaticProps (): Promise<GetStaticPropsResult<Props>> {
   }
 }
 
-export default function Index ({ allTags, filteredPosts }: Props) {
+export default function Index ({ allTags }: Props) {
   const seo = useSeo(
     'タグ一覧',
     'このブログの記事のタグ一覧ページ。',
     '/tags'
   )
 
-  const fuse = useSetupFuse(filteredPosts)
-
   return (
-    <Layout fuse={fuse}>
+    <>
       <NextSeo {...seo}/>
       <Box position={'relative'}>
         <Flex
@@ -63,6 +59,6 @@ export default function Index ({ allTags, filteredPosts }: Props) {
           ))}
         </Flex>
       </Box>
-    </Layout>
+    </>
   )
 }

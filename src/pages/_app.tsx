@@ -5,23 +5,27 @@ import { DEFAULT_SEO } from 'lib/constants'
 import React from 'react'
 import theme from 'theme'
 import BlurBackground from 'components/blur-background'
-import { useGtm } from "../hooks/useGtm";
 import GtmScript from "../components/gtm-script";
+import { useGTMPageView } from "../hooks/useGtm";
+import Layout from "../components/layouts/layout";
+import Fuse from "fuse.js";
+import { FilteredPost } from "../interfaces/post";
+import { useSetupFuse } from "../hooks/useFuse";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  useGtm();
+  const { filteredPosts } = pageProps
+  const fuse: Fuse<FilteredPost> = useSetupFuse(filteredPosts)
+  useGTMPageView()
+
   return (
-    // 本来はここに Layout のコンポーネントを置きたい。
-    // 検索データを getServersideProps で取得したいので pages に書いている。
-    // app.tsx でも getInitialProps を使えばサーバーサイドの処理になるが、
-    // SSG では画像の最適化がされなくなるので、使わない。
-    // ref: https://nextjs.org/docs/advanced-features/custom-app
     <>
       <ChakraProvider theme={theme}>
         <GtmScript/>
         <DefaultSeo {...DEFAULT_SEO}/>
         <BlurBackground/>
-        <Component {...pageProps} />
+        <Layout fuse={fuse}>
+          <Component {...pageProps} />
+        </Layout>
       </ChakraProvider>
     </>
   )

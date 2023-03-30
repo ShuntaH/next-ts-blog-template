@@ -1,6 +1,6 @@
 import React from 'react'
 import Script from "next/script";
-import { GTM_ID } from "../lib/gtm";
+import { GTM_ID } from 'lib/constants'
 
 
 /**
