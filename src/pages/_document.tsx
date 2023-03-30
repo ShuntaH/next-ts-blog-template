@@ -1,5 +1,5 @@
 import { Head, Html, Main, NextScript } from 'next/document'
-import { GTM_ID } from '../lib/gtm'
+import { GTM_ID } from "../lib/constants";
 
 export default function Document() {
   return (
