@@ -8,10 +8,7 @@ import { pageview } from "../lib/gtm";
 export function useGtm() {
   const router = useRouter()
   useEffect(() => {
+    // SSG なので SPAでのページ遷移は考慮しない
     pageview(router.asPath)
-    router.events.on('routeChangeComplete', pageview)
-    return () => {
-      router.events.off('routeChangeComplete', pageview)
-    }
-  }, [ router.events ])
+  }, [])
 }
