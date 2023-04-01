@@ -48,8 +48,10 @@ async function generate() {
     './public/feed.xml',
     feed.xml({indent: true}),
   )
+
+  await console.log('RSS feed generated!')
 }
 
 console.log('Generating RSS feed...')
 generate()
-console.log('RSS feed generated!')
+
