@@ -9,6 +9,9 @@ import { NavigationIcon } from "../interfaces/icon";
 import { faTags } from "@fortawesome/free-solid-svg-icons";
 import { faGithubAlt } from "@fortawesome/free-brands-svg-icons";
 
+export const SITE_URL = 'https://next-ts-blog-template.vercel.app'
+export const FEED_URL = 'https://next-ts-blog-template.vercel.app/feed.xml'
+export const AUTHOR = 'Your Name'
 const HOME_IMAGE = '/assets/background-image.jpeg'
 export const HOME_OG_IMAGE_URL = HOME_IMAGE
 export const BLOG_NAME = 'Demo Blog'

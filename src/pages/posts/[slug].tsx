@@ -38,7 +38,7 @@ export async function getStaticProps ({ params }: Context): Promise<GetStaticPro
   return {
     props: {
       post,
-      filteredPosts
+      filteredPosts,
     }
   }
 }
