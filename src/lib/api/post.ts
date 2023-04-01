@@ -5,7 +5,10 @@ import { getAllMarkdownSlugs, getMarkdownBySlug, validateMarkdownData } from 'li
 import { parseISO } from 'date-fns'
 import { markdownToHtml } from 'lib/markdown/server'
 
-// type Post と一致させること
+/**
+ * マークダウンのデータに必ず存在するキーを指定する。
+ * これらのキーが存在しない場合はビルドに失敗する。
+ */
 const keysShouldExist = [
   'title',
   'publishedAt',
@@ -43,7 +46,7 @@ export const getPostBySlug = (slug: string): Post | null => {
   // ここで content を処理しない。全文検索と記事本文の２パターンで処理するため。
   // getStaticProps で処理する。
 
-  // UTCで扱う
+  // 実行時のTZ
   const publishedAt = parseISO(markdownData.publishedAt)
   const updatedAt = parseISO(markdownData.updatedAt)
 
@@ -84,7 +87,7 @@ export const getPostBySlug = (slug: string): Post | null => {
  * 下書き状態の記事は除く。公開できる全ての記事が対象になる。
  */
 export const getAllPosts = (): Posts => {
-  const slugs: string[] = getAllMarkdownSlugs(source) // [ 'hoge.md', 'html-in-md-ja.md' ]
+  const slugs: string[] = getAllMarkdownSlugs(source)
   const allPosts = slugs.map((slug) => getPostBySlug(slug))
   return allPosts.filter((post) => post) as Posts
 }

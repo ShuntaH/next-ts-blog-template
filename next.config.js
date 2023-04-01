@@ -16,10 +16,11 @@ const nextConfig = {
     // !! WARN !!
     ignoreBuildErrors: false
   },
-  i18n: {
-    locales: ['ja'],
-    defaultLocale: 'ja'
-  }
+  // 多言語化したい時に有効にしてください。
+  // i18n: {
+  //   locales: ['ja'],
+  //   defaultLocale: 'ja'
+  // }
 };
 
 module.exports = nextConfig;

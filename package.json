@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node scripts/gen-rss.js && next build",
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
@@ -49,12 +49,14 @@
     "remark-toc": "^8.0.1",
     "remark-unwrap-images": "^3.0.1",
     "remove-markdown": "^0.5.0",
+    "rss": "^1.2.2",
     "unified": "^10.1.2"
   },
   "devDependencies": {
     "@types/node": "^18.0.3",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
+    "@types/rss": "^0.0.30",
     "@typescript-eslint/eslint-plugin": "^5.41.0",
     "eslint": "^8.26.0",
     "eslint-config-next": "^13.0.0",
