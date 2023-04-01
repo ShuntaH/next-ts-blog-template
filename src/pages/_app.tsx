@@ -11,6 +11,7 @@ import Layout from "../components/layouts/layout";
 import Fuse from "fuse.js";
 import { FilteredPost } from "../interfaces/post";
 import { useSetupFuse } from "../hooks/useFuse";
+import Head from "next/head";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { filteredPosts } = pageProps
@@ -19,6 +20,14 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <>
+      <Head>
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="RSS"
+          href="/feed.xml"
+        />
+      </Head>
       <ChakraProvider theme={theme}>
         <GtmScript/>
         <DefaultSeo {...DEFAULT_SEO}/>
