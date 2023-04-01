@@ -52,3 +52,4 @@ async function generate() {
 
 console.log('Generating RSS feed...')
 generate()
+console.log('RSS feed generated!')
