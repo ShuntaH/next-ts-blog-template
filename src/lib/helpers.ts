@@ -1,13 +1,3 @@
-import { BLOG_NAME } from "./constants";
-
-
-/**
- * このブログのコピーライトを返す
- */
-export function copyright(): string {
-  return `© ${new Date().getFullYear()} ${BLOG_NAME}`
-}
-
 /**
  * サーバーとクライアントどちらで動いているか
  */

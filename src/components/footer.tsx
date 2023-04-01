@@ -1,8 +1,7 @@
 import { Box, Link, List, ListItem, Text } from '@chakra-ui/react'
 import NextLink from 'next/link'
-import { STYLES } from 'lib/constants'
+import { BLOG_NAME, STYLES } from 'lib/constants'
 import React, { useMemo } from 'react'
-import { copyright } from "../lib/helpers";
 
 interface Menu {
   href: string
@@ -16,7 +15,7 @@ const menus: Menu[] = [
 
 function Footer () {
   const copyrightText = useMemo(
-    () => copyright(),
+    () => `© ${new Date().getFullYear()} ${BLOG_NAME}`,
     []
   )
 
