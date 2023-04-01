@@ -51,4 +51,4 @@ async function generate() {
 }
 
 console.log('Generating RSS feed...')
-await generate()
+generate()
