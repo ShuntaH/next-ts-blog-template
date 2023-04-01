@@ -2,7 +2,7 @@ import { promises as fs } from 'fs'
 import RSS from 'rss'
 import { getAllPosts } from "./api/post";
 import { Post } from "../interfaces/post";
-import { AUTHOR, BLOG_DESCRIPTION, BLOG_NAME, FEED_URL, PUBLIC_DIR, SITE_URL } from "./constants";
+import { BLOG_DESCRIPTION, BLOG_NAME, FEED_URL, PUBLIC_DIR, SITE_URL } from "./constants";
 import { copyright } from "./helpers";
 
 export async function generate() {
@@ -21,15 +21,17 @@ export async function generate() {
       feed.item({
         title: post.title,
         url: `/posts/${post.slug}`,
-        date: post.publishedAt,
+        date: post.updatedAt,
         description: post.excerpt,
         categories: post.tags,
-        author: AUTHOR,
       })
     })
   )
 
-  await fs.writeFile(`${PUBLIC_DIR}/feed.xml`, feed.xml({ indent: true }))
+  await fs.writeFile(
+    `${PUBLIC_DIR}/feed.xml`,
+    feed.xml({ indent: true }),
+  )
 }
 
 generate()

@@ -13,9 +13,9 @@ export const SITE_URL = 'https://next-ts-blog-template.vercel.app'
 export const FEED_URL = `${SITE_URL}/feed.xml`
 
 export const PUBLIC_DIR = join(process.cwd(), 'public')
-export const AUTHOR = 'Your Name'
+
 const HOME_IMAGE = '/assets/background-image.jpeg'
-export const HOME_OG_IMAGE_URL = HOME_IMAGE
+
 export const BLOG_NAME = 'Demo Blog'
 export const BLOG_DESCRIPTION = "This is a Next.js blog focusing on technology topics such as software development, data science, AI, blockchain, and more. We aim to share knowledge on technical challenges to contribute to a better world."
 
@@ -138,7 +138,7 @@ export const DEFAULT_OPEN_GRAPH: OpenGraph = {
   description: BLOG_DESCRIPTION,
   images: [
     {
-      url: HOME_OG_IMAGE_URL,
+      url: HOME_IMAGE,
       width: 800,
       height: 600,
       alt: BLOG_NAME + ' Og Image Alt'
