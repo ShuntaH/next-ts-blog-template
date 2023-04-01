@@ -1,7 +1,8 @@
 import { Box, Link, List, ListItem, Text } from '@chakra-ui/react'
 import NextLink from 'next/link'
-import { BLOG_NAME, STYLES } from 'lib/constants'
-import React from 'react'
+import { STYLES } from 'lib/constants'
+import React, { useMemo } from 'react'
+import { copyright } from "../lib/helpers";
 
 interface Menu {
   href: string
@@ -14,6 +15,11 @@ const menus: Menu[] = [
 ]
 
 function Footer () {
+  const copyrightText = useMemo(
+    () => copyright(),
+    []
+  )
+
   return (
     <Box
       as={'footer'}
@@ -38,19 +44,24 @@ function Footer () {
         {menus.map((menu: Menu, index: number) => {
           return (
             <ListItem key={index} _notFirst={{ marginInlineStart: `${STYLES.gap}` }}>
-              <Link href={menu.href} as={NextLink} display={'block'} title={menu.content}>
+              <Link
+                href={menu.href}
+                as={NextLink}
+                display={'block'}
+                title={menu.content}
+              >
                 {menu.content}
               </Link>
             </ListItem>
           )
         })}
         <ListItem display={{ base: 'block', md: 'none' }} marginLeft={`${STYLES.gap}`}>
-          ©︎ {new Date().getFullYear()} {BLOG_NAME}
+          {copyrightText}
         </ListItem>
       </List>
 
       <Text display={{ base: 'none', md: 'block' }}>
-        ©︎ {new Date().getFullYear()} {BLOG_NAME}
+        {copyrightText}
       </Text>
     </Box>
   )

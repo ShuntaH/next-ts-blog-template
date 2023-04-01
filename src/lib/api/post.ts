@@ -5,7 +5,10 @@ import { getAllMarkdownSlugs, getMarkdownBySlug, validateMarkdownData } from 'li
 import { parseISO } from 'date-fns'
 import { markdownToHtml } from 'lib/markdown/server'
 
-// type Post と一致させること
+/**
+ * マークダウンのデータに必ず存在するキーを指定する。
+ * これらのキーが存在しない場合はビルドに失敗する。
+ */
 const keysShouldExist = [
   'title',
   'publishedAt',
