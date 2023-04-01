@@ -9,11 +9,6 @@ import { NavigationIcon } from "../interfaces/icon";
 import { faTags } from "@fortawesome/free-solid-svg-icons";
 import { faGithubAlt } from "@fortawesome/free-brands-svg-icons";
 
-export const SITE_URL = 'https://next-ts-blog-template.vercel.app'
-export const FEED_URL = `${SITE_URL}/feed.xml`
-
-export const PUBLIC_DIR = join(process.cwd(), 'public')
-
 const HOME_IMAGE = '/assets/background-image.jpeg'
 
 export const BLOG_NAME = 'Demo Blog'
