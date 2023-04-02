@@ -7,6 +7,7 @@ A blog template using Next.js, TypeScript, Markdown, Chakra UI, client-side sear
 
 ## Features
 - Static Site Generation (SSG)
+- Image optimization by next/image
 - Client-side full-text search
 - SEO optimization
 - Responsive and accessible UI with Chakra UI
