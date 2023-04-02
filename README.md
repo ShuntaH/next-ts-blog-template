@@ -8,6 +8,8 @@ A blog template using Next.js, TypeScript, Markdown, Chakra UI, client-side sear
 - SEO optimization
 - Responsive and accessible UI with Chakra UI
 - RSS feed
+- Google Analytics pageview tracking with Google Tag Manager
+
 
 ## Technologies Used
 - Next.js
@@ -45,3 +47,5 @@ npm run dev
 ```
 
 Visit http://localhost:3000 and create articles in the _md_files directory.
+
+Don't forget to add your Google Tag Manager container ID to the `env.local` file for Google Analytics integration.
