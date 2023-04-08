@@ -11,7 +11,6 @@ function BlurBackground () {
     <Box position={'relative'}>
       <Box
         position={'fixed'}
-        top={0}
         right={0}
         left={0}
         height={'full'}
