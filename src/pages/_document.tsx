@@ -3,7 +3,7 @@ import { GTM_ID } from "../lib/constants";
 
 export default function Document() {
   return (
-    <Html>
+    <Html lang="ja">
       <Head />
       <body>
       {GTM_ID && (

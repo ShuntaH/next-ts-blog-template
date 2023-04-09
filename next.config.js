@@ -16,7 +16,7 @@ const nextConfig = {
     // !! WARN !!
     ignoreBuildErrors: false
   },
-  // 多言語化したい時に有効にしてください。
+  // 多言語化したい時に有効にしてください。また OFF だと html lang= 設定がなくなるので注意
   // i18n: {
   //   locales: ['ja'],
   //   defaultLocale: 'ja'
