@@ -359,19 +359,19 @@ imgタグは next/image コンポーネントに変換されます。サイズ�
 **書き方**
 
 ```md
-![alt](/assets/hongkong-bg.png)
-![代替文字列](/assets/hongkong-bg.png "タイトル")
-<img src="/assets/hongkong-bg.png" alt="this is background image." width=200 height=200>
+![alt](/assets/background-image.jpeg)
+![代替文字列](/assets/background-image.jpeg "タイトル")
+<img src="/assets/background-image.jpeg" alt="this is background image." width=200 height=200>
 ```
 ##### md記法
 **出力**
 
-![ブログ内の画像](/assets/hongkong-bg.png)
+![ブログ内の画像](/assets/background-image.jpeg)
 
 ##### ブログ内の画像 imgタグ
 **出力**
 
-<img src="/assets/hongkong-bg.png" alt="this is for test" width=200 height=200>
+<img src="/assets/background-image.jpeg" alt="this is for test" width=200 height=200>
 
 ## Table 表
 `-`と`|`を使ってtableを作成します。
