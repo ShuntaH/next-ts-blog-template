@@ -1,7 +1,7 @@
 import { AppProps } from 'next/app'
 import { ChakraProvider } from '@chakra-ui/react'
 import { DefaultSeo } from 'next-seo'
-import { DEFAULT_SEO } from 'lib/constants'
+import { BLOG_NAME, DEFAULT_SEO } from 'lib/constants'
 import React from 'react'
 import theme from 'theme'
 import BlurBackground from 'components/blur-background'
@@ -12,6 +12,8 @@ import Fuse from "fuse.js";
 import { FilteredPost } from "../interfaces/post";
 import { useSetupFuse } from "../hooks/useFuse";
 import Head from "next/head";
+
+DEFAULT_SEO.titleTemplate = BLOG_NAME
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { filteredPosts } = pageProps
